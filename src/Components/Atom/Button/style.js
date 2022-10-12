@@ -1,22 +1,23 @@
 import styled from "styled-components";
 
-import { defaultSize, colorPalette, fontSize } from '../../../config'
+import { defaultSize, colorPalette, fontSize, fontWeight } from '../../../config'
 
 export const Container = styled.button`
-    display: flex;
-    align-items : center;
-    justify-content : center;
     width: 100%;
-    height : ${props => props.height ? props.height : defaultSize.height};
+    height : 100%;
     background-color: ${props => props.bgColor ? props.bgColor : colorPalette.primary};
-    border-radius: ${props => props.isRounded ? '1rem' : '0'};
+    border-radius: ${props => props.isRounded ? '2rem' : '0'};
     border : none;
     cursor : pointer;
+    box-sizing : border-box;
+    min-width : 140px;
+    text-align : center;
 `
 
 export const Text = styled.span`
     color : ${props => props.color ? props.color : colorPalette.white};
     font-size : ${props => props.fontSize ? props.fontSize : fontSize.base};
+    font-weight : ${props => props.fontWeight ? props.fontWeight : fontWeight.base}
 `
 
 export const Icon = styled.img``

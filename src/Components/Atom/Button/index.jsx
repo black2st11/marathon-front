@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Text, Icon } from './style'
 
-const Button = ({ children, onClick, icon, isRounded, height, bgColor, color }) => {
+const Button = ({ children, onClick, icon, isRounded, height, bgColor, color, type }) => {
     return (
         <Container onClick={onClick} isRounded={isRounded} height={height} bgColor={bgColor}>
             <Text color={color}>
@@ -12,4 +12,4 @@ const Button = ({ children, onClick, icon, isRounded, height, bgColor, color }) 
     )
 }
 
-export default Button
+export default Button       

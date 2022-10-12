@@ -17,32 +17,59 @@ export const fontSize = {
     xl9: `${defaultFontSize * 8}rem`
 }
 
+export const fontWeight = {
+    base: 400,
+    normal: 400,
+    medium: 500,
+    semiBold: 600,
+    bold: 700,
+    extraBold: 800
+}
+
 // 기본 베이스 width, height(default 기준으로 계산 되어짐) -> 폰트 변경되어지면 여기도 변경 필요
+const buttonSize = {
+    width: 16,
+    height: 3.5
+}
+
+const inputSize = {
+    width: '100%',
+    height: 3.5
+}
+
 export const defaultSize = {
     width: '',
     height: '2rem',
-    margin: '0.25rem 0'
+    margin: '0.25rem 0',
+    buttonWidth: `${buttonSize.width}rem`,
+    buttonHeight: `${buttonSize.height}rem`,
+    minButtonWidth: `${buttonSize.width * 0.56}rem`,
+    minButtonHeight: `${buttonSize.height * 0.82}rem`,
+    inputHeight: `${inputSize.height}rem`
 }
 
 // 컬러 수정
 export const colorPalette = {
-    primary: '#393939',
+    primary: '#414c80',
     secondary: '',
     tertiary: '',
-    black: '#090909',
-    white: '',
+    black: '#313131',
+    white: 'white',
     defaultBorder: '',
     label: '',
     warn: '',
-    gray: '#e9e9e9'
+    gray: '#e9e9e9',
+    border: '#9b9b9b',
+    noneBorder: '#707070',
+    placeholder: '#8b8b8b'
 }
 
 
 // 디스플레이 사이즈
 export const viewSize = {
-    mobile: '',
-    tablet: '',
-    desktop: '',
+    mobile: '375px',
+    tablet: '992px',
+    desktop: '1920px',
 }
 
 // nav 및 라우팅 포인트

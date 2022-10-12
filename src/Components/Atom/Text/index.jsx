@@ -21,9 +21,7 @@ const TextGenerate = ({ children, fontSize, color, type }) => {
 
 const Text = ({ children, fontSize, color, type = 'span' }) => {
     return (
-        <Container>
-            <TextGenerate children={children} fontSize={fontSize} color={color} type={type} />
-        </Container>
+        <TextGenerate children={children} fontSize={fontSize} color={color} type={type} />
     )
 }
 
