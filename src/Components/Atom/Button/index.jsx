@@ -7,7 +7,7 @@ const Button = ({ children, onClick, Icon, isRounded, height, bgColor, color, ty
             <Text color={color}>
                 {children}
             </Text>
-            <Icon />
+            {Icon && <Icon />}
         </Container>
     )
 }

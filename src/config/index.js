@@ -45,7 +45,16 @@ export const defaultSize = {
     buttonHeight: `${buttonSize.height}rem`,
     minButtonWidth: `${buttonSize.width * 0.56}rem`,
     minButtonHeight: `${buttonSize.height * 0.82}rem`,
-    inputHeight: `${inputSize.height}rem`
+    inputHeight: `${inputSize.height}rem`,
+    desktopContainer: '1194px',
+    tabletContainer: '942px',
+    mobileContainer: '336px',
+    nav: {
+        desktop: '85px',
+        tablet: '70px',
+        mobile: '70px'
+
+    }
 }
 
 // 컬러 수정
