@@ -4,9 +4,9 @@ import { fontSize, colorPalette, defaultSize, fontWeight } from '../../../config
 
 export const Container = styled.div`
     display : flex;
-    border ${props => props.checked ? `${props.border} ${colorPalette.primary}` : `${props.border} ${colorPalette.gray}`};
-    width: 100%;
-    height: ${defaultSize.inputHeight};
+    border ${props => props.border ? props.border : `1px solid ${colorPalette.border}}`};
+    background-color: ${props => props.bgColor ? props.bgColor : colorPalette.white};
+    padding : 0.5rem;
     align-items:center;
     justify-content:center;
     box-sizing : border-box;
@@ -22,16 +22,4 @@ export const HiddenCheckBox = styled.input`
     position: absolute;
     white-space: nowrap;
     width: 1px;
-`
-
-export const CheckBox = styled.div`
-    width : 1rem;
-    height: 1rem;
-    border : ${props => props.border ? props.border : ''}
-`
-
-export const Label = styled.label`
-    font-size: ${props => props.fontSize ? props.fontSize : fontSize.base};
-    color: ${props => props.color ? props.color : colorPalette.black};
-    font-weight: ${props => props.fontWeight ? props.fontWeight : fontWeight.base};
 `

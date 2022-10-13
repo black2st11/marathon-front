@@ -1,13 +1,13 @@
 import React from 'react'
-import { Container, Text, Icon } from './style'
+import { Container, Text } from './style'
 
-const Button = ({ children, onClick, icon, isRounded, height, bgColor, color, type }) => {
+const Button = ({ children, onClick, Icon, isRounded, height, bgColor, color, type }) => {
     return (
         <Container onClick={onClick} isRounded={isRounded} height={height} bgColor={bgColor}>
             <Text color={color}>
                 {children}
             </Text>
-            {icon && (<Icon src={icon}></Icon>)}
+            <Icon />
         </Container>
     )
 }

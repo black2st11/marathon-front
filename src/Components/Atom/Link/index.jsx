@@ -1,10 +1,10 @@
 import React from 'react'
 import { Container, Link as StyledLink } from './style'
 
-const Link = ({ children, href = '', color = {}, size = {} }) => {
+const Link = ({ children, href = '', color, fontSize }) => {
     return (
         <Container>
-            <StyledLink href={href} color={color.text} fontSize={size.fontSize}>{children}</StyledLink>
+            <StyledLink href={href} color={color} fontSize={fontSize}>{children}</StyledLink>
         </Container>
     )
 }

@@ -1,42 +1,27 @@
 import React from 'react'
 import { Container, TextWrapper, LongTextWrapper, InputWrapper, NameWrapper, EnglishNameWrapper, FormWrapper, ButtonWrapper } from './style'
 import { Input, Text, Button } from '../../Atom'
-import { fontSize } from '../../../config'
+import { TextForm } from '../index'
 
-const InputForm = ({ name, englishName, validator, value, onChange, required, type = 'default', button, onClick }) => {
+const InputForm = ({ text, englishText, validator, value, onChange, required, category = 'default', button, onClick, isRounded }) => {
 
-    const wrapperGenerate = () => {
-        if (name) {
-            return (
-                <>
-                    <NameWrapper>
-                        <Text fontSize={fontSize.xl}>{name}</Text>
-                    </NameWrapper>
-                    <EnglishNameWrapper>
-                        <Text fontSize={fontSize.base}>{englishName}</Text>
-
-                    </EnglishNameWrapper>
-                </>
-            )
-        }
-
-        return (<></>)
+    const inputProps = {
+        onChange,
+        value,
+        validator,
+        required
     }
 
-    const generate = () => {
-        if (type == 'default') {
-            return (
-                <TextWrapper noneValue={name}>
-                    {wrapperGenerate()}
-                </TextWrapper>
-            )
-        } else if (type == 'long') {
-            return (
-                <LongTextWrapper noneValue={name}>
-                    {wrapperGenerate()}
-                </LongTextWrapper>
-            )
-        }
+    const buttonProps = {
+        children: button,
+        onClick,
+        isRounded
+    }
+
+    const textProps = {
+        text,
+        englishText,
+        category
     }
 
     const inputGenerate = () => {
@@ -44,20 +29,20 @@ const InputForm = ({ name, englishName, validator, value, onChange, required, ty
             return (
                 <>
                     <InputWrapper>
-                        <Input />
+                        <Input {...inputProps} />
                     </InputWrapper>
                     <ButtonWrapper>
-                        <Button onClick={onClick} isRounded={true}>{button}</Button>
+                        <Button {...buttonProps} />
                     </ButtonWrapper>
                 </>
             )
         }
-        return (<Input />)
+        return (<Input {...inputProps} />)
     }
 
     return (
         <Container>
-            {generate()}
+            <TextForm {...textProps} />
             <FormWrapper>{inputGenerate()}</FormWrapper>
         </Container >
     )

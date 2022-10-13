@@ -2,14 +2,12 @@ import React from 'react'
 import { Container, Select as StyledSelect, Option } from './style'
 
 
-const Select = ({ setValue, options = [] }) => {
+const Select = ({ onChange, options = [], value, placeholder = '선택' }) => {
     return (
-        <Container>
-            <StyledSelect onChange={e => setValue(e.target.value)}>
-                <Option value='' hidden={true}>선택</Option>
-                {options.map((option, index, array) => (<Option key={index} value={option.value}>{option.name}</Option>))}
-            </StyledSelect>
-        </Container>
+        <StyledSelect selected={value} onChange={e => onChange(e.target.value)}>
+            <Option value='' hidden={true}>{placeholder}</Option>
+            {options.map((option, index, array) => (<Option key={index} value={option.value}>{option.name}</Option>))}
+        </StyledSelect>
     )
 }
 

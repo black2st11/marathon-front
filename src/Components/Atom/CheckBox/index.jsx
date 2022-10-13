@@ -1,16 +1,14 @@
 import React, { useState } from 'react'
 import { Container, HiddenCheckBox, CheckBox as StyledCheckBox, Label } from './style'
 
+import { colorPalette } from '../../../config'
 
-const CheckBox = ({ children, value, name, border, checked, setValue }) => {
+const CheckBox = ({ Icon, color = colorPalette.white, bgColor = colorPalette.primary, value, onChange }) => {
+    const [focus, setFocus] = useState(false)
     return (
-        <Container onClick={setValue} checked={checked} border={border}>
-            <HiddenCheckBox name={name} value={value} type='checkbox' onChange={setValue} checked={checked} readOnly />
-            <Label>
-                {children}
-            </Label>
-            <StyledCheckBox />
-
+        <Container onClick={onChange} checked={value} border={focus || value ? `1px solid ${bgColor}` : ''} bgColor={value ? bgColor : colorPalette.white}>
+            <HiddenCheckBox value={value} type='checkbox' onChange={onChange} checked={value} onFocus={() => setFocus(true)} onBlur={() => setFocus(false)} />
+            <Icon stroke={value ? color : colorPalette.placeholder} />
         </Container>
     )
 }
