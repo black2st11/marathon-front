@@ -53,7 +53,13 @@ export const defaultSize = {
         desktop: '85px',
         tablet: '70px',
         mobile: '70px'
-
+    },
+    li: {
+        desktop: {
+            titleHeight: '2rem',
+            titleWidth: '7.75rem',
+            titleLongWidth: '9.375rem',
+        }
     }
 }
 
@@ -70,7 +76,8 @@ export const colorPalette = {
     gray: '#e9e9e9',
     border: '#9b9b9b',
     noneBorder: '#707070',
-    placeholder: '#8b8b8b'
+    placeholder: '#8b8b8b',
+    card: '#e6f4ff'
 }
 
 

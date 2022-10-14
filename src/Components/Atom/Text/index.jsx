@@ -3,25 +3,37 @@ import React from 'react'
 import { Container, Span, P, H1, H2, H3 } from './style'
 
 
-const TextGenerate = ({ children, fontSize, color, type }) => {
+const TextGenerate = ({ children, fontSize, color, fontWeight, type }) => {
+    const textProps = {
+        fontSize,
+        color,
+        fontWeight,
+    }
+
+
     switch (type) {
         case 'h1':
-            return (<H1 fontSize={fontSize} color={color}>{children}</H1>)
+            return (<H1 {...textProps}>{children}</H1>)
         case 'h2':
-            return (<H2 fontSize={fontSize} color={color}>{children}</H2>)
+            return (<H2 {...textProps}>{children}</H2>)
         case 'h3':
-            return (<H3 fontSize={fontSize} color={color}>{children}</H3>)
+            return (<H3 {...textProps}>{children}</H3>)
         case 'p':
-            return (<P fontSize={fontSize} color={color}>{children}</P>)
+            return (<P {...textProps}>{children}</P>)
         default:
-            return (<Span fontSize={fontSize} color={color}>{children}</Span>)
+            return (<Span {...textProps}>{children}</Span>)
     }
 }
 
 
-const Text = ({ children, fontSize, color, type = 'span' }) => {
+const Text = ({ children, fontSize, color, fontWeight, type = 'span' }) => {
+    const textProps = {
+        fontSize,
+        color,
+        fontWeight,
+    }
     return (
-        <TextGenerate children={children} fontSize={fontSize} color={color} type={type} />
+        <TextGenerate children={children} {...textProps} type={type} />
     )
 }
 

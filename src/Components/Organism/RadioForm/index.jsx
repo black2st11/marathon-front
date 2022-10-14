@@ -21,7 +21,7 @@ const RadioForm = ({
             <FormWrapper>
                 {items.map((item, index, array) => (
                     <RadioWrapper>
-                        <Radio value={item.value} checked={item.value == value} onChange={onChange}>
+                        <Radio value={item.value} checked={item.value === value} onChange={onChange}>
                             {item.children}
                         </Radio>
                     </RadioWrapper>

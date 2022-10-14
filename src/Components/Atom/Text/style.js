@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { fontSize, fontWeight, viewSize } from '../../../config'
+import { fontSize, fontWeight, viewSize, colorPalette } from '../../../config'
 
 
 export const Container = styled.div`
@@ -11,6 +11,7 @@ export const Container = styled.div`
 export const Span = styled.span`
     font-size : ${props => props.fontSize ? props.fontSize.desktop : fontSize.base};
     font-weight: ${props => props.fontWeight ? props.fontWeight : fontWeight.base};
+    color : ${props => props.color ? props.color : colorPalette.black};
 
     @media only screen and (min-width : ${viewSize.mobile} and max-width: ${viewSize.tablet}){
         font-size : ${props => props.fontSize ? props.fontSize.tablet : fontSize.base};
@@ -24,6 +25,7 @@ export const Span = styled.span`
 export const P = styled.p`
     font-size : ${props => props.fontSize ? props.fontSize : fontSize.base};
     font-weight: ${props => props.fontWeight ? props.fontWeight : fontWeight.base};
+    color : ${props => props.color ? props.color : colorPalette.black};
 
     @media only screen and (min-width : ${viewSize.mobile} and max-width: ${viewSize.tablet}){
         font-size : ${props => props.fontSize ? props.fontSize.tablet : fontSize.base};
@@ -37,6 +39,8 @@ export const P = styled.p`
 export const H1 = styled.h1`
     font-size : ${props => props.fontSize ? props.fontSize : fontSize.xl7};
     font-weight: ${props => props.fontWeight ? props.fontWeight : fontWeight.bold};
+    color : ${props => props.color ? props.color : colorPalette.black};
+
 
     @media only screen and (min-width : ${viewSize.mobile} and max-width: ${viewSize.tablet}){
         font-size : ${props => props.fontSize ? props.fontSize.tablet : fontSize.xl5};
@@ -50,6 +54,7 @@ export const H1 = styled.h1`
 export const H2 = styled.h2`
     font-size : ${props => props.fontSize ? props.fontSize : fontSize.xl5};
     font-weight: ${props => props.fontWeight ? props.fontWeight : fontWeight.bold};
+    color : ${props => props.color ? props.color : colorPalette.black};
 
     @media only screen and (min-width : ${viewSize.mobile} and max-width: ${viewSize.tablet}){
         font-size : ${props => props.fontSize ? props.fontSize.tablet : fontSize.xl3};
@@ -63,6 +68,7 @@ export const H2 = styled.h2`
 export const H3 = styled.h3`
     font-size : ${props => props.fontSize ? props.fontSize : fontSize.xl3};
     font-weight: ${props => props.fontWeight ? props.fontWeight : fontWeight.bold};
+    color : ${props => props.color ? props.color : colorPalette.black};
 
     @media only screen and (min-width : ${viewSize.mobile} and max-width: ${viewSize.tablet}){
         font-size : ${props => props.fontSize ? props.fontSize.tablet : fontSize.xl};
