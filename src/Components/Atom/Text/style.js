@@ -9,6 +9,7 @@ export const Container = styled.div`
 `
 
 export const Span = styled.span`
+    white-space : pre-line;
     font-size : ${props => props.fontSize ? props.fontSize.desktop : fontSize.base};
     font-weight: ${props => props.fontWeight ? props.fontWeight : fontWeight.base};
     color : ${props => props.color ? props.color : colorPalette.black};
@@ -23,6 +24,7 @@ export const Span = styled.span`
 `
 
 export const P = styled.p`
+    white-space : pre-line;
     font-size : ${props => props.fontSize ? props.fontSize : fontSize.base};
     font-weight: ${props => props.fontWeight ? props.fontWeight : fontWeight.base};
     color : ${props => props.color ? props.color : colorPalette.black};
@@ -37,6 +39,7 @@ export const P = styled.p`
 `
 
 export const H1 = styled.h1`
+    white-space : pre-line;
     font-size : ${props => props.fontSize ? props.fontSize : fontSize.xl7};
     font-weight: ${props => props.fontWeight ? props.fontWeight : fontWeight.bold};
     color : ${props => props.color ? props.color : colorPalette.black};
@@ -52,6 +55,7 @@ export const H1 = styled.h1`
 `
 
 export const H2 = styled.h2`
+    white-space : pre-line;
     font-size : ${props => props.fontSize ? props.fontSize : fontSize.xl5};
     font-weight: ${props => props.fontWeight ? props.fontWeight : fontWeight.bold};
     color : ${props => props.color ? props.color : colorPalette.black};
@@ -66,6 +70,7 @@ export const H2 = styled.h2`
 `
 
 export const H3 = styled.h3`
+    white-space : pre-line;
     font-size : ${props => props.fontSize ? props.fontSize : fontSize.xl3};
     font-weight: ${props => props.fontWeight ? props.fontWeight : fontWeight.bold};
     color : ${props => props.color ? props.color : colorPalette.black};

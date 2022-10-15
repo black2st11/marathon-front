@@ -3,7 +3,6 @@ import { Container, CircleLi, TitleLi, Title, NoneLi } from './style'
 import { Text } from '../index'
 
 const Ul = ({ items = [], listStyle = 'circle' }) => {
-    console.log(listStyle)
     return (
         <Container>
             {items.map((item, index, array) => {

@@ -4,6 +4,7 @@ import { colorPalette, fontSize, fontWeight, defaultSize } from '../../../config
 
 export const Container = styled.ul`
     list-style : none;
+    padding-inline-start: 0px;
 `
 
 export const CircleLi = styled.li`

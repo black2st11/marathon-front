@@ -8,7 +8,6 @@ import { MdOutlineClose, MdOutlineMenu } from 'react-icons/md'
 const Nav = ({ links, logo, button, menus = [] }) => {
     const [hidden, setHidden] = useState(true)
     const [mobileHidden, setMobileHidden] = useState(true)
-    console.log(mobileHidden)
     const generateMenu = (menus = []) => {
         return menus.map((menu, index, array) => {
             return (
@@ -65,7 +64,7 @@ const Nav = ({ links, logo, button, menus = [] }) => {
                         return (
                             <MobileMenu key={index}>
                                 <TitleWrapper>
-                                    <Text>{menu.title}</Text>
+                                    <Text>{menu.name}</Text>
                                 </TitleWrapper>
                                 {generateMenu(menu.menu)}
                             </MobileMenu>

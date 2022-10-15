@@ -6,4 +6,5 @@ export const Container = styled.div`
     padding : 2rem;
     background-color : ${props => props.bgColor ? props.bgColor : colorPalette.card};
     border-radius : 0.75rem;
+    box-sizing : border-box;
 `

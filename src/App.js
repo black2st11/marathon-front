@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import './App.css';
-import { CardContent } from './Components/Organism'
+import { CardContent, Table } from './Components/Organism'
 import logo from './static/image/logo.png'
-import { Nav } from './Components/Template';
+import { Nav, Footer, BreadCrumb } from './Components/Template';
 import { colorPalette, fontSize, fontWeight } from './config';
 function App() {
   const [selection, setSelection] = useState(undefined)
@@ -10,7 +10,6 @@ function App() {
   const [month, setMonth] = useState(undefined)
   const [day, setDay] = useState(undefined)
   const setValue = (e) => {
-    console.log(e)
   }
 
   const selectProps = {
@@ -122,7 +121,7 @@ function App() {
     ]
   },
   {
-    listStyle: 'none',
+    listStyle: 'circle',
     items: [
       { content: { name: '접수 마감 후에는 어떠한 경우에도 환불이 불가능하니 이점 유의하여 주시기 바랍니다.', fontSize: { desktop: fontSize.lg }, fontWeight: fontWeight.normal } },
       { content: { name: '참가 취소 시 환불받고자 하는 통장의 정보(은행, 예금주, 계좌번호) 가 필요하오니, 정확한 정보를 자유게시판에 비밀글로 입력해 주시기 바랍니다.  ', fontSize: { desktop: fontSize.lg }, fontWeight: fontWeight.normal } },
@@ -131,14 +130,58 @@ function App() {
     ]
   }]
 
-  console.log(selection)
-  return (
-    <div style={{ height: '200vh' }}>
-      <Nav {...navProps} />
-      <div style={{ width: '900px' }}>
-        <CardContent uls={cardProps} />
+  const thProps = {
+    fontSize: { desktop: fontSize.lg },
+    fontWeight: fontWeight.normal,
+    color: colorPalette.base
+  }
 
+  const tdProps = {
+    fontSize: { desktop: fontSize.lg },
+    fontWeight: fontWeight.normal,
+    color: colorPalette.base
+  }
+
+  const namesProps = {
+    fontWeight: fontWeight.medium,
+    color: colorPalette.primary,
+    fontSize: { desktop: fontSize.xl }
+  }
+
+  const tableProps = {
+    ths: [{ ...thProps, name: '종목' }, { ...thProps, name: '참가비' }, { ...thProps, name: '입금계좌', colSpan: '2' }],
+    trs: [
+      [
+        { ...tdProps, name: '하프코스' },
+        { ...tdProps, name: '30,000원' },
+        {
+          ...tdProps, names: [
+            { ...namesProps, name: '입금은행 : 경남은행' },
+            { ...namesProps, name: '예금주: 경남CBS' },
+            { fontWeight: fontWeight.bold, color: colorPalette.primary, fontSize: { desktop: fontSize.xl3 }, name: '509-07-0152450' }], rowSpan: '3'
+        }],
+      [{ ...tdProps, name: '10km' }, { ...tdProps, name: '30,000원' }],
+      [{ ...tdProps, name: '5km' }, { ...tdProps, name: '10,000원' }],
+    ],
+    descriptions: [{ content: { 'name': '참가신청자와 동일한 이름으로 입금하지 않으면 미입금처리됩니다.' } }]
+  }
+
+  const footerProps = {
+    name: '화순',
+    tel: '061-858-2456',
+    fax: '061-858-2456'
+  }
+
+  return (
+    <div style={{ height: '200vh', }}>
+      <Nav {...navProps} />
+      <div style={{ width: '1000px', margin: '20rem auto auto auto' }}>
+        <CardContent uls={cardProps} />
+        <Table {...tableProps} />
       </div>
+      <Footer {...footerProps} />
+      <BreadCrumb />
+
     </div>
   );
 }
