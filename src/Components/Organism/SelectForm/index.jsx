@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, FormWrapper, SelectWrapper, SelectsWrapper, warnWrapper } from './style'
+import { Container, FormWrapper, SelectWrapper, SelectsWrapper, WarnWrapper } from './style'
 import { Select, Text } from '../../Atom'
 import { TextForm } from '../index'
 import { fontSize } from '../../../config'
@@ -18,9 +18,8 @@ const InputForm = ({ text, englishText, select, selects = [], category = 'defaul
         } else {
             return selects.map((select, index, array) => {
                 return (
-                    <SelectsWrapper>
+                    <SelectsWrapper key={index}>
                         <Select {...select} />
-                        <Text>{select.postFix}</Text>
                     </SelectsWrapper>
                 )
             })
@@ -34,9 +33,9 @@ const InputForm = ({ text, englishText, select, selects = [], category = 'defaul
                 <SelectWrapper>
                     {generate()}
                 </SelectWrapper>
-                <warnWrapper>
+                <WarnWrapper>
                     <Text></Text>
-                </warnWrapper>
+                </WarnWrapper>
             </FormWrapper>
         </Container >
     )

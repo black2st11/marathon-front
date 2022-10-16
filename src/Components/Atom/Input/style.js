@@ -18,10 +18,11 @@ export const WarnWrapper = styled.div`
 export const Input = styled.input`
     width: 100%;
     height: ${props => props.height ? props.height : defaultSize.inputHeight};
-    border: 1px solid gray;
+    border: ${props => props.border ? props.border : `1px solid ${colorPalette.border}`};
     font-size: ${props => props.fontSize ? props.fontSize.desktop : fontSize.base};
     padding : 1rem;
     box-sizing : border-box;
+    border-radius: ${props => props.borderRadius ? props.borderRadius : '0'};
 
     @media only screen and (min-width : ${viewSize.mobile} and max-width: ${viewSize.tablet}){
         font-size : ${props => props.fontSize ? props.fontSize.tablet : fontSize.base};

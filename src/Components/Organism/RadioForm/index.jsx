@@ -20,8 +20,8 @@ const RadioForm = ({
             <TextForm {...textProps} />
             <FormWrapper>
                 {items.map((item, index, array) => (
-                    <RadioWrapper>
-                        <Radio value={item.value} checked={item.value === value} onChange={onChange}>
+                    <RadioWrapper key={index}>
+                        <Radio value={item.value} onChange={onChange} checked={item.value == value}>
                             {item.children}
                         </Radio>
                     </RadioWrapper>

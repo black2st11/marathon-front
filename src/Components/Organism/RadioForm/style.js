@@ -17,10 +17,16 @@ export const Container = styled.div`
 export const FormWrapper = styled.div`
     display: flex;
     width : 80%;
-
+    justify-content : space-between;
     @media only screen and (max-width: ${viewSize.tablet}){
         width: 100%;
     };
 `
 
-export const RadioWrapper = styled.div``
+export const RadioWrapper = styled.div`
+    width : 100%;
+    margin-right : 5%;
+    &:last-child{
+        margin :auto;
+    }
+`

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './App.css';
-import { CardContent, Table } from './Components/Organism'
+import { CardContent, InputForm, RadioForm, SelectForm, Table } from './Components/Organism'
 import logo from './static/image/logo.png'
 import { Nav, Footer, BreadCrumb } from './Components/Template';
 import { colorPalette, fontSize, fontWeight } from './config';
@@ -9,6 +9,8 @@ function App() {
   const [year, setYear] = useState(undefined)
   const [month, setMonth] = useState(undefined)
   const [day, setDay] = useState(undefined)
+  const [name, setName] = useState('')
+  const [phone, setPhone] = useState({ first: '', second: '', third: '' })
   const setValue = (e) => {
   }
 
@@ -18,27 +20,42 @@ function App() {
     options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
   }
 
-  const selectsProps = [{
-    postFix: '년',
-    value: year,
-    onChange: ((e) => (setYear(e))),
-    options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
-  },
-  {
-    postFix: '월',
-    value: month,
-    onChange: ((e) => (setMonth(e))),
-    options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
-  },
-  {
-    postFix: '일',
-    value: day,
-    onChange: ((e) => (setDay(e))),
-    options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
-  },
+  const selectsProps = {
+    text: {
+      name: '이름',
+      fontSize: fontSize.xl,
+      fontWeight: fontWeight.bold,
+      color: colorPalette.black
+    },
+    englishText: {
+      name: 'Name',
+      fontSize: fontSize.xl,
+      fontWeight: fontWeight.bold,
+      color: colorPalette.placeholder
+    },
+    selects: [
+      {
+        postFix: '년',
+        value: year,
+        placeholder: '년도',
+        onChange: ((e) => (setYear(e))),
+        options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
+      },
+      {
+        postFix: '월',
+        value: month,
+        onChange: ((e) => (setMonth(e))),
+        options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
+      },
+      {
+        postFix: '일',
+        value: day,
+        onChange: ((e) => (setDay(e))),
+        options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
+      },
 
-  ]
-
+    ]
+  }
   const navProps = {
     logo: logo,
     links: [{ name: '대회안내' }, { name: '대회코스' }, { name: '참가신청' }, { name: '대회기록' }, { name: "참여마당" }],
@@ -172,6 +189,91 @@ function App() {
     fax: '061-858-2456'
   }
 
+  const radioProps = {
+    text: {
+      name: '이름',
+      fontSize: fontSize.xl,
+      fontWeight: fontWeight.bold,
+      color: colorPalette.black
+    },
+    englishText: {
+      name: 'Name',
+      fontSize: fontSize.xl,
+      fontWeight: fontWeight.bold,
+      color: colorPalette.placeholder
+    },
+    value: selection,
+    items: [{
+      value: '남성',
+      children: 'male'
+    }, {
+      value: '여성',
+      children: 'female'
+    },
+    {
+      value: '무성',
+      children: 'nogender'
+    },],
+    onChange: (e) => setSelection(e)
+  }
+
+  const inputProps = {
+    text: {
+      name: '이름',
+      fontSize: fontSize.xl,
+      fontWeight: fontWeight.bold,
+      color: colorPalette.black
+    },
+    englishText: {
+      name: 'Name',
+      fontSize: fontSize.xl,
+      fontWeight: fontWeight.bold,
+      color: colorPalette.placeholder
+    },
+    // input: {
+    //   fontSize: { desktop: fontSize.xl2 },
+    //   value: name,
+    //   onChange: (e) => setName(e),
+    // },
+    sep: true,
+    // button: {
+    //   children: '주소찾기',
+    //   isRounded: true,
+    //   onClick: (e) => console.log(e)
+    // },
+    inputs: [{
+      value: phone.first,
+      name: "first",
+      onChange: (e) => {
+        const { value, name } = e.target;
+        setPhone({
+          ...phone,
+          [name]: value
+        })
+      }
+    }, {
+      value: phone.second,
+      name: 'second',
+      onChange: (e) => {
+        const { value, name } = e.target;
+        setPhone({
+          ...phone,
+          [name]: value
+        })
+      }
+    }, {
+      value: phone.third,
+      name: 'third',
+      onChange: (e) => {
+        const { value, name } = e.target;
+        setPhone({
+          ...phone,
+          [name]: value
+        })
+      }
+    }]
+  }
+
   return (
     <div style={{ height: '200vh', }}>
       <Nav {...navProps} />
@@ -179,6 +281,9 @@ function App() {
         <CardContent uls={cardProps} />
         <Table {...tableProps} />
       </div>
+      <InputForm {...inputProps} />
+      <RadioForm {...radioProps} />
+      <SelectForm {...selectsProps} />
       <Footer {...footerProps} />
       <BreadCrumb />
 

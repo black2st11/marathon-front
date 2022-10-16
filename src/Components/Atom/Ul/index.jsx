@@ -7,7 +7,7 @@ const Ul = ({ items = [], listStyle = 'circle' }) => {
         <Container>
             {items.map((item, index, array) => {
                 if (listStyle === 'title') return (
-                    <TitleLi>
+                    <TitleLi key={index}>
                         <Title type={item.title.type}>
                             <Text {...item.title}>{item.title.name}</Text>
                         </Title>
@@ -15,7 +15,7 @@ const Ul = ({ items = [], listStyle = 'circle' }) => {
                     </TitleLi>
                 )
                 else if (listStyle === 'none') {
-                    return (<NoneLi><Text {...item.content}>{item.content.name}</Text></NoneLi>)
+                    return (<NoneLi key={index}><Text {...item.content}>{item.content.name}</Text></NoneLi>)
                 }
                 else return (<CircleLi key={index}><Text {...item.content}>{item.content.name}</Text></CircleLi>)
             })}

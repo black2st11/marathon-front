@@ -14,6 +14,7 @@ export const Select = styled.select`
     color : ${props => props.selected ? colorPalette.black : colorPalette.placeholder};
     border : ${props => props.selected ? `1px solid ${colorPalette.border}` : `1px solid ${colorPalette.border}`};
     box-sizing : border-box;
+    text-align : center;
 
     @media only screen and (min-width : ${viewSize.mobile} and max-width: ${viewSize.tablet}){
         font-size : ${props => props.fontSize ? props.fontSize.tablet : fontSize.base};

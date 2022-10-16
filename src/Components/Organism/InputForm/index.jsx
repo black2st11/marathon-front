@@ -1,22 +1,61 @@
 import React from 'react'
-import { Container, TextWrapper, LongTextWrapper, InputWrapper, NameWrapper, EnglishNameWrapper, FormWrapper, ButtonWrapper } from './style'
+import { Container, TextWrapper, LongTextWrapper, InputWrapper, NameWrapper, EnglishNameWrapper, FormWrapper, ButtonWrapper, Sep, InputWithButtonWrapper } from './style'
 import { Input, Text, Button } from '../../Atom'
 import { TextForm } from '../index'
 
-const InputForm = ({ text, englishText, validator, value, onChange, required, category = 'default', button, onClick, isRounded }) => {
 
-    const inputProps = {
-        onChange,
-        value,
-        validator,
-        required
-    }
+const MultipleInput = ({ inputs, sep }) => (
+    <React.Fragment>
+        <InputWrapper>
+            <Input {...inputs[0]} />
+        </InputWrapper>
+        {sep && (<Sep />)}
+        <InputWrapper>
+            <Input {...inputs[1]} />
+        </InputWrapper>
+        {sep && (<Sep />)}
+        <InputWrapper>
+            <Input {...inputs[2]} />
+        </InputWrapper>
+    </React.Fragment>
+)
 
-    const buttonProps = {
-        children: button,
-        onClick,
-        isRounded
+const InputGenerate = ({ input, button, inputs, sep }) => {
+    const inputsProps = {
+        inputs,
+        sep
     }
+    if (button) {
+        return (
+            <React.Fragment>
+                <InputWithButtonWrapper>
+                    <Input {...input} />
+                </InputWithButtonWrapper>
+                <ButtonWrapper>
+                    <Button {...button} />
+                </ButtonWrapper>
+            </React.Fragment>
+        )
+    } else if (inputs) {
+        return (
+            <MultipleInput {...inputsProps} />
+        )
+    }
+    return (<Input {...input} />)
+}
+
+const InputForm = ({
+    text,
+    inputs,
+    input,
+    sep = false,
+    englishText,
+    validator,
+    required,
+    category = 'default',
+    button,
+}) => {
+
 
     const textProps = {
         text,
@@ -24,26 +63,20 @@ const InputForm = ({ text, englishText, validator, value, onChange, required, ca
         category
     }
 
-    const inputGenerate = () => {
-        if (button) {
-            return (
-                <>
-                    <InputWrapper>
-                        <Input {...inputProps} />
-                    </InputWrapper>
-                    <ButtonWrapper>
-                        <Button {...buttonProps} />
-                    </ButtonWrapper>
-                </>
-            )
-        }
-        return (<Input {...inputProps} />)
+    const inputProps = {
+        inputs,
+        input,
+        sep,
+        button
     }
+
 
     return (
         <Container>
             <TextForm {...textProps} />
-            <FormWrapper>{inputGenerate()}</FormWrapper>
+            <FormWrapper>
+                <InputGenerate {...inputProps} />
+            </FormWrapper>
         </Container >
     )
 }

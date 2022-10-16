@@ -35,6 +35,11 @@ export const SelectsWrapper = styled.div`
     align-items : center;
     justify-content : center;
     width : 100%;
+    margin-right : 5%;
+
+    &:last-child{
+        margin : 0;
+    }
 `
 
-export const warnWrapper = styled.div``
+export const WarnWrapper = styled.div``

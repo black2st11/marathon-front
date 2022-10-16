@@ -4,10 +4,10 @@ import { Text, Ul } from '../../Atom'
 
 const MultipleText = ({ texts = [] }) => {
     return texts.map((text, index, array) => (
-        <>
+        <React.Fragment key={index}>
             <Text {...text}>{text.name}</Text>
             <br />
-        </>
+        </React.Fragment>
     ))
 }
 

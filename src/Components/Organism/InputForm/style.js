@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { viewSize } from '../../../config'
+import { colorPalette, viewSize } from '../../../config'
 
 
 export const Container = styled.div`
@@ -71,7 +71,19 @@ export const ButtonWrapper = styled.div`
     height : 46px;
     margin 0.25rem 1.625rem;
 `
+
 export const InputWrapper = styled.div`
     width : 100%;
+`
+
+export const InputWithButtonWrapper = styled.div`
+    width : 100%;
     max-width : 250px;
+`
+
+export const Sep = styled.div`
+    height : 1px;
+    width : 0.875rem;
+    background-color : ${colorPalette.noneBorder};
+    margin : auto 2.5%;
 `

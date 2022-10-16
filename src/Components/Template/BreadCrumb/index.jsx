@@ -6,7 +6,7 @@ import { menuList } from '../../../config'
 const FindPath = (menus, path) => {
     let res = { name: '', isEnded: true, menu: [] }
     menus.map((menu, index, array) => {
-        if (menu.href == path) {
+        if (menu.href === path) {
             res = { name: menu.name, isEnded: menu.menu ? false : true, menu: menu.menu }
         }
     })
@@ -33,14 +33,14 @@ const BreadCrumb = () => {
         <Container>
             <DepthWrapper>
                 {depths.map((depth, index, array) => (
-                    <>
+                    <React.Fragment key={index}>
                         <Depth key={index}>
                             <Text>
                                 {depth}
                             </Text>
                         </Depth>
                         {index + 1 !== array.length && (<Text>{` > `}</Text>)}
-                    </>
+                    </React.Fragment>
                 ))}
             </DepthWrapper>
             <TitleWrapper>
