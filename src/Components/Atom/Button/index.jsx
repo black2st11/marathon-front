@@ -1,12 +1,23 @@
 import React from 'react'
-import { Container, Text } from './style'
+import { Container } from './style'
+import { Text } from '../index'
+const Button = ({ children, onClick, Icon, isRounded, height, bgColor, color, type, fontSize, fontWeight, }) => {
+    const buttonProps = {
+        onClick,
+        isRounded,
+        height,
+        bgColor,
+    }
 
-const Button = ({ children, onClick, Icon, isRounded, height, bgColor, color, type }) => {
+    const textProps = {
+        fontSize,
+        fontWeight,
+        color,
+        children
+    }
     return (
-        <Container onClick={onClick} isRounded={isRounded} height={height} bgColor={bgColor}>
-            <Text color={color}>
-                {children}
-            </Text>
+        <Container {...buttonProps}>
+            <Text {...textProps} />
             {Icon && <Icon />}
         </Container>
     )

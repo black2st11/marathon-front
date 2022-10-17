@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './App.css';
-import { CardContent, InputForm, RadioForm, SelectForm, Table } from './Components/Organism'
+import { CardContent, GroupForm, InputForm, RadioForm, SelectForm, Table } from './Components/Organism'
 import logo from './static/image/logo.png'
 import { Nav, Footer, BreadCrumb } from './Components/Template';
 import { colorPalette, fontSize, fontWeight } from './config';
@@ -62,7 +62,12 @@ function App() {
     button: {
       content: '참가신청하기',
       onClick: () => console.log('snfma'),
-      isRounded: true
+      isRounded: true,
+      color: colorPalette.white,
+      fontWeight: fontWeight.medium,
+      fontSize: {
+        desktop: fontSize.lg,
+      }
     },
     menus: [
       {
@@ -274,6 +279,38 @@ function App() {
     }]
   }
 
+  const groupThProps = {
+    fontSize: { desktop: fontSize.xl, },
+    fontWeight: fontWeight.normal,
+    color: colorPalette.thText,
+    category: 'text'
+  }
+
+  const groupFormProps = {
+    ths: [
+      { category: 'check', onClick: () => console.log('check'), borderRadius: '0.3rem' },
+      { ...groupThProps, children: '성명' },
+      { ...groupThProps, children: '성별' },
+      { ...groupThProps, children: '생년월일' },
+      { ...groupThProps, children: '코스' },
+      { ...groupThProps, children: '삭제' },
+    ],
+    trs: [
+      [
+        { check: { onChange: () => console.log(1), borderRadius: '0.3rem' } },
+        { input: { value: '', borderRadius: '0.25rem', border: 'none', onChange: () => console.log(1), height: '40px' } },
+        { input: { value: '', onChange: () => console.log(1), height: '40px' } },
+        {
+          inputs: [{ value: '', onChange: () => console.log(1), height: '40px' },
+          { value: '', onChange: () => console.log(1), height: '40px' },
+          { value: '', onChange: () => console.log(1), height: '40px' }]
+        },
+        { select: { options: [{ value: 1, name: '10km' }, { value: 1, name: '5km' }, { value: 1, name: '하프코스' }], height: '40px', borderRadius: '5px', border: 'none' } },
+        { button: { children: '삭제', height: '2.125rem', isRounded: true, color: colorPalette.white, fontSize: { desktop: fontSize.xl }, fontWeight: fontWeight.medium } }
+      ]
+    ],
+  }
+
   return (
     <div style={{ height: '200vh', }}>
       <Nav {...navProps} />
@@ -281,6 +318,7 @@ function App() {
         <CardContent uls={cardProps} />
         <Table {...tableProps} />
       </div>
+      <GroupForm {...groupFormProps} />
       <InputForm {...inputProps} />
       <RadioForm {...radioProps} />
       <SelectForm {...selectsProps} />

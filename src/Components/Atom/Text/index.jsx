@@ -4,12 +4,12 @@ import { Container, Span, P, H1, H2, H3 } from './style'
 
 
 const TextGenerate = ({ children, fontSize, color, fontWeight, type }) => {
+    console.log(fontSize)
     const textProps = {
         fontSize,
         color,
         fontWeight,
     }
-
 
     switch (type) {
         case 'h1':
@@ -31,9 +31,11 @@ const Text = ({ children, fontSize, color, fontWeight, type = 'span' }) => {
         fontSize,
         color,
         fontWeight,
+        children,
+        type
     }
     return (
-        <TextGenerate children={children} {...textProps} type={type} />
+        <TextGenerate {...textProps} />
     )
 }
 

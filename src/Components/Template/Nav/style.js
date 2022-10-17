@@ -52,7 +52,7 @@ export const MenuWrapper = styled.div`
 
 export const ButtonWrapper = styled.div`
     margin : auto 0 auto 2.75rem;
-
+    width : 140px;
     @media screen and (max-width: ${viewSize.tablet}){
         margin : auto 1.25rem auto auto;
     } 

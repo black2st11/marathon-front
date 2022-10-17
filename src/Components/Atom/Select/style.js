@@ -6,13 +6,13 @@ export const Container = styled.div`
 `
 
 export const Select = styled.select`
-    padding: 1rem;
     width : 100%;
     height : ${props => props.height ? props.height : defaultSize.inputHeight};
     font-size : ${props => props.fontSize ? props.fontSize.desktop : fontSize.base};
     font-weight : ${props => props.fontWeight ? props.fontWeight : fontWeight.base};
     color : ${props => props.selected ? colorPalette.black : colorPalette.placeholder};
-    border : ${props => props.selected ? `1px solid ${colorPalette.border}` : `1px solid ${colorPalette.border}`};
+    border : ${props => props.border ? props.border : `1px solid ${colorPalette.border}`};
+    border-radius : ${props => props.borderRadius ? props.borderRadius : '0'};
     box-sizing : border-box;
     text-align : center;
 

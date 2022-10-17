@@ -85,7 +85,9 @@ export const colorPalette = {
     noneBorder: '#707070',
     placeholder: '#8b8b8b',
     card: '#e6f4ff',
-    base: '#464646'
+    base: '#464646',
+    thead: '#d9d9d9',
+    thText: '#101010'
 }
 
 

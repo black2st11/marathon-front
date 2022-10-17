@@ -6,10 +6,12 @@ export const Container = styled.div`
     display : flex;
     border ${props => props.border ? props.border : `1px solid ${colorPalette.border}}`};
     background-color: ${props => props.bgColor ? props.bgColor : colorPalette.white};
-    padding : 0.5rem;
+    border-radius : ${props => props.borderRadius ? props.borderRadius : '0'};
     align-items:center;
     justify-content:center;
     box-sizing : border-box;
+    width : 1.25rem;
+    height : 1.25rem;    
 `
 
 export const HiddenCheckBox = styled.input`
