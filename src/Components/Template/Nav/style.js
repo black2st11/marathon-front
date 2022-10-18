@@ -111,15 +111,17 @@ export const Menu = styled.div`
 `
 
 export const MobileContainer = styled.div`
-    width : 100%;
-    height : 100%;
     background-color : white;
-    border-top : 1px solid ${colorPalette.border};
     display : none;
-    position : fixed;
+    height : 100vh;
+    overflow  : scroll;
 
+    &::-webkit-scrollbar{
+        display : none;
+    }
+    
     @media screen and (max-width: ${viewSize.tablet}){
-        display : ${props => props.isHidden ? 'none' : 'block'};
+        display : ${props => props.isHidden ? 'none' : 'flex'};
     } 
 `
 
@@ -139,4 +141,14 @@ export const MobileMenu = styled.div`
     display : flex;
     flex-direction : column;
     align-items : center;
+`
+
+export const Fake = styled.div`
+    height : 85px;
+    width : 100%;
+
+    @media screen and (max-width: ${viewSize.mobile}){
+        height : 70px;
+    } 
+
 `

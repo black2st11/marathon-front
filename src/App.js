@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './App.css';
-import { CardContent, GroupForm, InputForm, RadioForm, SelectForm, Table } from './Components/Organism'
+import { CardContent, ContentTitle, GroupForm, InputForm, RadioForm, SelectForm, Table } from './Components/Organism'
 import logo from './static/image/logo.png'
 import { Nav, Footer, BreadCrumb } from './Components/Template';
 import { colorPalette, fontSize, fontWeight } from './config';
@@ -311,14 +311,25 @@ function App() {
     ],
   }
 
+  const titleProps = {
+    text: {
+      fontSize: { desktop: fontSize.xl2, mobile: fontSize.xl2 },
+      children: '대회개요',
+      fontWeight: fontWeight.medium,
+      border: `1px solid ${colorPalette.primary}`,
+      color: colorPalette.primary
+    }
+  }
+
   return (
     <div style={{ height: '200vh', }}>
       <Nav {...navProps} />
-      <div style={{ width: '1000px', margin: '20rem auto auto auto' }}>
+      {/* <div style={{ width: '1000px', margin: '20rem auto auto auto' }}>
+        <ContentTitle {...titleProps} />
         <CardContent uls={cardProps} />
         <Table {...tableProps} />
-      </div>
-      <GroupForm {...groupFormProps} />
+      </div> */}
+      {/* <GroupForm {...groupFormProps} /> */}
       <InputForm {...inputProps} />
       <RadioForm {...radioProps} />
       <SelectForm {...selectsProps} />
