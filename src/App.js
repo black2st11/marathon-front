@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './App.css';
 import { CardContent, ContentTitle, GroupForm, InputForm, RadioForm, SelectForm, Table } from './Components/Organism'
 import logo from './static/image/logo.png'
-import { Nav, Footer, BreadCrumb } from './Components/Template';
+import { Nav, Footer, BreadCrumb, CardSection } from './Components/Template';
 import { colorPalette, fontSize, fontWeight } from './config';
 function App() {
   const [selection, setSelection] = useState(undefined)
@@ -313,11 +313,124 @@ function App() {
 
   const titleProps = {
     text: {
-      fontSize: { desktop: fontSize.xl2, mobile: fontSize.xl2 },
       children: '대회개요',
-      fontWeight: fontWeight.medium,
-      border: `1px solid ${colorPalette.primary}`,
-      color: colorPalette.primary
+
+    }
+  }
+
+  const cardTitleProps = {
+    fontSize: { desktop: fontSize.xl3, mobile: fontSize.xl2 },
+    fontWeight: fontWeight.medium,
+    color: colorPalette.black
+  }
+
+  const subTitleProps = {
+    fontSize: { desktop: fontSize.xl2, mobile: fontSize.xl2 },
+    fontWeight: fontWeight.medium,
+    color: colorPalette.primary
+  }
+
+  const ulsContentProps = {
+    fontSize: { desktop: fontSize.lg, mobile: fontSize.base }, fontWeight: fontWeight.normal, color: colorPalette.base
+  }
+
+  const ulsTitleProps = {
+    fontSize: { desktop: fontSize.lg, mobile: fontSize.base }, fontWeight: fontWeight.normal, color: colorPalette.white
+  }
+
+  const cardSectionProps = {
+    title: {
+      text: { children: '참가자 제공품', ...cardTitleProps }
+    },
+    subTitle: { text: { children: '대회전', ...subTitleProps }, border: `1px solid ${colorPalette.primary}` },
+    uls: [
+      {
+        listStyle: 'circle',
+        items: [
+          { content: { children: '기념품, 배번호, 안내책자', ...ulsContentProps } },
+        ]
+      },
+      {
+        listStyle: 'title',
+        items: [
+          {
+            title: { children: '하프/10km', ...ulsTitleProps },
+            content: { children: '기념품, 배번호, 기록칩(배번호 내에 내장되어 있음), 안내책자', ...ulsContentProps }
+          },
+          {
+            title: { children: '5km', ...ulsTitleProps },
+            content: { children: '기념품, 배번호, 안내책자', ...ulsContentProps }
+          }
+        ]
+      },
+      {
+        listStyle: 'circle',
+        items: [
+          {
+            content: {
+              children: '번호표 분실 또는 미지참시 대회장에서 재발급이 불가능합니다. 현장 접수로 다시 구매하셔야 합니다.',
+              ...ulsContentProps, color: colorPalette.warn, fontWeight: fontWeight.semiBold
+            }
+          },
+        ]
+      },
+    ]
+  }
+
+  const cardSection1Props = {
+    subTitle: { text: { children: '대회중', ...subTitleProps }, border: `1px solid ${colorPalette.primary}` },
+    uls: [
+      {
+        listStyle: 'circle',
+        items: [
+          { content: { children: '주로 및 대회장 내 지급품 안내해드립니다.', ...ulsContentProps } },
+          { content: { children: '급수대는 매 2.5km 간격으로 배치됩니다.', ...ulsContentProps } },
+          { content: { children: '급수대에서는 물과 간식 등이 제공됩니다.', ...ulsContentProps } },
+          { content: { children: '골인 후, 기록증과 간식이 제공됩니다.', ...ulsContentProps } },
+        ]
+      },
+    ]
+  }
+
+  const cardSection2Props = {
+    subTitle: { text: { children: '대회 후', ...subTitleProps }, border: `1px solid ${colorPalette.primary}` },
+    uls: [
+      {
+        listStyle: 'circle',
+        items: [
+          { content: { children: '골인지점 촬영 사진 제공', ...ulsContentProps } },
+        ]
+      },
+    ]
+  }
+
+  const cardSection3Props = {
+    title: {
+      text: { children: '교통통제 및 경기시간 제한', ...cardTitleProps }
+    },
+    table: {
+      ths: [{ ...thProps, children: '종목' }, { ...thProps, children: '출발시간' }, { ...thProps, children: '경기종료' }, { ...thProps, children: '비고' }],
+      trs: [
+        [
+          { ...tdProps, children: '하프코스' },
+          { ...tdProps, children: '09:00' },
+          { ...tdProps, children: '12:00' },
+          { ...tdProps, children: '3시간' },
+        ],
+        [
+          { ...tdProps, children: '10km' },
+          { ...tdProps, children: '09:10' },
+          { ...tdProps, children: '11:10' },
+          { ...tdProps, children: '2시간' },
+        ],
+        [
+          { ...tdProps, children: '5km' },
+          { ...tdProps, children: '09:20' },
+          { ...tdProps, children: '10:20' },
+          { ...tdProps, children: '1시간' },
+        ],
+      ],
+      descriptions: [{ content: { children: '참가신청자와 동일한 이름으로 입금하지 않으면 미입금처리됩니다.' } }]
     }
   }
 
@@ -333,6 +446,10 @@ function App() {
       <InputForm {...inputProps} />
       <RadioForm {...radioProps} />
       <SelectForm {...selectsProps} />
+      <CardSection {...cardSectionProps} />
+      <CardSection {...cardSection1Props} />
+      <CardSection {...cardSection2Props} />
+      <CardSection {...cardSection3Props} />
       <Footer {...footerProps} />
       <BreadCrumb />
 

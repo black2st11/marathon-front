@@ -9,13 +9,14 @@ export const fontSize = {
     lg: `${defaultFontSize * 1.125}rem`,
     xl: `${defaultFontSize * 1.25}rem`,
     xl2: `${defaultFontSize * 1.5}rem`,
-    xl3: `${defaultFontSize * 1.875}rem`,
-    xl4: `${defaultFontSize * 2.25}rem`,
-    xl5: `${defaultFontSize * 3}rem`,
-    xl6: `${defaultFontSize * 3.75}rem`,
-    xl7: `${defaultFontSize * 4.5}rem`,
-    xl8: `${defaultFontSize * 6}rem`,
-    xl9: `${defaultFontSize * 8}rem`
+    xl3: `${defaultFontSize * 1.75}rem`,
+    xl4: `${defaultFontSize * 1.875}rem`,
+    xl5: `${defaultFontSize * 2.25}rem`,
+    xl6: `${defaultFontSize * 3}rem`,
+    xl7: `${defaultFontSize * 3.75}rem`,
+    xl8: `${defaultFontSize * 4.5}rem`,
+    xl9: `${defaultFontSize * 6}rem`,
+    xl10: `${defaultFontSize * 8}rem`
 }
 
 export const fontWeight = {
@@ -79,7 +80,7 @@ export const colorPalette = {
     white: 'white',
     defaultBorder: '',
     label: '',
-    warn: '',
+    warn: '#bf0000',
     gray: '#e9e9e9',
     border: '#9b9b9b',
     noneBorder: '#707070',

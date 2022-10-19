@@ -4,7 +4,6 @@ import { Container, Span, P, H1, H2, H3 } from './style'
 
 
 const TextGenerate = ({ children, fontSize, color, fontWeight, type }) => {
-    console.log(fontSize)
     const textProps = {
         fontSize,
         color,

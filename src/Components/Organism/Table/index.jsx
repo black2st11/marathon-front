@@ -5,7 +5,7 @@ import { Text, Ul } from '../../Atom'
 const MultipleText = ({ texts = [] }) => {
     return texts.map((text, index, array) => (
         <React.Fragment key={index}>
-            <Text {...text}>{text.name}</Text>
+            <Text {...text} />
             <br />
         </React.Fragment>
     ))
@@ -17,9 +17,7 @@ const GenerateTd = ({ tds = [] }) => {
             {td.names ? (
                 <MultipleText texts={td.names} />
             ) : (
-                <Text {...td}>
-                    {td.name}
-                </Text>
+                <Text {...td} />
             )}
         </Td >
     ))
@@ -28,9 +26,7 @@ const GenerateTd = ({ tds = [] }) => {
 const GenerateTh = ({ ths = [] }) => {
     return ths.map((th, index, array) => (
         <Th key={index} rowSpan={th.rowSpan ? th.rowSpan : '1'} colSpan={th.colSpan ? th.colSpan : '1'}>
-            <Text {...th}>
-                {th.name}
-            </Text>
+            <Text {...th} />
         </Th>
     ))
 }
@@ -45,7 +41,7 @@ const GenerateTr = ({ trs = [] }) => {
 
 const Table = ({ ths = [], trs = [], descriptions = [] }) => {
     return (
-        <>
+        <React.Fragment>
             <Container>
                 <Thead>
                     <Tr>
@@ -57,7 +53,7 @@ const Table = ({ ths = [], trs = [], descriptions = [] }) => {
                 </Tbody>
             </Container>
             <Ul listStyle='circle' items={descriptions} />
-        </>
+        </React.Fragment>
     )
 }
 

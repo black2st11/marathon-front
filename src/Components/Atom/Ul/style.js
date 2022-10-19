@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colorPalette, fontSize, fontWeight, defaultSize } from '../../../config'
+import { colorPalette, fontSize, fontWeight, defaultSize, viewSize } from '../../../config'
 
 
 export const Container = styled.ul`
@@ -34,6 +34,10 @@ export const TitleLi = styled.li`
     display : flex;
     align-items : baseline;
     margin : 1rem 0;
+
+    @media screen and (max-width : ${viewSize.mobile}){
+        flex-direction : column;
+    }
 `
 
 export const Title = styled.div`
@@ -41,6 +45,7 @@ export const Title = styled.div`
     display : flex;
     height : ${props => props.height ? props.height : defaultSize.li.desktop.titleHeight};
     width : ${props => props.type == 'long' ? defaultSize.li.desktop.titleLongWidth : defaultSize.li.desktop.titleWidth};
+    min-width : ${props => props.type == 'long' ? defaultSize.li.desktop.titleLongWidth : defaultSize.li.desktop.titleWidth};
     border-radius : 1rem;
     padding : 0.125rem 0.25rem;
     margin-right : 1rem;

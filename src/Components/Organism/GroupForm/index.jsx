@@ -3,7 +3,6 @@ import * as S from './style'
 import { Input, Button, Text, Icon, Select, CheckBox } from '../../Atom'
 
 const Tds = ({ tds = [] }) => {
-    console.log(tds)
     return tds.map((td, index, array) => {
         if (td.button) {
             return (

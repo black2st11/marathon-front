@@ -9,15 +9,15 @@ const Ul = ({ items = [], listStyle = 'circle' }) => {
                 if (listStyle === 'title') return (
                     <TitleLi key={index}>
                         <Title type={item.title.type}>
-                            <Text {...item.title}>{item.title.name}</Text>
+                            <Text {...item.title} />
                         </Title>
-                        <Text {...item.content}>{item.content.name}</Text>
+                        <Text {...item.content} />
                     </TitleLi>
                 )
                 else if (listStyle === 'none') {
-                    return (<NoneLi key={index}><Text {...item.content}>{item.content.name}</Text></NoneLi>)
+                    return (<NoneLi key={index}><Text {...item.content} /></NoneLi>)
                 }
-                else return (<CircleLi key={index}><Text {...item.content}>{item.content.name}</Text></CircleLi>)
+                else return (<CircleLi key={index}><Text {...item.content} /></CircleLi>)
             })}
         </Container>
     )
