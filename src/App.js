@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './App.css';
 import { CardContent, ContentTitle, GroupForm, InputForm, RadioForm, SelectForm, Table } from './Components/Organism'
 import logo from './static/image/logo.png'
-import { Nav, Footer, BreadCrumb, CardSection } from './Components/Template';
+import { Nav, Footer, BreadCrumb, CardSection, PersonForm } from './Components/Template';
 import { colorPalette, fontSize, fontWeight } from './config';
 function App() {
   const [selection, setSelection] = useState(undefined)
@@ -11,6 +11,7 @@ function App() {
   const [day, setDay] = useState(undefined)
   const [name, setName] = useState('')
   const [phone, setPhone] = useState({ first: '', second: '', third: '' })
+  const [info, setInfo] = useState({ name: '', phone1: '', phone2: '', phone3: '', year: '', month: '', day: '', gender: '', post_number: '', address: '', detail_address: '', email: '', depositor: '', course: '', gift: '' })
   const setValue = (e) => {
   }
 
@@ -53,7 +54,6 @@ function App() {
         onChange: ((e) => (setDay(e))),
         options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
       },
-
     ]
   }
   const navProps = {
@@ -222,62 +222,7 @@ function App() {
     onChange: (e) => setSelection(e)
   }
 
-  const inputProps = {
-    text: {
-      name: '이름',
-      fontSize: fontSize.xl,
-      fontWeight: fontWeight.bold,
-      color: colorPalette.black
-    },
-    englishText: {
-      name: 'Name',
-      fontSize: fontSize.xl,
-      fontWeight: fontWeight.bold,
-      color: colorPalette.placeholder
-    },
-    // input: {
-    //   fontSize: { desktop: fontSize.xl2 },
-    //   value: name,
-    //   onChange: (e) => setName(e),
-    // },
-    sep: true,
-    // button: {
-    //   children: '주소찾기',
-    //   isRounded: true,
-    //   onClick: (e) => console.log(e)
-    // },
-    inputs: [{
-      value: phone.first,
-      name: "first",
-      onChange: (e) => {
-        const { value, name } = e.target;
-        setPhone({
-          ...phone,
-          [name]: value
-        })
-      }
-    }, {
-      value: phone.second,
-      name: 'second',
-      onChange: (e) => {
-        const { value, name } = e.target;
-        setPhone({
-          ...phone,
-          [name]: value
-        })
-      }
-    }, {
-      value: phone.third,
-      name: 'third',
-      onChange: (e) => {
-        const { value, name } = e.target;
-        setPhone({
-          ...phone,
-          [name]: value
-        })
-      }
-    }]
-  }
+
 
   const groupThProps = {
     fontSize: { desktop: fontSize.xl, },
@@ -434,6 +379,289 @@ function App() {
     }
   }
 
+  const inputProps = {
+    text: {
+      name: '이름',
+      fontSize: fontSize.xl,
+      fontWeight: fontWeight.bold,
+      color: colorPalette.black
+    },
+    englishText: {
+      name: 'Name',
+      fontSize: fontSize.xl,
+      fontWeight: fontWeight.bold,
+      color: colorPalette.placeholder
+    },
+    // input: {
+    //   fontSize: { desktop: fontSize.xl2 },
+    //   value: name,
+    //   onChange: (e) => setName(e),
+    // },
+    sep: true,
+    // button: {
+    //   children: '주소찾기',
+    //   isRounded: true,
+    //   onClick: (e) => console.log(e)
+    // },
+    inputs: [{
+      value: phone.first,
+      name: "first",
+      onChange: (e) => {
+        const { value, name } = e.target;
+        setPhone({
+          ...phone,
+          [name]: value
+        })
+      }
+    }, {
+      value: phone.second,
+      name: 'second',
+      onChange: (e) => {
+        const { value, name } = e.target;
+        setPhone({
+          ...phone,
+          [name]: value
+        })
+      }
+    }, {
+      value: phone.third,
+      name: 'third',
+      onChange: (e) => {
+        const { value, name } = e.target;
+        setPhone({
+          ...phone,
+          [name]: value
+        })
+      }
+    }]
+  }
+
+  const textProps = {
+    fontSize: { desktop: fontSize.xl, tablet: fontSize.xl, mobile: fontSize.lg },
+    fontWeight: fontWeight.medium,
+    color: colorPalette.black
+  }
+
+  const englishText = {
+    fontSize: {},
+    fontWeight: fontWeight.medium,
+    color: colorPalette.placeholder
+  }
+
+  const personForm = {
+    button: {
+      text: {
+        children: '다음',
+        color: colorPalette.white,
+        fontWeight: fontWeight.medium,
+        fontSize: {
+          desktop: fontSize.xl2,
+          tablet: fontSize.xl2,
+          mobile: fontSize.lg
+        }
+      },
+      onClick: () => console.log(1)
+    },
+    inputs: [
+      {
+        type: 'input',
+        text: { ...textProps, children: '이름' },
+        englishText: { ...englishText, children: 'Name' },
+        input: {
+          value: info.name,
+          name: 'name',
+          onChange: (e) => setInfo({ ...info, [e.target.name]: e.target.value, })
+        }
+      },
+      {
+        type: 'input',
+        text: { ...textProps, children: '연락처' },
+        englishText: { ...englishText, children: 'Contact' },
+        sep: '-',
+        inputs: [{
+          value: info.phone1,
+          name: 'phone1',
+          onChange: (e) => setInfo({ ...info, [e.target.name]: e.target.value, })
+        },
+        {
+          value: info.phone2,
+          name: 'phone2',
+          onChange: (e) => setInfo({ ...info, [e.target.name]: e.target.value, })
+        },
+        {
+          value: info.phone3,
+          name: 'phone3',
+          onChange: (e) => setInfo({ ...info, [e.target.name]: e.target.value, })
+        },
+        ]
+      },
+      {
+        type: 'select',
+        text: {
+          ...textProps,
+          children: '생년월일',
+        },
+        englishText: {
+          ...englishText,
+          children: 'Date of Birth'
+        },
+        selects: [
+          {
+            value: info.year,
+            name: 'year',
+            placeholder: '년도 (Year)',
+            onChange: e => setInfo({ ...info, [e.target.name]: e.target.value }),
+            options: [{ value: 1995, name: '1995' }, { value: 1996, name: '1996' }, { value: 1997, name: '1997' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
+          },
+          {
+            value: info.month,
+            name: 'month',
+            placeholder: '월 (Month)',
+            onChange: e => setInfo({ ...info, [e.target.name]: e.target.value }),
+            options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
+          },
+          {
+            value: info.day,
+            name: 'day',
+            placeholder: '월 (Day)',
+            onChange: e => setInfo({ ...info, [e.target.name]: e.target.value }),
+            options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
+          },
+        ]
+      },
+      {
+        type: 'radio',
+        text: {
+          ...textProps,
+          children: '성별',
+        },
+        englishText: {
+          ...englishText,
+          children: 'Gender'
+        },
+        name: 'gender',
+        value: info.gender,
+        items: [{
+          value: '남성',
+          children: 'male'
+        },
+        {
+          value: '여성',
+          children: 'female'
+        }],
+        onChange: e => setInfo({ ...info, [e.target.name]: e.target.value }),
+      },
+      {
+        type: 'input',
+        text: {
+          ...textProps,
+          children: '주소',
+        },
+        englishText: {
+          ...englishText,
+          children: 'Address'
+        },
+        input: {
+          value: info.post_number,
+          name: 'post_number',
+          onChange: (e) => setInfo({ ...info, [e.target.name]: e.target.value, })
+        },
+        button: {
+          text: {
+            children: '우편번호 찾기',
+            fontSize: { desktop: fontSize.base, tablet: fontSize.base, mobile: fontSize.base },
+            fontWeight: fontWeight.medium,
+            color: colorPalette.white,
+          },
+          isRounded: true,
+        }
+      },
+      {
+        type: 'input',
+        input: {
+          value: info.post_number,
+          name: 'post_number',
+          onChange: (e) => setInfo({ ...info, [e.target.name]: e.target.value, })
+        },
+
+      },
+      {
+        type: 'input',
+        input: {
+          value: info.post_number,
+          name: 'post_number',
+          onChange: (e) => setInfo({ ...info, [e.target.name]: e.target.value, })
+        },
+      },
+      {
+        type: 'input',
+        text: { ...textProps, children: '이메일' },
+        englishText: { ...englishText, children: 'E-mail' },
+        input: {
+          value: info.email,
+          name: 'email',
+          onChange: (e) => setInfo({ ...info, [e.target.name]: e.target.value, })
+        }
+      },
+      {
+        type: 'input',
+        text: { ...textProps, children: '입금자명' },
+        englishText: { ...englishText, children: 'Name of Depositor' },
+        input: {
+          value: info.depositor,
+          name: 'depositor',
+          onChange: (e) => setInfo({ ...info, [e.target.name]: e.target.value, })
+        }
+      },
+      {
+        type: 'radio',
+        text: {
+          ...textProps,
+          children: '참가종목',
+        },
+        englishText: {
+          ...englishText,
+          children: 'Participating events'
+        },
+        name: 'course',
+        value: info.course,
+        items: [{
+          value: '풀코스',
+          children: '풀코스 부문'
+        },
+        {
+          value: '하프코스',
+          children: '하프코스 부문'
+        },
+        {
+          value: '10km코스',
+          children: '10km코스 부문'
+        }],
+        onChange: e => setInfo({ ...info, [e.target.name]: e.target.value }),
+      },
+      {
+        type: 'select',
+        text: {
+          ...textProps,
+          children: '기념품 옵션',
+        },
+        englishText: {
+          ...englishText,
+          children: 'Option'
+        },
+        selects: [
+          {
+            value: info.gift,
+            name: 'gift',
+            placeholder: '기념품 선택',
+            onChange: e => setInfo({ ...info, [e.target.name]: e.target.value }),
+            options: [{ value: 1995, name: '1995' }, { value: 1996, name: '1996' }, { value: 1997, name: '1997' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
+          },
+        ]
+      },
+    ]
+  }
+  console.log(info)
   return (
     <div style={{ height: '200vh', }}>
       <Nav {...navProps} />
@@ -446,6 +674,9 @@ function App() {
       <InputForm {...inputProps} />
       <RadioForm {...radioProps} />
       <SelectForm {...selectsProps} />
+      <div style={{ maxWidth: '1014px', margin: 'auto', width: '98%' }}>
+        <PersonForm {...personForm} />
+      </div>
       <CardSection {...cardSectionProps} />
       <CardSection {...cardSection1Props} />
       <CardSection {...cardSection2Props} />

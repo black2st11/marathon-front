@@ -1,10 +1,10 @@
 import React from 'react'
-import { Container, FormWrapper, SelectWrapper, SelectsWrapper, WarnWrapper } from './style'
+import { Container, FormWrapper, SelectWrapper, SelectsWrapper, WarnWrapper, TextWrapper } from './style'
 import { Select, Text } from '../../Atom'
 import { TextForm } from '../index'
 import { fontSize } from '../../../config'
 
-const InputForm = ({ text, englishText, select, selects = [], category = 'default' }) => {
+const SelectForm = ({ text, englishText, select, selects = [], category = 'default' }) => {
 
     const textProps = {
         text,
@@ -18,7 +18,7 @@ const InputForm = ({ text, englishText, select, selects = [], category = 'defaul
         } else {
             return selects.map((select, index, array) => {
                 return (
-                    <SelectsWrapper key={index}>
+                    <SelectsWrapper key={index} >
                         <Select {...select} />
                     </SelectsWrapper>
                 )
@@ -28,9 +28,11 @@ const InputForm = ({ text, englishText, select, selects = [], category = 'defaul
 
     return (
         <Container>
-            <TextForm {...textProps} />
+            <TextWrapper>
+                <TextForm {...textProps} />
+            </TextWrapper>
             <FormWrapper>
-                <SelectWrapper>
+                <SelectWrapper isSingle={selects.length === 1}>
                     {generate()}
                 </SelectWrapper>
                 <WarnWrapper>
@@ -41,4 +43,4 @@ const InputForm = ({ text, englishText, select, selects = [], category = 'defaul
     )
 }
 
-export default InputForm
+export default SelectForm

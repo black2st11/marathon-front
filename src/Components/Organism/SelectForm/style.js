@@ -16,7 +16,7 @@ export const Container = styled.div`
 
 export const FormWrapper = styled.div`
     display: flex;
-    width : 80%;
+    width : 75%;
     flex-direction : column;
     justify-content : space-between;
 
@@ -28,6 +28,8 @@ export const FormWrapper = styled.div`
 export const SelectWrapper = styled.div`
     display : flex;
     width : 100%;
+
+    ${props => props.isSingle && 'max-width :378px;'}
 `
 
 export const SelectsWrapper = styled.div`
@@ -43,3 +45,16 @@ export const SelectsWrapper = styled.div`
 `
 
 export const WarnWrapper = styled.div``
+
+export const TextWrapper = styled.div`
+    display : flex;
+    flex-direction : row;
+    align-items : center;
+    justify-content : start;
+    width : 25%;
+    margin-bottom : ${props => props.noneValue ? '1.25rem' : '0'};
+
+    @media only screen and (max-width: ${viewSize.tablet}){
+        width: 100%;
+    };
+`

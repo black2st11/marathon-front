@@ -5,14 +5,14 @@ import { fontSize } from '../../../config'
 
 const TextForm = ({ text, englishText, category = 'default' }) => {
     const wrapperGenerate = () => {
-        if (text.name) {
+        if (text.children) {
             return (
                 <>
                     <NameWrapper>
-                        <Text {...text}>{text.name}</Text>
+                        <Text {...text} />
                     </NameWrapper>
                     <EnglishNameWrapper>
-                        <Text {...englishText}>{englishText.name}</Text>
+                        <Text {...englishText} />
                     </EnglishNameWrapper>
                 </>
             )
@@ -24,13 +24,13 @@ const TextForm = ({ text, englishText, category = 'default' }) => {
     const GenerateForm = () => {
         if (category == 'default') {
             return (
-                <Container noneValue={text.name}>
+                <Container noneValue={text.children}>
                     {wrapperGenerate()}
                 </Container>
             )
         } else if (category == 'long') {
             return (
-                <LongContainer noneValue={text.name}>
+                <LongContainer noneValue={text.children}>
                     {wrapperGenerate()}
                 </LongContainer>
             )

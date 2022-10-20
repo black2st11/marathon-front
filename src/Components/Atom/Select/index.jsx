@@ -2,9 +2,10 @@ import React from 'react'
 import { Container, Select as StyledSelect, Option } from './style'
 
 
-const Select = ({ onChange, fontSize, fontWeight, border, borderRadius, height, options = [], value, placeholder = '선택' }) => {
+const Select = ({ onChange, fontSize, fontWeight, border, borderRadius, height, options = [], value, name, placeholder = '선택' }) => {
 
     const selectProps = {
+        name,
         onChange,
         value,
         height,

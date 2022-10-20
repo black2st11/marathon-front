@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from './style'
 import { Text } from '../index'
-const Button = ({ children, onClick, Icon, isRounded, height, bgColor, color, type, fontSize, fontWeight, }) => {
+const Button = ({ onClick, Icon, isRounded, height, bgColor, text }) => {
     const buttonProps = {
         onClick,
         isRounded,
@@ -9,15 +9,9 @@ const Button = ({ children, onClick, Icon, isRounded, height, bgColor, color, ty
         bgColor,
     }
 
-    const textProps = {
-        fontSize,
-        fontWeight,
-        color,
-        children
-    }
     return (
         <Container {...buttonProps}>
-            <Text {...textProps} />
+            <Text {...text} />
             {Icon && <Icon />}
         </Container>
     )

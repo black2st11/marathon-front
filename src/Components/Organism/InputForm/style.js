@@ -19,7 +19,7 @@ export const TextWrapper = styled.div`
     flex-direction : row;
     align-items : center;
     justify-content : start;
-    width : 20%;
+    width : 25%;
     margin-bottom : ${props => props.noneValue ? '1.25rem' : '0'};
     @media only screen and (max-width: ${viewSize.tablet}){
         width: 100%;
@@ -59,7 +59,7 @@ export const EnglishNameWrapper = styled.div`
 
 export const FormWrapper = styled.div`
     display: flex;
-    width : 80%;
+    width : 75%;
 
     @media only screen and (max-width: ${viewSize.tablet}){
         width: 100%;
@@ -70,6 +70,8 @@ export const ButtonWrapper = styled.div`
     display : flex;
     height : 46px;
     margin 0.25rem 1.625rem;
+    width : 146px;
+    min-width : 146px;
 `
 
 export const InputWrapper = styled.div`

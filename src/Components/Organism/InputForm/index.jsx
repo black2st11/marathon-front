@@ -32,7 +32,7 @@ const InputGenerate = ({ input, button, inputs, sep }) => {
                     <Input {...input} />
                 </InputWithButtonWrapper>
                 <ButtonWrapper>
-                    <Button {...button} />
+                    <Button {...button} height='46px' />
                 </ButtonWrapper>
             </React.Fragment>
         )
@@ -73,7 +73,9 @@ const InputForm = ({
 
     return (
         <Container>
-            <TextForm {...textProps} />
+            <TextWrapper>
+                {text && (<TextForm {...textProps} />)}
+            </TextWrapper>
             <FormWrapper>
                 <InputGenerate {...inputProps} />
             </FormWrapper>
