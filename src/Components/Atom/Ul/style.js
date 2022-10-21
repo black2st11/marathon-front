@@ -52,3 +52,8 @@ export const Title = styled.div`
     align-items : center;
     justify-content : center;
 `
+
+export const Contents = styled.div`
+    display : flex;
+    flex-direction : column;
+`

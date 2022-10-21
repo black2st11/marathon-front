@@ -88,7 +88,8 @@ export const colorPalette = {
     card: '#e6f4ff',
     base: '#464646',
     thead: '#d9d9d9',
-    thText: '#101010'
+    thText: '#101010',
+    accent: '#d54343'
 }
 
 

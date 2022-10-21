@@ -4,6 +4,7 @@ import { viewSize } from "../../../config";
 export const Container = styled.div`
     display : flex;
     flex-direction : column;
+    margin-bottom : 3.75rem;
 `
 
 export const TitleWrapper = styled.div`

@@ -4,6 +4,7 @@ import { CardContent, ContentTitle, GroupForm, InputForm, RadioForm, SelectForm,
 import logo from './static/image/logo.png'
 import { Nav, Footer, BreadCrumb, CardSection, PersonForm } from './Components/Template';
 import { colorPalette, fontSize, fontWeight } from './config';
+import { Award, Note, Summary } from './Pages/Information'
 function App() {
   const [selection, setSelection] = useState(undefined)
   const [year, setYear] = useState(undefined)
@@ -677,10 +678,10 @@ function App() {
       <div style={{ maxWidth: '1014px', margin: 'auto', width: '98%' }}>
         <PersonForm {...personForm} />
       </div>
-      <CardSection {...cardSectionProps} />
-      <CardSection {...cardSection1Props} />
-      <CardSection {...cardSection2Props} />
-      <CardSection {...cardSection3Props} />
+
+      <Summary />
+      <Note />
+      <Award />
       <Footer {...footerProps} />
       <BreadCrumb />
 

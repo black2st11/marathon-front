@@ -14,8 +14,8 @@ const MultipleText = ({ texts = [] }) => {
 const GenerateTd = ({ tds = [] }) => {
     return tds.map((td, index, array) => (
         <Td key={index} rowSpan={td.rowSpan ? td.rowSpan : '1'} colSpan={td.colSpan ? td.colSpan : '1'}>
-            {td.names ? (
-                <MultipleText texts={td.names} />
+            {td.childrens ? (
+                <MultipleText texts={td.childrens} />
             ) : (
                 <Text {...td} />
             )}

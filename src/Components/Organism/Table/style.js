@@ -31,4 +31,5 @@ export const Td = styled.td`
     text-align : center;
     padding : 1.5rem 0;
     border-bottom : 1px solid ${colorPalette.gray};
+    white-space : pre-line;
 `

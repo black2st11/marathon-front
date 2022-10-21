@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, CircleLi, TitleLi, Title, NoneLi } from './style'
+import { Container, CircleLi, TitleLi, Title, NoneLi, Contents } from './style'
 import { Text } from '../index'
 
 const Ul = ({ items = [], listStyle = 'circle' }) => {
@@ -11,7 +11,14 @@ const Ul = ({ items = [], listStyle = 'circle' }) => {
                         <Title type={item.title.type}>
                             <Text {...item.title} />
                         </Title>
-                        <Text {...item.content} />
+                        {item.content && (<Text {...item.content} />)}
+                        {item.contents && (
+                            <Contents>
+                                {item.contents.map((content, index, array) => (
+                                    <Text {...content} />
+                                ))}
+                            </Contents>
+                        )}
                     </TitleLi>
                 )
                 else if (listStyle === 'none') {
