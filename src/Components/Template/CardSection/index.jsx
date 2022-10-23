@@ -1,8 +1,9 @@
 import React from 'react'
 import * as S from './style'
 import { CardContent, ContentTitle, Table } from '../../Organism'
+import { Image } from '../../Atom'
 
-const CardSection = ({ title, subTitle, uls, table }) => {
+const CardSection = ({ title, subTitle, uls, table, image }) => {
     return (
         <S.Container>
             {title && (
@@ -21,6 +22,9 @@ const CardSection = ({ title, subTitle, uls, table }) => {
                 )}
                 {table && (
                     <Table {...table} />
+                )}
+                {image && (
+                    <Image {...image} />
                 )}
             </S.CardWrapper>
         </S.Container>

@@ -4,19 +4,14 @@ import { Input, Text, Button } from '../../Atom'
 import { TextForm } from '../index'
 
 
-const MultipleInput = ({ inputs, sep }) => (
+const MultipleInput = ({ inputs = [], sep }) => (
     <React.Fragment>
-        <InputWrapper>
-            <Input {...inputs[0]} />
-        </InputWrapper>
-        {sep && (<Sep />)}
-        <InputWrapper>
-            <Input {...inputs[1]} />
-        </InputWrapper>
-        {sep && (<Sep />)}
-        <InputWrapper>
-            <Input {...inputs[2]} />
-        </InputWrapper>
+        {inputs.map((input, index, array) => (
+            <InputWrapper>
+                <Input {...input} />
+                {(sep && index !== inputs.length) && (<Sep />)}
+            </InputWrapper>
+        ))}
     </React.Fragment>
 )
 
@@ -55,8 +50,6 @@ const InputForm = ({
     category = 'default',
     button,
 }) => {
-
-
     const textProps = {
         text,
         englishText,

@@ -4,7 +4,8 @@ import { CardContent, ContentTitle, GroupForm, InputForm, RadioForm, SelectForm,
 import logo from './static/image/logo.png'
 import { Nav, Footer, BreadCrumb, CardSection, PersonForm } from './Components/Template';
 import { colorPalette, fontSize, fontWeight } from './config';
-import { Award, Note, Summary } from './Pages/Information'
+import { Award, Note, Summary, Direction, Gift } from './Pages/Information'
+import { Course } from './Pages/Course'
 function App() {
   const [selection, setSelection] = useState(undefined)
   const [year, setYear] = useState(undefined)
@@ -672,16 +673,11 @@ function App() {
         <Table {...tableProps} />
       </div> */}
       {/* <GroupForm {...groupFormProps} /> */}
-      <InputForm {...inputProps} />
-      <RadioForm {...radioProps} />
-      <SelectForm {...selectsProps} />
-      <div style={{ maxWidth: '1014px', margin: 'auto', width: '98%' }}>
-        <PersonForm {...personForm} />
+      <div style={{ width: '1040px' }}>
+        <Course />
+        <Direction />
+        <Gift />
       </div>
-
-      <Summary />
-      <Note />
-      <Award />
       <Footer {...footerProps} />
       <BreadCrumb />
 

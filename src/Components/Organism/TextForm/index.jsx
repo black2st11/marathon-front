@@ -17,7 +17,6 @@ const TextForm = ({ text, englishText, category = 'default' }) => {
                 </>
             )
         }
-
         return (<></>)
     }
 
@@ -36,7 +35,6 @@ const TextForm = ({ text, englishText, category = 'default' }) => {
             )
         }
     }
-
     return (
         <GenerateForm />
     )

@@ -31,3 +31,9 @@ export const tdProps = {
     fontWeight: fontWeight.normal,
     color: colorPalette.base
 }
+
+export const tableDescriptionProps = {
+    fontSize: { desktop: fontSize.lg },
+    fontWeight: fontWeight.normal,
+    color: colorPalette.base
+}
