@@ -76,6 +76,7 @@ export const ButtonWrapper = styled.div`
 
 export const InputWrapper = styled.div`
     width : 100%;
+    display : flex;
 `
 
 export const InputWithButtonWrapper = styled.div`

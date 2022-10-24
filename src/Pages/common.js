@@ -37,3 +37,33 @@ export const tableDescriptionProps = {
     fontWeight: fontWeight.normal,
     color: colorPalette.base
 }
+
+export const inputTextProps = {
+    fontSize: { desktop: fontSize.xl, tablet: fontSize.xl, mobile: fontSize.lg },
+    fontWeight: fontWeight.medium,
+    color: colorPalette.black
+}
+
+export const inputEnglishTextProps = {
+    fontSize: { desktop: fontSize.lg },
+    fontWeight: fontWeight.medium,
+    color: colorPalette.placeholder
+}
+
+export const formButtonProps = {
+    color: colorPalette.white,
+    fontWeight: fontWeight.medium,
+    fontSize: {
+        desktop: fontSize.xl2,
+        tablet: fontSize.xl2,
+        mobile: fontSize.lg
+    }
+}
+
+export const inputButtonProps = {
+    color: colorPalette.white,
+    fontWeight: fontWeight.medium,
+    fontSize: {
+        desktop: fontSize.base,
+    }
+}

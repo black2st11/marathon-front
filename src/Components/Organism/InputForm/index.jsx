@@ -7,10 +7,10 @@ import { TextForm } from '../index'
 const MultipleInput = ({ inputs = [], sep }) => (
     <React.Fragment>
         {inputs.map((input, index, array) => (
-            <InputWrapper>
+            <React.Fragment>
                 <Input {...input} />
-                {(sep && index !== inputs.length) && (<Sep />)}
-            </InputWrapper>
+                {(sep && index !== inputs.length - 1) && (<Sep />)}
+            </React.Fragment>
         ))}
     </React.Fragment>
 )

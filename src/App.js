@@ -5,6 +5,7 @@ import logo from './static/image/logo.png'
 import { Nav, Footer, BreadCrumb, CardSection, PersonForm } from './Components/Template';
 import { colorPalette, fontSize, fontWeight } from './config';
 import { Award, Note, Summary, Direction, Gift } from './Pages/Information'
+import { Person, UpdatePerson } from './Pages/Participation'
 import { Course } from './Pages/Course'
 function App() {
   const [selection, setSelection] = useState(undefined)
@@ -674,6 +675,8 @@ function App() {
       </div> */}
       {/* <GroupForm {...groupFormProps} /> */}
       <div style={{ width: '1040px' }}>
+        <UpdatePerson />
+        <Person />
         <Course />
         <Direction />
         <Gift />
