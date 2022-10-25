@@ -45,9 +45,23 @@ const Tds = ({ tds = [] }) => {
 }
 
 
-const GroupForm = ({ ths, trs }) => {
+const GroupForm = ({ ths, trs = [], checkBtn, addBtn, deleteBtn, currentTxt }) => {
     return (
         <S.Container>
+            <S.HandleWrapper>
+                <S.CheckButtonWrapper><Button {...checkBtn} /></S.CheckButtonWrapper>
+                <S.CurrentLength>
+                    <Text {...currentTxt.normal}>{currentTxt.preFix}</Text>
+                    <Text {...currentTxt.strong}>{trs.length}</Text>
+                    <Text {...currentTxt.normal}>{currentTxt.postFix}</Text>
+                </S.CurrentLength>
+                <S.AddButtonWrapper>
+                    <Button {...addBtn} />
+                </S.AddButtonWrapper>
+                <S.CheckDeleteButtonWrapper>
+                    <Button {...deleteBtn} />
+                </S.CheckDeleteButtonWrapper>
+            </S.HandleWrapper>
             <S.Table>
                 <S.THead>
                     <S.Tr>

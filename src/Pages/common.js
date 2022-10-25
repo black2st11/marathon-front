@@ -67,3 +67,10 @@ export const inputButtonProps = {
         desktop: fontSize.base,
     }
 }
+
+export const groupThProps = {
+    fontSize: { desktop: fontSize.xl, },
+    fontWeight: fontWeight.normal,
+    color: colorPalette.thText,
+    category: 'text'
+}

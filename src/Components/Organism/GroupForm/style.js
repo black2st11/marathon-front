@@ -2,6 +2,29 @@ import styled from "styled-components";
 import { colorPalette } from '../../../config'
 export const Container = styled.div``
 
+export const HandleWrapper = styled.div`
+    display : flex;
+    margin-bottom : 1rem;
+    width : 100%;
+`
+
+export const CheckButtonWrapper = styled.div`
+    margin : auto auto auto 0;
+
+`
+
+export const AddButtonWrapper = styled.div`
+    margin : auto 1rem auto auto;
+`
+
+export const CheckDeleteButtonWrapper = styled.div`
+    margin : auto 0 auto 1rem;
+`
+
+export const CurrentLength = styled.div`
+    margin : auto;
+`
+
 export const Table = styled.table`
     border-spacing: 0;
     border-collapse : separate;
@@ -18,9 +41,9 @@ export const Tr = styled.tr``
 
 export const Th = styled.th`
     background-color : ${colorPalette.thead};
-    padding : 1rem;
+    padding : 1rem 0;
     text-align : center;
-    
+    min-width : 100px;
     &:first-child{
         border-radius : 34px 0 0 0;
     }

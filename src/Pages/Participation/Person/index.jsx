@@ -28,7 +28,6 @@ const Person = () => {
     secondProps.inputs.forEach(input => {
         setForm(input, info, setInfo)
     })
-    console.log(info)
     return (
         <React.Fragment>
             <PersonForm {...firstProps} />

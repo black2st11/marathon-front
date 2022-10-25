@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Container, HiddenCheckBox, CheckBox as StyledCheckBox, Label } from './style'
 
 import { colorPalette } from '../../../config'
@@ -9,18 +9,27 @@ const CheckBox = ({
     bgColor = colorPalette.primary,
     value,
     borderRadius,
-    onChange
+    onChange,
+    name
 }) => {
     const [focus, setFocus] = useState(false)
+    const ref = useRef()
     return (
         <Container
-            onClick={onChange}
+            onClick={() => onChange({
+                target: {
+                    name: name,
+                    value: !value
+                }
+            })}
             checked={value}
             border={focus || value ? `1px solid ${bgColor}` : ''}
             bgColor={value ? bgColor : colorPalette.white}
             borderRadius={borderRadius}
         >
             <HiddenCheckBox
+                ref={ref}
+                name={name}
                 value={value}
                 type='checkbox'
                 onChange={onChange}

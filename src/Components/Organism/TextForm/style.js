@@ -18,6 +18,11 @@ export const LongContainer = styled.div`
     flex-direction : column;
     align-items : start;
     width : 100%;
+
+    > div {
+        width : 100%;
+    }
+
     @media only screen and (max-width: ${viewSize.tablet}){
         width: 100%;
         flex-direction : row;

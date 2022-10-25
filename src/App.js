@@ -5,7 +5,7 @@ import logo from './static/image/logo.png'
 import { Nav, Footer, BreadCrumb, CardSection, PersonForm } from './Components/Template';
 import { colorPalette, fontSize, fontWeight } from './config';
 import { Award, Note, Summary, Direction, Gift } from './Pages/Information'
-import { Person, UpdatePerson } from './Pages/Participation'
+import { Person, UpdatePerson, Group } from './Pages/Participation'
 import { Course } from './Pages/Course'
 function App() {
   const [selection, setSelection] = useState(undefined)
@@ -664,7 +664,6 @@ function App() {
       },
     ]
   }
-  console.log(info)
   return (
     <div style={{ height: '200vh', }}>
       <Nav {...navProps} />
@@ -674,7 +673,8 @@ function App() {
         <Table {...tableProps} />
       </div> */}
       {/* <GroupForm {...groupFormProps} /> */}
-      <div style={{ width: '1040px' }}>
+      <div style={{ maxWidth: '1040px', width: '100%', margin: 'auto' }}>
+        <Group />
         <UpdatePerson />
         <Person />
         <Course />
