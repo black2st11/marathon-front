@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Ul } from '../../Atom'
-import { RadioForm, SelectForm, InputForm } from '../../Organism'
+import { RadioForm, SelectForm, InputForm, GroupForm } from '../../Organism'
 import * as S from './style'
 
 const InputGenerator = ({ input }) => {
@@ -15,7 +15,7 @@ const InputGenerator = ({ input }) => {
 }
 
 
-const PersonForm = ({ terms, uls, inputs, button }) => {
+const PersonForm = ({ terms, uls, inputs, button, group }) => {
     return (
         <S.Container>
             {terms && (
@@ -33,6 +33,11 @@ const PersonForm = ({ terms, uls, inputs, button }) => {
                     <InputGenerator input={input} />
                 </S.InputWrapper>
             ))}
+            {group && (
+                <S.GroupFormWrapper>
+                    <GroupForm {...group} />
+                </S.GroupFormWrapper>
+            )}
             {button && (
                 <S.ButtonWrapper>
                     <Button {...button} />

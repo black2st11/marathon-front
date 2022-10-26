@@ -39,3 +39,7 @@ export const ButtonWrapper = styled.div`
         height : 60px;
     }
 `
+
+export const GroupFormWrapper = styled.div`
+    margin : 3rem auto;
+`

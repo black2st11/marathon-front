@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import './App.css';
-import { CardContent, ContentTitle, GroupForm, InputForm, RadioForm, SelectForm, Table } from './Components/Organism'
+import { CardContent, ContentTitle, GroupForm, InputForm, RadioForm, SelectForm, Table, SelectTable, BoardInput, Board } from './Components/Organism'
 import logo from './static/image/logo.png'
-import { Nav, Footer, BreadCrumb, CardSection, PersonForm } from './Components/Template';
+import { Nav, Footer, BreadCrumb, CardSection, PersonForm, BoardForm, Boards } from './Components/Template';
 import { colorPalette, fontSize, fontWeight } from './config';
 import { Award, Note, Summary, Direction, Gift } from './Pages/Information'
 import { Person, UpdatePerson, Group } from './Pages/Participation'
@@ -15,50 +15,7 @@ function App() {
   const [name, setName] = useState('')
   const [phone, setPhone] = useState({ first: '', second: '', third: '' })
   const [info, setInfo] = useState({ name: '', phone1: '', phone2: '', phone3: '', year: '', month: '', day: '', gender: '', post_number: '', address: '', detail_address: '', email: '', depositor: '', course: '', gift: '' })
-  const setValue = (e) => {
-  }
 
-  const selectProps = {
-    value: selection,
-    onChange: ((e) => (setSelection(e))),
-    options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
-  }
-
-  const selectsProps = {
-    text: {
-      name: '이름',
-      fontSize: fontSize.xl,
-      fontWeight: fontWeight.bold,
-      color: colorPalette.black
-    },
-    englishText: {
-      name: 'Name',
-      fontSize: fontSize.xl,
-      fontWeight: fontWeight.bold,
-      color: colorPalette.placeholder
-    },
-    selects: [
-      {
-        postFix: '년',
-        value: year,
-        placeholder: '년도',
-        onChange: ((e) => (setYear(e))),
-        options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
-      },
-      {
-        postFix: '월',
-        value: month,
-        onChange: ((e) => (setMonth(e))),
-        options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
-      },
-      {
-        postFix: '일',
-        value: day,
-        onChange: ((e) => (setDay(e))),
-        options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
-      },
-    ]
-  }
   const navProps = {
     logo: logo,
     links: [{ name: '대회안내' }, { name: '대회코스' }, { name: '참가신청' }, { name: '대회기록' }, { name: "참여마당" }],
@@ -120,560 +77,214 @@ function App() {
     ]
   }
 
-  const cardProps = [{
-    listStyle: 'title',
-    items: [{
-      title: { name: '대회명', type: 'long', fontSize: { desktop: fontSize.lg }, fontWeight: fontWeight.medium, color: colorPalette.white },
-      content: { name: '2022 대한민국 마라톤 송년 남부내륙철도 조기착공 기원 전국마라톤대회', fontSize: { desktop: fontSize.lg }, fontWeight: fontWeight.bold }
-    },
-    {
-      title: { name: '일시', fontSize: { desktop: fontSize.lg }, fontWeight: fontWeight.medium, color: colorPalette.white },
-      content: { name: '2022년 12월 31일(토) 개회식 13:00/출발 13:30', fontSize: { desktop: fontSize.lg }, fontWeight: fontWeight.normal }
-    },
-    {
-      title: { name: '접수 마감', fontSize: { desktop: fontSize.lg }, fontWeight: fontWeight.medium, color: colorPalette.white },
-      content: { name: '2022년 12월 19일(월) 18:00', fontSize: { desktop: fontSize.lg }, fontWeight: fontWeight.normal }
-    },
-    {
-      title: { name: '참가비', fontSize: { desktop: fontSize.lg }, fontWeight: fontWeight.medium, color: colorPalette.white },
-      content: {
-        name: `- 하프코스(30,000원)
-      - 10km코스(30,000원)
-      - 5km코스(10,000원)`, fontSize: { desktop: fontSize.lg }, fontWeight: fontWeight.normal
-      }
-    }
-
-    ]
-  },
-  {
-    listStyle: 'circle',
-    items: [
-      { content: { name: '접수 마감 후에는 어떠한 경우에도 환불이 불가능하니 이점 유의하여 주시기 바랍니다.', fontSize: { desktop: fontSize.lg }, fontWeight: fontWeight.normal } },
-      { content: { name: '참가 취소 시 환불받고자 하는 통장의 정보(은행, 예금주, 계좌번호) 가 필요하오니, 정확한 정보를 자유게시판에 비밀글로 입력해 주시기 바랍니다.  ', fontSize: { desktop: fontSize.lg }, fontWeight: fontWeight.normal } },
-      { content: { name: '천재지변이나 국가 재난사태(질병, 국가적 재난 등 사회적 분위기로 대회 개최가 어렵다고 판단되는 경우, 구제역이나 AI 발생 등으로 가적으로 집회 등에 대한 자제 요청이 있을 경우)으로 인한 대회 취소시, 참가비는 전액 반환되지 않습니다. (단, 준비된 기념품은 택배로 발송됩니다.)', fontSize: { desktop: fontSize.lg }, fontWeight: fontWeight.normal } }
-
-    ]
-  }]
-
-  const thProps = {
-    fontSize: { desktop: fontSize.lg },
-    fontWeight: fontWeight.normal,
-    color: colorPalette.base
-  }
-
-  const tdProps = {
-    fontSize: { desktop: fontSize.lg },
-    fontWeight: fontWeight.normal,
-    color: colorPalette.base
-  }
-
-  const namesProps = {
-    fontWeight: fontWeight.medium,
-    color: colorPalette.primary,
-    fontSize: { desktop: fontSize.xl }
-  }
-
-  const tableProps = {
-    ths: [{ ...thProps, name: '종목' }, { ...thProps, name: '참가비' }, { ...thProps, name: '입금계좌', colSpan: '2' }],
-    trs: [
-      [
-        { ...tdProps, name: '하프코스' },
-        { ...tdProps, name: '30,000원' },
-        {
-          ...tdProps, names: [
-            { ...namesProps, name: '입금은행 : 경남은행' },
-            { ...namesProps, name: '예금주: 경남CBS' },
-            { fontWeight: fontWeight.bold, color: colorPalette.primary, fontSize: { desktop: fontSize.xl3 }, name: '509-07-0152450' }], rowSpan: '3'
-        }],
-      [{ ...tdProps, name: '10km' }, { ...tdProps, name: '30,000원' }],
-      [{ ...tdProps, name: '5km' }, { ...tdProps, name: '10,000원' }],
-    ],
-    descriptions: [{ content: { 'name': '참가신청자와 동일한 이름으로 입금하지 않으면 미입금처리됩니다.' } }]
-  }
-
   const footerProps = {
     name: '화순',
     tel: '061-858-2456',
     fax: '061-858-2456'
   }
 
-  const radioProps = {
-    text: {
-      name: '이름',
-      fontSize: fontSize.xl,
-      fontWeight: fontWeight.bold,
-      color: colorPalette.black
-    },
-    englishText: {
-      name: 'Name',
-      fontSize: fontSize.xl,
-      fontWeight: fontWeight.bold,
-      color: colorPalette.placeholder
-    },
-    value: selection,
-    items: [{
-      value: '남성',
-      children: 'male'
-    }, {
-      value: '여성',
-      children: 'female'
-    },
-    {
-      value: '무성',
-      children: 'nogender'
-    },],
-    onChange: (e) => setSelection(e)
-  }
-
-
-
-  const groupThProps = {
-    fontSize: { desktop: fontSize.xl, },
-    fontWeight: fontWeight.normal,
-    color: colorPalette.thText,
-    category: 'text'
-  }
-
-  const groupFormProps = {
-    ths: [
-      { category: 'check', onClick: () => console.log('check'), borderRadius: '0.3rem' },
-      { ...groupThProps, children: '성명' },
-      { ...groupThProps, children: '성별' },
-      { ...groupThProps, children: '생년월일' },
-      { ...groupThProps, children: '코스' },
-      { ...groupThProps, children: '삭제' },
+  const selectTable = [
+    [
+      { title: { children: '이름' }, content: { children: '홍길동' } },
+      { title: { children: '생년월일' }, content: { children: '1970년 1월 1일' } }
     ],
-    trs: [
+    [{ title: { children: '주소' }, content: { children: '전라남도 여수시 덕충 3길 3 (덕충동) 2층 망고소프트' } }],
+    [
+      { title: { children: '참가종목' }, content: { children: '10km 여자부' } },
+      { title: { children: '휴대전화' }, content: { children: '010-0000-0000' } }
+    ],
+    [
+      { title: { children: '이메일' }, content: { children: 'mangosoftdev@naver.com' } },
+      { title: { children: '입금자명' }, content: { children: '홍길동' } }
+    ],
+  ]
+
+  const selectTableProps = {
+    items: selectTable,
+    display: {
+      desktop: 'flex',
+      tablet: 'none',
+      mobile: 'flex'
+    }
+  }
+
+  const feeTableProps = {
+    display: {
+      desktop: 'flex',
+      tablet: 'none',
+      mobile: 'flex'
+    },
+    items: [
       [
-        { check: { onChange: () => console.log(1), borderRadius: '0.3rem' } },
-        { input: { value: '', borderRadius: '0.25rem', border: 'none', onChange: () => console.log(1), height: '40px' } },
-        { input: { value: '', onChange: () => console.log(1), height: '40px' } },
-        {
-          inputs: [{ value: '', onChange: () => console.log(1), height: '40px' },
-          { value: '', onChange: () => console.log(1), height: '40px' },
-          { value: '', onChange: () => console.log(1), height: '40px' }]
-        },
-        { select: { options: [{ value: 1, name: '10km' }, { value: 1, name: '5km' }, { value: 1, name: '하프코스' }], height: '40px', borderRadius: '5px', border: 'none' } },
-        { button: { children: '삭제', height: '2.125rem', isRounded: true, color: colorPalette.white, fontSize: { desktop: fontSize.xl }, fontWeight: fontWeight.medium } }
-      ]
-    ],
-  }
-
-  const titleProps = {
-    text: {
-      children: '대회개요',
-
-    }
-  }
-
-  const cardTitleProps = {
-    fontSize: { desktop: fontSize.xl3, mobile: fontSize.xl2 },
-    fontWeight: fontWeight.medium,
-    color: colorPalette.black
-  }
-
-  const subTitleProps = {
-    fontSize: { desktop: fontSize.xl2, mobile: fontSize.xl2 },
-    fontWeight: fontWeight.medium,
-    color: colorPalette.primary
-  }
-
-  const ulsContentProps = {
-    fontSize: { desktop: fontSize.lg, mobile: fontSize.base }, fontWeight: fontWeight.normal, color: colorPalette.base
-  }
-
-  const ulsTitleProps = {
-    fontSize: { desktop: fontSize.lg, mobile: fontSize.base }, fontWeight: fontWeight.normal, color: colorPalette.white
-  }
-
-  const cardSectionProps = {
-    title: {
-      text: { children: '참가자 제공품', ...cardTitleProps }
-    },
-    subTitle: { text: { children: '대회전', ...subTitleProps }, border: `1px solid ${colorPalette.primary}` },
-    uls: [
-      {
-        listStyle: 'circle',
-        items: [
-          { content: { children: '기념품, 배번호, 안내책자', ...ulsContentProps } },
-        ]
-      },
-      {
-        listStyle: 'title',
-        items: [
-          {
-            title: { children: '하프/10km', ...ulsTitleProps },
-            content: { children: '기념품, 배번호, 기록칩(배번호 내에 내장되어 있음), 안내책자', ...ulsContentProps }
-          },
-          {
-            title: { children: '5km', ...ulsTitleProps },
-            content: { children: '기념품, 배번호, 안내책자', ...ulsContentProps }
-          }
-        ]
-      },
-      {
-        listStyle: 'circle',
-        items: [
-          {
-            content: {
-              children: '번호표 분실 또는 미지참시 대회장에서 재발급이 불가능합니다. 현장 접수로 다시 구매하셔야 합니다.',
-              ...ulsContentProps, color: colorPalette.warn, fontWeight: fontWeight.semiBold
-            }
-          },
-        ]
-      },
-    ]
-  }
-
-  const cardSection1Props = {
-    subTitle: { text: { children: '대회중', ...subTitleProps }, border: `1px solid ${colorPalette.primary}` },
-    uls: [
-      {
-        listStyle: 'circle',
-        items: [
-          { content: { children: '주로 및 대회장 내 지급품 안내해드립니다.', ...ulsContentProps } },
-          { content: { children: '급수대는 매 2.5km 간격으로 배치됩니다.', ...ulsContentProps } },
-          { content: { children: '급수대에서는 물과 간식 등이 제공됩니다.', ...ulsContentProps } },
-          { content: { children: '골인 후, 기록증과 간식이 제공됩니다.', ...ulsContentProps } },
-        ]
-      },
-    ]
-  }
-
-  const cardSection2Props = {
-    subTitle: { text: { children: '대회 후', ...subTitleProps }, border: `1px solid ${colorPalette.primary}` },
-    uls: [
-      {
-        listStyle: 'circle',
-        items: [
-          { content: { children: '골인지점 촬영 사진 제공', ...ulsContentProps } },
-        ]
-      },
-    ]
-  }
-
-  const cardSection3Props = {
-    title: {
-      text: { children: '교통통제 및 경기시간 제한', ...cardTitleProps }
-    },
-    table: {
-      ths: [{ ...thProps, children: '종목' }, { ...thProps, children: '출발시간' }, { ...thProps, children: '경기종료' }, { ...thProps, children: '비고' }],
-      trs: [
-        [
-          { ...tdProps, children: '하프코스' },
-          { ...tdProps, children: '09:00' },
-          { ...tdProps, children: '12:00' },
-          { ...tdProps, children: '3시간' },
-        ],
-        [
-          { ...tdProps, children: '10km' },
-          { ...tdProps, children: '09:10' },
-          { ...tdProps, children: '11:10' },
-          { ...tdProps, children: '2시간' },
-        ],
-        [
-          { ...tdProps, children: '5km' },
-          { ...tdProps, children: '09:20' },
-          { ...tdProps, children: '10:20' },
-          { ...tdProps, children: '1시간' },
-        ],
+        { title: { children: '총참가비' }, content: { children: '30,000원' } },
+        { title: { children: '입금확인' }, content: { children: '미입금' } },
+        { title: { children: '실입금액' }, content: { children: '0원' } },
       ],
-      descriptions: [{ content: { children: '참가신청자와 동일한 이름으로 입금하지 않으면 미입금처리됩니다.' } }]
+      [
+        {
+          title: { children: '입금계좌' },
+          contents: [
+            { children: '입금은행 : 농협 000-0000-000-0000' },
+            { children: '(예금주: 주최)' },
+            { children: '하프코스 부문: 30,000원 /10km 코스 부문: 30,000원/ 5km 코스 부문: 10,000원' }
+          ]
+        },
+      ]
+    ]
+  }
+
+  const tabletFeeTableProps = {
+    display: {
+      desktop: 'none',
+      tablet: 'flex',
+      mobile: 'none'
+    },
+    items: [
+      [
+        { title: { children: '총참가비' }, content: { children: '30,000원' } },
+        { title: { children: '입금확인' }, content: { children: '미입금' } },
+        { title: { children: '실입금액' }, content: { children: '0원' } },
+      ],
+    ]
+  }
+
+  const tabletDepositTableProps = {
+    display: {
+      desktop: 'none',
+      tablet: 'flex',
+      mobile: 'none'
+    },
+    items: [
+      [
+        {
+          title: { children: '입금계좌' },
+          contents: [
+            { children: '입금은행 : 농협 000-0000-000-0000' },
+            { children: '(예금주: 주최)' },
+            { children: '하프코스 부문: 30,000원 /10km 코스 부문: 30,000원/ 5km 코스 부문: 10,000원' }
+          ]
+        },
+      ],
+    ]
+  }
+
+  const boardInputProps = {
+    text: { children: '이름' },
+    textarea: {
+      placeholder: '이름을 입력해주세요.',
+      borderRadius: '0.75rem'
     }
   }
 
-  const inputProps = {
-    text: {
-      name: '이름',
-      fontSize: fontSize.xl,
-      fontWeight: fontWeight.bold,
-      color: colorPalette.black
-    },
-    englishText: {
-      name: 'Name',
-      fontSize: fontSize.xl,
-      fontWeight: fontWeight.bold,
-      color: colorPalette.placeholder
-    },
-    // input: {
-    //   fontSize: { desktop: fontSize.xl2 },
-    //   value: name,
-    //   onChange: (e) => setName(e),
-    // },
-    sep: true,
-    // button: {
-    //   children: '주소찾기',
-    //   isRounded: true,
-    //   onClick: (e) => console.log(e)
-    // },
-    inputs: [{
-      value: phone.first,
-      name: "first",
-      onChange: (e) => {
-        const { value, name } = e.target;
-        setPhone({
-          ...phone,
-          [name]: value
-        })
-      }
-    }, {
-      value: phone.second,
-      name: 'second',
-      onChange: (e) => {
-        const { value, name } = e.target;
-        setPhone({
-          ...phone,
-          [name]: value
-        })
-      }
-    }, {
-      value: phone.third,
-      name: 'third',
-      onChange: (e) => {
-        const { value, name } = e.target;
-        setPhone({
-          ...phone,
-          [name]: value
-        })
-      }
-    }]
-  }
-
-  const textProps = {
-    fontSize: { desktop: fontSize.xl, tablet: fontSize.xl, mobile: fontSize.lg },
-    fontWeight: fontWeight.medium,
-    color: colorPalette.black
-  }
-
-  const englishText = {
-    fontSize: {},
-    fontWeight: fontWeight.medium,
-    color: colorPalette.placeholder
-  }
-
-  const personForm = {
-    button: {
-      text: {
-        children: '다음',
-        color: colorPalette.white,
-        fontWeight: fontWeight.medium,
-        fontSize: {
-          desktop: fontSize.xl2,
-          tablet: fontSize.xl2,
-          mobile: fontSize.lg
-        }
-      },
-      onClick: () => console.log(1)
-    },
+  const boardFormProps = {
     inputs: [
       {
-        type: 'input',
-        text: { ...textProps, children: '이름' },
-        englishText: { ...englishText, children: 'Name' },
+        text: { children: '이름' },
         input: {
-          value: info.name,
-          name: 'name',
-          onChange: (e) => setInfo({ ...info, [e.target.name]: e.target.value, })
+          placeholder: '이름을 입력해주세요.',
+          borderRadius: '0.75rem'
         }
       },
       {
-        type: 'input',
-        text: { ...textProps, children: '연락처' },
-        englishText: { ...englishText, children: 'Contact' },
-        sep: '-',
-        inputs: [{
-          value: info.phone1,
-          name: 'phone1',
-          onChange: (e) => setInfo({ ...info, [e.target.name]: e.target.value, })
-        },
-        {
-          value: info.phone2,
-          name: 'phone2',
-          onChange: (e) => setInfo({ ...info, [e.target.name]: e.target.value, })
-        },
-        {
-          value: info.phone3,
-          name: 'phone3',
-          onChange: (e) => setInfo({ ...info, [e.target.name]: e.target.value, })
-        },
-        ]
-      },
-      {
-        type: 'select',
-        text: {
-          ...textProps,
-          children: '생년월일',
-        },
-        englishText: {
-          ...englishText,
-          children: 'Date of Birth'
-        },
-        selects: [
-          {
-            value: info.year,
-            name: 'year',
-            placeholder: '년도 (Year)',
-            onChange: e => setInfo({ ...info, [e.target.name]: e.target.value }),
-            options: [{ value: 1995, name: '1995' }, { value: 1996, name: '1996' }, { value: 1997, name: '1997' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
-          },
-          {
-            value: info.month,
-            name: 'month',
-            placeholder: '월 (Month)',
-            onChange: e => setInfo({ ...info, [e.target.name]: e.target.value }),
-            options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
-          },
-          {
-            value: info.day,
-            name: 'day',
-            placeholder: '월 (Day)',
-            onChange: e => setInfo({ ...info, [e.target.name]: e.target.value }),
-            options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
-          },
-        ]
-      },
-      {
-        type: 'radio',
-        text: {
-          ...textProps,
-          children: '성별',
-        },
-        englishText: {
-          ...englishText,
-          children: 'Gender'
-        },
-        name: 'gender',
-        value: info.gender,
-        items: [{
-          value: '남성',
-          children: 'male'
-        },
-        {
-          value: '여성',
-          children: 'female'
-        }],
-        onChange: e => setInfo({ ...info, [e.target.name]: e.target.value }),
-      },
-      {
-        type: 'input',
-        text: {
-          ...textProps,
-          children: '주소',
-        },
-        englishText: {
-          ...englishText,
-          children: 'Address'
-        },
+        text: { children: '패스워드' },
         input: {
-          value: info.post_number,
-          name: 'post_number',
-          onChange: (e) => setInfo({ ...info, [e.target.name]: e.target.value, })
-        },
-        button: {
-          text: {
-            children: '우편번호 찾기',
-            fontSize: { desktop: fontSize.base, tablet: fontSize.base, mobile: fontSize.base },
-            fontWeight: fontWeight.medium,
-            color: colorPalette.white,
-          },
-          isRounded: true,
+          placeholder: '게시글 수정/삭제 시 필요합니다.',
+          borderRadius: '0.75rem'
         }
       },
       {
-        type: 'input',
+        text: { children: '제목' },
         input: {
-          value: info.post_number,
-          name: 'post_number',
-          onChange: (e) => setInfo({ ...info, [e.target.name]: e.target.value, })
-        },
+          placeholder: '재목을 입력해주세요.',
+          borderRadius: '0.75rem'
+        }
+      },
+      {
+        text: { children: '내용' },
+        textarea: {
+          placeholder: '내용을 입력해주세요.',
+          borderRadius: '0.75rem'
+        }
+      },
+    ],
+    listBtn: {
+      text: { children: '목록' },
+      bgColor: colorPalette.white,
+      isRounded: true,
+      border: `1px solid ${colorPalette.border}`
+    },
+    writeBtn: {
+      text: { children: '완료', color: colorPalette.white },
+      bgColor: colorPalette.primary,
+      isRounded: true,
+    },
+    fileInput: {
+      text: { children: '파일' },
+      file: {
+        text: { children: '파일선택' },
+      }
+    },
+    description: {
+      children: '첨부파일 제한 용량은 총 2MB이하입니다. (이미지 사이즈 600*800이하) 용량 초과 파일은 DB에 저장하지 않습니다.'
+    }
+  }
 
+  const boardProps = {
+    title: { children: '제 16회 여수 해양마라톤 접수 시작! ' },
+    date: { children: '2022 - 00 -00' },
+    content: { children: 'asdhfkjlashdklfjhaskljdfklasj' },
+    listBtn: {
+      text: { children: '목록', color: colorPalette.white },
+      bgColor: colorPalette.primary,
+      isRounded: true,
+    }
+  }
+
+
+  const boardsProps = {
+    titles: [
+      {
+        text: { children: '번호' }
       },
       {
-        type: 'input',
-        input: {
-          value: info.post_number,
-          name: 'post_number',
-          onChange: (e) => setInfo({ ...info, [e.target.name]: e.target.value, })
-        },
+        text: { children: '제목' },
+        flex: 5
       },
       {
-        type: 'input',
-        text: { ...textProps, children: '이메일' },
-        englishText: { ...englishText, children: 'E-mail' },
-        input: {
-          value: info.email,
-          name: 'email',
-          onChange: (e) => setInfo({ ...info, [e.target.name]: e.target.value, })
-        }
+        text: { children: '등록일' }
       },
       {
-        type: 'input',
-        text: { ...textProps, children: '입금자명' },
-        englishText: { ...englishText, children: 'Name of Depositor' },
-        input: {
-          value: info.depositor,
-          name: 'depositor',
-          onChange: (e) => setInfo({ ...info, [e.target.name]: e.target.value, })
-        }
+        text: { children: '조회' }
+      }
+    ],
+    contents: [
+      {
+        no: '15',
+        title: '제 16회 여수 해양마라톤 접수 시작! ',
+        date: '2022-06-21',
+        hit: '조회'
       },
       {
-        type: 'radio',
-        text: {
-          ...textProps,
-          children: '참가종목',
-        },
-        englishText: {
-          ...englishText,
-          children: 'Participating events'
-        },
-        name: 'course',
-        value: info.course,
-        items: [{
-          value: '풀코스',
-          children: '풀코스 부문'
-        },
-        {
-          value: '하프코스',
-          children: '하프코스 부문'
-        },
-        {
-          value: '10km코스',
-          children: '10km코스 부문'
-        }],
-        onChange: e => setInfo({ ...info, [e.target.name]: e.target.value }),
-      },
-      {
-        type: 'select',
-        text: {
-          ...textProps,
-          children: '기념품 옵션',
-        },
-        englishText: {
-          ...englishText,
-          children: 'Option'
-        },
-        selects: [
-          {
-            value: info.gift,
-            name: 'gift',
-            placeholder: '기념품 선택',
-            onChange: e => setInfo({ ...info, [e.target.name]: e.target.value }),
-            options: [{ value: 1995, name: '1995' }, { value: 1996, name: '1996' }, { value: 1997, name: '1997' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
-          },
-        ]
-      },
+        no: '15',
+        title: '제 16회 여수 해양마라톤 접수 시작! ',
+        date: '2022-06-21',
+        hit: '조회'
+      }
     ]
   }
+
   return (
     <div style={{ height: '200vh', }}>
       <Nav {...navProps} />
-      {/* <div style={{ width: '1000px', margin: '20rem auto auto auto' }}>
-        <ContentTitle {...titleProps} />
-        <CardContent uls={cardProps} />
-        <Table {...tableProps} />
-      </div> */}
-      {/* <GroupForm {...groupFormProps} /> */}
-      <div style={{ maxWidth: '1040px', width: '100%', margin: 'auto' }}>
+      <div style={{ maxWidth: '1040px', width: '100%', margin: 'auto', marginTop: '10rem' }}>
+        <SelectTable {...selectTableProps} />
+        <SelectTable {...feeTableProps} />
+        <Board {...boardProps} />
+        <Boards {...boardsProps} />
+        <BoardInput {...boardInputProps} />
+        <BoardForm {...boardFormProps} />
+        <SelectTable {...tabletFeeTableProps} />
+        <SelectTable {...tabletDepositTableProps} />
         <Group />
         <UpdatePerson />
         <Person />

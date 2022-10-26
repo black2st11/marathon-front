@@ -29,14 +29,8 @@ export const firstProps = {
                 children: 'Name of the representative'
             },
             sep: true,
-            inputs: [{
-                name: 'phone1',
-            },
-            {
-                name: 'phone2',
-            },
-            {
-                name: 'phone3',
+            input: [{
+                name: 'reprensetative_name',
             }]
         },
         {
@@ -73,6 +67,100 @@ export const firstProps = {
         }
     }
 }
+
+export const secondProps = {
+    inputs: [
+        {
+            type: 'input',
+            text: {
+                ...inputTextProps,
+                children: '주소'
+            },
+            englishText: {
+                ...inputEnglishTextProps,
+                children: 'Address'
+            },
+            input: {
+                name: 'post_number'
+            },
+            button: {
+                isRounded: true,
+                text: {
+                    ...inputButtonProps,
+                    children: '우편번호 찾기',
+                }
+            }
+        },
+        {
+            type: 'input',
+            input: {
+                name: 'address'
+            }
+        },
+        {
+            type: 'input',
+            input: {
+                name: 'detail_address'
+            }
+        },
+        {
+            type: 'input',
+            text: {
+                ...inputTextProps,
+                children: '이메일'
+            },
+            englishText: {
+                ...inputEnglishTextProps,
+                children: 'E-mail'
+            },
+            input: {
+                name: 'email'
+            }
+        },
+        {
+            type: 'input',
+            text: {
+                ...inputTextProps,
+                children: '대표 연락처'
+            },
+            englishText: {
+                ...inputEnglishTextProps,
+                children: 'Contact'
+            },
+            sep: true,
+            inputs: [{
+                name: 'phone1',
+            },
+            {
+                name: 'phone2',
+            },
+            {
+                name: 'phone3',
+            }]
+        },
+        {
+            type: 'input',
+            text: {
+                ...inputTextProps,
+                children: '입금자명'
+            },
+            englishText: {
+                ...inputEnglishTextProps,
+                children: 'Name of depositor'
+            },
+            input: {
+                name: 'depositor'
+            }
+        },
+    ],
+    button: {
+        text: {
+            ...formButtonProps,
+            children: '신청완료'
+        }
+    }
+}
+
 
 export const groupNameProps = {
     input: { value: '', borderRadius: '0.25rem', border: 'none', onChange: () => console.log(1), height: '40px' }

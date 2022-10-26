@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { GroupForm } from '../../../Components/Organism'
 import { PersonForm } from '../../../Components/Template'
 import { setGroupForm, setAddGroup, setIndividualDelete, setGroupDelete, setAllCheck, setToggleCheck } from '../../../util'
-import { firstProps, groupProps, trsProps } from './data'
+import { firstProps, groupProps, trsProps, secondProps } from './data'
 
 
 const Group = () => {
@@ -49,10 +49,11 @@ const Group = () => {
     groupProps.checkBtn.onClick = () => setAllCheck(group, setGroup)
     groupProps.ths[0].onChange = () => setToggleCheck(group, setGroup, setIsAllCheck)
     groupProps.ths[0].value = isAllCheck
+    secondProps.group = groupProps
     return (
         <React.Fragment>
             <PersonForm {...firstProps} />
-            <GroupForm {...groupProps} />
+            <PersonForm {...secondProps} />
         </React.Fragment>
 
     )

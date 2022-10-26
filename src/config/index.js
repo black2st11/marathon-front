@@ -89,7 +89,10 @@ export const colorPalette = {
     base: '#464646',
     thead: '#d9d9d9',
     thText: '#101010',
-    accent: '#d54343'
+    accent: '#d54343',
+    file: '#f2f2f2',
+    divider: '#7b7b7b',
+    boardBorder: '#d9d9d9'
 }
 
 
