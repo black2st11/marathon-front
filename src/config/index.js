@@ -51,6 +51,9 @@ export const defaultSize = {
     desktopContainer: '1194px',
     tabletContainer: '942px',
     mobileContainer: '336px',
+    whiteCard: {
+        desktop: '582px'
+    },
     nav: {
         desktop: '85px',
         tablet: '70px',
@@ -76,6 +79,7 @@ export const colorPalette = {
     primary: '#414c80',
     secondary: '',
     tertiary: '',
+    lightBlack: "#303030",
     black: '#313131',
     white: 'white',
     defaultBorder: '',
@@ -92,7 +96,8 @@ export const colorPalette = {
     accent: '#d54343',
     file: '#f2f2f2',
     divider: '#7b7b7b',
-    boardBorder: '#d9d9d9'
+    boardBorder: '#d9d9d9',
+    cardBorder: '#b2b2b2'
 }
 
 

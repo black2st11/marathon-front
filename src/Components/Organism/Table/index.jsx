@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Thead, Tbody, Th, Td, Tr } from './style'
 import { Text, Ul } from '../../Atom'
 
-const MultipleText = ({ texts = [] }) => {
+export const MultipleText = ({ texts = [] }) => {
     return texts.map((text, index, array) => (
         <React.Fragment key={index}>
             <Text {...text} />

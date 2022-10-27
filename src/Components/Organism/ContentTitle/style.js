@@ -12,13 +12,12 @@ export const TitleWrapper = styled.div`
     padding : ${props => props.border && '0.25rem 1.5rem'};
     border-radius : ${props => props.border && '1.5rem'};
     width : fit-content;
-    text-align : center;
 `
 
 export const Border = styled.div`
     width : 50px;
-    height : 3px;
-    background-color : ${colorPalette.primary};
+    height : ${props => props.height ? props.height : '3px'};
+    background-color : ${props => props.bgColor ? props.bgColor : colorPalette.primary};
     margin-bottom : 1rem;
 
     display : ${props => props.border && 'none'};

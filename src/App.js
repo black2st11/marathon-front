@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import './App.css';
-import { CardContent, ContentTitle, GroupForm, InputForm, RadioForm, SelectForm, Table, SelectTable, BoardInput, Board } from './Components/Organism'
+import { CardContent, ContentTitle, GroupForm, InputForm, RadioForm, SelectForm, Table, SelectTable, BoardInput, Board, Modal } from './Components/Organism'
 import logo from './static/image/logo.png'
 import { Nav, Footer, BreadCrumb, CardSection, PersonForm, BoardForm, Boards } from './Components/Template';
 import { colorPalette, fontSize, fontWeight } from './config';
 import { Award, Note, Summary, Direction, Gift } from './Pages/Information'
 import { Person, UpdatePerson, Group } from './Pages/Participation'
 import { Course } from './Pages/Course'
+import Main from './Pages/Main';
+import { courseImg } from './config/images';
 function App() {
   const [selection, setSelection] = useState(undefined)
   const [year, setYear] = useState(undefined)
@@ -276,6 +278,8 @@ function App() {
   return (
     <div style={{ height: '200vh', }}>
       <Nav {...navProps} />
+      <Main />
+      <Modal img={{ src: courseImg }} />
       <div style={{ maxWidth: '1040px', width: '100%', margin: 'auto', marginTop: '10rem' }}>
         <SelectTable {...selectTableProps} />
         <SelectTable {...feeTableProps} />
