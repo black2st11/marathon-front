@@ -23,7 +23,7 @@ export const FirstTextWrapper = styled.div`
     text-align :right;
     width : 100%;
     max-width : ${defaultSize.desktopContainer};
-    margin : 0 auto;
+    margin : 7rem auto;
 
     > button {
         width :  9rem;
@@ -35,7 +35,7 @@ export const DateWrapper = styled.div`
     flex-direction : column;
     width : 100%;
     max-width : ${defaultSize.desktopContainer};
-    margin : auto;
+    margin : auto auto 10rem auto;
 `
 
 export const DateTextWrapper = styled.div`
@@ -51,28 +51,34 @@ export const DateItemWrapper = styled.div`
 export const DateItem = styled.div`
     display : flex;
     align-items : center;
-    align-content : space-between;
+    justify-content : space-between;
     flex-direction : column;
+    height : 6rem;
 `
 
 export const SecondSection = styled.div`
+    width : 100%;
     display : flex;
     flex-direction : column;
     align-items : center;
-    padding : 5rem;
+    margin : 5.5rem auto 7rem auto;
 `
 
 export const InfoWrapper = styled.div`
     display : flex;
     width : 100%;
-    align-items : center;
     max-width : ${defaultSize.desktopContainer};
+    margin-bottom : 4rem;
 `
 
 export const InfoTextWrapper = styled.div`
     display : flex;
     flex-direction : column;
     width : 20%;
+
+    > span {
+        margin-bottom : 1rem;
+    }
 `
 
 export const ImgTextWrapper = styled.div`
@@ -106,6 +112,7 @@ export const SupportImg = styled.img``
 
 export const ThirdSection = styled.div`
     display : flex;
+    justify-content : center;
     flex-direction : column;
     background-image : url(${props => props.bgImg ? props.bgImg.desktop : secondSectionImg});
     width : 100%;
@@ -128,4 +135,6 @@ export const ThirdCardWrapper = styled.div`
     justify-content : space-between;
 `
 
-export const FourthSection = styled.div``
+export const FourthSection = styled.div`
+    padding : 80px 0 133px 0;
+`

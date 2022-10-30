@@ -1,6 +1,23 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { fontSize, fontWeight, viewSize, colorPalette } from '../../../config'
 
+
+const baseText = css`
+    white-space : pre-line;
+    font-size : ${props => props.fontSize ? props.fontSize.desktop : fontSize.base};
+    font-weight: ${props => props.fontWeight ? props.fontWeight : fontWeight.base};
+    color : ${props => props.color ? props.color : colorPalette.black};
+    ${props => props.opacity && `opacity : ${props.opacity};`}
+    ${props => props.shadow && `text-shadow : ${props.shadow};`}
+    margin : 0.25rem 0;
+    @media only screen and (min-width : ${viewSize.mobile} and max-width: ${viewSize.tablet}){
+        font-size : ${props => props.fontSize ? props.fontSize.tablet : fontSize.base};
+    };
+
+    @media only screen and (max-width: ${viewSize.mobile}){
+        font-size : ${props => props.fontSize ? props.fontSize.mobile : fontSize.base};
+    };
+`
 
 export const Container = styled.div`
     display:flex;
@@ -9,77 +26,22 @@ export const Container = styled.div`
 `
 
 export const Span = styled.span`
-    white-space : pre-line;
-    font-size : ${props => props.fontSize ? props.fontSize.desktop : fontSize.base};
-    font-weight: ${props => props.fontWeight ? props.fontWeight : fontWeight.base};
-    color : ${props => props.color ? props.color : colorPalette.black};
-
-    @media only screen and (min-width : ${viewSize.mobile} and max-width: ${viewSize.tablet}){
-        font-size : ${props => props.fontSize ? props.fontSize.tablet : fontSize.base};
-    };
-
-    @media only screen and (max-width: ${viewSize.mobile}){
-        font-size : ${props => props.fontSize ? props.fontSize.mobile : fontSize.base};
-    };
+    ${baseText}
+    
 `
 
 export const P = styled.p`
-    white-space : pre-line;
-    font-size : ${props => props.fontSize ? props.fontSize : fontSize.base};
-    font-weight: ${props => props.fontWeight ? props.fontWeight : fontWeight.base};
-    color : ${props => props.color ? props.color : colorPalette.black};
-
-    @media only screen and (min-width : ${viewSize.mobile} and max-width: ${viewSize.tablet}){
-        font-size : ${props => props.fontSize ? props.fontSize.tablet : fontSize.base};
-    };
-
-    @media only screen and (max-width: ${viewSize.mobile}){
-        font-size : ${props => props.fontSize ? props.fontSize.mobile : fontSize.base};
-    };
+    ${baseText}
 `
 
 export const H1 = styled.h1`
-    white-space : pre-line;
-    font-size : ${props => props.fontSize ? props.fontSize : fontSize.xl7};
-    font-weight: ${props => props.fontWeight ? props.fontWeight : fontWeight.bold};
-    color : ${props => props.color ? props.color : colorPalette.black};
-
-
-    @media only screen and (min-width : ${viewSize.mobile} and max-width: ${viewSize.tablet}){
-        font-size : ${props => props.fontSize ? props.fontSize.tablet : fontSize.xl5};
-    };
-
-    @media only screen and (max-width: ${viewSize.mobile}){
-        font-size : ${props => props.fontSize ? props.fontSize.mobile : fontSize.xl5};
-    };
+    ${baseText}
 `
 
 export const H2 = styled.h2`
-    white-space : pre-line;
-    font-size : ${props => props.fontSize ? props.fontSize : fontSize.xl5};
-    font-weight: ${props => props.fontWeight ? props.fontWeight : fontWeight.bold};
-    color : ${props => props.color ? props.color : colorPalette.black};
-
-    @media only screen and (min-width : ${viewSize.mobile} and max-width: ${viewSize.tablet}){
-        font-size : ${props => props.fontSize ? props.fontSize.tablet : fontSize.xl3};
-    };
-
-    @media only screen and (max-width: ${viewSize.mobile}){
-        font-size : ${props => props.fontSize ? props.fontSize.mobile : fontSize.xl3};
-    };
+    ${baseText}
 `
 
 export const H3 = styled.h3`
-    white-space : pre-line;
-    font-size : ${props => props.fontSize ? props.fontSize : fontSize.xl3};
-    font-weight: ${props => props.fontWeight ? props.fontWeight : fontWeight.bold};
-    color : ${props => props.color ? props.color : colorPalette.black};
-
-    @media only screen and (min-width : ${viewSize.mobile} and max-width: ${viewSize.tablet}){
-        font-size : ${props => props.fontSize ? props.fontSize.tablet : fontSize.xl};
-    };
-
-    @media only screen and (max-width: ${viewSize.mobile}){
-        font-size : ${props => props.fontSize ? props.fontSize.mobile : fontSize.xl};
-    };
+    ${baseText}
 `

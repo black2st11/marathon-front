@@ -5,7 +5,7 @@ import logo from './static/image/logo.png'
 import { Nav, Footer, BreadCrumb, CardSection, PersonForm, BoardForm, Boards } from './Components/Template';
 import { colorPalette, fontSize, fontWeight } from './config';
 import { Award, Note, Summary, Direction, Gift } from './Pages/Information'
-import { Person, UpdatePerson, Group } from './Pages/Participation'
+import { Person, UpdatePerson, Group, Volunteer } from './Pages/Participation'
 import { Course } from './Pages/Course'
 import Main from './Pages/Main';
 import { courseImg } from './config/images';
@@ -279,8 +279,8 @@ function App() {
     <div style={{ height: '200vh', }}>
       <Nav {...navProps} />
       <Main />
-      <Modal img={{ src: courseImg }} />
       <div style={{ maxWidth: '1040px', width: '100%', margin: 'auto', marginTop: '10rem' }}>
+        <Volunteer />
         <SelectTable {...selectTableProps} />
         <SelectTable {...feeTableProps} />
         <Board {...boardProps} />

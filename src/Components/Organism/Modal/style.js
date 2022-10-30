@@ -11,6 +11,7 @@ export const Container = styled.div`
     align-items : center;
     justify-content : center;
     background-color : rgba(0, 0, 0, 0.7);
+    z-index : 99999999;
 `
 
 export const Modal = styled.div`
@@ -18,15 +19,22 @@ export const Modal = styled.div`
     min-height; 100px;
     background-color : ${colorPalette.white};
     border-radius : 1.5rem;
+    max-width: 90vw;
 `
 export const ModalImg = styled.img`
-    width : fit-content ;
+    width : 100%;
 `
 
 export const TopWrapper = styled.div`
     padding : 1rem;
+    width : fit-content;
+    cursor: pointer;
+    margin : auto 0px auto auto;
 `
 
 export const BottomWrapper = styled.div`
     padding : 1rem;
+    width : fit-content;
+    cursor: pointer;
+    margin : auto 0px auto auto;
 `

@@ -90,3 +90,14 @@ export const Sep = styled.div`
     background-color : ${colorPalette.noneBorder};
     margin : auto 2.5%;
 `
+
+export const TextSep = styled.div`
+    width : 15%;
+    margin : auto 2.5%;
+    text-align : left;
+
+    &:last-child {
+        margin-right : 0;
+        text-align : right;
+    }
+`

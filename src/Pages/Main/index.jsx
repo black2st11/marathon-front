@@ -1,11 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import * as S from './style'
 import { Text, Button, Image } from '../../Components/Atom'
-import { ContentTitle, ImgText, WhiteCard } from '../../Components/Organism'
-import { firstProps, fourthProps, secondProps, thirdProps } from './data'
+import { ContentTitle, ImgText, WhiteCard, Modal } from '../../Components/Organism'
+import { firstProps, fourthProps, modalProps, secondProps, thirdProps } from './data'
+
+const oneDayClose = (setFunc) => {
+    setFunc(true)
+    let today = new Date()
+    let today_format = new Intl.DateTimeFormat('kr').format(today)
+    localStorage.setItem('modal', today_format)
+}
+
+const checkExpireModal = () => {
+    let modalDate = localStorage.getItem('modal')
+    let today = new Date()
+    let today_format = new Intl.DateTimeFormat('kr').format(today)
+
+    return modalDate === today_format
+}
+
 const Main = () => {
+    const [isModalClose, setIsModalClose] = useState(checkExpireModal())
+
+    modalProps.isClose = isModalClose
+    modalProps.onClose = () => setIsModalClose(true)
+    modalProps.oneDayClose = () => oneDayClose(setIsModalClose)
+
     return (
         <S.Container>
+            <Modal {...modalProps} />
             <S.FirstSection>
                 <S.FirstTextWrapper>
                     <Text {...firstProps.title} />
@@ -71,6 +94,8 @@ const Main = () => {
             <S.FourthSection>
                 <S.ThirdTextWrapper>
                     <ContentTitle {...fourthProps.title} />
+                </S.ThirdTextWrapper>
+                <S.ThirdTextWrapper>
                     <Image {...fourthProps.course} />
                 </S.ThirdTextWrapper>
             </S.FourthSection>

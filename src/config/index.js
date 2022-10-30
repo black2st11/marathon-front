@@ -12,11 +12,13 @@ export const fontSize = {
     xl3: `${defaultFontSize * 1.75}rem`,
     xl4: `${defaultFontSize * 1.875}rem`,
     xl5: `${defaultFontSize * 2.25}rem`,
-    xl6: `${defaultFontSize * 3}rem`,
-    xl7: `${defaultFontSize * 3.75}rem`,
-    xl8: `${defaultFontSize * 4.5}rem`,
-    xl9: `${defaultFontSize * 6}rem`,
-    xl10: `${defaultFontSize * 8}rem`
+    xl6: `${defaultFontSize * 2.5}rem`,
+    xl7: `${defaultFontSize * 2.75}rem`,
+    xl8: `${defaultFontSize * 3}rem`,
+    xl9: `${defaultFontSize * 3.75} rem`,
+    xl10: `${defaultFontSize * 4.5} rem`,
+    xl11: `${defaultFontSize * 6} rem`,
+    xl12: `${defaultFontSize * 8} rem`
 }
 
 export const fontWeight = {
@@ -43,9 +45,9 @@ export const defaultSize = {
     width: '',
     height: '2rem',
     margin: '0.25rem 0',
-    buttonWidth: `${buttonSize.width}rem`,
+    buttonWidth: `${buttonSize.width} rem`,
     buttonHeight: `3.25rem`,
-    minButtonWidth: `${buttonSize.width * 0.56}rem`,
+    minButtonWidth: `${buttonSize.width * 0.56} rem`,
     minButtonHeight: `2.5rem`,
     inputHeight: `3.25rem`,
     desktopContainer: '1194px',
@@ -77,11 +79,12 @@ export const defaultSize = {
 // 컬러 수정
 export const colorPalette = {
     primary: '#414c80',
-    secondary: '',
-    tertiary: '',
+    secondary: '#003389',
+    tertiary: '#25a3d2',
     lightBlack: "#303030",
     black: '#313131',
     white: 'white',
+    realBlack: 'black',
     defaultBorder: '',
     label: '',
     warn: '#bf0000',
@@ -97,7 +100,7 @@ export const colorPalette = {
     file: '#f2f2f2',
     divider: '#7b7b7b',
     boardBorder: '#d9d9d9',
-    cardBorder: '#b2b2b2'
+    cardBorder: '#b2b2b2',
 }
 
 

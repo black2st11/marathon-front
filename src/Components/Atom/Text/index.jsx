@@ -3,11 +3,13 @@ import React from 'react'
 import { Container, Span, P, H1, H2, H3 } from './style'
 
 
-const TextGenerate = ({ children, fontSize, color, fontWeight, type }) => {
+const TextGenerate = ({ children, fontSize, color, fontWeight, type, opacity, shadow }) => {
     const textProps = {
         fontSize,
         color,
         fontWeight,
+        opacity,
+        shadow
     }
 
     switch (type) {
@@ -25,13 +27,15 @@ const TextGenerate = ({ children, fontSize, color, fontWeight, type }) => {
 }
 
 
-const Text = ({ children, fontSize, color, fontWeight, type = 'span' }) => {
+const Text = ({ children, fontSize, color, fontWeight, type = 'span', opacity, shadow }) => {
     const textProps = {
         fontSize,
         color,
         fontWeight,
         children,
-        type
+        type,
+        opacity,
+        shadow
     }
     return (
         <TextGenerate {...textProps} />

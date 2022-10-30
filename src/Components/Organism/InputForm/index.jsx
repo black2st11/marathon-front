@@ -1,15 +1,37 @@
 import React from 'react'
-import { Container, TextWrapper, LongTextWrapper, InputWrapper, NameWrapper, EnglishNameWrapper, FormWrapper, ButtonWrapper, Sep, InputWithButtonWrapper } from './style'
+import {
+    Container, TextWrapper, LongTextWrapper, InputWrapper, NameWrapper,
+    EnglishNameWrapper, FormWrapper, ButtonWrapper, Sep, InputWithButtonWrapper,
+    TextSep
+} from './style'
 import { Input, Text, Button } from '../../Atom'
 import { TextForm } from '../index'
 
+
+const SepGenerate = ({ seperate, isLast }) => {
+    if (seperate) {
+        return (
+            <TextSep>
+                <Text {...seperate} />
+            </TextSep>
+        )
+    }
+
+    if (!isLast) {
+        return (
+            <Sep />
+        )
+    }
+}
 
 const MultipleInput = ({ inputs = [], sep }) => (
     <React.Fragment>
         {inputs.map((input, index, array) => (
             <React.Fragment>
                 <Input {...input} />
-                {(sep && index !== inputs.length - 1) && (<Sep />)}
+                {sep && (
+                    <SepGenerate seperate={input.sep} isLast={index === inputs.length - 1} />
+                )}
             </React.Fragment>
         ))}
     </React.Fragment>
