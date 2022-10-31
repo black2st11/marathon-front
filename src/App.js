@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import './App.css';
-import { CardContent, ContentTitle, GroupForm, InputForm, RadioForm, SelectForm, Table, SelectTable, BoardInput, Board, Modal } from './Components/Organism'
+import { CardContent, ContentTitle, GroupForm, InputForm, RadioForm, SelectForm, Table, SelectTable, BoardInput, Board, Modal, Pagination } from './Components/Organism'
 import logo from './static/image/logo.png'
-import { Nav, Footer, BreadCrumb, CardSection, PersonForm, BoardForm, Boards } from './Components/Template';
+import { Nav, Footer, BreadCrumb, CardSection, PersonForm, BoardForm } from './Components/Template';
 import { colorPalette, fontSize, fontWeight } from './config';
 import { Award, Note, Summary, Direction, Gift } from './Pages/Information'
-import { Person, UpdatePerson, Group, Volunteer } from './Pages/Participation'
+import { Person, UpdatePerson, Group, Volunteer, UpdateVolunteer } from './Pages/Participation'
 import { Course } from './Pages/Course'
+import { Boards } from './Pages/Ground';
 import Main from './Pages/Main';
 import { courseImg } from './config/images';
 function App() {
@@ -275,16 +276,37 @@ function App() {
     ]
   }
 
+  const paginationProps = {
+    current: 2,
+    total: 20,
+    textProps: {
+      fontSize: {
+        desktop: fontSize.xl,
+      },
+      fontWeight: fontWeight.medium,
+      color: colorPalette.border
+    },
+    currentTextProps: {
+      fontSize: {
+        desktop: fontSize.xl,
+      },
+      fontWeight: fontWeight.medium,
+      color: colorPalette.primary
+    },
+  }
+
   return (
     <div style={{ height: '200vh', }}>
       <Nav {...navProps} />
       <Main />
       <div style={{ maxWidth: '1040px', width: '100%', margin: 'auto', marginTop: '10rem' }}>
+        <UpdateVolunteer />
         <Volunteer />
         <SelectTable {...selectTableProps} />
         <SelectTable {...feeTableProps} />
         <Board {...boardProps} />
-        <Boards {...boardsProps} />
+        <Boards />
+        <Pagination {...paginationProps} />
         <BoardInput {...boardInputProps} />
         <BoardForm {...boardFormProps} />
         <SelectTable {...tabletFeeTableProps} />

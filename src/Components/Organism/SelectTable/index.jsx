@@ -30,7 +30,6 @@ const RowGenerate = ({ items = [] }) => {
 
 // items 는 2차 배열 [ [], [] ]
 const SelectTable = ({ items = [], display = { desktop: 'flex' } }) => {
-    console.log(display)
     return (
         <S.Container display={display}>
             {items.map(item => (
