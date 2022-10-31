@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import './App.css';
-import { CardContent, ContentTitle, GroupForm, InputForm, RadioForm, SelectForm, Table, SelectTable, BoardInput, Board, Modal, Pagination } from './Components/Organism'
+import { CardContent, ContentTitle, GroupForm, InputForm, RadioForm, SelectForm, Table, SelectTable, BoardInput, Modal, Pagination } from './Components/Organism'
 import logo from './static/image/logo.png'
 import { Nav, Footer, BreadCrumb, CardSection, PersonForm, BoardForm } from './Components/Template';
 import { colorPalette, fontSize, fontWeight } from './config';
 import { Award, Note, Summary, Direction, Gift } from './Pages/Information'
 import { Person, UpdatePerson, Group, Volunteer, UpdateVolunteer } from './Pages/Participation'
 import { Course } from './Pages/Course'
-import { Boards } from './Pages/Ground';
+import { Board, Boards, BoardWrite } from './Pages/Ground';
 import Main from './Pages/Main';
 import { courseImg } from './config/images';
 function App() {
@@ -304,7 +304,8 @@ function App() {
         <Volunteer />
         <SelectTable {...selectTableProps} />
         <SelectTable {...feeTableProps} />
-        <Board {...boardProps} />
+        <Board />
+        <BoardWrite />
         <Boards />
         <Pagination {...paginationProps} />
         <BoardInput {...boardInputProps} />
