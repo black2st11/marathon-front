@@ -1,4 +1,5 @@
 import { inputTextProps, inputEnglishTextProps, formButtonProps, inputButtonProps, warnText } from '../../common'
+import { isValidate, onlyLetter } from '../../../util/validator'
 export const firstProps = {
     inputs: [
         {
@@ -12,7 +13,8 @@ export const firstProps = {
                 children: 'Name'
             },
             input: {
-                name: 'name'
+                name: 'name',
+                pattern: onlyLetter
             },
             warnText: {
                 ...warnText,

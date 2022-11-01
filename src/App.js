@@ -300,24 +300,7 @@ function App() {
       <Nav {...navProps} />
       <Main />
       <div style={{ maxWidth: '1040px', width: '100%', margin: 'auto', marginTop: '10rem' }}>
-        <UpdateVolunteer />
-        <Volunteer />
-        <SelectTable {...selectTableProps} />
-        <SelectTable {...feeTableProps} />
-        <Board />
-        <BoardWrite />
-        <Boards />
-        <Pagination {...paginationProps} />
-        <BoardInput {...boardInputProps} />
-        <BoardForm {...boardFormProps} />
-        <SelectTable {...tabletFeeTableProps} />
-        <SelectTable {...tabletDepositTableProps} />
-        <Group />
-        <UpdatePerson />
         <Person />
-        <Course />
-        <Direction />
-        <Gift />
       </div>
       <Footer {...footerProps} />
       <BreadCrumb />

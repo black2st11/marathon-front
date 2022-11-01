@@ -85,7 +85,7 @@ const InputForm = ({
         inputs,
         input,
         sep,
-        button
+        button,
     }
 
 

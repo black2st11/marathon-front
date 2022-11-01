@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { PersonForm } from '../../../Components/Template'
 import { firstProps, secondProps } from './data'
 import { setForm } from '../../../util'
+import { isValidate } from '../../../util/validator'
 const Person = () => {
     const [info, setInfo] = useState({
         name: '',
@@ -25,9 +26,15 @@ const Person = () => {
         setForm(input, info, setInfo)
     })
 
+    firstProps.button.onClick = () => {
+        isValidate(info)
+    }
+
     secondProps.inputs.forEach(input => {
         setForm(input, info, setInfo)
     })
+
+
     return (
         <React.Fragment>
             <PersonForm {...firstProps} />

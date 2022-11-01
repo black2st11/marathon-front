@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Input as StyledInput } from './style'
 import { defaultSize } from '../../../config'
-
+import { passValue } from '../../../util/validator'
 
 const Input = ({
     placeholder,
@@ -13,6 +13,7 @@ const Input = ({
     fontSize = {},
     height = defaultSize.inputHeight,
     onFocusOut,
+    pattern
 }) => {
 
     const inputProps = {
@@ -20,11 +21,17 @@ const Input = ({
         value,
         placeholder,
         fontSize,
-        onChange: (e) => onChange(e),
+        onChange: (e) => {
+            if (pattern) {
+                e.target.value = passValue(e.target.value, pattern)
+            }
+            onChange(e)
+        },
         onBlur: onFocusOut,
         border,
         height,
-        borderRadius
+        borderRadius,
+        pattern
     }
 
     return (
