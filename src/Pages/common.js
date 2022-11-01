@@ -74,3 +74,11 @@ export const groupThProps = {
     color: colorPalette.thText,
     category: 'text'
 }
+
+export const warnText = {
+    fontSize: {
+        desktop: fontSize.sm
+    },
+    color: colorPalette.invalid,
+    fontWeight: fontWeight.normal
+}

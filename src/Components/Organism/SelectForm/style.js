@@ -7,6 +7,17 @@ export const Container = styled.div`
     width :100%;
     align-items : center;
     justify-content : center;
+    flex-direction : column;
+
+    @media only screen and (max-width: ${viewSize.tablet}){
+        flex-direction : column;
+        align-items : start;
+    };
+`
+
+export const RowWrapper = styled.div`
+    width : 100%;
+    display : flex;
 
     @media only screen and (max-width: ${viewSize.tablet}){
         flex-direction : column;
@@ -44,7 +55,10 @@ export const SelectsWrapper = styled.div`
     }
 `
 
-export const WarnWrapper = styled.div``
+export const WarnWrapper = styled.div`
+    width : 75%;
+    margin-top: 0.25rem;
+`
 
 export const TextWrapper = styled.div`
     display : flex;

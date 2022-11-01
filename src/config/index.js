@@ -87,6 +87,7 @@ export const colorPalette = {
     realBlack: 'black',
     defaultBorder: '',
     label: '',
+    invalid: '#ff0000',
     warn: '#bf0000',
     gray: '#e9e9e9',
     border: '#9b9b9b',

@@ -2,7 +2,9 @@ import React from 'react'
 import {
     Container, TextWrapper, LongTextWrapper, InputWrapper, NameWrapper,
     EnglishNameWrapper, FormWrapper, ButtonWrapper, Sep, InputWithButtonWrapper,
-    TextSep
+    TextSep,
+    RowWrapper,
+    WarnWrapper
 } from './style'
 import { Input, Text, Button } from '../../Atom'
 import { TextForm } from '../index'
@@ -71,6 +73,7 @@ const InputForm = ({
     required,
     category = 'default',
     button,
+    warnText
 }) => {
     const textProps = {
         text,
@@ -88,12 +91,21 @@ const InputForm = ({
 
     return (
         <Container>
-            <TextWrapper>
-                {text && (<TextForm {...textProps} />)}
-            </TextWrapper>
-            <FormWrapper>
-                <InputGenerate {...inputProps} />
-            </FormWrapper>
+            <RowWrapper>
+                <TextWrapper>
+                    {text && (<TextForm {...textProps} />)}
+                </TextWrapper>
+                <FormWrapper>
+                    <InputGenerate {...inputProps} />
+                </FormWrapper>
+            </RowWrapper>
+            <RowWrapper>
+                <TextWrapper>
+                </TextWrapper>
+                <WarnWrapper>
+                    {warnText && (<Text {...warnText} />)}
+                </WarnWrapper>
+            </RowWrapper>
         </Container >
     )
 }

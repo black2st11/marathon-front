@@ -1,4 +1,4 @@
-import { inputTextProps, inputEnglishTextProps, formButtonProps, inputButtonProps } from '../../common'
+import { inputTextProps, inputEnglishTextProps, formButtonProps, inputButtonProps, warnText } from '../../common'
 export const firstProps = {
     inputs: [
         {
@@ -13,6 +13,9 @@ export const firstProps = {
             },
             input: {
                 name: 'name'
+            },
+            warnText: {
+                ...warnText,
             }
         },
         {
@@ -34,7 +37,10 @@ export const firstProps = {
             },
             {
                 name: 'phone3',
-            }]
+            }],
+            warnText: {
+                ...warnText,
+            }
         },
         {
             type: 'select',
@@ -59,7 +65,10 @@ export const firstProps = {
                 name: 'day',
                 placeholder: '월 (Day)',
                 options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
-            }]
+            }],
+            warnText: {
+                ...warnText,
+            }
         },
         {
             type: 'radio',
@@ -80,6 +89,9 @@ export const firstProps = {
                 value: '여성',
                 children: 'female'
             }],
+            warnText: {
+                ...warnText,
+            }
         }
     ],
     button: {
@@ -111,18 +123,27 @@ export const secondProps = {
                     ...inputButtonProps,
                     children: '우편번호 찾기',
                 }
+            },
+            warnText: {
+                ...warnText,
             }
         },
         {
             type: 'input',
             input: {
                 name: 'address'
+            },
+            warnText: {
+                ...warnText,
             }
         },
         {
             type: 'input',
             input: {
                 name: 'detail_address'
+            },
+            warnText: {
+                ...warnText,
             }
         },
         {
@@ -137,6 +158,9 @@ export const secondProps = {
             },
             input: {
                 name: 'email'
+            },
+            warnText: {
+                ...warnText,
             }
         },
         {
@@ -151,6 +175,9 @@ export const secondProps = {
             },
             input: {
                 name: 'depositor'
+            },
+            warnText: {
+                ...warnText,
             }
         },
         {
@@ -175,7 +202,10 @@ export const secondProps = {
             {
                 value: '10km코스',
                 children: '10km코스 부문'
-            }]
+            }],
+            warnText: {
+                ...warnText,
+            }
         },
         {
             type: 'select',
@@ -190,7 +220,10 @@ export const secondProps = {
             selects: [{
                 name: 'gift',
                 placeholder: '기념품 선택',
-            }]
+            }],
+            warnText: {
+                ...warnText,
+            }
         }
     ],
     button: {

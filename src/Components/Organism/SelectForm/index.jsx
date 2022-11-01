@@ -1,10 +1,11 @@
 import React from 'react'
-import { Container, FormWrapper, SelectWrapper, SelectsWrapper, WarnWrapper, TextWrapper } from './style'
+import { Container, FormWrapper, SelectWrapper, SelectsWrapper, WarnWrapper, TextWrapper, RowWrapper } from './style'
 import { Select, Text } from '../../Atom'
 import { TextForm } from '../index'
 import { fontSize } from '../../../config'
+import { warnText } from '../../../Pages/common'
 
-const SelectForm = ({ text, englishText, select, selects = [], category = 'default' }) => {
+const SelectForm = ({ text, englishText, select, selects = [], category = 'default', warnText }) => {
 
     const textProps = {
         text,
@@ -28,17 +29,25 @@ const SelectForm = ({ text, englishText, select, selects = [], category = 'defau
 
     return (
         <Container>
-            <TextWrapper>
-                <TextForm {...textProps} />
-            </TextWrapper>
-            <FormWrapper>
-                <SelectWrapper isSingle={selects.length === 1}>
-                    {generate()}
-                </SelectWrapper>
+            <RowWrapper>
+                <TextWrapper>
+                    <TextForm {...textProps} />
+                </TextWrapper>
+                <FormWrapper>
+                    <SelectWrapper isSingle={selects.length === 1}>
+                        {generate()}
+                    </SelectWrapper>
+
+                </FormWrapper>
+            </RowWrapper>
+            <RowWrapper>
+                <TextWrapper>
+
+                </TextWrapper>
                 <WarnWrapper>
-                    <Text></Text>
+                    {warnText && (<Text {...warnText} />)}
                 </WarnWrapper>
-            </FormWrapper>
+            </RowWrapper>
         </Container >
     )
 }

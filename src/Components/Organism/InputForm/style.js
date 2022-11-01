@@ -7,6 +7,17 @@ export const Container = styled.div`
     width :100%;
     align-items : center;
     justify-content : center;
+    flex-direction : column;
+
+    @media only screen and (max-width: ${viewSize.tablet}){
+        flex-direction : column;
+        align-items : start;
+    };
+`
+
+export const RowWrapper = styled.div`
+    display : flex;
+    width : 100%;
 
     @media only screen and (max-width: ${viewSize.tablet}){
         flex-direction : column;
@@ -100,4 +111,9 @@ export const TextSep = styled.div`
         margin-right : 0;
         text-align : right;
     }
+`
+
+export const WarnWrapper = styled.div`
+    width : 75%;
+    margin-top : 0.25rem;
 `
