@@ -5,7 +5,7 @@ import logo from './static/image/logo.png'
 import { Nav, Footer, BreadCrumb, CardSection, PersonForm, BoardForm } from './Components/Template';
 import { colorPalette, fontSize, fontWeight } from './config';
 import { Award, Note, Summary, Direction, Gift } from './Pages/Information'
-import { Person, UpdatePerson, Group, Volunteer, UpdateVolunteer } from './Pages/Participation'
+import { Person, UpdatePerson, Group, Volunteer, UpdateVolunteer, UpdateGroup } from './Pages/Participation'
 import { Course } from './Pages/Course'
 import { Board, Boards, BoardWrite } from './Pages/Ground';
 import Main from './Pages/Main';
@@ -300,7 +300,7 @@ function App() {
       <Nav {...navProps} />
       <Main />
       <div style={{ maxWidth: '1040px', width: '100%', margin: 'auto', marginTop: '10rem' }}>
-        <Person />
+        <UpdateGroup />
       </div>
       <Footer {...footerProps} />
       <BreadCrumb />

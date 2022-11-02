@@ -1,4 +1,7 @@
-import { inputTextProps, inputEnglishTextProps, formButtonProps, inputButtonProps, groupThProps } from '../../common'
+import {
+    inputTextProps, inputEnglishTextProps, formButtonProps, inputButtonProps,
+    groupThProps, feeTableProps, tabletFeeTableProps, thProps, tdProps
+} from '../../common'
 import { fontSize, fontWeight, colorPalette } from '../../../config'
 
 export const firstProps = {
@@ -65,21 +68,57 @@ export const firstProps = {
 }
 
 export const secondProps = {
-    items: [
+    info: [
         [
-            { title: { children: '이름' }, content: { children: '홍길동' } },
-            { title: { children: '생년월일' }, content: { children: '1970년 1월 1일' } }
+            { title: { children: '단체명' }, content: { children: '홍길동' } },
+            { title: { children: '대표자 생년월일' }, content: { children: '1970년 1월 1일' } }
         ],
-        [{ title: { children: '주소' }, content: { children: '전라남도 여수시 덕충 3길 3 (덕충동) 2층 망고소프트' } }],
         [
-            { title: { children: '참가종목' }, content: { children: '10km 여자부' } },
+            { title: { children: '대표자성명' }, content: { children: '홍길동' } },
             { title: { children: '휴대전화' }, content: { children: '010-0000-0000' } }
         ],
         [
-            { title: { children: '이메일' }, content: { children: 'mangosoftdev@naver.com' } },
-            { title: { children: '입금자명' }, content: { children: '홍길동' } }
+            { title: { children: '입금자명' }, content: { children: '홍길동' } },
+            { title: { children: '이메일' }, content: { children: 'mangosoftdev@naver.com' } }
+        ],
+        [
+            { title: { children: '주소' }, content: { children: '전라남도 여수시 덕충 3길 3 (덕충동) 2층 망고소프트' } },
+            { title: { children: '총인원수' }, content: { children: '15명' } }
         ],
     ],
+    fee: feeTableProps,
+    tabletFee: tabletFeeTableProps,
+    groups: {
+        ths: [
+            { ...thProps, children: '번호' },
+            { ...thProps, children: '성명' },
+            { ...thProps, children: '성별' },
+            { ...thProps, children: '생년월일' },
+            { ...thProps, children: '휴대폰번호' },
+            { ...thProps, children: '종목' },
+            { ...thProps, children: '기념품 옵션' },
+        ],
+        trs: [
+            [
+                { ...tdProps, children: '1' },
+                { ...tdProps, children: '홍길동' },
+                { ...tdProps, children: '남' },
+                { ...tdProps, children: '1998-02-08' },
+                { ...tdProps, children: '010-0000-0000' },
+                { ...tdProps, children: '하프남자부' },
+                { ...tdProps, children: '90' },
+            ],
+            [
+                { ...tdProps, children: '1' },
+                { ...tdProps, children: '홍길동' },
+                { ...tdProps, children: '남' },
+                { ...tdProps, children: '1998-02-08' },
+                { ...tdProps, children: '010-0000-0000' },
+                { ...tdProps, children: '하프남자부' },
+                { ...tdProps, children: '90' },
+            ],
+        ],
+    }
 }
 
 

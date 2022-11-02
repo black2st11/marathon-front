@@ -38,8 +38,10 @@ const Tds = ({ tds = [] }) => {
                     <Select {...td.select} />
                 </S.Td>
             )
-        } else {
+        } else if (td.input) {
             return (<S.Td><Input {...td.input}></Input></S.Td>)
+        } else {
+            return <S.Td><Text {...td} /></S.Td>
         }
     })
 }
@@ -83,5 +85,37 @@ const GroupForm = ({ ths, trs = [], checkBtn, addBtn, deleteBtn, currentTxt }) =
         </S.Container>
     )
 }
+
+
+export const GroupTable = ({ ths, trs = [], checkBtn, addBtn, deleteBtn, currentTxt }) => {
+    return (
+        <S.Container>
+            <S.HandleWrapper>
+                <S.CurrentLength>
+                    <Text {...currentTxt.normal}>{currentTxt.preFix}</Text>
+                    <Text {...currentTxt.strong}>{trs.length}</Text>
+                    <Text {...currentTxt.normal}>{currentTxt.postFix}</Text>
+                </S.CurrentLength>
+            </S.HandleWrapper>
+            <S.Table>
+                <S.THead>
+                    <S.Tr>
+                        {ths.map((th, index, array) => (
+                            <S.Th key={index}> (<Text {...th}></Text></S.Th>
+                        ))}
+                    </S.Tr>
+                </S.THead>
+                <S.TBody>
+                    {trs.map((tds, index, array) => (
+                        <S.Tr key={index}>
+                            <Tds tds={tds} />
+                        </S.Tr>
+                    ))}
+                </S.TBody>
+            </S.Table>
+        </S.Container>
+    )
+}
+
 
 export default GroupForm

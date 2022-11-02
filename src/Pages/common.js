@@ -83,7 +83,7 @@ export const warnText = {
     fontWeight: fontWeight.normal
 }
 
-const feeTableProps = {
+export const feeTableProps = {
     display: {
         desktop: 'flex',
         tablet: 'none',
@@ -108,7 +108,7 @@ const feeTableProps = {
     ]
 }
 
-const tabletFeeTableProps = {
+export const tabletFeeTableProps = {
     display: {
         desktop: 'none',
         tablet: 'flex',
