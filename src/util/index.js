@@ -136,6 +136,10 @@ export const setForm = (props, prevState, setFunc) => {
     }
 }
 
+export const setWarnText = (props, state) => {
+    props.warnText.children = state[props.name]
+}
+
 export const groupNameProps = {
     input: { value: '', name: 'name', borderRadius: '0.25rem', border: 'none', onChange: () => console.log(1), height: '40px' }
 }

@@ -82,3 +82,43 @@ export const warnText = {
     color: colorPalette.invalid,
     fontWeight: fontWeight.normal
 }
+
+const feeTableProps = {
+    display: {
+        desktop: 'flex',
+        tablet: 'none',
+        mobile: 'flex'
+    },
+    items: [
+        [
+            { title: { children: '총참가비' }, content: { children: '30,000원' } },
+            { title: { children: '입금확인' }, content: { children: '미입금' } },
+            { title: { children: '실입금액' }, content: { children: '0원' } },
+        ],
+        [
+            {
+                title: { children: '입금계좌' },
+                contents: [
+                    { children: '입금은행 : 농협 000-0000-000-0000' },
+                    { children: '(예금주: 주최)' },
+                    { children: '하프코스 부문: 30,000원 /10km 코스 부문: 30,000원/ 5km 코스 부문: 10,000원' }
+                ]
+            },
+        ]
+    ]
+}
+
+const tabletFeeTableProps = {
+    display: {
+        desktop: 'none',
+        tablet: 'flex',
+        mobile: 'none'
+    },
+    items: [
+        [
+            { title: { children: '총참가비' }, content: { children: '30,000원' } },
+            { title: { children: '입금확인' }, content: { children: '미입금' } },
+            { title: { children: '실입금액' }, content: { children: '0원' } },
+        ],
+    ]
+}

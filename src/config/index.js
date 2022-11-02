@@ -165,6 +165,37 @@ export const menuList = [
     },
 ]
 
+// 필수 정보 리스트
+export const requiredInfo = {
+    name: { required: true },
+    depositor: { required: true },
+    phone1: { required: true },
+    phone2: { required: true },
+    phone3: { required: true },
+    post_number: { required: true },
+    address: { required: true },
+    detail_address: { required: true },
+    representative: { required: true },
+    gender: { required: true },
+    email: { required: false },
+    birth: { required: true },
+    year: { required: true },
+    month: { required: true },
+    day: { required: true },
+    course: { required: true },
+    gift: { required: true }
+}
+
+
 // 등록
 export const TOKEN = ''
 export const API = ''
+
+
+export const defaultInfo = {
+    mainTitle: '',
+    date: '',
+    bank: '',
+    courseFee: '',
+    accountHolder: '',
+}

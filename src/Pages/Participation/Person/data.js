@@ -1,9 +1,10 @@
 import { inputTextProps, inputEnglishTextProps, formButtonProps, inputButtonProps, warnText } from '../../common'
-import { isValidate, onlyLetter } from '../../../util/validator'
+import { onlyLetter, onlyNumber } from '../../../util/validator'
 export const firstProps = {
     inputs: [
         {
             type: 'input',
+            name: 'name',
             text: {
                 ...inputTextProps,
                 children: '이름'
@@ -22,6 +23,7 @@ export const firstProps = {
         },
         {
             type: 'input',
+            name: 'phone',
             text: {
                 ...inputTextProps,
                 children: '연락처'
@@ -33,12 +35,15 @@ export const firstProps = {
             sep: true,
             inputs: [{
                 name: 'phone1',
+                pattern: onlyNumber
             },
             {
                 name: 'phone2',
+                pattern: onlyNumber
             },
             {
                 name: 'phone3',
+                pattern: onlyNumber
             }],
             warnText: {
                 ...warnText,
@@ -46,6 +51,7 @@ export const firstProps = {
         },
         {
             type: 'select',
+            name: 'birth',
             text: {
                 ...inputTextProps,
                 children: '생년월일'
@@ -74,6 +80,7 @@ export const firstProps = {
         },
         {
             type: 'radio',
+            name: 'gender',
             text: {
                 ...inputTextProps,
                 children: '성별'
@@ -108,6 +115,7 @@ export const secondProps = {
     inputs: [
         {
             type: 'input',
+            name: 'post_number',
             text: {
                 ...inputTextProps,
                 children: '주소'
@@ -117,7 +125,8 @@ export const secondProps = {
                 children: 'Address'
             },
             input: {
-                name: 'post_number'
+                name: 'post_number',
+                pattern: onlyNumber
             },
             button: {
                 isRounded: true,
@@ -132,6 +141,7 @@ export const secondProps = {
         },
         {
             type: 'input',
+            name: 'address',
             input: {
                 name: 'address'
             },
@@ -141,6 +151,7 @@ export const secondProps = {
         },
         {
             type: 'input',
+            name: 'detail_address',
             input: {
                 name: 'detail_address'
             },
@@ -150,6 +161,7 @@ export const secondProps = {
         },
         {
             type: 'input',
+            name: 'email',
             text: {
                 ...inputTextProps,
                 children: '이메일'
@@ -167,6 +179,7 @@ export const secondProps = {
         },
         {
             type: 'input',
+            name: 'depositor',
             text: {
                 ...inputTextProps,
                 children: '입금자명'
@@ -184,6 +197,7 @@ export const secondProps = {
         },
         {
             type: 'radio',
+            name: 'course',
             text: {
                 ...inputTextProps,
                 children: '참가종목'
@@ -211,6 +225,7 @@ export const secondProps = {
         },
         {
             type: 'select',
+            name: 'gift',
             text: {
                 ...inputTextProps,
                 children: '기념품 옵션'
@@ -234,4 +249,18 @@ export const secondProps = {
             children: '신청완료'
         }
     }
+}
+
+export const invalidProps = {
+    name: '',
+    phone: '',
+    birth: '',
+    gender: '',
+    post_number: '',
+    address: '',
+    detail_address: '',
+    email: '',
+    depositor: '',
+    course: '',
+    gift: ''
 }

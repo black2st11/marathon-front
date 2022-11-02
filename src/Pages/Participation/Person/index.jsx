@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { PersonForm } from '../../../Components/Template'
-import { firstProps, secondProps } from './data'
-import { setForm } from '../../../util'
+import { firstProps, secondProps, invalidProps } from './data'
+import { setForm, setWarnText } from '../../../util'
 import { isValidate } from '../../../util/validator'
 const Person = () => {
     const [info, setInfo] = useState({
@@ -22,18 +22,24 @@ const Person = () => {
         gift: ''
     })
 
+    const [invalid, setInvalid] = useState(invalidProps)
+
     firstProps.inputs.forEach(input => {
         setForm(input, info, setInfo)
+        setWarnText(input, invalid)
     })
-
     firstProps.button.onClick = () => {
-        isValidate(info)
+        let result = isValidate(info, invalidProps, setInvalid)
+        if (result) {
+            console.log(1)
+        }
     }
 
     secondProps.inputs.forEach(input => {
         setForm(input, info, setInfo)
+        setWarnText(input, invalid)
     })
-
+    console.log(invalid)
 
     return (
         <React.Fragment>
