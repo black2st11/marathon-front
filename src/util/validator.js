@@ -106,12 +106,12 @@ export const isValidate = (state, invalidProps, setFunc) => {
                 if (key == 'year' || key == 'month' || key == 'day') {
                     key = 'birth'
                 }
+                console.log(key)
                 result = defaultValidator(value, requiredInfo[key].required)
                 break
         }
         if (result.invalid) {
             flag = false
-            console.log(result)
             invalidProps = {
                 ...invalidProps,
                 [key]: result.message
@@ -127,6 +127,5 @@ export const onlyNumber = /[^0-9.]/g
 export const onlyLetter = /[^a-zA-Zㄱ-ㅎ가-힣]/g
 
 export const passValue = (text = '', pattern) => {
-    console.log(text.replace(pattern, ''))
     return text.replace(pattern, '')
 }

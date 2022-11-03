@@ -1,14 +1,16 @@
 import {
     inputTextProps, inputEnglishTextProps, formButtonProps, inputButtonProps,
-    groupThProps, feeTableProps, tabletFeeTableProps, thProps, tdProps
+    groupThProps, feeTableProps, tabletFeeTableProps, thProps, tdProps, ulsContentProps, warnText
 } from '../../common'
 import { fontSize, fontWeight, colorPalette } from '../../../config'
+import { onlyLetter, onlyNumber } from '../../../util/validator'
 
 export const firstProps = {
     inputs: [
         {
             type: 'input',
             category: 'long',
+            name: 'group_name',
             text: {
                 ...inputTextProps,
                 children: '단체명'
@@ -18,12 +20,16 @@ export const firstProps = {
                 children: 'Group name'
             },
             input: {
-                name: 'name'
+                name: 'group_name'
+            },
+            warnText: {
+                ...warnText
             }
         },
         {
             type: 'input',
             category: 'long',
+            name: 'representative_name',
             text: {
                 ...inputTextProps,
                 children: '대표자 이름'
@@ -33,12 +39,17 @@ export const firstProps = {
                 children: 'Name of the representative'
             },
             sep: true,
-            input: [{
-                name: 'reprensetative_name',
-            }]
+            input: {
+                name: 'representative_name',
+                pattern: onlyLetter
+            },
+            warnText: {
+                ...warnText
+            }
         },
         {
             type: 'input',
+            name: 'phone',
             text: {
                 ...inputTextProps,
                 children: '대표 연락처'
@@ -50,13 +61,19 @@ export const firstProps = {
             sep: true,
             inputs: [{
                 name: 'phone1',
+                pattern: onlyNumber
             },
             {
                 name: 'phone2',
+                pattern: onlyNumber
             },
             {
                 name: 'phone3',
-            }]
+                pattern: onlyNumber
+            }],
+            warnText: {
+                ...warnText
+            }
         },
     ],
     button: {
@@ -86,6 +103,18 @@ export const secondProps = {
             { title: { children: '총인원수' }, content: { children: '15명' } }
         ],
     ],
+    cardcontent: {
+        uls: [
+            {
+                listStyle: 'circle',
+                items: [
+                    { content: { ...ulsContentProps, children: '대리입금시 신청자와 입금자 명은 동일해야 접수확인이 가능합니다.', } },
+                    { content: { ...ulsContentProps, children: '종목 변경시는 대회사무국으로 연락주시기 바랍니다.' } },
+                    { content: { ...ulsContentProps, children: '참가비 입금이 되어야 접수가 완료되며 대리 입금시 입금자명은 단체명과 동일해야 합니다.' } },
+                ]
+            },
+        ]
+    },
     fee: feeTableProps,
     tabletFee: tabletFeeTableProps,
     groups: {
@@ -118,160 +147,32 @@ export const secondProps = {
                 { ...tdProps, children: '90' },
             ],
         ],
-    }
-}
-
-
-export const thirdProps = {
-    inputs: [
-        {
-            type: 'input',
-            category: 'long',
-            text: {
-                ...inputTextProps,
-                children: '단체명'
+        currentText: {
+            normal: {
+                fontSize: {
+                    desktop: fontSize.lg,
+                },
+                fontWeight: fontWeight.normal,
+                color: colorPalette.base,
             },
-            englishText: {
-                ...inputEnglishTextProps,
-                children: 'Group name'
+            strong: {
+                fontSize: {
+                    desktop: fontSize.xl2
+                },
+                fontWeight: fontWeight.semiBold,
+                color: colorPalette
             },
-            input: {
-                name: 'name'
-            }
-        },
-        {
-            type: 'input',
-            category: 'long',
-            text: {
-                ...inputTextProps,
-                children: '대표자 이름'
-            },
-            englishText: {
-                ...inputEnglishTextProps,
-                children: 'Name of the representative'
-            },
-            sep: true,
-            input: [{
-                name: 'reprensetative_name',
-            }]
-        },
-        {
-            type: 'select',
-            category: 'long',
-            text: {
-                ...inputTextProps,
-                children: '대표자 생년월일'
-            },
-            englishText: {
-                ...inputEnglishTextProps,
-                children: 'Representative\'s date of Birth'
-            },
-            selects: [{
-                name: 'year',
-                placeholder: '년도 (Year)',
-            },
-            {
-                name: 'month',
-                placeholder: '월 (Month)',
-                options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
-            },
-            {
-                name: 'day',
-                placeholder: '월 (Day)',
-                options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
-            }]
-        },
-        {
-            type: 'input',
-            text: {
-                ...inputTextProps,
-                children: '주소'
-            },
-            englishText: {
-                ...inputEnglishTextProps,
-                children: 'Address'
-            },
-            input: {
-                name: 'post_number'
-            },
-            button: {
-                isRounded: true,
-                text: {
-                    ...inputButtonProps,
-                    children: '우편번호 찾기',
-                }
-            }
-        },
-        {
-            type: 'input',
-            input: {
-                name: 'address'
-            }
-        },
-        {
-            type: 'input',
-            input: {
-                name: 'detail_address'
-            }
-        },
-        {
-            type: 'input',
-            text: {
-                ...inputTextProps,
-                children: '이메일'
-            },
-            englishText: {
-                ...inputEnglishTextProps,
-                children: 'E-mail'
-            },
-            input: {
-                name: 'email'
-            }
-        },
-        {
-            type: 'input',
-            text: {
-                ...inputTextProps,
-                children: '대표 연락처'
-            },
-            englishText: {
-                ...inputEnglishTextProps,
-                children: 'Contact'
-            },
-            sep: true,
-            inputs: [{
-                name: 'phone1',
-            },
-            {
-                name: 'phone2',
-            },
-            {
-                name: 'phone3',
-            }]
-        },
-        {
-            type: 'input',
-            text: {
-                ...inputTextProps,
-                children: '입금자명'
-            },
-            englishText: {
-                ...inputEnglishTextProps,
-                children: 'Name of depositor'
-            },
-            input: {
-                name: 'depositor'
-            }
-        },
-    ],
+            preFix: '참가인원 : ',
+            postFix: '명'
+        }
+    },
     button: {
         text: {
             ...formButtonProps,
-            children: '신청완료'
+            children: '다음단계'
         }
     }
 }
-
 
 export const groupNameProps = {
     input: { value: '', borderRadius: '0.25rem', border: 'none', onChange: () => console.log(1), height: '40px' }
@@ -334,7 +235,9 @@ const btnProps = {
     padding: `0.5rem 1.5rem`
 }
 
-export const groupProps = {
+
+
+const groupProps = {
     ths: [
         { category: 'check', onClick: () => console.log('check'), borderRadius: '0.3rem' },
         { ...groupThProps, children: '성명' },
@@ -345,7 +248,17 @@ export const groupProps = {
         { ...groupThProps, children: '기념품 옵션' },
         { ...groupThProps, children: '삭제' },
     ],
-    trs: [],
+    trs: [{
+        check: false,
+        name: '',
+        gender: '',
+        birth: '',
+        phone1: '',
+        phone2: '',
+        phone3: '',
+        course: '',
+        gift: '',
+    }],
     checkBtn: {
         ...btnProps,
         text: {
@@ -368,7 +281,7 @@ export const groupProps = {
             children: '인원추가'
         }
     },
-    currentTxt: {
+    currentText: {
         normal: {
             fontSize: {
                 desktop: fontSize.lg,
@@ -386,4 +299,207 @@ export const groupProps = {
         preFix: '참가인원 : ',
         postFix: '명'
     }
+}
+
+export const thirdProps = {
+    inputs: [
+        {
+            type: 'input',
+            category: 'long',
+            name: 'group_name',
+            text: {
+                ...inputTextProps,
+                children: '단체명'
+            },
+            englishText: {
+                ...inputEnglishTextProps,
+                children: 'Group name'
+            },
+            input: {
+                name: 'group_name'
+            },
+            warnText: {
+                ...warnText
+            }
+        },
+        {
+            type: 'input',
+            category: 'long',
+            name: 'representative_name',
+            text: {
+                ...inputTextProps,
+                children: '대표자 이름'
+            },
+            englishText: {
+                ...inputEnglishTextProps,
+                children: 'Name of the representative'
+            },
+            sep: true,
+            input: {
+                name: 'representative_name',
+            },
+            warnText: {
+                ...warnText
+            }
+        },
+        {
+            type: 'select',
+            category: 'long',
+            name: 'birth',
+            text: {
+                ...inputTextProps,
+                children: '대표자 생년월일'
+            },
+            englishText: {
+                ...inputEnglishTextProps,
+                children: 'Representative\'s date of Birth'
+            },
+            selects: [{
+                name: 'year',
+                placeholder: '년도 (Year)',
+            },
+            {
+                name: 'month',
+                placeholder: '월 (Month)',
+                options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
+            },
+            {
+                name: 'day',
+                placeholder: '월 (Day)',
+                options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
+            }],
+            warnText: {
+                ...warnText
+            }
+        },
+        {
+            type: 'input',
+            name: 'post_number',
+            text: {
+                ...inputTextProps,
+                children: '주소'
+            },
+            englishText: {
+                ...inputEnglishTextProps,
+                children: 'Address'
+            },
+            input: {
+                name: 'post_number'
+            },
+            button: {
+                isRounded: true,
+                text: {
+                    ...inputButtonProps,
+                    children: '우편번호 찾기',
+                }
+            },
+            warnText: {
+                ...warnText
+            }
+        },
+        {
+            type: 'input',
+            name: 'address',
+            input: {
+                name: 'address'
+            },
+            warnText: {
+                ...warnText
+            }
+        },
+        {
+            type: 'input',
+            name: 'detail_address',
+            input: {
+                name: 'detail_address'
+            },
+            warnText: {
+                ...warnText
+            }
+        },
+        {
+            type: 'input',
+            name: 'email',
+            text: {
+                ...inputTextProps,
+                children: '이메일'
+            },
+            englishText: {
+                ...inputEnglishTextProps,
+                children: 'E-mail'
+            },
+            input: {
+                name: 'email'
+            },
+            warnText: {
+                ...warnText
+            }
+        },
+        {
+            type: 'input',
+            name: 'phone',
+            text: {
+                ...inputTextProps,
+                children: '대표 연락처'
+            },
+            englishText: {
+                ...inputEnglishTextProps,
+                children: 'Contact'
+            },
+            sep: true,
+            inputs: [{
+                name: 'phone1',
+            },
+            {
+                name: 'phone2',
+            },
+            {
+                name: 'phone3',
+            }],
+            warnText: {
+                ...warnText
+            }
+        },
+        {
+            type: 'input',
+            name: 'depositor',
+            text: {
+                ...inputTextProps,
+                children: '입금자명'
+            },
+            englishText: {
+                ...inputEnglishTextProps,
+                children: 'Name of depositor'
+            },
+            input: {
+                name: 'depositor'
+            },
+            warnText: {
+                ...warnText
+            }
+        },
+    ],
+    group: groupProps,
+    button: {
+        text: {
+            ...formButtonProps,
+            children: '신청완료'
+        }
+    }
+}
+
+
+export const invalidProps = {
+    group_name: '',
+    representative_name: '',
+    phone: '',
+    birth: '',
+    gender: '',
+    post_number: '',
+    address: '',
+    detail_address: '',
+    email: '',
+    depositor: '',
+    course: '',
+    gift: ''
 }

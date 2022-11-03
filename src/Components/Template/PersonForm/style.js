@@ -41,5 +41,5 @@ export const ButtonWrapper = styled.div`
 `
 
 export const GroupFormWrapper = styled.div`
-    margin : 3rem auto;
+    margin : 3rem 0;
 `

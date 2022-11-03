@@ -257,7 +257,7 @@ export const groupProps = {
             children: '인원추가'
         }
     },
-    currentTxt: {
+    currentText: {
         normal: {
             fontSize: {
                 desktop: fontSize.lg,

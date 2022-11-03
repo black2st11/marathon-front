@@ -1,5 +1,6 @@
 import { cloneDeep } from 'lodash'
 import { colorPalette, fontWeight, fontSize } from '../config';
+import { onlyLetter, onlyNumber } from './validator';
 export const cloneObject = (obj) => {
     var clone = {};
     for (var key in obj) {
@@ -202,6 +203,7 @@ export const setGroupForm = (prevStates = [], setFunc) => {
             if (key === 'name') {
                 let props = cloneDeep(groupNameProps)
                 props.input.onChange = (e) => setGroupInput(e, index, prevStates, setFunc)
+                props.input.pattern = onlyLetter
                 props.input.value = value
                 tempList.push(props)
             }
@@ -217,6 +219,7 @@ export const setGroupForm = (prevStates = [], setFunc) => {
                 let props = cloneDeep(birthProps)
                 props.input.onChange = (e) => setGroupInput(e, index, prevStates, setFunc)
                 props.input.value = value
+                props.input.pattern = onlyNumber
                 tempList.push(props)
             }
 
@@ -228,6 +231,9 @@ export const setGroupForm = (prevStates = [], setFunc) => {
                 props.inputs[0].value = prevStates[index][props.inputs[0].name]
                 props.inputs[1].value = prevStates[index][props.inputs[1].name]
                 props.inputs[2].value = prevStates[index][props.inputs[2].name]
+                props.inputs[0].pattern = onlyNumber
+                props.inputs[1].pattern = onlyNumber
+                props.inputs[2].pattern = onlyNumber
                 tempList.push(props)
             }
 

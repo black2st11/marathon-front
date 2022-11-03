@@ -47,15 +47,15 @@ const Tds = ({ tds = [] }) => {
 }
 
 
-const GroupForm = ({ ths, trs = [], checkBtn, addBtn, deleteBtn, currentTxt }) => {
+const GroupForm = ({ ths, trs = [], checkBtn, addBtn, deleteBtn, currentText }) => {
     return (
         <S.Container>
             <S.HandleWrapper>
                 <S.CheckButtonWrapper><Button {...checkBtn} /></S.CheckButtonWrapper>
                 <S.CurrentLength>
-                    <Text {...currentTxt.normal}>{currentTxt.preFix}</Text>
-                    <Text {...currentTxt.strong}>{trs.length}</Text>
-                    <Text {...currentTxt.normal}>{currentTxt.postFix}</Text>
+                    <Text {...currentText.normal}>{currentText.preFix}</Text>
+                    <Text {...currentText.strong}>{trs.length}</Text>
+                    <Text {...currentText.normal}>{currentText.postFix}</Text>
                 </S.CurrentLength>
                 <S.AddButtonWrapper>
                     <Button {...addBtn} />
@@ -87,21 +87,21 @@ const GroupForm = ({ ths, trs = [], checkBtn, addBtn, deleteBtn, currentTxt }) =
 }
 
 
-export const GroupTable = ({ ths, trs = [], checkBtn, addBtn, deleteBtn, currentTxt }) => {
+export const GroupTable = ({ ths, trs = [], checkBtn, addBtn, deleteBtn, currentText }) => {
     return (
         <S.Container>
             <S.HandleWrapper>
                 <S.CurrentLength>
-                    <Text {...currentTxt.normal}>{currentTxt.preFix}</Text>
-                    <Text {...currentTxt.strong}>{trs.length}</Text>
-                    <Text {...currentTxt.normal}>{currentTxt.postFix}</Text>
+                    <Text {...currentText.normal}>{currentText.preFix}</Text>
+                    <Text {...currentText.strong}>{trs.length}</Text>
+                    <Text {...currentText.normal}>{currentText.postFix}</Text>
                 </S.CurrentLength>
             </S.HandleWrapper>
             <S.Table>
                 <S.THead>
                     <S.Tr>
                         {ths.map((th, index, array) => (
-                            <S.Th key={index}> (<Text {...th}></Text></S.Th>
+                            <S.Th key={index}> <Text {...th}></Text></S.Th>
                         ))}
                     </S.Tr>
                 </S.THead>

@@ -169,6 +169,7 @@ export const menuList = [
 export const requiredInfo = {
     name: { required: true },
     depositor: { required: true },
+    phone: { required: true },
     phone1: { required: true },
     phone2: { required: true },
     phone3: { required: true },
@@ -183,7 +184,9 @@ export const requiredInfo = {
     month: { required: true },
     day: { required: true },
     course: { required: true },
-    gift: { required: true }
+    gift: { required: true },
+    representative_name: { required: true },
+    group_name: { required: true }
 }
 
 
