@@ -45,14 +45,20 @@ const UpdateGroup = () => {
         gift: '',
     }])
     const [invalid, setInvalid] = useState(invalidProps)
-
+    let firstInfo = {
+        group_name: info.group_name,
+        representative_name: info.representative_name,
+        phone1: info.phone1,
+        phone2: info.phone2,
+        phone3: info.phone3
+    }
     firstProps.inputs.map(input => {
         setForm(input, info, setInfo)
         setWarnText(input, invalid)
     })
 
     firstProps.button.onClick = () => {
-        let result = isValidate(info, invalidProps, setInvalid)
+        let result = isValidate(firstInfo, invalidProps, setInvalid)
         if (result) {
             console.log(1)
         }

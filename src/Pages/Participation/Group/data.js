@@ -1,10 +1,12 @@
-import { inputTextProps, inputEnglishTextProps, formButtonProps, inputButtonProps, groupThProps } from '../../common'
+import { inputTextProps, inputEnglishTextProps, formButtonProps, inputButtonProps, groupThProps, warnText } from '../../common'
 import { fontSize, fontWeight, colorPalette } from '../../../config'
+import { onlyLetter, onlyNumber } from '../../../util/validator'
 export const firstProps = {
     inputs: [
         {
             type: 'input',
             category: 'long',
+            name: 'group_name',
             text: {
                 ...inputTextProps,
                 children: '단체명'
@@ -15,11 +17,15 @@ export const firstProps = {
             },
             input: {
                 name: 'name'
+            },
+            warnText: {
+                ...warnText
             }
         },
         {
             type: 'input',
             category: 'long',
+            name: 'representative_name',
             text: {
                 ...inputTextProps,
                 children: '대표자 이름'
@@ -29,13 +35,18 @@ export const firstProps = {
                 children: 'Name of the representative'
             },
             sep: true,
-            input: [{
+            input: {
                 name: 'reprensetative_name',
-            }]
+                pattern: onlyLetter
+            },
+            warnText: {
+                ...warnText
+            }
         },
         {
             type: 'select',
             category: 'long',
+            name: 'birth',
             text: {
                 ...inputTextProps,
                 children: '대표자 생년월일'
@@ -57,7 +68,10 @@ export const firstProps = {
                 name: 'day',
                 placeholder: '월 (Day)',
                 options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
-            }]
+            }],
+            warnText: {
+                ...warnText
+            }
         },
     ],
     button: {
@@ -72,6 +86,7 @@ export const secondProps = {
     inputs: [
         {
             type: 'input',
+            name: 'post_number',
             text: {
                 ...inputTextProps,
                 children: '주소'
@@ -81,7 +96,8 @@ export const secondProps = {
                 children: 'Address'
             },
             input: {
-                name: 'post_number'
+                name: 'post_number',
+                pattern: onlyNumber
             },
             button: {
                 isRounded: true,
@@ -89,22 +105,34 @@ export const secondProps = {
                     ...inputButtonProps,
                     children: '우편번호 찾기',
                 }
+            },
+            warnText: {
+                ...warnText
             }
         },
         {
             type: 'input',
+            name: 'address',
             input: {
                 name: 'address'
+            },
+            warnText: {
+                ...warnText
             }
         },
         {
             type: 'input',
+            name: 'detail_address',
             input: {
                 name: 'detail_address'
+            },
+            warnText: {
+                ...warnText
             }
         },
         {
             type: 'input',
+            name: 'email',
             text: {
                 ...inputTextProps,
                 children: '이메일'
@@ -114,11 +142,15 @@ export const secondProps = {
                 children: 'E-mail'
             },
             input: {
-                name: 'email'
+                name: 'email',
+            },
+            warnText: {
+                ...warnText
             }
         },
         {
             type: 'input',
+            name: 'phone',
             text: {
                 ...inputTextProps,
                 children: '대표 연락처'
@@ -130,16 +162,23 @@ export const secondProps = {
             sep: true,
             inputs: [{
                 name: 'phone1',
+                pattern: onlyNumber
             },
             {
                 name: 'phone2',
+                pattern: onlyNumber
             },
             {
                 name: 'phone3',
-            }]
+                pattern: onlyNumber
+            }],
+            warnText: {
+                ...warnText
+            }
         },
         {
             type: 'input',
+            name: 'depositor',
             text: {
                 ...inputTextProps,
                 children: '입금자명'
@@ -150,6 +189,9 @@ export const secondProps = {
             },
             input: {
                 name: 'depositor'
+            },
+            warnText: {
+                ...warnText
             }
         },
     ],
@@ -275,4 +317,19 @@ export const groupProps = {
         preFix: '참가인원 : ',
         postFix: '명'
     }
+}
+
+export const invalidProps = {
+    group_name: '',
+    representative_name: '',
+    phone: '',
+    birth: '',
+    gender: '',
+    post_number: '',
+    address: '',
+    detail_address: '',
+    email: '',
+    depositor: '',
+    course: '',
+    gift: ''
 }

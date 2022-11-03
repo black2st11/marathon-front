@@ -300,7 +300,7 @@ function App() {
       <Nav {...navProps} />
       <Main />
       <div style={{ maxWidth: '1040px', width: '100%', margin: 'auto', marginTop: '10rem' }}>
-        <UpdateGroup />
+        <UpdatePerson />
       </div>
       <Footer {...footerProps} />
       <BreadCrumb />

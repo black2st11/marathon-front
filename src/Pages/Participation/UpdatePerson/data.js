@@ -1,10 +1,12 @@
-import { inputTextProps, inputEnglishTextProps, formButtonProps, inputButtonProps } from '../../common'
+import { onlyLetter, onlyNumber } from '../../../util/validator'
+import { inputTextProps, inputEnglishTextProps, formButtonProps, inputButtonProps, warnText } from '../../common'
 
 
 export const searchProps = {
     inputs: [
         {
             type: 'input',
+            name: 'name',
             text: {
                 ...inputTextProps,
                 children: '이름'
@@ -14,11 +16,16 @@ export const searchProps = {
                 children: 'Name'
             },
             input: {
-                name: 'name'
+                name: 'name',
+                pattern: onlyLetter,
+            },
+            warnText: {
+                ...warnText,
             }
         },
         {
             type: 'select',
+            name: 'birth',
             text: {
                 ...inputTextProps,
                 children: '생년월일'
@@ -40,7 +47,10 @@ export const searchProps = {
                 name: 'day',
                 placeholder: '월 (Day)',
                 options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
-            }]
+            }],
+            warnText: {
+                ...warnText,
+            }
         },
     ],
     button: {
@@ -55,6 +65,7 @@ export const updateProps = {
     inputs: [
         {
             type: 'input',
+            name: 'name',
             text: {
                 ...inputTextProps,
                 children: '이름'
@@ -64,11 +75,16 @@ export const updateProps = {
                 children: 'Name'
             },
             input: {
-                name: 'name'
+                name: 'name',
+                pattern: onlyLetter,
+            },
+            warnText: {
+                ...warnText,
             }
         },
         {
             type: 'input',
+            name: 'phone',
             text: {
                 ...inputTextProps,
                 children: '연락처'
@@ -80,16 +96,23 @@ export const updateProps = {
             sep: true,
             inputs: [{
                 name: 'phone1',
+                pattern: onlyNumber
             },
             {
                 name: 'phone2',
+                pattern: onlyNumber
             },
             {
                 name: 'phone3',
-            }]
+                pattern: onlyNumber
+            }],
+            warnText: {
+                ...warnText,
+            }
         },
         {
             type: 'select',
+            name: 'birth',
             text: {
                 ...inputTextProps,
                 children: '생년월일'
@@ -111,10 +134,14 @@ export const updateProps = {
                 name: 'day',
                 placeholder: '월 (Day)',
                 options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
-            }]
+            }],
+            warnText: {
+                ...warnText,
+            }
         },
         {
             type: 'radio',
+            name: 'gender',
             text: {
                 ...inputTextProps,
                 children: '성별'
@@ -132,9 +159,13 @@ export const updateProps = {
                 value: '여성',
                 children: 'female'
             }],
+            warnText: {
+                ...warnText,
+            }
         },
         {
             type: 'input',
+            name: 'post_number',
             text: {
                 ...inputTextProps,
                 children: '주소'
@@ -144,7 +175,8 @@ export const updateProps = {
                 children: 'Address'
             },
             input: {
-                name: 'post_number'
+                name: 'post_number',
+                pattern: onlyNumber
             },
             button: {
                 isRounded: true,
@@ -152,22 +184,34 @@ export const updateProps = {
                     ...inputButtonProps,
                     children: '우편번호 찾기',
                 }
+            },
+            warnText: {
+                ...warnText,
             }
         },
         {
             type: 'input',
+            name: 'address',
             input: {
                 name: 'address'
+            },
+            warnText: {
+                ...warnText,
             }
         },
         {
             type: 'input',
+            name: 'detail_address',
             input: {
                 name: 'detail_address'
+            },
+            warnText: {
+                ...warnText,
             }
         },
         {
             type: 'input',
+            name: 'email',
             text: {
                 ...inputTextProps,
                 children: '이메일'
@@ -178,10 +222,14 @@ export const updateProps = {
             },
             input: {
                 name: 'email'
+            },
+            warnText: {
+                ...warnText,
             }
         },
         {
             type: 'input',
+            name: 'depositor',
             text: {
                 ...inputTextProps,
                 children: '입금자명'
@@ -192,10 +240,14 @@ export const updateProps = {
             },
             input: {
                 name: 'depositor'
+            },
+            warnText: {
+                ...warnText,
             }
         },
         {
             type: 'radio',
+            name: 'course',
             text: {
                 ...inputTextProps,
                 children: '참가종목'
@@ -216,10 +268,14 @@ export const updateProps = {
             {
                 value: '10km코스',
                 children: '10km코스 부문'
-            }]
+            }],
+            warnText: {
+                ...warnText,
+            }
         },
         {
             type: 'select',
+            name: 'gift',
             text: {
                 ...inputTextProps,
                 children: '기념품 옵션'
@@ -231,7 +287,10 @@ export const updateProps = {
             selects: [{
                 name: 'gift',
                 placeholder: '기념품 선택',
-            }]
+            }],
+            warnText: {
+                ...warnText,
+            }
         }
     ],
     button: {
@@ -242,3 +301,16 @@ export const updateProps = {
     }
 }
 
+export const invalidProps = {
+    name: '',
+    phone: '',
+    birth: '',
+    gender: '',
+    post_number: '',
+    address: '',
+    detail_address: '',
+    email: '',
+    depositor: '',
+    course: '',
+    gift: ''
+}

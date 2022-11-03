@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { GroupForm } from '../../../Components/Organism'
 import { PersonForm } from '../../../Components/Template'
-import { setGroupForm, setAddGroup, setIndividualDelete, setGroupDelete, setAllCheck, setToggleCheck } from '../../../util'
-import { firstProps, groupProps, trsProps, secondProps } from './data'
+import { setGroupForm, setAddGroup, setIndividualDelete, setGroupDelete, setAllCheck, setToggleCheck, setForm, setWarnText } from '../../../util'
+import { isValidate } from '../../../util/validator'
+import { firstProps, groupProps, trsProps, secondProps, invalidProps } from './data'
 
 
 const Group = () => {
@@ -43,6 +44,34 @@ const Group = () => {
         gift: '',
     }])
     const [isAllCheck, setIsAllCheck] = useState(false)
+    const [invalid, setInvalid] = useState(invalidProps)
+
+    let firstInfo = {
+        group_name: info.group_name,
+        representative_name: info.representative_name,
+        year: info.year,
+        month: info.month,
+        day: info.day
+    }
+
+    firstProps.inputs.map(input => {
+        setForm(input, info, setInfo)
+        setWarnText(input, invalid)
+    })
+
+    secondProps.inputs.map(input => {
+        setForm(input, info, setInfo)
+        setWarnText(input, invalid)
+    })
+
+    firstProps.button.onClick = () => {
+        isValidate(firstInfo, invalidProps, setInvalid)
+    }
+
+    secondProps.button.onClick = () => {
+        isValidate(info, invalidProps, setInvalid)
+    }
+
     groupProps.trs = setGroupForm(group, setGroup)
     groupProps.addBtn.onClick = () => setAddGroup(group, setGroup)
     groupProps.deleteBtn.onClick = () => setGroupDelete(group, setGroup)
