@@ -1,8 +1,11 @@
 import { onlyLetter, onlyNumber } from '../../../util/validator'
-import { inputTextProps, inputEnglishTextProps, formButtonProps, inputButtonProps, warnText } from '../../common'
+import {
+    inputTextProps, inputEnglishTextProps, formButtonProps,
+    inputButtonProps, warnText, feeTableProps, tabletFeeTableProps, ulsContentProps
+} from '../../common'
 
 
-export const searchProps = {
+export const firstProps = {
     inputs: [
         {
             type: 'input',
@@ -53,6 +56,16 @@ export const searchProps = {
             }
         },
     ],
+    cardContent: {
+        uls: [
+            {
+                listStyle: 'none',
+                items: [
+                    { content: { ...ulsContentProps, children: '정보조회를 위해 아래의 정보를 입력해 주세요.', } },
+                ]
+            },
+        ]
+    },
     button: {
         text: {
             ...formButtonProps,
@@ -61,7 +74,46 @@ export const searchProps = {
     }
 }
 
-export const updateProps = {
+export const secondProps = {
+    info: [
+        [
+            { title: { children: '이름' }, content: { children: '홍길동' } },
+            { title: { children: '생년월일' }, content: { children: '1970년 1월 1일' } }
+        ],
+        [
+            { title: { children: '주소' }, content: { children: '전라남도 여수시 덕충 3길 3 (덕충동) 2층 망고소프트' } },
+        ],
+        [
+            { title: { children: '참가종목' }, content: { children: '10km 여자부' } },
+            { title: { children: '휴대전화' }, content: { children: '010-0000-0000' } }
+        ],
+        [
+            { title: { children: '이메일' }, content: { children: 'mangosoftdev@naver.com' } },
+            { title: { children: '입금자명' }, content: { children: '홍길동' } }
+        ],
+    ],
+    cardContent: {
+        uls: [
+            {
+                listStyle: 'circle',
+                items: [
+                    { content: { ...ulsContentProps, children: '정확하고 빠른 입금확인을 위해 참가비 입금시 입금자 이름 옆에 생년월(ex:홍길동 6012)을 기록하여 주시기 바랍니다.', } },
+                    { content: { ...ulsContentProps, children: '참가비 입금이 되어야 접수가 완료되며 참가자명과 입금자명이 다를 경우 필히 대회사무국으로 전화 주시기 바랍니다.' } },
+                ]
+            },
+        ]
+    },
+    fee: feeTableProps,
+    tabletFee: tabletFeeTableProps,
+    button: {
+        text: {
+            ...formButtonProps,
+            children: '다음단계'
+        }
+    }
+}
+
+export const thirdProps = {
     inputs: [
         {
             type: 'input',

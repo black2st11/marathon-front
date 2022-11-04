@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
-import { searchProps, updateProps, invalidProps } from './data'
+import * as S from './style'
+import { firstProps, secondProps, thirdProps, invalidProps } from './data'
+import { CardContent, SelectTable } from '../../../Components/Organism'
 import { PersonForm } from '../../../Components/Template'
 import { setForm, setWarnText } from '../../../util'
+import { Button } from '../../../Components/Atom'
 import { isValidate } from '../../../util/validator'
 
 const UpdatePerson = () => {
@@ -29,28 +32,50 @@ const UpdatePerson = () => {
         month: info.month,
         day: info.day
     }
-    searchProps.inputs.map(input => {
+    firstProps.inputs.map(input => {
         setForm(input, info, setInfo)
         setWarnText(input, invalid)
     })
 
-    updateProps.inputs.forEach(input => {
+    thirdProps.inputs.forEach(input => {
         setForm(input, info, setInfo)
         setWarnText(input, invalid)
     })
 
-    searchProps.button.onClick = () => {
+    firstProps.button.onClick = () => {
         isValidate(firstInfo, invalidProps, setInvalid)
     }
 
-    updateProps.button.onClick = () => {
+    thirdProps.button.onClick = () => {
         isValidate(info, invalidProps, setInvalid)
     }
 
     return (
         <React.Fragment>
-            <PersonForm {...searchProps} />
-            <PersonForm {...updateProps} />
+            <S.FirstSection>
+                <S.CardContentWrapper>
+                    <CardContent {...firstProps.cardContent} />
+                </S.CardContentWrapper>
+                <PersonForm {...firstProps} />
+            </S.FirstSection>
+            <S.SecondSection>
+                <S.TableWrapper>
+                    <SelectTable items={secondProps.info} />
+                </S.TableWrapper>
+                <S.CardContentWrapper>
+                    <CardContent {...secondProps.cardContent} />
+                </S.CardContentWrapper>
+                <S.TableWrapper>
+                    <SelectTable {...secondProps.fee} />
+                    <SelectTable {...secondProps.tabletFee} />
+                </S.TableWrapper>
+                <S.ButtonWrapper>
+                    <Button {...secondProps.button} />
+                </S.ButtonWrapper>
+            </S.SecondSection>
+            <S.ThirdSection>
+                <PersonForm {...thirdProps} />
+            </S.ThirdSection>
         </React.Fragment>
 
     )
