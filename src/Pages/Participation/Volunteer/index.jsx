@@ -15,7 +15,9 @@ const Volunteer = () => {
     })
 
     firstProps.button.onClick = () => {
-        isValidate(info, invalidProps, setInvalid)
+        if (isValidate(info, invalidProps, setInvalid)) {
+
+        }
     }
 
     return (

@@ -1,8 +1,8 @@
 import React from 'react'
 import * as S from './style'
 import { Text, Button } from '../../Atom'
-
-const Board = ({ title, date, content, listBtn }) => {
+import { Comment } from '../../Organism'
+const Board = ({ title, date, content, listBtn, comment }) => {
     return (
         <S.Container>
             <S.TitleWrapepr><Text {...title} /></S.TitleWrapepr>
@@ -11,6 +11,7 @@ const Board = ({ title, date, content, listBtn }) => {
             <S.ContentWrapper>
                 <Text {...content} />
             </S.ContentWrapper>
+            <Comment {...comment} />
             <S.ButtonWrapper>
                 <Button {...listBtn} />
             </S.ButtonWrapper>

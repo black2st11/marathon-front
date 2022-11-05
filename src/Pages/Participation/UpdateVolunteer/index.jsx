@@ -10,6 +10,7 @@ import { Button } from '../../../Components/Atom'
 const UpdateVolunteer = () => {
     const [info, setInfo] = useState(initialInfo)
     const [invalid, setInvalid] = useState(invalidProps)
+    const [section, setSection] = useState(0)
 
     const firstInfo = {
         name: info.name,
@@ -24,7 +25,13 @@ const UpdateVolunteer = () => {
     })
 
     firstProps.button.onClick = () => {
-        isValidate(firstInfo, invalidProps, setInvalid)
+        if (isValidate(firstInfo, invalidProps, setInvalid)) {
+            setSection(1)
+        }
+    }
+
+    secondProps.button.onClick = () => {
+        setSection(2)
     }
 
     thirdProps.inputs.map(input => {
@@ -33,32 +40,40 @@ const UpdateVolunteer = () => {
     })
 
     thirdProps.button.onClick = () => {
-        isValidate(info, invalidProps, setInvalid)
+        if (isValidate(info, invalidProps, setInvalid)) {
+            setSection(0)
+        }
     }
 
 
     return (
         <React.Fragment>
-            <S.FirstSection>
-                <S.CardContentWrapper>
-                    <CardContent {...firstProps.cardContent} />
-                </S.CardContentWrapper>
-                <PersonForm {...firstProps} />
-            </S.FirstSection>
-            <S.SecondSection>
-                <S.TableWrapper>
-                    <SelectTable {...secondProps} />
-                </S.TableWrapper>
-                <S.CardContentWrapper>
-                    <CardContent {...secondProps.cardContent} />
-                </S.CardContentWrapper>
-                <S.ButtonWrapper>
-                    <Button {...secondProps.button} />
-                </S.ButtonWrapper>
-            </S.SecondSection>
-            <S.ThirdSection>
-                <PersonForm {...thirdProps} />
-            </S.ThirdSection>
+            {section == 0 && (
+                <S.FirstSection>
+                    <S.CardContentWrapper>
+                        <CardContent {...firstProps.cardContent} />
+                    </S.CardContentWrapper>
+                    <PersonForm {...firstProps} />
+                </S.FirstSection>
+            )}
+            {section == 1 && (
+                <S.SecondSection>
+                    <S.TableWrapper>
+                        <SelectTable {...secondProps} />
+                    </S.TableWrapper>
+                    <S.CardContentWrapper>
+                        <CardContent {...secondProps.cardContent} />
+                    </S.CardContentWrapper>
+                    <S.ButtonWrapper>
+                        <Button {...secondProps.button} />
+                    </S.ButtonWrapper>
+                </S.SecondSection>
+            )}
+            {section == 2 && (
+                <S.ThirdSection>
+                    <PersonForm {...thirdProps} />
+                </S.ThirdSection>
+            )}
         </React.Fragment>
     )
 }

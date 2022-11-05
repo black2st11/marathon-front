@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './App.css';
-import { CardContent, ContentTitle, GroupForm, InputForm, RadioForm, SelectForm, Table, SelectTable, BoardInput, Modal, Pagination } from './Components/Organism'
+import { CardContent, ContentTitle, GroupForm, InputForm, RadioForm, SelectForm, Table, SelectTable, BoardInput, Modal, Pagination, Comment } from './Components/Organism'
 import logo from './static/image/logo.png'
 import { Nav, Footer, BreadCrumb, CardSection, PersonForm, BoardForm } from './Components/Template';
 import { colorPalette, fontSize, fontWeight } from './config';
@@ -295,11 +295,13 @@ function App() {
     },
   }
 
+
   return (
     <div style={{ height: '200vh', }}>
       <Nav {...navProps} />
       <Main />
       <div style={{ maxWidth: '1040px', width: '100%', margin: 'auto', marginTop: '10rem' }}>
+        <Board />
         <UpdatePerson />
       </div>
       <Footer {...footerProps} />

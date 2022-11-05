@@ -45,6 +45,7 @@ const Group = () => {
     }])
     const [isAllCheck, setIsAllCheck] = useState(false)
     const [invalid, setInvalid] = useState(invalidProps)
+    const [section, setSection] = useState(0)
 
     let firstInfo = {
         group_name: info.group_name,
@@ -65,11 +66,15 @@ const Group = () => {
     })
 
     firstProps.button.onClick = () => {
-        isValidate(firstInfo, invalidProps, setInvalid)
+        if (isValidate(firstInfo, invalidProps, setInvalid)) {
+            setSection(1)
+        }
     }
 
     secondProps.button.onClick = () => {
-        isValidate(info, invalidProps, setInvalid)
+        if (isValidate(info, invalidProps, setInvalid)) {
+
+        }
     }
 
     groupProps.trs = setGroupForm(group, setGroup)
@@ -81,10 +86,13 @@ const Group = () => {
     secondProps.group = groupProps
     return (
         <React.Fragment>
-            <PersonForm {...firstProps} />
-            <PersonForm {...secondProps} />
+            {section == 0 && (
+                <PersonForm {...firstProps} />
+            )}
+            {section == 1 && (
+                <PersonForm {...secondProps} />
+            )}
         </React.Fragment>
-
     )
 }
 

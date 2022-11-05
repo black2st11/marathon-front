@@ -40,6 +40,7 @@ export const firstProps = {
             selects: [{
                 name: 'year',
                 placeholder: '년도 (Year)',
+                options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
             },
             {
                 name: 'month',
@@ -108,7 +109,7 @@ export const secondProps = {
     button: {
         text: {
             ...formButtonProps,
-            children: '다음단계'
+            children: '수정하기'
         }
     }
 }
@@ -176,6 +177,7 @@ export const thirdProps = {
             selects: [{
                 name: 'year',
                 placeholder: '년도 (Year)',
+                options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
             },
             {
                 name: 'month',
@@ -339,6 +341,7 @@ export const thirdProps = {
             selects: [{
                 name: 'gift',
                 placeholder: '기념품 선택',
+                options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
             }],
             warnText: {
                 ...warnText,

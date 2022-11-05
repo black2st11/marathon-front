@@ -23,15 +23,27 @@ const Person = () => {
     })
 
     const [invalid, setInvalid] = useState(invalidProps)
+    const [section, setSection] = useState(0)
+
+    const firstInfo = {
+        name: info.name,
+        phone1: info.phone1,
+        phone2: info.phone2,
+        phone3: info.phone3,
+        year: info.year,
+        month: info.month,
+        day: info.day,
+        gender: info.gender
+    }
 
     firstProps.inputs.forEach(input => {
         setForm(input, info, setInfo)
         setWarnText(input, invalid)
     })
+
     firstProps.button.onClick = () => {
-        let result = isValidate(info, invalidProps, setInvalid)
-        if (result) {
-            console.log(1)
+        if (isValidate(firstInfo, invalidProps, setInvalid)) {
+            setSection(1)
         }
     }
 
@@ -39,12 +51,19 @@ const Person = () => {
         setForm(input, info, setInfo)
         setWarnText(input, invalid)
     })
-    console.log(invalid)
 
+    secondProps.button.onClick = () => {
+        if (isValidate(info, invalidProps, setInvalid)) {
+        }
+    }
     return (
         <React.Fragment>
-            <PersonForm {...firstProps} />
-            <PersonForm {...secondProps} />
+            {section == 0 && (
+                <PersonForm {...firstProps} />
+            )}
+            {section == 1 && (
+                <PersonForm {...secondProps} />
+            )}
         </React.Fragment>
     )
 }

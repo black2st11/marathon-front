@@ -25,6 +25,9 @@ export const letterValidator = (text = '') => {
 }
 
 export const EmailValidator = (text = '') => {
+    if (!text) {
+        return { invalid: false, message: '' }
+    }
     if (text.match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i)) {
         return { invalid: false, message: '' }
     }
