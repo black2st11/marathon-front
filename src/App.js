@@ -10,6 +10,7 @@ import { Course } from './Pages/Course'
 import { Board, Boards, BoardWrite } from './Pages/Ground';
 import Main from './Pages/Main';
 import { courseImg } from './config/images';
+import Check from './Pages/Record/Check';
 function App() {
   const [selection, setSelection] = useState(undefined)
   const [year, setYear] = useState(undefined)
@@ -303,6 +304,7 @@ function App() {
       <div style={{ maxWidth: '1040px', width: '100%', margin: 'auto', marginTop: '10rem' }}>
         <Board />
         <UpdatePerson />
+        <Check />
       </div>
       <Footer {...footerProps} />
       <BreadCrumb />

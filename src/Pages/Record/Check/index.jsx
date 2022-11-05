@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { SelectTable } from '../../../Components/Organism'
+import { CardContent, SelectTable } from '../../../Components/Organism'
 import { PersonForm } from '../../../Components/Template'
 import { setForm, setWarnText } from '../../../util'
 import { isValidate } from '../../../util/validator'
@@ -31,10 +31,14 @@ const Check = () => {
     return (
         <React.Fragment>
             {section == 0 && (
-                <PersonForm {...firstInfo} />
+                <PersonForm {...firstProps} />
             )}
             {section == 1 && (
-                <SelectTable {...secondProps} />
+                <React.Fragment>
+                    <SelectTable items={secondProps.info} />
+                    <CardContent {...secondProps.cardContent} />
+                </React.Fragment>
+
             )}
         </React.Fragment>
     )

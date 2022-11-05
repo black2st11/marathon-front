@@ -1,4 +1,4 @@
-import { inputTextProps, inputEnglishTextProps, formButtonProps, inputButtonProps, warnText } from '../../common'
+import { inputTextProps, inputEnglishTextProps, formButtonProps, inputButtonProps, warnText, ulsContentProps } from '../../common'
 import { onlyLetter, onlyNumber } from '../../../util/validator'
 export const firstProps = {
     inputs: [

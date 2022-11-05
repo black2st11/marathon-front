@@ -25,7 +25,7 @@ const PersonForm = ({ terms, uls, inputs, button, group }) => {
             )}
             {uls && (
                 <S.UlWrapper>
-                    <Ul uls />
+                    <Ul {...uls} />
                 </S.UlWrapper>
             )}
             {inputs.map((input, index, array) => (

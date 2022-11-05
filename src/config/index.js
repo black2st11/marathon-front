@@ -1,3 +1,5 @@
+import { logo } from './images'
+
 // 폰트 사이즈(default 기준으로 제공이 되어짐)
 export const defaultFontSize = 1
 
@@ -191,6 +193,7 @@ export const requiredInfo = {
     depart: { required: true },
     school: { required: true },
     volunteer_id: { required: false },
+    bib: { required: false },
 }
 
 
@@ -205,4 +208,71 @@ export const defaultInfo = {
     bank: '',
     courseFee: '',
     accountHolder: '',
+}
+
+export const navProps = {
+    logo: logo,
+    links: [{ name: '대회안내' }, { name: '대회코스' }, { name: '참가신청' }, { name: '대회기록' }, { name: "참여마당" }],
+    button: {
+        content: '참가신청하기',
+        onClick: () => console.log('snfma'),
+        isRounded: true,
+        color: colorPalette.white,
+        fontWeight: fontWeight.medium,
+        fontSize: {
+            desktop: fontSize.lg,
+        }
+    },
+    menus: [
+        {
+            title: '대회안내',
+            menu: [
+                { name: '대회 안내' },
+                { name: '시상 안내' },
+                { name: '유의 사항' },
+                { name: '참가 기념품' },
+                { name: '오시는 길' }
+            ]
+        },
+        {
+            title: '대회 코스',
+            menu: [
+                { name: '대회 코스' },
+            ]
+        },
+        {
+            title: '참가신청',
+            menu: [
+                { name: '개인 참가신청' },
+                { name: '단체 참가신청' },
+                { name: '개인 참가신청 조회/수정' },
+                { name: '단체 참가신청 조회/수정' },
+            ]
+        },
+        {
+            title: '대회기록',
+            menu: [
+                { name: '기록 조회' },
+                { name: '기록 업로드' },
+            ]
+        },
+        {
+            title: '참여마당',
+            menu: [
+                { name: '자원봉사 신청' },
+                { name: '자원봉사 신청 조회/수정' },
+                { name: '홍보 게시판' },
+                { name: '환불 게시판' },
+                { name: '자유 게시판' },
+                { name: '대회 사진' },
+                { name: '공지 사항' },
+            ]
+        },
+    ]
+}
+
+const footerProps = {
+    name: '화순',
+    tel: '061-858-2456',
+    fax: '061-858-2456'
 }
