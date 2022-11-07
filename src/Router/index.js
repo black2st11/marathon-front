@@ -5,6 +5,7 @@ import { Course } from '../Pages/Course'
 import { Person, UpdatePerson, Group, UpdateGroup, Volunteer, UpdateVolunteer } from '../Pages/Participation'
 import Check from '../Pages/Record/Check'
 import { Board, BoardWrite, Boards } from '../Pages/Ground/'
+import { AdminParticipation } from '../Pages/Admin'
 export const router = createBrowserRouter([
     {
         path: '/',
@@ -131,4 +132,8 @@ export const router = createBrowserRouter([
         path: '/ground/picture-create',
         element: <BoardWrite />
     },
+    {
+        path: '/admin/participation',
+        element: <AdminParticipation />
+    }
 ])

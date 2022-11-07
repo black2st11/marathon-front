@@ -3,9 +3,9 @@ import * as S from './style'
 import { Text } from '../../Atom'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 
-const Pagination = ({ current = 1, total, textProps, currentTextProps, pageSize = 5 }) => {
+const Pagination = ({ current = 1, total = 1, textProps, currentTextProps, pageSize = 5 }) => {
     let pages = []
-    for (let page = Math.floor(current / pageSize) + 1; pages.length < 5 && page < total; page++) {
+    for (let page = Math.floor(current / pageSize) + 1; pages.length < 5 && page <= total; page++) {
         pages.push(page)
     }
     return (

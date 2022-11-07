@@ -1,0 +1,1 @@
+export { default as AdminParticipation } from './Participation'

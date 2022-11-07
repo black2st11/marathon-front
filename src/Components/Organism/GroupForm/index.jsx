@@ -90,13 +90,16 @@ const GroupForm = ({ ths, trs = [], checkBtn, addBtn, deleteBtn, currentText }) 
 export const GroupTable = ({ ths, trs = [], checkBtn, addBtn, deleteBtn, currentText }) => {
     return (
         <S.Container>
-            <S.HandleWrapper>
-                <S.CurrentLength>
-                    <Text {...currentText.normal}>{currentText.preFix}</Text>
-                    <Text {...currentText.strong}>{trs.length}</Text>
-                    <Text {...currentText.normal}>{currentText.postFix}</Text>
-                </S.CurrentLength>
-            </S.HandleWrapper>
+            {currentText && (
+                <S.HandleWrapper>
+                    <S.CurrentLength>
+                        <Text {...currentText.normal}>{currentText.preFix}</Text>
+                        <Text {...currentText.strong}>{trs.length}</Text>
+                        <Text {...currentText.normal}>{currentText.postFix}</Text>
+                    </S.CurrentLength>
+                </S.HandleWrapper>
+            )}
+
             <S.Table>
                 <S.THead>
                     <S.Tr>
