@@ -5,7 +5,7 @@ import { CheckBox, Input, Select, Text, Button } from '../../../Components/Atom'
 import { GroupTable } from '../../../Components/Organism/GroupForm'
 import { Pagination } from '../../../Components/Organism'
 
-const AdminParticipation = () => {
+const AdminVolunteer = () => {
     return (
         <S.Container>
             <S.CheckBoxWrapper>
@@ -44,4 +44,4 @@ const AdminParticipation = () => {
     )
 }
 
-export default AdminParticipation
+export default AdminVolunteer

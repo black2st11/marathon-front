@@ -47,9 +47,12 @@ const Tds = ({ tds = [] }) => {
 }
 
 
-const GroupForm = ({ ths, trs = [], checkBtn, addBtn, deleteBtn, currentText }) => {
+const GroupForm = ({ ths, trs = [], checkBtn, addBtn, deleteBtn, currentText, maxWidth }) => {
+    const props = {
+        maxWidth
+    }
     return (
-        <S.Container>
+        <S.Container {...props}>
             <S.HandleWrapper>
                 <S.CheckButtonWrapper><Button {...checkBtn} /></S.CheckButtonWrapper>
                 <S.CurrentLength>
@@ -87,9 +90,13 @@ const GroupForm = ({ ths, trs = [], checkBtn, addBtn, deleteBtn, currentText }) 
 }
 
 
-export const GroupTable = ({ ths, trs = [], checkBtn, addBtn, deleteBtn, currentText }) => {
+export const GroupTable = ({ ths, trs = [], currentText, maxWidth }) => {
+    const props = {
+        maxWidth,
+    }
+
     return (
-        <S.Container>
+        <S.Container {...props}>
             {currentText && (
                 <S.HandleWrapper>
                     <S.CurrentLength>

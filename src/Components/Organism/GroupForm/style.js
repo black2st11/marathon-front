@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import { colorPalette } from '../../../config'
-export const Container = styled.div``
+
+export const Container = styled.div`
+    ${props => props.maxWidth && `max-width : ${props.maxWidth};`}
+    ${props => props.maxWidth && `overflow : scroll;`}
+    width : 100%;
+`
 
 export const HandleWrapper = styled.div`
     display : flex;

@@ -5,27 +5,9 @@ import { CheckBox, Input, Select, Text, Button } from '../../../Components/Atom'
 import { GroupTable } from '../../../Components/Organism/GroupForm'
 import { Pagination } from '../../../Components/Organism'
 
-const AdminParticipation = () => {
+const AdminDeletedParticipation = () => {
     return (
         <S.Container>
-            <S.CheckBoxWrapper>
-                {checkBoxProps.availableList.map(key => (
-                    <S.RowWraper>
-                        <S.CheckTitle>
-                            <Text {...checkBoxProps[key].title} />
-                        </S.CheckTitle>
-                        {checkBoxProps[key].items.map(item => (
-                            <S.CheckBoxContent>
-                                <CheckBox {...item.checkBox} />
-                                <Text {...item.text} />
-                            </S.CheckBoxContent>
-                        ))}
-                    </S.RowWraper>
-                ))}
-            </S.CheckBoxWrapper>
-            <S.ButtonWrapper>
-                <Button {...checkBoxProps.button} />
-            </S.ButtonWrapper>
             <S.SearchWrapper>
                 <Input />
                 <Button {...searchProps.button} />
@@ -44,4 +26,4 @@ const AdminParticipation = () => {
     )
 }
 
-export default AdminParticipation
+export default AdminDeletedParticipation

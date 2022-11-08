@@ -72,17 +72,10 @@ export const CheckBoxContent = styled.div`
 export const TableWrapper = styled.div`
     max-width : 1160px;
     width : 100%;
-
+    overflow : scroll;
+    
 `
 
 export const PaginationWrapper = styled.div`
     margin :1rem 0;
-`
-
-export const ButtonWrapper = styled.div`
-    display : flex;
-
-    > button {
-        width : 160px;
-    }
 `

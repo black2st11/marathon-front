@@ -5,7 +5,7 @@ import { Course } from '../Pages/Course'
 import { Person, UpdatePerson, Group, UpdateGroup, Volunteer, UpdateVolunteer } from '../Pages/Participation'
 import Check from '../Pages/Record/Check'
 import { Board, BoardWrite, Boards } from '../Pages/Ground/'
-import { AdminParticipation } from '../Pages/Admin'
+import { AdminBoard, AdminDeletedParticipation, AdminGroup, AdminInfo, AdminParticipation, AdminVolunteer } from '../Pages/Admin'
 export const router = createBrowserRouter([
     {
         path: '/',
@@ -135,5 +135,25 @@ export const router = createBrowserRouter([
     {
         path: '/admin/participation',
         element: <AdminParticipation />
+    },
+    {
+        path: '/admin/info',
+        element: <AdminInfo />
+    },
+    {
+        path: '/admin/board',
+        element: <AdminBoard />
+    },
+    {
+        path: '/admin/volunteer',
+        element: <AdminVolunteer />
+    },
+    {
+        path: '/admin/deleted-participation',
+        element: <AdminDeletedParticipation />
+    },
+    {
+        path: '/admin/group',
+        element: <AdminGroup />
     }
 ])

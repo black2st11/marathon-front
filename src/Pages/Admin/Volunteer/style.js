@@ -32,8 +32,8 @@ export const SearchWrapper = styled.div`
     }
 
     > div {
-        width : 200px;
         height : 50px;
+        width : 200px;
     }
 `
 
@@ -51,8 +51,8 @@ export const ActionWrapper = styled.div`
     }
 
     > select {
-        width : 200px;
         height : 50px;
+        width : 160px;
     }
 `
 
@@ -72,7 +72,7 @@ export const CheckBoxContent = styled.div`
 export const TableWrapper = styled.div`
     max-width : 1160px;
     width : 100%;
-
+    
 `
 
 export const PaginationWrapper = styled.div`
