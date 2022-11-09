@@ -63,16 +63,17 @@ export const firstProps = {
             selects: [{
                 name: 'year',
                 placeholder: '년도 (Year)',
+                options: [{ value: '2000', name: '2000' }, { value: '1999', name: '1999' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
             },
             {
                 name: 'month',
                 placeholder: '월 (Month)',
-                options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
+                options: [{ value: '05', name: '05' }, { value: '06', name: '06' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
             },
             {
                 name: 'day',
                 placeholder: '월 (Day)',
-                options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
+                options: [{ value: '01', name: '01' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
             }],
             warnText: {
                 ...warnText,
@@ -237,6 +238,7 @@ export const secondProps = {
             selects: [{
                 name: 'gift',
                 placeholder: '기념품 선택',
+                options: [{ value: '01', name: '01' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
             }],
             warnText: {
                 ...warnText,

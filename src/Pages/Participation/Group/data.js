@@ -16,7 +16,7 @@ export const firstProps = {
                 children: 'Group name'
             },
             input: {
-                name: 'name'
+                name: 'group_name'
             },
             warnText: {
                 ...warnText
@@ -36,7 +36,7 @@ export const firstProps = {
             },
             sep: true,
             input: {
-                name: 'reprensetative_name',
+                name: 'representative_name',
                 pattern: onlyLetter
             },
             warnText: {
@@ -58,16 +58,17 @@ export const firstProps = {
             selects: [{
                 name: 'year',
                 placeholder: '년도 (Year)',
+                options: [{ value: 1995, name: '1995' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
             },
             {
                 name: 'month',
                 placeholder: '월 (Month)',
-                options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
+                options: [{ value: '05', name: '05' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
             },
             {
                 name: 'day',
                 placeholder: '월 (Day)',
-                options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
+                options: [{ value: '16', name: '16' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
             }],
             warnText: {
                 ...warnText
@@ -235,7 +236,7 @@ export const contactProps = {
 }
 
 export const giftProps = {
-    select: { options: [{ value: '10km', name: '10km' }, { value: '5km', name: '5km' }, { value: '하프', name: '하프코스' }], height: '40px', borderRadius: '5px', border: 'none' },
+    select: { options: [{ value: '티셔츠', name: '티셔츠' }, { value: '컵', name: '컵' }, { value: '펜', name: '펜' }], height: '40px', borderRadius: '5px', border: 'none' },
 }
 
 export const trsProps = {

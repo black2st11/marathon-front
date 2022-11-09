@@ -40,7 +40,7 @@ export const FirstPhoneValidator = (text = '') => {
         return res
     }
 
-    if (text.match(/[0-9]{3}/)) {
+    if (text.match(/^[0-9]{3}$/)) {
         return { invalid: false, message: '' }
     }
     return { invalid: true, message: '연락처 형식이 올바르지않습니다.' }
@@ -51,7 +51,7 @@ export const SecondPhoneValidator = (text = '') => {
     if (res.invalid) {
         return res
     }
-    if (text.match(/[0-9]{3,4}/)) {
+    if (text.match(/^[0-9]{3,4}$/)) {
         return { invalid: false, message: '' }
     }
     return { invalid: true, message: '연락처 형식이 올바르지않습니다.' }
@@ -62,7 +62,7 @@ export const ThirdPhoneValidator = (text = '') => {
     if (res.invalid) {
         return res
     }
-    if (text.match(/[0-9]{4}/)) {
+    if (text.match(/^[0-9]{4}$/)) {
         return { invalid: false, message: '' }
     }
     return { invalid: true, message: '연락처 형식이 올바르지않습니다.' }
@@ -87,7 +87,10 @@ export const isValidate = (state, invalidProps, setFunc) => {
             case 'name':
                 result = letterValidator(value)
                 break
-            case 'representative':
+            case 'representative_name':
+                result = letterValidator(value)
+                break
+            case 'group_name':
                 result = letterValidator(value)
                 break
             case 'phone1':
@@ -124,6 +127,7 @@ export const isValidate = (state, invalidProps, setFunc) => {
             }
         }
     }
+    console.log(invalidProps)
     setFunc(invalidProps)
     return flag
 }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { postGroupParticipation } from '../../../api'
 import { GroupForm } from '../../../Components/Organism'
 import { PersonForm } from '../../../Components/Template'
 import { setGroupForm, setAddGroup, setIndividualDelete, setGroupDelete, setAllCheck, setToggleCheck, setForm, setWarnText } from '../../../util'
@@ -73,7 +74,25 @@ const Group = () => {
 
     secondProps.button.onClick = () => {
         if (isValidate(info, invalidProps, setInvalid)) {
-
+            let participations = []
+            console.log(group)
+            group.map((item) => {
+                let year = item.birth.substring(0, 4)
+                let month = item.birth.substring(4, 6)
+                let day = item.birth.substring(6, 8)
+                participations.push(
+                    {
+                        name: item.name,
+                        gender: item.gender,
+                        birth: `${year}-${month}-${day}`,
+                        phone: `${item.phone1}${item.phone2}${item.phone3}`,
+                        course: item.course,
+                        gift: item.gift
+                    }
+                )
+            })
+            console.log(participations)
+            postGroupParticipation({ ...info, phone: `${info.phone1}${info.phone2}${info.phone3}`, participation: participations })
         }
     }
 

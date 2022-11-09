@@ -3,6 +3,8 @@ import { PersonForm } from '../../../Components/Template'
 import { firstProps, secondProps, invalidProps } from './data'
 import { setForm, setWarnText } from '../../../util'
 import { isValidate } from '../../../util/validator'
+import { postPersonParticipation } from '../../../api'
+
 const Person = () => {
     const [info, setInfo] = useState({
         name: '',
@@ -52,8 +54,21 @@ const Person = () => {
         setWarnText(input, invalid)
     })
 
-    secondProps.button.onClick = () => {
+    secondProps.button.onClick = async () => {
         if (isValidate(info, invalidProps, setInvalid)) {
+            postPersonParticipation({
+                name: info.name,
+                phone: `${info.phone1}${info.phone2}${info.phone3}`,
+                birth: `${info.year}-${info.month}-${info.day}`,
+                gender: info.gender,
+                post_number: info.post_number,
+                address: info.address,
+                detail_address: info.detail_address,
+                email: info.email,
+                depositor: info.depositor,
+                course: info.course,
+                gift: info.gift
+            })
         }
     }
     return (

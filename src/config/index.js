@@ -187,7 +187,7 @@ export const requiredInfo = {
     day: { required: true },
     course: { required: true },
     gift: { required: true },
-    representative_name: { required: true },
+    reprensetative_name: { required: true },
     group_name: { required: true },
     participated: { required: true },
     depart: { required: true },
