@@ -75,3 +75,14 @@ export const postVolunteer = async ({
 
     return await defaultApi({ data, url: '/participations/volunteer/', method: 'POST' })
 }
+
+export const getListVolunteer = async ({
+    name, phone
+}) => {
+    let params = {
+        name,
+        phone,
+        token
+    }
+    return await defaultApi({ params, url: '/participations/volunteer/', method: 'GET' })
+}

@@ -6,6 +6,7 @@ import { CardContent, SelectTable } from '../../../Components/Organism'
 import { setForm, setWarnText } from '../../../util'
 import { isValidate } from '../../../util/validator'
 import { Button } from '../../../Components/Atom'
+import { getListVolunteer } from '../../../api'
 
 const UpdateVolunteer = () => {
     const [info, setInfo] = useState(initialInfo)
@@ -24,8 +25,22 @@ const UpdateVolunteer = () => {
         setWarnText(input, invalid)
     })
 
-    firstProps.button.onClick = () => {
+    firstProps.button.onClick = async () => {
         if (isValidate(firstInfo, invalidProps, setInvalid)) {
+            let res = await getListVolunteer({ name: info.name, phone: `${info.phone1}${info.phone2}${info.phone3}` })
+            secondProps.items.map(items => {
+                items.map(item => {
+                    if (item.key == 'class_name') {
+                        item.content.children = `${res.data[0]['grade']}학년${res.data[0][item.key]}반`
+                    } else {
+                        item.content.children = res.data[0][item.key]
+                    }
+                })
+            })
+            setInfo({
+                ...info,
+                ...res.data[0]
+            })
             setSection(1)
         }
     }

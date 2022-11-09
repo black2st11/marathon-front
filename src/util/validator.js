@@ -112,8 +112,8 @@ export const isValidate = (state, invalidProps, setFunc) => {
                 if (key == 'year' || key == 'month' || key == 'day') {
                     key = 'birth'
                 }
-                if (key == 'class' || key == 'grade') {
-                    key = 'depart'
+                if (key == 'class_name' || key == 'grade') {
+                    key = 'class_name'
                 }
                 console.log(key)
                 result = defaultValidator(value, requiredInfo[key].required)

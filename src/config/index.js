@@ -190,8 +190,8 @@ export const requiredInfo = {
     reprensetative_name: { required: true },
     group_name: { required: true },
     participated: { required: true },
-    depart: { required: true },
-    school: { required: true },
+    class_name: { required: true },
+    school_name: { required: true },
     volunteer_id: { required: false },
     bib: { required: false },
 }

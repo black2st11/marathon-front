@@ -72,16 +72,16 @@ export const firstProps = {
 export const secondProps = {
     items: [
         [
-            { title: { children: '이름' }, content: { children: '홍길동' } },
-            { title: { children: '봉사날짜' }, content: { children: '1월 15일' } }
+            { title: { children: '이름' }, content: { children: '홍길동' }, key: 'name' },
+            { title: { children: '봉사날짜' }, content: { children: '1월 15일' }, key: 'participated' }
         ],
         [
-            { title: { children: '생년월일' }, content: { children: '2002년 2월 20일' } },
-            { title: { children: '휴대전화' }, content: { children: '010-0000-0000' } }
+            { title: { children: '생년월일' }, content: { children: '2002년 2월 20일' }, key: 'birth' },
+            { title: { children: '휴대전화' }, content: { children: '010-0000-0000' }, key: 'phone' }
         ],
         [
-            { title: { children: '학교명' }, content: { children: '망고 고등학교' } },
-            { title: { children: '학년반' }, content: { children: '2학년 3반' } }
+            { title: { children: '학교명' }, content: { children: '망고 고등학교' }, key: 'school_name' },
+            { title: { children: '학년반' }, content: { children: '2학년 3반' }, key: 'class_name' }
         ],
         [
             { title: { children: '1365 ID' }, content: { children: 'MANGO01' } }
@@ -207,7 +207,7 @@ export const thirdProps = {
         },
         {
             type: 'input',
-            name: 'school',
+            name: 'school_name',
             text: {
                 ...inputTextProps,
                 children: '학교명'
@@ -217,7 +217,7 @@ export const thirdProps = {
                 children: 'Name of school'
             },
             input: {
-                name: 'school',
+                name: 'school_name',
             },
             warnText: {
                 ...warnText
@@ -225,7 +225,7 @@ export const thirdProps = {
         },
         {
             type: 'input',
-            name: 'depart',
+            name: 'class_name',
             text: {
                 ...inputTextProps,
                 children: '학년반'
@@ -243,7 +243,7 @@ export const thirdProps = {
                 }
             },
             {
-                name: 'class',
+                name: 'class_name',
                 pattern: onlyNumber,
                 sep: {
                     children: '반'
@@ -290,9 +290,9 @@ export const initialInfo = {
     year: '',
     month: '',
     day: '',
-    school: '',
+    school_name: '',
     grade: '',
-    class: '',
+    class_name: '',
     volunteer_id: ''
 }
 
@@ -301,7 +301,8 @@ export const invalidProps = {
     name: '',
     phone: '',
     birth: '',
-    school: '',
-    depart: '',
+    school_name: '',
+    class_name: '',
+    grade: '',
     volunteer_id: ''
 }
