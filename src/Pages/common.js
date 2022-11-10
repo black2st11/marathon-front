@@ -91,9 +91,8 @@ export const feeTableProps = {
     },
     items: [
         [
-            { title: { children: '총참가비' }, content: { children: '30,000원' } },
-            { title: { children: '입금확인' }, content: { children: '미입금' } },
-            { title: { children: '실입금액' }, content: { children: '0원' } },
+            { title: { children: '총참가비' }, content: { children: '30,000원' }, key: 'fee' },
+            { title: { children: '입금확인' }, content: { children: '미입금' }, key: 'is_deposit' },
         ],
         [
             {
@@ -116,9 +115,8 @@ export const tabletFeeTableProps = {
     },
     items: [
         [
-            { title: { children: '총참가비' }, content: { children: '30,000원' } },
-            { title: { children: '입금확인' }, content: { children: '미입금' } },
-            { title: { children: '실입금액' }, content: { children: '0원' } },
+            { title: { children: '총참가비' }, content: { children: '30,000원' }, key: 'fee' },
+            { title: { children: '입금확인' }, content: { children: '미입금' }, key: 'is_deposit' },
         ],
     ]
 }

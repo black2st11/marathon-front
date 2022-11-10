@@ -258,3 +258,27 @@ export const setGroupForm = (prevStates = [], setFunc) => {
     })
     return groupForms
 }
+
+export const makeYear = () => {
+    let years = []
+    for (let i = 1900; i <= 2020; i++) {
+        years.push({ value: `${i}`, name: `${i}` })
+    }
+    return years
+}
+
+export const makeMonth = () => {
+    let month = []
+    for (let i = 1; i <= 12; i++) {
+        month.push({ value: `${i}`.padStart(2, 0), name: `${i}`.padStart(2, 0) })
+    }
+    return month
+}
+
+export const makeDay = () => {
+    let days = []
+    for (let i = 1; i <= 31; i++) {
+        days.push({ value: `${i}`.padStart(2, 0), name: `${i}`.padStart(2, 0) })
+    }
+    return days
+}

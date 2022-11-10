@@ -12,9 +12,10 @@ const defaultApi = async ({ data, params, url, method }) => {
             params
         })
 
-        return res
+        return { isSuccess: true, status: res.status, data: res.data }
     } catch (e) {
         console.log(e)
+        return { isSuccess: false, status: e.status, data: e.data }
     }
 }
 
@@ -40,6 +41,38 @@ export const postPersonParticipation = async ({
     return await defaultApi({ data, url: '/participations/person/', method: 'POST' })
 }
 
+export const getListPersonParticipation = async ({
+    name, birth
+}) => {
+    let params = {
+        name, birth, token
+    }
+
+    return await defaultApi({ params, url: "/participations/person/", method: 'GET' })
+}
+
+export const updatePersonParticipation = async ({
+    id, name, phone, gender, course, gift, birth, depositor, post_number, address, detail_address, email
+}) => {
+    let data = {
+        token,
+        depositor,
+        post_number,
+        address,
+        detail_address,
+        email,
+        participation: {
+            name,
+            phone,
+            gender,
+            course,
+            gift,
+            birth
+        }
+    }
+    return await defaultApi({ url: `/participations/person/${id}/`, data, method: 'PUT' })
+}
+
 export const postGroupParticipation = async ({
     group_name, representative_name, birth, phone, depositor, post_number, address, detail_address, participation
 }) => {
@@ -56,6 +89,19 @@ export const postGroupParticipation = async ({
         participation
     }
     return await defaultApi({ data, url: '/participations/group/', method: 'POST' })
+}
+
+export const getListGroupParticipation = async ({
+    name, representative, phone
+}) => {
+    let params = {
+        name,
+        representative,
+        phone,
+        token
+    }
+
+    return await defaultApi({ params, url: '/participations/group/', method: 'GET' })
 }
 
 export const postVolunteer = async ({
@@ -85,4 +131,22 @@ export const getListVolunteer = async ({
         token
     }
     return await defaultApi({ params, url: '/participations/volunteer/', method: 'GET' })
+}
+
+export const updateVolunteer = async ({
+    id, name, participated, school_name, grade, class_name, volunteer_id, birth, phone
+}) => {
+    let data = {
+        token,
+        name,
+        participated,
+        school_name,
+        grade,
+        class_name,
+        volunteer_id,
+        birth,
+        phone
+    }
+
+    return await defaultApi({ url: `/participations/volunteer/${id}/`, method: 'PUT', data })
 }

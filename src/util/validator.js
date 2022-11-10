@@ -2,7 +2,7 @@ import { requiredInfo } from "../config"
 
 // validator
 export const defaultValidator = (text = '', required) => {
-    if (text.length == 0 && required) {
+    if (text?.length == 0 && required) {
         return { invalid: true, message: '빈칸으로 입력되었습니다.' }
     }
     return { invalid: false, message: '' }
@@ -116,7 +116,7 @@ export const isValidate = (state, invalidProps, setFunc) => {
                     key = 'class_name'
                 }
                 console.log(key)
-                result = defaultValidator(value, requiredInfo[key].required)
+                result = defaultValidator(value, requiredInfo[key]?.required)
                 break
         }
         if (result.invalid) {

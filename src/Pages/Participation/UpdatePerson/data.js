@@ -1,3 +1,4 @@
+import { makeDay, makeMonth, makeYear } from '../../../util'
 import { onlyLetter, onlyNumber } from '../../../util/validator'
 import {
     inputTextProps, inputEnglishTextProps, formButtonProps,
@@ -40,17 +41,17 @@ export const firstProps = {
             selects: [{
                 name: 'year',
                 placeholder: '년도 (Year)',
-                options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
+                options: makeYear()
             },
             {
                 name: 'month',
                 placeholder: '월 (Month)',
-                options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
+                options: makeMonth()
             },
             {
                 name: 'day',
                 placeholder: '월 (Day)',
-                options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
+                options: makeDay()
             }],
             warnText: {
                 ...warnText,
@@ -78,19 +79,19 @@ export const firstProps = {
 export const secondProps = {
     info: [
         [
-            { title: { children: '이름' }, content: { children: '홍길동' } },
-            { title: { children: '생년월일' }, content: { children: '1970년 1월 1일' } }
+            { title: { children: '이름' }, content: { children: '홍길동' }, key: 'name' },
+            { title: { children: '생년월일' }, content: { children: '1970년 1월 1일' }, key: 'birth' }
         ],
         [
-            { title: { children: '주소' }, content: { children: '전라남도 여수시 덕충 3길 3 (덕충동) 2층 망고소프트' } },
+            { title: { children: '주소' }, content: { children: '전라남도 여수시 덕충 3길 3 (덕충동) 2층 망고소프트' }, key: 'address' },
         ],
         [
-            { title: { children: '참가종목' }, content: { children: '10km 여자부' } },
-            { title: { children: '휴대전화' }, content: { children: '010-0000-0000' } }
+            { title: { children: '참가종목' }, content: { children: '10km 여자부' }, key: 'course' },
+            { title: { children: '휴대전화' }, content: { children: '010-0000-0000' }, key: 'phone' }
         ],
         [
-            { title: { children: '이메일' }, content: { children: 'mangosoftdev@naver.com' } },
-            { title: { children: '입금자명' }, content: { children: '홍길동' } }
+            { title: { children: '이메일' }, content: { children: 'mangosoftdev@naver.com' }, key: 'email' },
+            { title: { children: '입금자명' }, content: { children: '홍길동' }, key: 'depositor' }
         ],
     ],
     cardContent: {
@@ -177,17 +178,17 @@ export const thirdProps = {
             selects: [{
                 name: 'year',
                 placeholder: '년도 (Year)',
-                options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
+                options: makeYear()
             },
             {
                 name: 'month',
                 placeholder: '월 (Month)',
-                options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
+                options: makeMonth()
             },
             {
                 name: 'day',
                 placeholder: '월 (Day)',
-                options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
+                options: makeDay()
             }],
             warnText: {
                 ...warnText,

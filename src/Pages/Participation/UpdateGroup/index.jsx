@@ -7,10 +7,11 @@ import * as S from './style'
 import { Button } from '../../../Components/Atom'
 import { setForm, setGroupForm, setWarnText } from '../../../util'
 import { isValidate } from '../../../util/validator'
+import { getListGroupParticipation } from '../../../api'
 const UpdateGroup = () => {
     const [info, setInfo] = useState({
-        group_name: '',
-        representative_name: '',
+        name: '',
+        representative: '',
         year: '',
         month: '',
         day: '',
@@ -48,8 +49,8 @@ const UpdateGroup = () => {
     const [section, setSection] = useState(0)
 
     let firstInfo = {
-        group_name: info.group_name,
-        representative_name: info.representative_name,
+        name: info.name,
+        representative: info.representative,
         phone1: info.phone1,
         phone2: info.phone2,
         phone3: info.phone3
@@ -59,9 +60,48 @@ const UpdateGroup = () => {
         setWarnText(input, invalid)
     })
 
-    firstProps.button.onClick = () => {
+    firstProps.button.onClick = async () => {
         if (isValidate(firstInfo, invalidProps, setInvalid)) {
+            let res = await getListGroupParticipation({
+                name: info.name,
+                representative: info.representative,
+                phone: `${info.phone1}-${info.phone2}-${info.phone3}`
+            })
+
+            if (res.data.length == 0) {
+                alert('신청서가 존재하지 않습니다.')
+            }
+            let group = res.data[0]
+            let participations = group.participation
+            secondProps.info.map(info => {
+                info.map(item => {
+                    switch (item.key) {
+                        case 'name':
+                            item.content.children = group.name
+                            break
+                        case 'birth':
+                            item.content.children = group.birth
+                            break
+                        case 'phone':
+                            item.content.children = group.phone
+                            break
+                        case 'representative':
+                            item.content.children = group.representative
+                            break
+                        case 'email':
+                            item.content.children = group.email
+                            break
+                        case 'depositor':
+                            item.content.children = group.depositor
+                            break
+                        case 'address':
+                            item.content.children = `${group.address} ${group.detail_address}`
+                            break
+                    }
+                })
+            })
             setSection(1)
+
         }
     }
 

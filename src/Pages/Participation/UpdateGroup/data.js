@@ -10,7 +10,7 @@ export const firstProps = {
         {
             type: 'input',
             category: 'long',
-            name: 'group_name',
+            name: 'name',
             text: {
                 ...inputTextProps,
                 children: '단체명'
@@ -20,7 +20,7 @@ export const firstProps = {
                 children: 'Group name'
             },
             input: {
-                name: 'group_name'
+                name: 'name'
             },
             warnText: {
                 ...warnText
@@ -29,7 +29,7 @@ export const firstProps = {
         {
             type: 'input',
             category: 'long',
-            name: 'representative_name',
+            name: 'representative',
             text: {
                 ...inputTextProps,
                 children: '대표자 이름'
@@ -40,7 +40,7 @@ export const firstProps = {
             },
             sep: true,
             input: {
-                name: 'representative_name',
+                name: 'representative',
                 pattern: onlyLetter
             },
             warnText: {
@@ -87,20 +87,20 @@ export const firstProps = {
 export const secondProps = {
     info: [
         [
-            { title: { children: '단체명' }, content: { children: '홍길동' } },
-            { title: { children: '대표자 생년월일' }, content: { children: '1970년 1월 1일' } }
+            { title: { children: '단체명' }, content: { children: '홍길동' }, key: 'name' },
+            { title: { children: '대표자 생년월일' }, content: { children: '1970년 1월 1일' }, key: 'birth' }
         ],
         [
-            { title: { children: '대표자성명' }, content: { children: '홍길동' } },
-            { title: { children: '휴대전화' }, content: { children: '010-0000-0000' } }
+            { title: { children: '대표자성명' }, content: { children: '홍길동' }, key: "representative" },
+            { title: { children: '휴대전화' }, content: { children: '010-0000-0000' }, key: 'phone' }
         ],
         [
-            { title: { children: '입금자명' }, content: { children: '홍길동' } },
-            { title: { children: '이메일' }, content: { children: 'mangosoftdev@naver.com' } }
+            { title: { children: '입금자명' }, content: { children: '홍길동' }, key: 'depositor' },
+            { title: { children: '이메일' }, content: { children: 'mangosoftdev@naver.com' }, key: 'email' }
         ],
         [
-            { title: { children: '주소' }, content: { children: '전라남도 여수시 덕충 3길 3 (덕충동) 2층 망고소프트' } },
-            { title: { children: '총인원수' }, content: { children: '15명' } }
+            { title: { children: '주소' }, content: { children: '전라남도 여수시 덕충 3길 3 (덕충동) 2층 망고소프트' }, key: 'address' },
+            { title: { children: '총인원수' }, content: { children: '15명' }, key: 'count' }
         ],
     ],
     cardcontent: {
@@ -490,8 +490,8 @@ export const thirdProps = {
 
 
 export const invalidProps = {
-    group_name: '',
-    representative_name: '',
+    name: '',
+    representative: '',
     phone: '',
     birth: '',
     gender: '',

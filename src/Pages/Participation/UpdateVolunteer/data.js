@@ -122,7 +122,7 @@ export const thirdProps = {
                 children: 'Date'
             },
             items: [{
-                value: '12월19일',
+                value: '2022-12-19',
                 children: '12월 19일 (토요일)'
             }],
             warnText: {
@@ -162,16 +162,17 @@ export const thirdProps = {
             selects: [{
                 name: 'year',
                 placeholder: '년도 (Year)',
+                options: [{ value: '1995', name: '1995' }, { value: '2022', name: '2022' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
             },
             {
                 name: 'month',
                 placeholder: '월 (Month)',
-                options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
+                options: [{ value: '05', name: '05' }, { value: '11', name: '11' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
             },
             {
                 name: 'day',
                 placeholder: '월 (Day)',
-                options: [{ value: 1, name: '사이즈 95' }, { value: 2, name: '사이즈 100' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
+                options: [{ value: '16', name: '16' }, { value: '09', name: '09' }, { value: 3, name: '사이즈 105' }, { value: 4, name: '사이즈 110' }, { value: 5, name: '사이즈 115' }]
             }],
             warnText: {
                 ...warnText

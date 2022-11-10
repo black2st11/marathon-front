@@ -6,7 +6,7 @@ import { CardContent, SelectTable } from '../../../Components/Organism'
 import { setForm, setWarnText } from '../../../util'
 import { isValidate } from '../../../util/validator'
 import { Button } from '../../../Components/Atom'
-import { getListVolunteer } from '../../../api'
+import { getListVolunteer, updateVolunteer } from '../../../api'
 
 const UpdateVolunteer = () => {
     const [info, setInfo] = useState(initialInfo)
@@ -28,6 +28,9 @@ const UpdateVolunteer = () => {
     firstProps.button.onClick = async () => {
         if (isValidate(firstInfo, invalidProps, setInvalid)) {
             let res = await getListVolunteer({ name: info.name, phone: `${info.phone1}${info.phone2}${info.phone3}` })
+            if (res.data.length == 0) {
+                alert('일치하는 신청서가 없습니다.')
+            }
             secondProps.items.map(items => {
                 items.map(item => {
                     if (item.key == 'class_name') {
@@ -37,14 +40,17 @@ const UpdateVolunteer = () => {
                     }
                 })
             })
+            let splitted_birth = res.data[0].birth.split('-')
             setInfo({
                 ...info,
-                ...res.data[0]
+                ...res.data[0],
+                year: splitted_birth[0],
+                month: splitted_birth[1],
+                day: splitted_birth[2]
             })
             setSection(1)
         }
     }
-
     secondProps.button.onClick = () => {
         setSection(2)
     }
@@ -54,9 +60,17 @@ const UpdateVolunteer = () => {
         setWarnText(input, invalid)
     })
 
-    thirdProps.button.onClick = () => {
+    thirdProps.button.onClick = async () => {
         if (isValidate(info, invalidProps, setInvalid)) {
-            setSection(0)
+            let res = await updateVolunteer({
+                ...info,
+                birth: `${info.year}-${info.month}-${info.day}`,
+                phone: `${info.phone1}${info.phone2}${info.phone3}`
+            })
+            if (res.isSuccess) {
+                setInfo(initialInfo)
+                setSection(0)
+            }
         }
     }
 
