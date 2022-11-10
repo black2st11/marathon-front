@@ -8,6 +8,7 @@ import { Button } from '../../../Components/Atom'
 import { setForm, setGroupForm, setWarnText } from '../../../util'
 import { isValidate } from '../../../util/validator'
 import { getListGroupParticipation } from '../../../api'
+import { tdProps } from '../../common'
 const UpdateGroup = () => {
     const [info, setInfo] = useState({
         name: '',
@@ -97,9 +98,31 @@ const UpdateGroup = () => {
                         case 'address':
                             item.content.children = `${group.address} ${group.detail_address}`
                             break
+                        case 'count':
+                            item.content.children = participations.length
                     }
                 })
             })
+
+            secondProps.fee.items[0][0].content.children = group.deposit_amount
+            secondProps.fee.items[0][1].content.children = group.is_deposit ? '입금' : '미입금'
+
+            secondProps.tabletFee.items[0][0].content.children = group.deposit_amount
+            secondProps.tabletFee.items[0][1].content.children = group.is_deposit ? '입금' : '미입금'
+            let trKey = ['name', 'gender', 'birth', 'phone', 'course', 'gift']
+            let trs = []
+            console.log(participations)
+            participations.map((participation, index, array) => {
+                let tr = []
+                tr.push({ ...tdProps, children: index + 1 })
+                trKey.map(key => {
+                    tr.push({ ...tdProps, children: participation[key] })
+                })
+                trs.push(tr)
+            })
+
+            secondProps.groups.trs = trs
+
             setSection(1)
 
         }
