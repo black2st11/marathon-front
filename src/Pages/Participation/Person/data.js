@@ -6,7 +6,7 @@ import {
 	warnText,
 } from '../../common';
 import {onlyLetter, onlyNumber} from '../../../util/validator';
-import {makeDay, makeMonth, makeYear} from '../../../util';
+import {makeCourse, makeDay, makeMonth, makeYear} from '../../../util';
 export const firstProps = {
 	inputs: [
 		{
@@ -44,14 +44,17 @@ export const firstProps = {
 				{
 					name: 'phone1',
 					pattern: onlyNumber,
+					maxlength: 3,
 				},
 				{
 					name: 'phone2',
 					pattern: onlyNumber,
+					maxlength: 4,
 				},
 				{
 					name: 'phone3',
 					pattern: onlyNumber,
+					maxlength: 4,
 				},
 			],
 			warnText: {
@@ -219,20 +222,7 @@ export const secondProps = {
 				...inputEnglishTextProps,
 				children: 'Participating events',
 			},
-			items: [
-				{
-					value: '풀코스',
-					children: '풀코스 부문',
-				},
-				{
-					value: '하프코스',
-					children: '하프코스 부문',
-				},
-				{
-					value: '10km코스',
-					children: '10km코스 부문',
-				},
-			],
+			items: makeCourse(),
 			warnText: {
 				...warnText,
 			},
@@ -252,13 +242,7 @@ export const secondProps = {
 				{
 					name: 'gift',
 					placeholder: '기념품 선택',
-					options: [
-						{value: '01', name: '01'},
-						{value: 2, name: '사이즈 100'},
-						{value: 3, name: '사이즈 105'},
-						{value: 4, name: '사이즈 110'},
-						{value: 5, name: '사이즈 115'},
-					],
+					options: [],
 				},
 			],
 			warnText: {

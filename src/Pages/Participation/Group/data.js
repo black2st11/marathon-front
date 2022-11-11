@@ -175,10 +175,12 @@ export const secondProps = {
 				{
 					name: 'phone1',
 					pattern: onlyNumber,
+					limit: '3',
 				},
 				{
 					name: 'phone2',
 					pattern: onlyNumber,
+					limit: 4,
 				},
 				{
 					name: 'phone3',

@@ -328,7 +328,7 @@ export const thirdProps = {
 		{
 			type: 'input',
 			category: 'long',
-			name: 'group_name',
+			name: 'name',
 			text: {
 				...inputTextProps,
 				children: '단체명',
@@ -338,7 +338,7 @@ export const thirdProps = {
 				children: 'Group name',
 			},
 			input: {
-				name: 'group_name',
+				name: 'name',
 			},
 			warnText: {
 				...warnText,
@@ -347,7 +347,7 @@ export const thirdProps = {
 		{
 			type: 'input',
 			category: 'long',
-			name: 'representative_name',
+			name: 'representative',
 			text: {
 				...inputTextProps,
 				children: '대표자 이름',
@@ -358,7 +358,7 @@ export const thirdProps = {
 			},
 			sep: true,
 			input: {
-				name: 'representative_name',
+				name: 'representative',
 			},
 			warnText: {
 				...warnText,
@@ -507,6 +507,7 @@ export const thirdProps = {
 		},
 	],
 	group: groupProps,
+
 	button: {
 		text: {
 			...formButtonProps,

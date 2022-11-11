@@ -86,6 +86,7 @@ const Group = () => {
 		if (isValidate(info, invalidProps, setInvalid)) {
 			let res = await postGroupParticipation({
 				...info,
+				birth: `${info.year}-${info.month}-${info.day}`,
 				phone: `${info.phone1}${info.phone2}${info.phone3}`,
 				participation: generateGroupParticipation(group),
 			});

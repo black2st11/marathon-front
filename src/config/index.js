@@ -207,10 +207,10 @@ export const defaultInfo = {
 export const courseList = ['풀코스', '하프코스', '10km코스', '5km코스'];
 
 export const giftMap = {
-	'10km코스': [],
-	'5km코스': [],
-	풀코스: [],
-	하프코스: [],
+	'10km코스': ['신발', '옷'],
+	'5km코스': ['신발', '굳즈'],
+	풀코스: ['신발', '물'],
+	하프코스: ['신발', '음료'],
 };
 
 export const navProps = {

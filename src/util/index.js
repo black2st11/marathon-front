@@ -100,16 +100,22 @@ export const setAllCheck = (prevState = [], setFunc) => {
 	setFunc(prevGroup);
 };
 
-export const setToggleCheck = (prevState = [], setFunc, anotherFunc) => {
+export const setToggleCheck = (
+	prevState = [],
+	setFunc,
+	anotherFunc,
+	fixValue = undefined,
+) => {
 	let prevGroup = [...prevState];
 	let defaultCheck = true;
 	prevGroup.forEach((state) => {
 		defaultCheck = defaultCheck && state.check;
 	});
+	defaultCheck = fixValue !== undefined ? fixValue : !defaultCheck;
 	prevGroup.forEach((state) => {
-		state.check = !defaultCheck;
+		state.check = defaultCheck;
 	});
-	anotherFunc(!defaultCheck);
+	anotherFunc(defaultCheck);
 	setFunc(prevGroup);
 };
 
@@ -284,7 +290,7 @@ export const setGroupForm = (prevStates = [], setFunc) => {
 				let props = cloneDeep(genderProps);
 				props.select.onChange = (e) =>
 					setGroupSelect(e, index, prevStates, setFunc);
-				props.value = value;
+				props.select.value = value;
 				tempList.push(props);
 			}
 
@@ -387,8 +393,11 @@ export const generateGroupParticipation = (participation = []) => {
 	return participations;
 };
 
-export const makeGiftByCourse = (name) => {
+export const makeGiftByCourse = (name = '') => {
 	let gifts = [];
+	if (!name) {
+		return gifts;
+	}
 	giftMap[name].forEach((gift) => {
 		gifts.push({
 			value: gift,
@@ -404,7 +413,33 @@ export const makeCourse = () => {
 		courses.push({
 			name: course,
 			value: course,
+			children: `${course} 부문`,
 		});
 	});
 	return courses;
+};
+
+
+
+export const apiErrorParser = (e) => {
+	let data = e.response.data;
+	let errorMessage = ``;
+	if (Array.isArray(data)) {
+		data.forEach((message) => {
+			errorMessage += `${message}\n`;
+		});
+	} else {
+		for (let [key, value] of Object.entries(data)) {
+			if (value.length > 1) {
+				value.forEach((item) => {
+					for (let [k, v] of Object.entries(item)) {
+						errorMessage += `${k} : ${v[0]}\n`;
+					}
+				});
+			} else {
+				errorMessage += `${key} : ${value[0]}\n`;
+			}
+		}
+	}
+	return alert(errorMessage);
 };
