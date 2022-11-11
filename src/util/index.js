@@ -1,284 +1,410 @@
-import { cloneDeep } from 'lodash'
-import { colorPalette, fontWeight, fontSize } from '../config';
-import { onlyLetter, onlyNumber } from './validator';
+import {cloneDeep} from 'lodash';
+import {
+	colorPalette,
+	fontWeight,
+	fontSize,
+	giftMap,
+	courseList,
+} from '../config';
+import {onlyLetter, onlyNumber} from './validator';
+
 export const cloneObject = (obj) => {
-    var clone = {};
-    for (var key in obj) {
-        if (typeof obj[key] == "object" && obj[key] != null) {
-            clone[key] = cloneObject(obj[key]);
-        } else {
-            clone[key] = obj[key];
-        }
-    }
-    return clone;
-}
+	let clone = {};
+	for (let key in obj) {
+		if (typeof obj[key] == 'object' && obj[key] != null) {
+			clone[key] = cloneObject(obj[key]);
+		} else {
+			clone[key] = obj[key];
+		}
+	}
+	return clone;
+};
 export const setInput = (e, prevState, setFunc) => {
-    setFunc({ ...prevState, [e.target.name]: e.target.value })
-}
+	setFunc({...prevState, [e.target.name]: e.target.value});
+};
 
 export const setGroupInput = (e, index, prevState, setFunc) => {
-    let prevGroup = [...prevState]
-    prevGroup[index][e.target.name] = e.target.value
-    setFunc(prevGroup)
-}
-
-export const setInputs = (e, prevState, setFunc) => {
-
-}
+	let prevGroup = [...prevState];
+	prevGroup[index][e.target.name] = e.target.value;
+	setFunc(prevGroup);
+};
 
 export const setRadio = (e, prevState, setFunc) => {
-    setFunc({
-        ...prevState,
-        [e.target.name]: e.target.value
-    })
-}
+	setFunc({
+		...prevState,
+		[e.target.name]: e.target.value,
+	});
+};
 
 export const setSelect = (e, prevState, setFunc) => {
-    setFunc({
-        ...prevState,
-        [e.target.name]: e.target.value
-    })
-}
+	setFunc({
+		...prevState,
+		[e.target.name]: e.target.value,
+	});
+};
 
 export const setGroupCheck = (e, index, prevState, setFunc) => {
-    let prevGroup = [...prevState]
-    prevGroup[index][e.target.name] = e.target.value
-    setFunc(prevGroup)
-}
+	let prevGroup = [...prevState];
+	prevGroup[index][e.target.name] = e.target.value;
+	setFunc(prevGroup);
+};
 
 export const setAddGroup = (prevState, setFunc) => {
-    let prevGroup = [...prevState]
-    prevGroup.push({
-        check: false,
-        name: '',
-        gender: '',
-        birth: '',
-        phone1: '',
-        phone2: '',
-        phone3: '',
-        course: '',
-        gift: '',
-    })
-    setFunc(prevGroup)
-}
+	let prevGroup = [...prevState];
+	prevGroup.push({
+		check: false,
+		name: '',
+		gender: '',
+		birth: '',
+		phone1: '',
+		phone2: '',
+		phone3: '',
+		course: '',
+		gift: '',
+	});
+	setFunc(prevGroup);
+};
 
 export const setGroupSelect = (e, index, prevState, setFunc) => {
-    let prevGroup = [...prevState]
-    prevGroup[index][e.target.name] = e.target.value
-    setFunc(prevGroup)
-}
+	let prevGroup = [...prevState];
+	prevGroup[index][e.target.name] = e.target.value;
+	setFunc(prevGroup);
+};
 
 export const setIndividualDelete = (index, prevState, setFunc) => {
-    let prevGroup = [...prevState]
-    prevGroup.splice(index, 1)
-    setFunc(prevGroup)
-}
+	let prevGroup = [...prevState];
+	prevGroup.splice(index, 1);
+	setFunc(prevGroup);
+};
 
 export const setGroupDelete = (prevState = [], setFunc) => {
-    let checkedList = []
-    prevState.map((state, index, array) => {
-        if (state.check) {
-            checkedList.push(index)
-        }
-    })
-    let prevGroup = [...prevState]
-    while (checkedList.length != 0) {
-        let deleteIdx = checkedList.pop()
-        prevGroup.splice(deleteIdx, 1)
-    }
-    setFunc(prevGroup)
-}
+	let checkedList = [];
+	prevState.forEach((state, index) => {
+		if (state.check) {
+			checkedList.push(index);
+		}
+	});
+	let prevGroup = [...prevState];
+	while (checkedList.length !== 0) {
+		let deleteIdx = checkedList.pop();
+		prevGroup.splice(deleteIdx, 1);
+	}
+	setFunc(prevGroup);
+};
 
 export const setAllCheck = (prevState = [], setFunc) => {
-    let prevGroup = [...prevState]
-    prevGroup.forEach(state => {
-        state.check = true
-    })
-    setFunc(prevGroup)
-}
+	let prevGroup = [...prevState];
+	prevGroup.forEach((state) => {
+		state.check = true;
+	});
+	setFunc(prevGroup);
+};
 
 export const setToggleCheck = (prevState = [], setFunc, anotherFunc) => {
-    let prevGroup = [...prevState]
-    let defaultCheck = true
-    prevGroup.forEach(state => {
-        defaultCheck = defaultCheck && state.check
-    })
-    prevGroup.forEach(state => {
-        state.check = !defaultCheck
-    })
-    anotherFunc(!defaultCheck)
-    setFunc(prevGroup)
-}
+	let prevGroup = [...prevState];
+	let defaultCheck = true;
+	prevGroup.forEach((state) => {
+		defaultCheck = defaultCheck && state.check;
+	});
+	prevGroup.forEach((state) => {
+		state.check = !defaultCheck;
+	});
+	anotherFunc(!defaultCheck);
+	setFunc(prevGroup);
+};
 
 export const setForm = (props, prevState, setFunc) => {
-    if (props.input) {
-        props.input.onChange = (e) => setInput(e, prevState, setFunc)
-        props.input.value = prevState[props.input.name]
-    }
+	if (props.input) {
+		props.input.onChange = (e) => setInput(e, prevState, setFunc);
+		props.input.value = prevState[props.input.name];
+	}
 
-    if (props.inputs) {
-        props.inputs.forEach(input => {
-            input.onChange = (e) => setInput(e, prevState, setFunc)
-            input.value = prevState[input.name]
-        })
-    }
+	if (props.inputs) {
+		props.inputs.forEach((input) => {
+			input.onChange = (e) => setInput(e, prevState, setFunc);
+			input.value = prevState[input.name];
+		});
+	}
 
-    // radio
-    if (props.items) {
-        props.onChange = (e) => setRadio(e, prevState, setFunc)
-        props.value = prevState[props.name]
-    }
+	// radio
+	if (props.items) {
+		props.onChange = (e) => setRadio(e, prevState, setFunc);
+		props.value = prevState[props.name];
+	}
 
-    if (props.selects) {
-        props.selects.forEach(select => {
-            select.onChange = (e) => setSelect(e, prevState, setFunc)
-            select.value = prevState[select.name]
-        })
-    }
-}
+	if (props.selects) {
+		props.selects.forEach((select) => {
+			select.onChange = (e) => setSelect(e, prevState, setFunc);
+			select.value = prevState[select.name];
+			if (props.selects[0].name === 'gift') {
+				props.selects[0].options = makeGiftByCourse(prevState.course);
+			}
+			if (props.selects[0].name === 'course') {
+				props.selects[0].options = makeCourse();
+			}
+		});
+	}
+};
 
 export const setWarnText = (props, state) => {
-    props.warnText.children = state[props.name]
-}
+	props.warnText.children = state[props.name];
+};
 
 export const groupNameProps = {
-    input: { value: '', name: 'name', borderRadius: '0.25rem', border: 'none', onChange: () => console.log(1), height: '40px' }
-}
+	input: {
+		value: '',
+		name: 'name',
+		borderRadius: '0.25rem',
+		border: 'none',
+		onChange: () => console.log(1),
+		height: '40px',
+	},
+};
 
 export const checkProps = {
-    check: { onChange: () => console.log(1), borderRadius: '0.3rem', name: 'check' }
-}
+	check: {
+		onChange: () => console.log(1),
+		borderRadius: '0.3rem',
+		name: 'check',
+	},
+};
 
 export const genderProps = {
-    select: { options: [{ value: '남성', name: '남성' }, { value: '여성', name: '여성' }], name: 'gender', height: '40px', borderRadius: '5px', border: 'none' },
-}
+	select: {
+		options: [
+			{value: '남성', name: '남성'},
+			{value: '여성', name: '여성'},
+		],
+		name: 'gender',
+		height: '40px',
+		borderRadius: '5px',
+		border: 'none',
+	},
+};
 
 export const birthProps = {
-    input: { value: '', borderRadius: '0.25rem', border: 'none', name: 'birth', onChange: () => console.log(1), height: '40px' }
-}
+	input: {
+		value: '',
+		borderRadius: '0.25rem',
+		border: 'none',
+		name: 'birth',
+		onChange: () => console.log(1),
+		height: '40px',
+	},
+};
 
 export const courseProps = {
-    select: { name: 'course', options: [{ value: '10km', name: '10km' }, { value: '5km', name: '5km' }, { value: '하프', name: '하프코스' }], height: '40px', borderRadius: '5px', border: 'none' },
-}
+	select: {
+		name: 'course',
+		options: [
+			{value: '10km', name: '10km'},
+			{value: '5km', name: '5km'},
+			{value: '하프', name: '하프코스'},
+		],
+		height: '40px',
+		borderRadius: '5px',
+		border: 'none',
+	},
+};
 
 export const contactProps = {
-    inputs: [
-        { value: '', onChange: () => console.log(1), height: '40px', name: 'phone1' },
-        { value: '', onChange: () => console.log(1), height: '40px', name: 'phone2' },
-        { value: '', onChange: () => console.log(1), height: '40px', name: 'phone3' }
-    ]
-}
+	inputs: [
+		{
+			value: '',
+			onChange: () => console.log(1),
+			height: '40px',
+			name: 'phone1',
+		},
+		{
+			value: '',
+			onChange: () => console.log(1),
+			height: '40px',
+			name: 'phone2',
+		},
+		{
+			value: '',
+			onChange: () => console.log(1),
+			height: '40px',
+			name: 'phone3',
+		},
+	],
+};
 
 export const btnProps = {
-    button: {
-        text: {
-            children: '삭제',
-            color: colorPalette.white,
-            fontSize: { desktop: fontSize.xl },
-            fontWeight: fontWeight.medium
-        },
-        height: '2.125rem',
-        isRounded: true,
-    },
-}
+	button: {
+		text: {
+			children: '삭제',
+			color: colorPalette.white,
+			fontSize: {desktop: fontSize.xl},
+			fontWeight: fontWeight.medium,
+		},
+		height: '2.125rem',
+		isRounded: true,
+	},
+};
 
 export const giftProps = {
-    select: { name: 'gift', options: [{ value: '10km', name: '10km' }, { value: '5km', name: '5km' }, { value: '하프', name: '하프코스' }], height: '40px', borderRadius: '5px', border: 'none' },
-}
+	select: {
+		name: 'gift',
+		options: [
+			{value: '10km', name: '10km'},
+			{value: '5km', name: '5km'},
+			{value: '하프', name: '하프코스'},
+		],
+		height: '40px',
+		borderRadius: '5px',
+		border: 'none',
+	},
+};
 
 export const setGroupForm = (prevStates = [], setFunc) => {
-    let groupForms = []
+	let groupForms = [];
 
-    prevStates.forEach((state, index, array) => {
-        let tempList = []
-        for (const [key, value] of Object.entries(state)) {
+	prevStates.forEach((state, index) => {
+		let tempList = [];
+		for (const [key, value] of Object.entries(state)) {
+			if (key === 'check') {
+				let props = cloneDeep(checkProps);
+				props.check.onChange = (e) =>
+					setGroupCheck(e, index, prevStates, setFunc);
+				props.check.value = value;
+				tempList.push(props);
+			}
 
-            if (key === 'check') {
-                let props = cloneDeep(checkProps)
-                props.check.onChange = (e) => setGroupCheck(e, index, prevStates, setFunc)
-                props.check.value = value
-                tempList.push(props)
-            }
+			if (key === 'name') {
+				let props = cloneDeep(groupNameProps);
+				props.input.onChange = (e) =>
+					setGroupInput(e, index, prevStates, setFunc);
+				props.input.pattern = onlyLetter;
+				props.input.value = value;
+				tempList.push(props);
+			}
 
-            if (key === 'name') {
-                let props = cloneDeep(groupNameProps)
-                props.input.onChange = (e) => setGroupInput(e, index, prevStates, setFunc)
-                props.input.pattern = onlyLetter
-                props.input.value = value
-                tempList.push(props)
-            }
+			if (key === 'gender') {
+				let props = cloneDeep(genderProps);
+				props.select.onChange = (e) =>
+					setGroupSelect(e, index, prevStates, setFunc);
+				props.value = value;
+				tempList.push(props);
+			}
 
-            if (key === 'gender') {
-                let props = cloneDeep(genderProps)
-                props.select.onChange = (e) => setGroupSelect(e, index, prevStates, setFunc)
-                props.value = value
-                tempList.push(props)
-            }
+			if (key === 'birth') {
+				let props = cloneDeep(birthProps);
+				props.input.onChange = (e) =>
+					setGroupInput(e, index, prevStates, setFunc);
+				props.input.value = value;
+				props.input.pattern = onlyNumber;
+				tempList.push(props);
+			}
 
-            if (key === 'birth') {
-                let props = cloneDeep(birthProps)
-                props.input.onChange = (e) => setGroupInput(e, index, prevStates, setFunc)
-                props.input.value = value
-                props.input.pattern = onlyNumber
-                tempList.push(props)
-            }
+			if (key === 'phone1') {
+				let props = cloneDeep(contactProps);
+				props.inputs[0].onChange = (e) =>
+					setGroupInput(e, index, prevStates, setFunc);
+				props.inputs[1].onChange = (e) =>
+					setGroupInput(e, index, prevStates, setFunc);
+				props.inputs[2].onChange = (e) =>
+					setGroupInput(e, index, prevStates, setFunc);
+				props.inputs[0].value = prevStates[index][props.inputs[0].name];
+				props.inputs[1].value = prevStates[index][props.inputs[1].name];
+				props.inputs[2].value = prevStates[index][props.inputs[2].name];
+				props.inputs[0].pattern = onlyNumber;
+				props.inputs[1].pattern = onlyNumber;
+				props.inputs[2].pattern = onlyNumber;
+				tempList.push(props);
+			}
 
-            if (key === 'phone1') {
-                let props = cloneDeep(contactProps)
-                props.inputs[0].onChange = (e) => setGroupInput(e, index, prevStates, setFunc)
-                props.inputs[1].onChange = (e) => setGroupInput(e, index, prevStates, setFunc)
-                props.inputs[2].onChange = (e) => setGroupInput(e, index, prevStates, setFunc)
-                props.inputs[0].value = prevStates[index][props.inputs[0].name]
-                props.inputs[1].value = prevStates[index][props.inputs[1].name]
-                props.inputs[2].value = prevStates[index][props.inputs[2].name]
-                props.inputs[0].pattern = onlyNumber
-                props.inputs[1].pattern = onlyNumber
-                props.inputs[2].pattern = onlyNumber
-                tempList.push(props)
-            }
+			if (key === 'course') {
+				let props = cloneDeep(courseProps);
+				props.select.onChange = (e) =>
+					setGroupSelect(e, index, prevStates, setFunc);
+				props.select.value = value;
+				tempList.push(props);
+			}
 
-            if (key === 'course') {
-                let props = cloneDeep(courseProps)
-                props.select.onChange = (e) => setGroupSelect(e, index, prevStates, setFunc)
-                props.select.value = value
-                tempList.push(props)
-            }
-
-            if (key === 'gift') {
-                let props = cloneDeep(giftProps)
-                props.select.onChange = (e) => setGroupSelect(e, index, prevStates, setFunc)
-                props.select.value = value
-                tempList.push(props)
-            }
-        }
-        let props = cloneDeep(btnProps)
-        props.button.onClick = (e) => setIndividualDelete(index, prevStates, setFunc)
-        tempList.push(props)
-        groupForms.push(tempList)
-    })
-    return groupForms
-}
+			if (key === 'gift') {
+				let props = cloneDeep(giftProps);
+				props.select.onChange = (e) =>
+					setGroupSelect(e, index, prevStates, setFunc);
+				props.select.value = value;
+				tempList.push(props);
+			}
+		}
+		let props = cloneDeep(btnProps);
+		props.button.onClick = () =>
+			setIndividualDelete(index, prevStates, setFunc);
+		tempList.push(props);
+		groupForms.push(tempList);
+	});
+	return groupForms;
+};
 
 export const makeYear = () => {
-    let years = []
-    for (let i = 1900; i <= 2020; i++) {
-        years.push({ value: `${i}`, name: `${i}` })
-    }
-    return years
-}
+	let years = [];
+	for (let i = 1900; i <= 2020; i++) {
+		years.push({value: `${i}`, name: `${i}`});
+	}
+	return years;
+};
 
 export const makeMonth = () => {
-    let month = []
-    for (let i = 1; i <= 12; i++) {
-        month.push({ value: `${i}`.padStart(2, 0), name: `${i}`.padStart(2, 0) })
-    }
-    return month
-}
+	let month = [];
+	for (let i = 1; i <= 12; i++) {
+		month.push({
+			value: `${i}`.padStart(2, '0'),
+			name: `${i}`.padStart(2, '0'),
+		});
+	}
+	return month;
+};
 
 export const makeDay = () => {
-    let days = []
-    for (let i = 1; i <= 31; i++) {
-        days.push({ value: `${i}`.padStart(2, 0), name: `${i}`.padStart(2, 0) })
-    }
-    return days
-}
+	let days = [];
+	for (let i = 1; i <= 31; i++) {
+		days.push({
+			value: `${i}`.padStart(2, '0'),
+			name: `${i}`.padStart(2, '0'),
+		});
+	}
+	return days;
+};
+
+export const generateGroupParticipation = (participation = []) => {
+	let participations = [];
+	participation.forEach((item) => {
+		let year = item.birth.substring(0, 4);
+		let month = item.birth.substring(4, 6);
+		let day = item.birth.substring(6, 8);
+		participations.push({
+			name: item.name,
+			gender: item.gender,
+			birth: `${year}-${month}-${day}`,
+			phone: `${item.phone1}-${item.phone2}-${item.phone3}`,
+			course: item.course,
+			gift: item.gift,
+		});
+	});
+	return participations;
+};
+
+export const makeGiftByCourse = (name) => {
+	let gifts = [];
+	giftMap[name].forEach((gift) => {
+		gifts.push({
+			value: gift,
+			name: gift,
+		});
+	});
+	return gifts;
+};
+
+export const makeCourse = () => {
+	let courses = [];
+	courseList.forEach((course) => {
+		courses.push({
+			name: course,
+			value: course,
+		});
+	});
+	return courses;
+};

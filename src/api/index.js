@@ -104,6 +104,24 @@ export const getListGroupParticipation = async ({
     return await defaultApi({ params, url: '/participations/group/', method: 'GET' })
 }
 
+export const updateGroupParticipation = async ({
+    id, name, representative, phone, birth, post_number, address, detail_address, depositor, participation
+}) => {
+    let data ={
+        name,
+        representative,
+        phone,
+        birth,
+        post_number,
+        address,
+        detail_address,
+        depositor,
+        participation
+    }
+
+    return await defaultApi({data, url : `/participations/group/${id}/`, method : "PUT"})
+}
+
 export const postVolunteer = async ({
     name, participated, school, grade, class_name, volunteer_id, birth, phone
 }) => {
