@@ -1,14 +1,12 @@
 import axios from 'axios';
 import {apiErrorParser} from '../util';
+import {API, TOKEN as token} from '../config';
 
-const BASE_URL = 'http://localhost:8000';
-const token = '961ab6aa-95f2-4447-98d3-c92b70f87061';
-
-const defaultApi = async ({data, params, url, method}) => {
+export const defaultApi = async ({data, params, url, method}) => {
 	try {
 		let res = await axios({
 			method,
-			url: `${BASE_URL}${url}`,
+			url: `${API}${url}`,
 			data,
 			params,
 		});

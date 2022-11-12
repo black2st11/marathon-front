@@ -125,6 +125,11 @@ export const setForm = (props, prevState, setFunc) => {
 		props.input.value = prevState[props.input.name];
 	}
 
+	if (props.textarea) {
+		props.textarea.onChange = (e) => setInput(e, prevState, setFunc);
+		props.textarea.value = prevState[props.textarea.name];
+	}
+
 	if (props.inputs) {
 		props.inputs.forEach((input) => {
 			input.onChange = (e) => setInput(e, prevState, setFunc);
@@ -419,9 +424,28 @@ export const makeCourse = () => {
 	return courses;
 };
 
+export const generateComments = (comments) => {
+	let generatedComments = [];
 
+	comments.forEach((comment) => {
+		generatedComments.push({
+			author: {children: comment.author},
+			content: {children: comment.content},
+		});
+	});
+	return generatedComments;
+};
 
 export const apiErrorParser = (e) => {
+	console.log(e);
+	if (e.response.status === 404) {
+		return alert('존재하지 않는 요청입니다. 확인해주세요');
+	}
+	if (e.response.status === 500) {
+		return alert(
+			'서버 에러입니다. 지속적으로 발생 시 관리자에게 문의해주세요.',
+		);
+	}
 	let data = e.response.data;
 	let errorMessage = ``;
 	if (Array.isArray(data)) {

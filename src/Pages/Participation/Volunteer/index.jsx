@@ -19,8 +19,8 @@ const Volunteer = () => {
 		if (isValidate(info, invalidProps, setInvalid)) {
 			let res = await postVolunteer({
 				...info,
-				phone: `${info.phone1}${info.phone2}${info.phone3}`,
-				birth: `${info.year}${info.month}${info.day}`,
+				phone: `${info.phone1}-${info.phone2}-${info.phone3}`,
+				birth: `${info.year}-${info.month}-${info.day}`,
 				class_name: info.class,
 			});
 

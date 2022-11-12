@@ -193,8 +193,8 @@ export const requiredInfo = {
 };
 
 // 등록
-export const TOKEN = '';
-export const API = '';
+export const TOKEN = '961ab6aa-95f2-4447-98d3-c92b70f87061';
+export const API = 'http://localhost:8000';
 
 export const defaultInfo = {
 	mainTitle: '',

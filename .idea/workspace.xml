@@ -5,13 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb91b8b7-d850-4cfb-9314-062678404caa" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/api/board.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/Atom/Input/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Atom/Input/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/Participation/Group/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Participation/Group/data.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/Participation/Group/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Participation/Group/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/Participation/Person/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Participation/Person/data.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/Participation/UpdateGroup/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Participation/UpdateGroup/data.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/Participation/UpdateGroup/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Participation/UpdateGroup/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Organism/InputForm/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Organism/InputForm/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Organism/Pagination/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Organism/Pagination/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Template/Boards/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Template/Boards/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/Ground/Board/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Ground/Board/data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/Ground/Board/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Ground/Board/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/Ground/BoardWrite/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Ground/BoardWrite/data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/Ground/BoardWrite/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Ground/BoardWrite/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/Ground/Boards/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Ground/Boards/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/Participation/Volunteer/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Participation/Volunteer/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/config/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/util/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/index.js" afterDir="false" />
@@ -20,6 +26,13 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -60,7 +73,9 @@
       <workItem from="1667914795098" duration="45000" />
       <workItem from="1668142288796" duration="5012000" />
       <workItem from="1668147572783" duration="56000" />
-      <workItem from="1668167043414" duration="8906000" />
+      <workItem from="1668167043414" duration="9431000" />
+      <workItem from="1668215253259" duration="5709000" />
+      <workItem from="1668229517726" duration="3023000" />
     </task>
     <servers />
   </component>
