@@ -2,7 +2,13 @@ import axios from 'axios';
 import {apiErrorParser} from '../util';
 import {API, TOKEN as token} from '../config';
 
-export const defaultApi = async ({data, params, url, method}) => {
+export const defaultApi = async ({
+	data,
+	params,
+	url,
+	method,
+	raiseError = true,
+}) => {
 	try {
 		let res = await axios({
 			method,
@@ -13,7 +19,9 @@ export const defaultApi = async ({data, params, url, method}) => {
 
 		return {isSuccess: true, status: res.status, data: res.data};
 	} catch (e) {
-		apiErrorParser(e);
+		if (raiseError) {
+			apiErrorParser(e);
+		}
 		return {isSuccess: false, status: e.status, data: e.data};
 	}
 };

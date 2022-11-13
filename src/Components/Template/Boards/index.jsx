@@ -2,7 +2,9 @@ import React from 'react';
 import * as S from './style';
 import {Text} from '../../Atom';
 
-const Borads = ({titles = [], contents = [], count = 0, page = 0}) => {
+const Borads = ({titles = [], contents = [], count = 0, page = 0, onClick}) => {
+	console.log(contents);
+
 	return (
 		<S.Container>
 			<S.TitleWrapper>
@@ -13,7 +15,15 @@ const Borads = ({titles = [], contents = [], count = 0, page = 0}) => {
 				))}
 			</S.TitleWrapper>
 			{contents.map((content, index, array) => (
-				<S.ContentWrapper key={index}>
+				<S.ContentWrapper
+					key={index}
+					onClick={() =>
+						onClick({
+							id: content.id,
+							isPassword: content.is_password,
+						})
+					}
+				>
 					<React.Fragment>
 						<S.Content>
 							<Text children={count - (page - 1) * 10 - index} />

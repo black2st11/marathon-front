@@ -9,10 +9,10 @@ import {Boards as BoardsTemplate} from '../../../Components/Template';
 import {Pagination} from '../../../Components/Organism';
 import * as S from './style';
 import {Button} from '../../../Components/Atom';
-import {getListBoard} from '../../../api/board';
+import {checkPassword, getListBoard} from '../../../api/board';
 
 const Boards = ({category}) => {
-	const [page, setPage] = useState(2);
+	const [page, setPage] = useState(1);
 	const [count, setCount] = useState(0);
 	const [boards, setBoards] = useState([]);
 	useEffect(() => {
@@ -25,7 +25,19 @@ const Boards = ({category}) => {
 	}, [page]);
 
 	normalBoardsProps.contents = boards;
-
+	const goBoard = async ({id, isPassword = false}) => {
+		if (isPassword) {
+			let password = prompt();
+			if (password === null) {
+				return;
+			}
+			let res = await checkPassword({password, id});
+			if (!res.isSuccess) {
+				return alert('비밀번호가 일치하지 않습니다.');
+			}
+		}
+		window.location.href = window.location.href + `/${id}`;
+	};
 	return (
 		<S.Container>
 			<S.BoardsWrapper>
@@ -34,12 +46,14 @@ const Boards = ({category}) => {
 						{...refundBoardsProps}
 						count={count}
 						page={page}
+						onClick={goBoard}
 					/>
 				) : (
 					<BoardsTemplate
 						{...normalBoardsProps}
 						count={count}
 						page={page}
+						onClick={goBoard}
 					/>
 				)}
 			</S.BoardsWrapper>

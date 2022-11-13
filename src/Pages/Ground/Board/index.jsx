@@ -10,7 +10,6 @@ const Board = ({category = '자유'}) => {
 	const params = useLoaderData();
 	const location = useLocation();
 
-	console.log(location);
 	useEffect(() => {
 		(async () => {
 			let res = await getBoard({id: params.id, category});

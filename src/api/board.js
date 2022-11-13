@@ -38,3 +38,16 @@ export const getBoard = async ({id, password, category}) => {
 
 	return await defaultApi({params, url: `/boards/${id}/`, method: 'GET'});
 };
+
+export const checkPassword = async ({password, id}) => {
+	let data = {
+		password,
+		token,
+	};
+	return await defaultApi({
+		data,
+		url: `/boards/${id}/checkPassword/`,
+		method: 'POST',
+		raiseError: false,
+	});
+};
