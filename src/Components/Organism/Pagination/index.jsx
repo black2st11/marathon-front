@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from './style';
-import {Text} from '../../Atom';
+import {Link, Text} from '../../Atom';
 import {MdChevronLeft, MdChevronRight} from 'react-icons/md';
 
 const Pagination = ({
@@ -9,11 +9,10 @@ const Pagination = ({
 	textProps,
 	currentTextProps,
 	pageSize = 5,
-	onPrev,
-	onNext,
+	onClick,
 }) => {
 	let pages = [];
-	console.log(total);
+	total = Math.ceil(total / pageSize);
 	for (
 		let page = Math.floor(current / pageSize) + 1;
 		pages.length < 5 && page <= total;
@@ -21,6 +20,7 @@ const Pagination = ({
 	) {
 		pages.push(page);
 	}
+
 	return (
 		<S.Container>
 			{current !== 1 && (
@@ -28,25 +28,33 @@ const Pagination = ({
 					<MdChevronLeft
 						size='2rem'
 						color='#9b9b9b'
-						onClick={onPrev}
+						onClick={() => onClick(current - 1)}
 					/>
 				</S.Page>
 			)}
 			{pages.map((page) => (
 				<S.Page>
 					{current === page ? (
-						<Text {...currentTextProps} children={page} />
+						<Link
+							{...currentTextProps}
+							children={page}
+							onClick={() => onClick(page)}
+						/>
 					) : (
-						<Text {...textProps} children={page} />
+						<Link
+							{...textProps}
+							children={page}
+							onClick={() => onClick(page)}
+						/>
 					)}
 				</S.Page>
 			))}
-			{current !== total && (
+			{(current !== total || current < total) && (
 				<S.Page>
 					<MdChevronRight
 						fontSize='2rem'
 						color='#9b9b9b'
-						onClick={onNext}
+						onClick={() => onClick(current + 1)}
 					/>
 				</S.Page>
 			)}

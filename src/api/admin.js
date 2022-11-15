@@ -1,9 +1,11 @@
 import {defaultApi} from './index';
 import {TOKEN as token} from '../config';
 
-export const getListParticipation = async () => {
+export const getListParticipation = async ({page, search}) => {
 	let params = {
 		token,
+		page,
+		search,
 	};
 
 	return await defaultApi({params, url: '/participations/', method: 'GET'});
@@ -40,7 +42,7 @@ export const tempDeleteParticipation = async ({id}) => {
 	};
 	return await defaultApi({
 		data,
-		url: `/participations/${id}/temp_delete/`,
+		url: `/participations/${id}/set_temp_delete/`,
 		method: 'DELETE',
 	});
 };
@@ -53,7 +55,7 @@ export const tempDeleteParticipations = async ({ids}) => {
 
 	return await defaultApi({
 		data,
-		url: `/participations/temp_deletes/`,
+		url: `/participations/deletes/`,
 		method: 'DELETE',
 	});
 };

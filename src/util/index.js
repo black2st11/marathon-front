@@ -115,7 +115,9 @@ export const setToggleCheck = (
 	prevGroup.forEach((state) => {
 		state.check = defaultCheck;
 	});
-	anotherFunc(defaultCheck);
+	if (anotherFunc) {
+		anotherFunc(defaultCheck);
+	}
 	setFunc(prevGroup);
 };
 

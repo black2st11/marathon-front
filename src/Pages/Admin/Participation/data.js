@@ -100,6 +100,11 @@ export const selectProps = {
 export const tableProps = {
 	maxWidth: '1160px',
 	ths: [
+		{
+			category: 'check',
+			onClick: () => console.log('check'),
+			borderRadius: '0.3rem',
+		},
 		{children: '번호'},
 		{children: '이름'},
 		{children: '구분'},
