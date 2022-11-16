@@ -31,15 +31,8 @@ const SepGenerate = ({seperate, isLast}) => {
 	}
 };
 
-const MultipleInput = ({inputs = [], sep}) => {
+export const MultipleInput = ({inputs = [], sep}) => {
 	const inputsRef = useRef([]);
-	useEffect(() => {
-		inputs.forEach((input, index) => {
-			if (input.value.length >= input.maxlength) {
-				inputsRef.current[index].focus();
-			}
-		});
-	}, [inputs]);
 	return (
 		<React.Fragment>
 			{inputs.map((input, index) => (

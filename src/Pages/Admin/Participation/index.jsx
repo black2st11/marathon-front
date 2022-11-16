@@ -11,8 +11,9 @@ import {
 } from './data';
 import {CheckBox, Input, Select, Text, Button} from '../../../Components/Atom';
 import {GroupTable} from '../../../Components/Organism/GroupForm';
-import {Pagination} from '../../../Components/Organism';
+import {Modal, Pagination} from '../../../Components/Organism';
 import {
+	exportParticipation,
 	getListParticipation,
 	setDepositParticipation,
 	setDepositParticipations,
@@ -23,6 +24,7 @@ import {generateAdminParticipationTable} from '../../../util/generator';
 import {setToggleCheck} from '../../../util';
 import {checkBinding} from '../../../util/binding';
 import {dictToList, dictToStr} from '../../../util/postProcess';
+import {ModalPersonForm} from '../index';
 
 const AdminParticipation = () => {
 	const [participation, setParticipation] = useState([]);
@@ -36,7 +38,8 @@ const AdminParticipation = () => {
 	const [order, setOrder] = useState(orderInit);
 	const [category, setCategory] = useState(categoryInit);
 	const [deposit, setDeposit] = useState(depositInit);
-
+	const [modal, setModal] = useState(false);
+	const [select, setSelect] = useState({id: 0, category: 'person'});
 	useEffect(() => {
 		(async () => {
 			let res = await getListParticipation({page: page});
@@ -57,6 +60,8 @@ const AdminParticipation = () => {
 		total: total,
 		setToggle: setToggle,
 		toggle: toggle,
+		setSelect,
+		setModal,
 	});
 	tableProps.ths[0].onChange = () => {
 		setToggleCheck(participation, setParticipation, setIsAllCheck);
@@ -114,17 +119,22 @@ const AdminParticipation = () => {
 		defaultProps: depositInit,
 	});
 
-	checkBoxProps.button.onClick = () => {
+	checkBoxProps.button.onClick = async () => {
 		let field = dictToList({dict: fields});
 		let ord = dictToStr({dict: order, defaultValue: 'id'});
 		let cate = dictToStr({dict: category, defaultValue: 'all'});
 		let depo = dictToStr({dict: deposit, defaultValue: 'all'});
-		console.log(field);
-		console.log(ord);
-		console.log(cate);
-		console.log(depo);
-	};
 
+		await exportParticipation({
+			fields: field,
+			order: ord.split('-'),
+			category: cate,
+			is_deposit: depo,
+		});
+	};
+	const getData = () => {
+		console.log(1);
+	};
 	return (
 		<S.Container>
 			<S.CheckBoxWrapper>
@@ -167,6 +177,16 @@ const AdminParticipation = () => {
 					onClick={(e) => setPage(e)}
 				/>
 			</S.PaginationWrapper>
+			{modal && (
+				<Modal bottomText={' '} onClose={() => setModal(false)}>
+					{select.category === 'person' ? (
+						<ModalPersonForm
+							person={select.id}
+							onClick={() => setModal(false)}
+						/>
+					) : null}
+				</Modal>
+			)}
 		</S.Container>
 	);
 };

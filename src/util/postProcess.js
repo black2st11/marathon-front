@@ -11,7 +11,7 @@ export const dictToList = ({dict, defaultValue = undefined}) => {
 		list = defaultValue;
 	}
 
-	return defaultValue;
+	return list;
 };
 
 export const dictToStr = ({dict, defaultValue = undefined}) => {

@@ -8,6 +8,8 @@ export const defaultApi = async ({
 	url,
 	method,
 	raiseError = true,
+	isRaw = false,
+	responseType,
 }) => {
 	try {
 		let res = await axios({
@@ -15,8 +17,11 @@ export const defaultApi = async ({
 			url: `${API}${url}`,
 			data,
 			params,
+			responseType,
 		});
-
+		if (isRaw) {
+			return res;
+		}
 		return {isSuccess: true, status: res.status, data: res.data};
 	} catch (e) {
 		if (raiseError) {
@@ -145,12 +150,14 @@ export const getListGroupParticipation = async ({
 	name,
 	representative,
 	phone,
+	verification,
 }) => {
 	let params = {
 		name,
 		representative,
 		phone,
 		token,
+		verification,
 	};
 
 	return await defaultApi({

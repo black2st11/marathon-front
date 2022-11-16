@@ -9,13 +9,13 @@ export const orderInit = {
 export const categoryInit = {
 	person: false,
 	group: false,
-	'all-category': false,
+	all: false,
 };
 
 export const depositInit = {
 	deposit: false,
 	'no-deposit': false,
-	'all-deposit': false,
+	all: false,
 };
 
 export const checkBoxProps = {
@@ -29,7 +29,7 @@ export const checkBoxProps = {
 			{checkBox: {name: 'birth'}, text: {children: '생년월일'}},
 			{checkBox: {name: 'gender'}, text: {children: '성별'}},
 			{checkBox: {name: 'phone'}, text: {children: '연락처'}},
-			{checkBox: {name: 'group__name'}, text: {children: '단체명'}},
+			{checkBox: {name: 'group_name'}, text: {children: '단체명'}},
 			{checkBox: {name: 'post_number'}, text: {children: '우편번호'}},
 			{checkBox: {name: 'address'}, text: {children: '주소'}},
 			{checkBox: {name: 'detail_address'}, text: {children: '상세주소'}},
@@ -66,7 +66,7 @@ export const checkBoxProps = {
 		items: [
 			{checkBox: {name: 'deposit'}, text: {children: '입금'}},
 			{checkBox: {name: 'no-deposit'}, text: {children: '미입금'}},
-			{checkBox: {name: 'all-deposit'}, text: {children: '전체'}},
+			{checkBox: {name: 'all'}, text: {children: '전체'}},
 		],
 	},
 	category: {
@@ -76,7 +76,7 @@ export const checkBoxProps = {
 		items: [
 			{checkBox: {name: 'group'}, text: {children: '단체'}},
 			{checkBox: {name: 'person'}, text: {children: '개인'}},
-			{checkBox: {name: 'all-category'}, text: {children: '전체'}},
+			{checkBox: {name: 'all'}, text: {children: '전체'}},
 		],
 	},
 	availableList: ['fields', 'order', 'deposit', 'category'],
@@ -123,6 +123,7 @@ export const tableProps = {
 			onClick: () => console.log('check'),
 			borderRadius: '0.3rem',
 		},
+		{children: '수정'},
 		{children: '번호'},
 		{children: '이름'},
 		{children: '구분'},
