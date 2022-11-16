@@ -5,3 +5,4 @@ export {default as AdminVolunteer} from './Volunteer';
 export {default as AdminDeletedParticipation} from './DeletedParticipation';
 export {default as AdminGroup} from './Group';
 export {default as ModalPersonForm} from './ModalPersonForm';
+export {default as ModalGroupForm} from './ModalGroupForm';

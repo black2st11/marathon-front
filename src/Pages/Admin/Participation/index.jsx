@@ -24,7 +24,7 @@ import {generateAdminParticipationTable} from '../../../util/generator';
 import {setToggleCheck} from '../../../util';
 import {checkBinding} from '../../../util/binding';
 import {dictToList, dictToStr} from '../../../util/postProcess';
-import {ModalPersonForm} from '../index';
+import {ModalGroupForm, ModalPersonForm} from '../index';
 
 const AdminParticipation = () => {
 	const [participation, setParticipation] = useState([]);
@@ -184,7 +184,9 @@ const AdminParticipation = () => {
 							person={select.id}
 							onClick={() => setModal(false)}
 						/>
-					) : null}
+					) : (
+						<ModalGroupForm id={select.id} />
+					)}
 				</Modal>
 			)}
 		</S.Container>

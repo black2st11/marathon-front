@@ -24,6 +24,18 @@ export const getPerson = async ({id}) => {
 	});
 };
 
+export const getGroup = async ({id}) => {
+	let params = {
+		token,
+	};
+
+	return await defaultApi({
+		params,
+		url: `/participations/group/${id}/`,
+		method: 'GET',
+	});
+};
+
 export const updatePerson = async ({id, body}) => {
 	let data = {
 		...body,
