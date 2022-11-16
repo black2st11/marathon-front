@@ -1,6 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import * as S from './style';
-import {checkBoxProps, searchProps, selectProps, tableProps} from './data';
+import {
+	categoryInit,
+	checkBoxProps,
+	depositInit,
+	orderInit,
+	searchProps,
+	selectProps,
+	tableProps,
+} from './data';
 import {CheckBox, Input, Select, Text, Button} from '../../../Components/Atom';
 import {GroupTable} from '../../../Components/Organism/GroupForm';
 import {Pagination} from '../../../Components/Organism';
@@ -13,6 +21,8 @@ import {
 } from '../../../api/admin';
 import {generateAdminParticipationTable} from '../../../util/generator';
 import {setToggleCheck} from '../../../util';
+import {checkBinding} from '../../../util/binding';
+import {dictToList, dictToStr} from '../../../util/postProcess';
 
 const AdminParticipation = () => {
 	const [participation, setParticipation] = useState([]);
@@ -22,6 +32,11 @@ const AdminParticipation = () => {
 	const [toggle, setToggle] = useState(false);
 	const [action, setAction] = useState();
 	const [search, setSearch] = useState('');
+	const [fields, setFields] = useState({});
+	const [order, setOrder] = useState(orderInit);
+	const [category, setCategory] = useState(categoryInit);
+	const [deposit, setDeposit] = useState(depositInit);
+
 	useEffect(() => {
 		(async () => {
 			let res = await getListParticipation({page: page});
@@ -47,6 +62,7 @@ const AdminParticipation = () => {
 		setToggleCheck(participation, setParticipation, setIsAllCheck);
 	};
 	tableProps.ths[0].value = isAllCheck;
+
 	selectProps.select.onChange = (e) => {
 		setAction(e.target.value);
 	};
@@ -69,6 +85,44 @@ const AdminParticipation = () => {
 	searchProps.button.onClick = async () => {
 		let res = await getListParticipation({page, search});
 		setParticipation(res.data.results);
+	};
+
+	checkBinding({
+		items: checkBoxProps.fields.items,
+		props: fields,
+		setProps: setFields,
+	});
+
+	checkBinding({
+		items: checkBoxProps.order.items,
+		props: order,
+		setProps: setOrder,
+		defaultProps: orderInit,
+	});
+
+	checkBinding({
+		items: checkBoxProps.category.items,
+		props: category,
+		setProps: setCategory,
+		defaultProps: categoryInit,
+	});
+
+	checkBinding({
+		items: checkBoxProps.deposit.items,
+		props: deposit,
+		setProps: setDeposit,
+		defaultProps: depositInit,
+	});
+
+	checkBoxProps.button.onClick = () => {
+		let field = dictToList({dict: fields});
+		let ord = dictToStr({dict: order, defaultValue: 'id'});
+		let cate = dictToStr({dict: category, defaultValue: 'all'});
+		let depo = dictToStr({dict: deposit, defaultValue: 'all'});
+		console.log(field);
+		console.log(ord);
+		console.log(cate);
+		console.log(depo);
 	};
 
 	return (

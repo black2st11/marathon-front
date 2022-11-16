@@ -134,7 +134,19 @@ export const deleteParticipations = async ({ids}) => {
 	});
 };
 
-export const exportParticipation = async () => {};
+export const exportParticipation = async ({fields, order, category}) => {
+	let data = {
+		fields,
+		order,
+		category,
+	};
+
+	return await defaultApi({
+		data,
+		url: `/participations/export/`,
+		method: 'POST',
+	});
+};
 
 export const exportGroup = async () => {};
 

@@ -1,24 +1,42 @@
 import {colorPalette} from '../../../config';
 
+export const orderInit = {
+	'gender-name': false,
+	'course-gender-name': false,
+	'course-group__name-gender': false,
+};
+
+export const categoryInit = {
+	person: false,
+	group: false,
+	'all-category': false,
+};
+
+export const depositInit = {
+	deposit: false,
+	'no-deposit': false,
+	'all-deposit': false,
+};
+
 export const checkBoxProps = {
 	fields: {
 		title: {
 			children: '항목(아무것도 선택안한 경우 전체)',
 		},
 		items: [
-			{checkBox: {name: 'fields'}, text: {children: '이름'}},
-			{checkBox: {name: 'fields'}, text: {children: '종목'}},
-			{checkBox: {name: 'fields'}, text: {children: '생년월일'}},
-			{checkBox: {name: 'fields'}, text: {children: '성별'}},
-			{checkBox: {name: 'fields'}, text: {children: '연락처'}},
-			{checkBox: {name: 'fields'}, text: {children: '단체명'}},
-			{checkBox: {name: 'fields'}, text: {children: '우편번호'}},
-			{checkBox: {name: 'fields'}, text: {children: '주소'}},
-			{checkBox: {name: 'fields'}, text: {children: '상세주소'}},
-			{checkBox: {name: 'fields'}, text: {children: '입금자명'}},
-			{checkBox: {name: 'fields'}, text: {children: '기념품'}},
-			{checkBox: {name: 'fields'}, text: {children: '입금여부'}},
-			{checkBox: {name: 'fields'}, text: {children: '신청서종류'}},
+			{checkBox: {name: 'name'}, text: {children: '이름'}},
+			{checkBox: {name: 'course'}, text: {children: '종목'}},
+			{checkBox: {name: 'birth'}, text: {children: '생년월일'}},
+			{checkBox: {name: 'gender'}, text: {children: '성별'}},
+			{checkBox: {name: 'phone'}, text: {children: '연락처'}},
+			{checkBox: {name: 'group__name'}, text: {children: '단체명'}},
+			{checkBox: {name: 'post_number'}, text: {children: '우편번호'}},
+			{checkBox: {name: 'address'}, text: {children: '주소'}},
+			{checkBox: {name: 'detail_address'}, text: {children: '상세주소'}},
+			{checkBox: {name: 'depositor'}, text: {children: '입금자명'}},
+			{checkBox: {name: 'gift'}, text: {children: '기념품'}},
+			{checkBox: {name: 'is_deposit'}, text: {children: '입금여부'}},
+			{checkBox: {name: 'category'}, text: {children: '신청서종류'}},
 		],
 	},
 	order: {
@@ -27,18 +45,18 @@ export const checkBoxProps = {
 		},
 		items: [
 			{
-				checkBox: {name: 'order'},
+				checkBox: {name: 'gender-name'},
 				text: {children: '성별(1순위) + 이름(2순위)'},
 			},
 			{
-				checkBox: {name: 'order'},
+				checkBox: {name: 'course-gender-name'},
 				text: {children: '종목(1순위) + 성별(2순위) + 이름(3순위)'},
 			},
 			{
-				checkBox: {name: 'order'},
+				checkBox: {name: 'course-group__name-gender'},
 				text: {children: '종목(1순위) + 단체(2순위) + 성별(3순위)'},
 			},
-			{checkBox: {name: 'order'}, text: {children: '입력순'}},
+			{checkBox: {name: 'id'}, text: {children: '입력순'}},
 		],
 	},
 	deposit: {
@@ -46,9 +64,9 @@ export const checkBoxProps = {
 			children: '입금 구분',
 		},
 		items: [
-			{checkBox: {name: 'order'}, text: {children: '입금'}},
-			{checkBox: {name: 'order'}, text: {children: '미입금'}},
-			{checkBox: {name: 'order'}, text: {children: '전체'}},
+			{checkBox: {name: 'deposit'}, text: {children: '입금'}},
+			{checkBox: {name: 'no-deposit'}, text: {children: '미입금'}},
+			{checkBox: {name: 'all-deposit'}, text: {children: '전체'}},
 		],
 	},
 	category: {
@@ -56,9 +74,9 @@ export const checkBoxProps = {
 			children: '신청서 구분',
 		},
 		items: [
-			{checkBox: {name: 'order'}, text: {children: '단체'}},
-			{checkBox: {name: 'order'}, text: {children: '개인'}},
-			{checkBox: {name: 'order'}, text: {children: '전체'}},
+			{checkBox: {name: 'group'}, text: {children: '단체'}},
+			{checkBox: {name: 'person'}, text: {children: '개인'}},
+			{checkBox: {name: 'all-category'}, text: {children: '전체'}},
 		],
 	},
 	availableList: ['fields', 'order', 'deposit', 'category'],
