@@ -8,6 +8,37 @@ import {
 } from '../config';
 import {onlyLetter, onlyNumber} from './validator';
 
+export const makeGiftByCourse = (name = '') => {
+	let gifts = [];
+	if (!name) {
+		return gifts;
+	}
+	try {
+		giftMap[name].forEach((gift) => {
+			gifts.push({
+				value: gift,
+				name: gift,
+			});
+		});
+	} catch (e) {
+		return [];
+	}
+
+	return gifts;
+};
+
+export const makeCourse = () => {
+	let courses = [];
+	courseList.forEach((course) => {
+		courses.push({
+			name: course,
+			value: course,
+			children: `${course} 부문`,
+		});
+	});
+	return courses;
+};
+
 export const cloneObject = (obj) => {
 	let clone = {};
 	for (let key in obj) {
@@ -206,14 +237,21 @@ export const birthProps = {
 	},
 };
 
+export const bibProps = {
+	input: {
+		value: '',
+		borderRadius: '0.25rem',
+		border: 'none',
+		name: 'bib',
+		onChange: () => console.log(1),
+		height: '40px',
+	},
+};
+
 export const courseProps = {
 	select: {
 		name: 'course',
-		options: [
-			{value: '10km', name: '10km'},
-			{value: '5km', name: '5km'},
-			{value: '하프', name: '하프코스'},
-		],
+		options: makeCourse(),
 		height: '40px',
 		borderRadius: '5px',
 		border: 'none',
@@ -259,10 +297,19 @@ export const btnProps = {
 export const giftProps = {
 	select: {
 		name: 'gift',
+		options: [],
+		height: '40px',
+		borderRadius: '5px',
+		border: 'none',
+	},
+};
+
+export const depositProps = {
+	select: {
+		name: 'is_deposit',
 		options: [
-			{value: '10km', name: '10km'},
-			{value: '5km', name: '5km'},
-			{value: '하프', name: '하프코스'},
+			{value: false, name: '미입금'},
+			{value: true, name: '입금'},
 		],
 		height: '40px',
 		borderRadius: '5px',
@@ -270,7 +317,20 @@ export const giftProps = {
 	},
 };
 
-export const setGroupForm = (prevStates = [], setFunc) => {
+export const deletedProps = {
+	select: {
+		name: 'deleted',
+		options: [
+			{value: null, name: '선택'},
+			{value: new Date().toISOString(), name: '삭제'},
+		],
+		height: '40px',
+		borderRadius: '5px',
+		border: 'none',
+	},
+};
+
+export const setGroupForm = (prevStates = [], setFunc, isAdmin = false) => {
 	let groupForms = [];
 
 	prevStates.forEach((state, index) => {
@@ -309,6 +369,13 @@ export const setGroupForm = (prevStates = [], setFunc) => {
 				props.input.pattern = onlyNumber;
 				tempList.push(props);
 			}
+			if (key === 'bib' && isAdmin) {
+				let props = cloneDeep(bibProps);
+				props.input.onChange = (e) =>
+					setGroupInput(e, index, prevStates, setFunc);
+				props.input.value = value;
+				tempList.push(props);
+			}
 
 			if (key === 'phone1') {
 				let props = cloneDeep(contactProps);
@@ -339,14 +406,36 @@ export const setGroupForm = (prevStates = [], setFunc) => {
 				let props = cloneDeep(giftProps);
 				props.select.onChange = (e) =>
 					setGroupSelect(e, index, prevStates, setFunc);
+				props.select.options = makeGiftByCourse(
+					prevStates[index].course,
+				);
+				props.select.value = value;
+				tempList.push(props);
+			}
+
+			if (key === 'is_deposit' && isAdmin) {
+				let props = cloneDeep(depositProps);
+				props.select.onChange = (e) =>
+					setGroupSelect(e, index, prevStates, setFunc);
+				props.select.value = value;
+				tempList.push(props);
+			}
+
+			if (key === 'deleted' && isAdmin) {
+				let props = cloneDeep(deletedProps);
+				props.select.onChange = (e) =>
+					setGroupSelect(e, index, prevStates, setFunc);
 				props.select.value = value;
 				tempList.push(props);
 			}
 		}
-		let props = cloneDeep(btnProps);
-		props.button.onClick = () =>
-			setIndividualDelete(index, prevStates, setFunc);
-		tempList.push(props);
+		if (!isAdmin) {
+			let props = cloneDeep(btnProps);
+			props.button.onClick = () =>
+				setIndividualDelete(index, prevStates, setFunc);
+			tempList.push(props);
+		}
+
 		groupForms.push(tempList);
 	});
 	return groupForms;
@@ -398,32 +487,6 @@ export const generateGroupParticipation = (participation = []) => {
 		});
 	});
 	return participations;
-};
-
-export const makeGiftByCourse = (name = '') => {
-	let gifts = [];
-	if (!name) {
-		return gifts;
-	}
-	giftMap[name].forEach((gift) => {
-		gifts.push({
-			value: gift,
-			name: gift,
-		});
-	});
-	return gifts;
-};
-
-export const makeCourse = () => {
-	let courses = [];
-	courseList.forEach((course) => {
-		courses.push({
-			name: course,
-			value: course,
-			children: `${course} 부문`,
-		});
-	});
-	return courses;
 };
 
 export const generateComments = (comments) => {

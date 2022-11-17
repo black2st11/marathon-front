@@ -49,6 +49,19 @@ export const updatePerson = async ({id, body}) => {
 	});
 };
 
+export const updateGroup = async ({id, body}) => {
+	let data = {
+		...body,
+		token,
+	};
+
+	return await defaultApi({
+		url: `/participations/group/${id}/`,
+		data,
+		method: 'PUT',
+	});
+};
+
 export const setDepositParticipation = async ({id}) => {
 	let data = {
 		token,

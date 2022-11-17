@@ -79,11 +79,10 @@ export const participationProps = {
 			onClick: () => console.log('check'),
 			borderRadius: '0.3rem',
 		},
-		{children: '번호'},
 		{children: '이름'},
 		{children: '생년월일'},
-		{children: '연락처'},
 		{children: '성별'},
+		{children: '연락처'},
 		{children: '배번'},
 		{children: '종목'},
 		{children: '기념품'},
@@ -91,4 +90,13 @@ export const participationProps = {
 		{children: '삭제버튼'},
 	],
 	trs: [],
+};
+
+export const buttonProps = {
+	button: {
+		text: {
+			children: '저장',
+			color: 'white',
+		},
+	},
 };

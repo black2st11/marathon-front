@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import * as S from './style';
-import {groupProps, participationProps} from './data';
-import {Input, Select, Text} from '../../../Components/Atom';
+import {buttonProps, groupProps, participationProps} from './data';
+import {Button, Input, Select, Text} from '../../../Components/Atom';
 import {MultipleInput} from '../../../Components/Organism/InputForm';
 import {GroupTable} from '../../../Components/Organism/GroupForm';
-import {getGroup} from '../../../api/admin';
+import {getGroup, updateGroup} from '../../../api/admin';
+import {setGroupForm} from '../../../util';
 
 const GroupFormGenerate = ({props}) => {
 	switch (props.type) {
@@ -59,8 +60,8 @@ const ModalGroupForm = ({id, onClick}) => {
 				month: splitted_birth[1],
 				day: splitted_birth[2],
 				phone1: splitted_phone[0],
-				phone2: splitted_phone[1],
-				phone3: splitted_phone[2],
+				phone2: splitted_phone[1] ? splitted_phone[1] : '',
+				phone3: splitted_phone[2] ? splitted_phone[2] : '',
 				post_number: data.post_number,
 				address: data.address,
 				detail_address: data.detail_address,
@@ -71,9 +72,22 @@ const ModalGroupForm = ({id, onClick}) => {
 			participation_data.forEach((item) => {
 				let splitted_phone = item.phone.split('-');
 				temp.push({
-					...item,
+					check: false,
+					id: item.id,
+					name: item.name,
+					birth: item.birth,
+					gender: item.gender,
+					phone1: splitted_phone[0],
+					phone2: splitted_phone[1] ? splitted_phone[1] : '',
+					phone3: splitted_phone[2] ? splitted_phone[2] : '',
+					bib: item.bib ? item.bib : '',
+					course: item.course,
+					gift: item.gift,
+					is_deposit: item.is_deposit,
+					deleted: null,
 				});
 			});
+			setParticipation(temp);
 		})();
 	}, []);
 
@@ -97,12 +111,41 @@ const ModalGroupForm = ({id, onClick}) => {
 		}
 	});
 
+	participationProps.trs = setGroupForm(
+		participation,
+		setParticipation,
+		true,
+	);
+
+	buttonProps.button.onClick = async () => {
+		let temp_group = {
+			...group,
+			phone: `${group.phone1}-${group.phone2}-${group.phone3}`,
+			birth: `${group.year}-${group.month}-${group.day}`,
+		};
+		let temp_participations = [];
+		participation.forEach((item) => {
+			temp_participations.push({
+				...item,
+				phone: `${item.phone1}-${item.phone2}-${item.phone3}`,
+			});
+		});
+		let body = {
+			...temp_group,
+			participation: temp_participations,
+		};
+		console.log(body);
+		let res = await updateGroup({id, body});
+		onClick();
+	};
+
 	return (
 		<S.Container>
 			{groupProps.items.map((groupItem) => (
 				<GroupFormGenerate props={groupItem} />
 			))}
 			<GroupTable {...participationProps} />
+			<Button {...buttonProps.button} />
 		</S.Container>
 	);
 };
