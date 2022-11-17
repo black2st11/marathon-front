@@ -44,7 +44,6 @@ const GroupFormGenerate = ({props}) => {
 const ModalGroupForm = ({id, onClick}) => {
 	const [group, setGroup] = useState({});
 	const [participation, setParticipation] = useState([]);
-
 	useEffect(() => {
 		(async () => {
 			let res = await getGroup({id});
@@ -85,6 +84,7 @@ const ModalGroupForm = ({id, onClick}) => {
 					gift: item.gift,
 					is_deposit: item.is_deposit,
 					deleted: null,
+					created: item.created,
 				});
 			});
 			setParticipation(temp);
@@ -134,7 +134,6 @@ const ModalGroupForm = ({id, onClick}) => {
 			...temp_group,
 			participation: temp_participations,
 		};
-		console.log(body);
 		let res = await updateGroup({id, body});
 		onClick();
 	};

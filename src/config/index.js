@@ -213,6 +213,12 @@ export const giftMap = {
 	하프코스: ['신발', '음료'],
 };
 
+export const participatedList = [
+	{date: '2022-12-01', weekday: '월'},
+	{date: '2022-12-02', weekday: '화'},
+	{date: '2022-12-03', weekday: '수'},
+];
+
 export const navProps = {
 	logo: logo,
 	links: [

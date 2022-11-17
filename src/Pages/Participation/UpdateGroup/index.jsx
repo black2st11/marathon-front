@@ -181,7 +181,6 @@ const UpdateGroup = () => {
 			setSection(1);
 		}
 	};
-	console.log(group);
 	secondProps.button.onClick = () => {
 		setSection(2);
 	};

@@ -12,6 +12,35 @@ export const getListParticipation = async ({page, search}) => {
 	return await defaultApi({params, url: '/participations/', method: 'GET'});
 };
 
+export const getListDeletedParticipation = async ({page, search}) => {
+	let params = {
+		token,
+		page,
+		search,
+	};
+
+	return await defaultApi({
+		params,
+		url: '/participations/deleted/',
+		method: 'GET',
+	});
+};
+
+export const getListVolunteer = async ({page, search}) => {
+	let params = {
+		token,
+		page,
+		search,
+		verification: '3bf440f1-5e05-4ff1-a2b0-2e3c933fd5b2',
+	};
+
+	return await defaultApi({
+		params,
+		url: '/participations/volunteer/',
+		method: 'GET',
+	});
+};
+
 export const getPerson = async ({id}) => {
 	let params = {
 		token,
@@ -24,6 +53,20 @@ export const getPerson = async ({id}) => {
 	});
 };
 
+export const getListGroup = async ({page, search}) => {
+	let params = {
+		page,
+		search,
+		token,
+		verification: '3bf440f1-5e05-4ff1-a2b0-2e3c933fd5b2',
+	};
+	return await defaultApi({
+		params,
+		url: `/participations/group/`,
+		method: 'GET',
+	});
+};
+
 export const getGroup = async ({id}) => {
 	let params = {
 		token,
@@ -32,6 +75,18 @@ export const getGroup = async ({id}) => {
 	return await defaultApi({
 		params,
 		url: `/participations/group/${id}/`,
+		method: 'GET',
+	});
+};
+
+export const getVolunteer = async ({id}) => {
+	let params = {
+		token,
+	};
+
+	return await defaultApi({
+		params,
+		url: `/participations/volunteer/${id}/`,
 		method: 'GET',
 	});
 };
@@ -118,7 +173,7 @@ export const recoverParticipation = async ({id}) => {
 
 	return await defaultApi({
 		data,
-		url: `/participations/${id}/recover/`,
+		url: `/participations/deleted/${id}/set_recover/`,
 		method: 'POST',
 	});
 };
@@ -130,7 +185,7 @@ export const recoverParticipations = async ({ids}) => {
 	};
 	return await defaultApi({
 		data,
-		url: `/participations/recovers/`,
+		url: `/participations/deleted/recovers/`,
 		method: 'POST',
 	});
 };
@@ -142,32 +197,7 @@ export const deleteParticipation = async ({id}) => {
 
 	return await defaultApi({
 		data,
-		url: `/participations/${id}/`,
-		method: 'DELETE',
-	});
-};
-
-export const deleteGroup = async ({id}) => {
-	let data = {
-		token,
-	};
-
-	return await defaultApi({
-		data,
-		url: `/participations/${id}/`,
-		method: 'DELETE',
-	});
-};
-
-export const deleteGroups = async ({ids}) => {
-	let data = {
-		token,
-		ids,
-	};
-
-	return await defaultApi({
-		data,
-		url: `/participations/deletes/`,
+		url: `/participations/deleted/${id}/set_delete/`,
 		method: 'DELETE',
 	});
 };
@@ -180,7 +210,83 @@ export const deleteParticipations = async ({ids}) => {
 
 	return await defaultApi({
 		data,
-		url: `/participations/deletes/`,
+		url: `/participations/deleted/deletes/`,
+		method: 'DELETE',
+	});
+};
+
+export const deleteGroup = async ({id}) => {
+	let data = {
+		token,
+	};
+
+	return await defaultApi({
+		data,
+		url: `/participations/group/${id}/`,
+		method: 'DELETE',
+	});
+};
+
+export const setGroupDeposit = async ({id}) => {
+	let data = {
+		token,
+	};
+
+	return await defaultApi({
+		data,
+		url: `/participations/group/${id}/set_deposit/`,
+		method: 'POST',
+	});
+};
+
+export const setGroupDeposits = async ({ids, is_deposit}) => {
+	let data = {
+		token,
+		ids,
+		is_deposit,
+	};
+
+	return await defaultApi({
+		data,
+		url: `/participations/group/set_deposits/`,
+		method: 'POST',
+	});
+};
+
+export const deleteGroups = async ({ids}) => {
+	let data = {
+		token,
+		ids,
+	};
+
+	return await defaultApi({
+		data,
+		url: `/participations/group/deletes/`,
+		method: 'DELETE',
+	});
+};
+
+export const deleteVolunteer = async ({id}) => {
+	let data = {
+		token,
+	};
+
+	return await defaultApi({
+		data,
+		url: `/participations/volunteer/${id}/`,
+		method: 'DELETE',
+	});
+};
+
+export const deleteVolunteers = async ({ids}) => {
+	let data = {
+		token,
+		ids,
+	};
+
+	return await defaultApi({
+		data,
+		url: `/participations/volunteer/deletes`,
 		method: 'DELETE',
 	});
 };

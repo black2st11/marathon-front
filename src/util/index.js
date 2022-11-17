@@ -5,6 +5,7 @@ import {
 	fontSize,
 	giftMap,
 	courseList,
+	participatedList,
 } from '../config';
 import {onlyLetter, onlyNumber} from './validator';
 
@@ -471,6 +472,18 @@ export const makeDay = () => {
 	return days;
 };
 
+export const makeParticipated = () => {
+	let participated = [];
+	participatedList.forEach((day) => {
+		let splitted_day = day.date.split('-');
+		participated.push({
+			value: day.date,
+			name: `${splitted_day[0]}년 ${splitted_day[1]}월 ${splitted_day[2]}일 ${day.weekday}`,
+		});
+	});
+	return participated;
+};
+
 export const generateGroupParticipation = (participation = []) => {
 	let participations = [];
 	participation.forEach((item) => {
@@ -502,7 +515,6 @@ export const generateComments = (comments) => {
 };
 
 export const apiErrorParser = (e) => {
-	console.log(e);
 	if (e.response.status === 404) {
 		return alert('존재하지 않는 요청입니다. 확인해주세요');
 	}

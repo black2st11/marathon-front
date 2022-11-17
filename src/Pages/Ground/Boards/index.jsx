@@ -20,7 +20,6 @@ const Boards = ({category}) => {
 			let res = await getListBoard({category, page});
 			setBoards(res.data.results);
 			setCount(res.data.count);
-			console.log(res);
 		})();
 	}, [page]);
 

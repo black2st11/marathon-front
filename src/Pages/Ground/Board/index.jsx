@@ -13,7 +13,6 @@ const Board = ({category = '자유'}) => {
 	useEffect(() => {
 		(async () => {
 			let res = await getBoard({id: params.id, category});
-			console.log(res);
 			setState(res.data);
 		})();
 	}, []);

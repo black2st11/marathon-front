@@ -57,6 +57,10 @@ const ModalPersonForm = ({person, onClick}) => {
 				year: splitted_birth[0],
 				month: splitted_birth[1],
 				day: splitted_birth[2],
+				bib: res.data.participation.bib
+					? res.data.participation.bib
+					: '',
+				email: res.data.email ? res.data.email : '',
 			});
 		})();
 	}, []);
@@ -80,11 +84,9 @@ const ModalPersonForm = ({person, onClick}) => {
 				group_id: info.group_id,
 			},
 		};
-
 		let res = await updatePerson({id: info.id, body});
 		onClick();
 	};
-	console.log(info);
 	return (
 		<S.Container>
 			<S.Wrapper>

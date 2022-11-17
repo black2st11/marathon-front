@@ -132,9 +132,7 @@ const AdminParticipation = () => {
 			is_deposit: depo,
 		});
 	};
-	const getData = () => {
-		console.log(1);
-	};
+
 	return (
 		<S.Container>
 			<S.CheckBoxWrapper>
@@ -182,10 +180,19 @@ const AdminParticipation = () => {
 					{select.category === 'person' ? (
 						<ModalPersonForm
 							person={select.id}
-							onClick={() => setModal(false)}
+							onClick={() => {
+								setModal(false);
+								setToggle(!toggle);
+							}}
 						/>
 					) : (
-						<ModalGroupForm id={select.id} />
+						<ModalGroupForm
+							id={select.id}
+							onClick={() => {
+								setModal(false);
+								setToggle(!toggle);
+							}}
+						/>
 					)}
 				</Modal>
 			)}

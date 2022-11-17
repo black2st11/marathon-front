@@ -3,8 +3,6 @@ import * as S from './style';
 import {Text} from '../../Atom';
 
 const Borads = ({titles = [], contents = [], count = 0, page = 0, onClick}) => {
-	console.log(contents);
-
 	return (
 		<S.Container>
 			<S.TitleWrapper>

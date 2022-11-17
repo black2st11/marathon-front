@@ -119,7 +119,6 @@ export const isValidate = (state, invalidProps, setFunc) => {
 				if (key === 'class_name' || key === 'grade') {
 					key = 'class_name';
 				}
-				console.log(key);
 				result = defaultValidator(value, requiredInfo[key]?.required);
 				break;
 		}
@@ -131,7 +130,6 @@ export const isValidate = (state, invalidProps, setFunc) => {
 			};
 		}
 	}
-	console.log(invalidProps);
 	setFunc(invalidProps);
 	return flag;
 };
