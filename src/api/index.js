@@ -10,6 +10,7 @@ export const defaultApi = async ({
 	raiseError = true,
 	isRaw = false,
 	responseType,
+	headers,
 }) => {
 	try {
 		let res = await axios({
@@ -18,6 +19,7 @@ export const defaultApi = async ({
 			data,
 			params,
 			responseType,
+			headers,
 		});
 		if (isRaw) {
 			return res;

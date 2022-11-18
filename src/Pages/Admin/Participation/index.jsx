@@ -3,7 +3,9 @@ import * as S from './style';
 import {
 	categoryInit,
 	checkBoxProps,
+	depositFilter,
 	depositInit,
+	genderFilter,
 	orderInit,
 	searchProps,
 	selectProps,
@@ -40,16 +42,18 @@ const AdminParticipation = () => {
 	const [deposit, setDeposit] = useState(depositInit);
 	const [modal, setModal] = useState(false);
 	const [select, setSelect] = useState({id: 0, category: 'person'});
+	const [filter, setFilter] = useState({gender: '', is_deposit: ''});
+
 	useEffect(() => {
 		(async () => {
-			let res = await getListParticipation({page: page});
+			let res = await getListParticipation({page: page, filter});
 			if (!res.isSuccess) {
 				return;
 			}
 			setParticipation(res.data.results);
 			setTotal(res.data.count);
 		})();
-	}, [page, toggle]);
+	}, [page, toggle, filter]);
 
 	tableProps.trs = generateAdminParticipationTable({
 		participations: participation,
@@ -164,6 +168,16 @@ const AdminParticipation = () => {
 				<Select {...selectProps.select} />
 				<Button {...selectProps.button} />
 			</S.ActionWrapper>
+			<Select
+				onChange={(e) =>
+					setFilter({...filter, is_deposit: e.target.value})
+				}
+				options={depositFilter}
+			/>
+			<Select
+				onChange={(e) => setFilter({...filter, gender: e.target.value})}
+				options={genderFilter}
+			/>
 			<S.TableWrapper>
 				<GroupTable {...tableProps} />
 			</S.TableWrapper>

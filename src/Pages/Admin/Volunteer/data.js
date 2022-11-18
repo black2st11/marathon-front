@@ -1,4 +1,17 @@
 import {colorPalette} from '../../../config';
+import {makeParticipated} from '../../../util';
+
+export const orderInit = {
+	school_name: false,
+	grade: false,
+	name: false,
+	participated: false,
+	id: false,
+};
+
+export const participatedFilter = [{value: '', name: '전체'}].concat(
+	makeParticipated(),
+);
 
 export const checkBoxProps = {
 	fields: {
@@ -6,13 +19,13 @@ export const checkBoxProps = {
 			children: '항목(아무것도 선택안한 경우 전체)',
 		},
 		items: [
-			{checkBox: {name: 'fields'}, text: {children: '이름'}},
-			{checkBox: {name: 'fields'}, text: {children: '참여날짜'}},
-			{checkBox: {name: 'fields'}, text: {children: '연락처'}},
-			{checkBox: {name: 'fields'}, text: {children: '생년월일'}},
-			{checkBox: {name: 'fields'}, text: {children: '학교명'}},
-			{checkBox: {name: 'fields'}, text: {children: '반'}},
-			{checkBox: {name: 'fields'}, text: {children: '1635ID'}},
+			{checkBox: {name: 'name'}, text: {children: '이름'}},
+			{checkBox: {name: 'participated'}, text: {children: '참여날짜'}},
+			{checkBox: {name: 'phone'}, text: {children: '연락처'}},
+			{checkBox: {name: 'birth'}, text: {children: '생년월일'}},
+			{checkBox: {name: 'school_name'}, text: {children: '학교명'}},
+			{checkBox: {name: 'grade'}, text: {children: '반'}},
+			{checkBox: {name: 'volunteer_id'}, text: {children: '1635ID'}},
 		],
 	},
 	order: {
@@ -20,11 +33,11 @@ export const checkBoxProps = {
 			children: '정렬(선택안한 경우 입력 순)',
 		},
 		items: [
-			{checkBox: {name: 'order'}, text: {children: '이름'}},
-			{checkBox: {name: 'order'}, text: {children: '학교명'}},
-			{checkBox: {name: 'order'}, text: {children: '학년'}},
-			{checkBox: {name: 'order'}, text: {children: '참여날짜'}},
-			{checkBox: {name: 'order'}, text: {children: '입력순'}},
+			{checkBox: {name: 'name'}, text: {children: '이름'}},
+			{checkBox: {name: 'school_name'}, text: {children: '학교명'}},
+			{checkBox: {name: 'grade'}, text: {children: '학년'}},
+			{checkBox: {name: 'participated'}, text: {children: '참여날짜'}},
+			{checkBox: {name: 'id'}, text: {children: '입력순'}},
 		],
 	},
 	availableList: ['fields', 'order'],

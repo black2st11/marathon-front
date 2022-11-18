@@ -1,50 +1,50 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
-    display : flex;
-    flex-direction : column;
-`
+	display: flex;
+	flex-direction: column;
+	overflow: scroll;
+`;
 
 export const RowWraper = styled.div`
-    display : flex;
-    align-items : center;
-`
+	display: flex;
+	align-items: center;
+`;
 
 export const SelectWrapper = styled.div`
-    display : flex;
-    align-items : center;
-    margin : 1rem 0;
-    > * {
-        margin : auto 1rem auto 0;
-    }
-    > button {
-        width : 160px;
-    }
+	display: flex;
+	align-items: center;
+	margin: 1rem 0;
+	> * {
+		margin: auto 1rem auto 0;
+	}
+	> button {
+		width: 160px;
+	}
 
-    > select {
-        height : 50px;
-        width : 200px
-    }
-`
+	> select {
+		height: 50px;
+		width: 200px;
+	}
+`;
 
 export const SearchWrapper = styled.div`
-    display : flex;
-    align-items : center;
-    margin : 1rem 0;
-    > * {
-        margin : auto 1rem auto 0;
-    }
-    > button {
-        width : 160px;
-    }
+	display: flex;
+	align-items: center;
+	margin: 1rem 0;
+	> * {
+		margin: auto 1rem auto 0;
+	}
+	> button {
+		width: 160px;
+	}
 
-    > div {
-        height : 50px;
-        width : 200px
-    }
-`
+	> div {
+		height: 50px;
+		width: 200px;
+	}
+`;
 
 export const PaginationWrapper = styled.div`
-    margin: 1rem 0;
-`
-
+	margin: 1rem 0;
+`;

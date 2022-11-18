@@ -18,6 +18,18 @@ export const depositInit = {
 	all: false,
 };
 
+export const depositFilter = [
+	{value: '', name: '전체'},
+	{value: 'True', name: '입금'},
+	{value: 'False', name: '미입금'},
+];
+
+export const genderFilter = [
+	{value: '', name: '전체'},
+	{value: '남성', name: '남성'},
+	{value: '여성', name: '여성'},
+];
+
 export const checkBoxProps = {
 	fields: {
 		title: {

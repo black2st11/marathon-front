@@ -2,11 +2,12 @@ import {defaultApi} from './index';
 import {TOKEN as token} from '../config';
 import {exportFileDownload} from '../util/generator';
 
-export const getListParticipation = async ({page, search}) => {
+export const getListParticipation = async ({page, search, filter}) => {
 	let params = {
 		token,
 		page,
 		search,
+		...filter,
 	};
 
 	return await defaultApi({params, url: '/participations/', method: 'GET'});
@@ -26,11 +27,12 @@ export const getListDeletedParticipation = async ({page, search}) => {
 	});
 };
 
-export const getListVolunteer = async ({page, search}) => {
+export const getListVolunteer = async ({page, search, filter}) => {
 	let params = {
 		token,
 		page,
 		search,
+		...filter,
 		verification: '3bf440f1-5e05-4ff1-a2b0-2e3c933fd5b2',
 	};
 
@@ -298,6 +300,7 @@ export const exportParticipation = async ({
 	is_deposit,
 }) => {
 	let data = {
+		token,
 		fields,
 		order,
 		category,
@@ -332,4 +335,19 @@ export const exportGroup = async ({fields, order, is_deposit}) => {
 	exportFileDownload(res);
 };
 
-export const exportVolunteer = async () => {};
+export const exportVolunteer = async ({fields, order}) => {
+	let data = {
+		fields,
+		order,
+		token,
+	};
+
+	let res = await defaultApi({
+		data,
+		url: `/participations/volunteer/export/`,
+		method: 'POST',
+		isRaw: true,
+		responseType: 'blob',
+	});
+	exportFileDownload(res);
+};
