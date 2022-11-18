@@ -1,13 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import * as S from './style';
-import {checkBoxProps, searchProps, selectProps, tableProps} from './data';
+import {
+	checkBoxProps,
+	searchProps,
+	selectProps,
+	tableProps,
+	orderInit,
+	depositInit,
+} from './data';
 import {CheckBox, Input, Select, Text, Button} from '../../../Components/Atom';
 import {GroupTable} from '../../../Components/Organism/GroupForm';
 import {Modal, Pagination} from '../../../Components/Organism';
-import {categoryInit, depositInit, orderInit} from '../Participation/data';
 import {
 	deleteGroup,
-	deleteGroups,
+	deleteGroups, exportGroup, exportParticipation,
 	getListGroup,
 	setGroupDeposit,
 	setGroupDeposits,
@@ -15,6 +21,8 @@ import {
 import {generateAdminGroupTable} from '../../../util/generator';
 import {ModalGroupForm} from '../index';
 import {setToggleCheck} from '../../../util';
+import {checkBinding} from '../../../util/binding';
+import {dictToList, dictToStr} from "../../../util/postProcess";
 
 const AdminGroup = () => {
 	const [group, setGroup] = useState([]);
@@ -26,7 +34,6 @@ const AdminGroup = () => {
 	const [search, setSearch] = useState('');
 	const [fields, setFields] = useState({});
 	const [order, setOrder] = useState(orderInit);
-	const [category, setCategory] = useState(categoryInit);
 	const [deposit, setDeposit] = useState(depositInit);
 	const [modal, setModal] = useState(false);
 	const [select, setSelect] = useState(0);
@@ -80,6 +87,37 @@ const AdminGroup = () => {
 		} else if (action === 'delete') {
 			await deleteGroups({ids});
 		}
+	};
+
+	checkBinding({
+		items: checkBoxProps.fields.items,
+		props: fields,
+		setProps: setFields,
+	});
+	checkBinding({
+		items: checkBoxProps.order.items,
+		props: order,
+		setProps: setOrder,
+		defaultProps: orderInit,
+	});
+
+	checkBinding({
+		items: checkBoxProps.deposit.items,
+		props: deposit,
+		setProps: setDeposit,
+		defaultProps: depositInit,
+	});
+
+	checkBoxProps.button.onClick = async () => {
+		let field = dictToList({dict: fields});
+		let ord = dictToStr({dict: order, defaultValue: 'id'});
+		let depo = dictToStr({dict: deposit, defaultValue: 'all'});
+
+		await exportGroup({
+			fields: field,
+			order: ord.split('-'),
+			is_deposit: depo,
+		});
 	};
 	return (
 		<S.Container>

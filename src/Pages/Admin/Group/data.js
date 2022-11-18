@@ -1,19 +1,31 @@
 import {colorPalette} from '../../../config';
 
+export const orderInit = {
+	name: false,
+	representative: false,
+	created: false,
+};
+
+export const depositInit = {
+	deposit: false,
+	'no-deposit': false,
+	all: false,
+};
+
 export const checkBoxProps = {
 	fields: {
 		title: {
 			children: '항목(아무것도 선택안한 경우 전체)',
 		},
 		items: [
-			{checkBox: {name: 'fields'}, text: {children: '단체명'}},
-			{checkBox: {name: 'fields'}, text: {children: '대표자'}},
-			{checkBox: {name: 'fields'}, text: {children: '연락처'}},
-			{checkBox: {name: 'fields'}, text: {children: '우편번호'}},
-			{checkBox: {name: 'fields'}, text: {children: '주소'}},
-			{checkBox: {name: 'fields'}, text: {children: '상세주소'}},
-			{checkBox: {name: 'fields'}, text: {children: '입금여부'}},
-			{checkBox: {name: 'fields'}, text: {children: '신청일'}},
+			{checkBox: {name: 'name'}, text: {children: '단체명'}},
+			{checkBox: {name: 'representative'}, text: {children: '대표자'}},
+			{checkBox: {name: 'phone'}, text: {children: '연락처'}},
+			{checkBox: {name: 'post_number'}, text: {children: '우편번호'}},
+			{checkBox: {name: 'address'}, text: {children: '주소'}},
+			{checkBox: {name: 'detail_address'}, text: {children: '상세주소'}},
+			{checkBox: {name: 'is_deposit'}, text: {children: '입금여부'}},
+			{checkBox: {name: 'created'}, text: {children: '신청일'}},
 		],
 	},
 	order: {
@@ -21,10 +33,10 @@ export const checkBoxProps = {
 			children: '정렬(선택안한 경우 입력 순)',
 		},
 		items: [
-			{checkBox: {name: 'order'}, text: {children: '단체명'}},
-			{checkBox: {name: 'order'}, text: {children: '대표자'}},
-			{checkBox: {name: 'order'}, text: {children: '주소'}},
-			{checkBox: {name: 'order'}, text: {children: '입력순'}},
+			{checkBox: {name: 'name'}, text: {children: '단체명'}},
+			{checkBox: {name: 'representative'}, text: {children: '대표자'}},
+			{checkBox: {name: 'address'}, text: {children: '주소'}},
+			{checkBox: {name: 'id'}, text: {children: '입력순'}},
 		],
 	},
 	deposit: {
@@ -32,9 +44,9 @@ export const checkBoxProps = {
 			children: '입금 구분',
 		},
 		items: [
-			{checkBox: {name: 'order'}, text: {children: '입금'}},
-			{checkBox: {name: 'order'}, text: {children: '미입금'}},
-			{checkBox: {name: 'order'}, text: {children: '전체'}},
+			{checkBox: {name: 'deposit'}, text: {children: '입금'}},
+			{checkBox: {name: 'no-deposit'}, text: {children: '미입금'}},
+			{checkBox: {name: 'all'}, text: {children: '전체'}},
 		],
 	},
 	availableList: ['fields', 'order', 'deposit'],

@@ -315,6 +315,21 @@ export const exportParticipation = async ({
 	exportFileDownload(res);
 };
 
-export const exportGroup = async () => {};
+export const exportGroup = async ({fields, order, is_deposit}) => {
+	let data = {
+		fields,
+		order,
+		is_deposit,
+		token,
+	};
+	let res = await defaultApi({
+		data,
+		url: `/participations/group/export/`,
+		method: 'POST',
+		responseType: 'blob',
+		isRaw: true,
+	});
+	exportFileDownload(res);
+};
 
 export const exportVolunteer = async () => {};
