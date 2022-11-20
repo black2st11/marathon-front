@@ -9,9 +9,9 @@ export const orderInit = {
 	id: false,
 };
 
-export const participatedFilter = [{value: '', name: '전체'}].concat(
-	makeParticipated(),
-);
+export const participatedFilter = [
+	{value: '', name: '전체', label: '전체'},
+].concat(makeParticipated());
 
 export const checkBoxProps = {
 	fields: {
@@ -19,13 +19,13 @@ export const checkBoxProps = {
 			children: '항목(아무것도 선택안한 경우 전체)',
 		},
 		items: [
-			{checkBox: {name: 'name'}, text: {children: '이름'}},
-			{checkBox: {name: 'participated'}, text: {children: '참여날짜'}},
-			{checkBox: {name: 'phone'}, text: {children: '연락처'}},
-			{checkBox: {name: 'birth'}, text: {children: '생년월일'}},
-			{checkBox: {name: 'school_name'}, text: {children: '학교명'}},
-			{checkBox: {name: 'grade'}, text: {children: '반'}},
-			{checkBox: {name: 'volunteer_id'}, text: {children: '1635ID'}},
+			{value: 'name', name: '이름'},
+			{value: 'participated', name: '참여날짜'},
+			{value: 'phone', name: '연락처'},
+			{value: 'birth', name: '생년월일'},
+			{value: 'school_name', name: '학교명'},
+			{value: 'grade', name: '반'},
+			{value: 'volunteer_id', name: '1635ID'},
 		],
 	},
 	order: {
@@ -33,11 +33,11 @@ export const checkBoxProps = {
 			children: '정렬(선택안한 경우 입력 순)',
 		},
 		items: [
-			{checkBox: {name: 'name'}, text: {children: '이름'}},
-			{checkBox: {name: 'school_name'}, text: {children: '학교명'}},
-			{checkBox: {name: 'grade'}, text: {children: '학년'}},
-			{checkBox: {name: 'participated'}, text: {children: '참여날짜'}},
-			{checkBox: {name: 'id'}, text: {children: '입력순'}},
+			{value: 'name', name: '이름'},
+			{value: 'school_name', name: '학교명'},
+			{value: 'grade', name: '학년'},
+			{value: 'participated', name: '참여날짜'},
+			{value: 'id', name: '입력순'},
 		],
 	},
 	availableList: ['fields', 'order'],
@@ -59,49 +59,22 @@ export const searchProps = {
 	},
 };
 
-export const selectProps = {
-	select: {
-		options: [{value: 'delete', name: '삭제'}],
-	},
-	button: {
-		isRounded: true,
-		text: {
-			children: '실행',
-			color: colorPalette.white,
-		},
-	},
-};
+export const actionOptions = [
+	{value: '', label: '선택'},
+	{value: 'delete', label: '삭제'},
+];
 
-export const tableProps = {
-	maxWidth: '1160px',
-	ths: [
-		{
-			category: 'check',
-			onClick: () => console.log('check'),
-			borderRadius: '0.3rem',
-		},
-		{children: '수정'},
-		{children: '번호'},
-		{children: '이름'},
-		{children: '참여날짜'},
-		{children: '연락처'},
-		{children: '생년월일'},
-		{children: '학교명'},
-		{children: '반'},
-		{children: '1636ID'},
-		{children: '삭제버튼'},
-	],
-	trs: [
-		[
-			{children: '1'},
-			{children: '문정훈'},
-			{children: '2022-01-01'},
-			{children: '01086147257'},
-			{children: '1995-05-16'},
-			{children: '00학교'},
-			{children: '00반'},
-			{children: 'black'},
-			{button: {text: {children: '삭제 처리', color: 'white'}}},
-		],
-	],
-};
+export const columns = [
+	{title: '번호', dataIndex: 'no'},
+	{title: '이름', dataIndex: 'name'},
+	{title: '참여날짜', dataIndex: 'participated'},
+	{title: '연락처', dataIndex: 'phone'},
+	{title: '생년월일', dataIndex: 'birth'},
+	{title: '학교명', dataIndex: 'school_name'},
+	{
+		title: '반',
+		dataIndex: '',
+		render: (_, record) => `${record.grade}-${record.class_name}`,
+	},
+	{title: '1636ID', dataIndex: 'volunteer_id'},
+];

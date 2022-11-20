@@ -1,8 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Text, Input, Select, Button} from '../../../Components/Atom';
 import * as S from './style';
-import {MultipleInput} from '../../../Components/Organism/InputForm';
-import {onlyNumber} from '../../../util/validator';
 import {
 	makeCourse,
 	makeDay,
@@ -10,11 +7,13 @@ import {
 	makeMonth,
 	makeYear,
 } from '../../../util';
+import {Form, Input, Select, Button, Space} from 'antd';
 import {getPerson, updatePerson} from '../../../api/admin';
 import {getListGroupParticipation} from '../../../api';
 import {makeGroup} from '../../../util/generator';
 
 const ModalPersonForm = ({person, onClick}) => {
+	const [form] = Form.useForm();
 	const [info, setInfo] = useState({
 		name: '',
 		birth: '',
@@ -32,9 +31,9 @@ const ModalPersonForm = ({person, onClick}) => {
 		phone3: '',
 		group_id: 0,
 	});
-
+	const [course, setCourse] = useState('');
 	const [group, setGroup] = useState([]);
-
+	const [isLoading, setIsLoading] = useState(true);
 	useEffect(() => {
 		(async () => {
 			let res = await getPerson({id: person});
@@ -45,7 +44,6 @@ const ModalPersonForm = ({person, onClick}) => {
 			if (!res.isSuccess) {
 				return;
 			}
-
 			let splitted_phone = res.data.participation.phone.split('-');
 			let splitted_birth = res.data.participation.birth.split('-');
 			setInfo({
@@ -62,243 +60,134 @@ const ModalPersonForm = ({person, onClick}) => {
 					: '',
 				email: res.data.email ? res.data.email : '',
 			});
+			setIsLoading(false);
 		})();
 	}, []);
 
-	const updatePersonData = async () => {
-		let body = {
-			post_number: info.post_number,
-			address: info.address,
-			detail_address: info.detail_address,
-			depositor: info.depositor,
-			email: info.email,
-			participation: {
-				birth: `${info.year}-${info.month}-${info.day}`,
-				phone: `${info.phone1}-${info.phone2}-${info.phone3}`,
-				gender: info.gender,
-				course: info.course,
-				name: info.name,
-				bib: info.bib,
-				is_deposit: info.is_deposit,
-				gift: info.gift,
-				group_id: info.group_id,
-			},
-		};
-		let res = await updatePerson({id: info.id, body});
-		onClick();
-	};
 	return (
 		<S.Container>
-			<S.Wrapper>
-				<Text children='이름' />
-				<Input
-					name='name'
-					onChange={(e) =>
-						setInfo({...info, [e.target.name]: e.target.value})
-					}
-					value={info.name}
-				/>
-			</S.Wrapper>
-			<S.Wrapper>
-				<Text children='생년월일' />
-				<S.RowWrapper>
-					<Select
-						options={makeYear()}
-						name={'year'}
-						onChange={(e) => {
-							setInfo({...info, [e.target.name]: e.target.value});
-						}}
-						value={info.year}
-					/>
-					<Select
-						options={makeMonth()}
-						name={'month'}
-						onChange={(e) => {
-							setInfo({...info, [e.target.name]: e.target.value});
-						}}
-						value={info.month}
-					/>
-					<Select
-						options={makeDay()}
-						name={'day'}
-						onChange={(e) => {
-							setInfo({...info, [e.target.name]: e.target.value});
-						}}
-						value={info.day}
-					/>
-				</S.RowWrapper>
-			</S.Wrapper>
-			<S.Wrapper>
-				<Text children='우편번호' />
-				<Input
-					name='post_number'
-					onChange={(e) =>
-						setInfo({...info, [e.target.name]: e.target.value})
-					}
-					value={info.post_number}
-				/>
-			</S.Wrapper>
-			<S.Wrapper>
-				<Text children='주소' />
-				<Input
-					name='address'
-					onChange={(e) =>
-						setInfo({...info, [e.target.name]: e.target.value})
-					}
-					value={info.address}
-				/>
-			</S.Wrapper>
-			<S.Wrapper>
-				<Text children='상세주소' />
-				<Input
-					name='detail_address'
-					onChange={(e) =>
-						setInfo({...info, [e.target.name]: e.target.value})
-					}
-					value={info.detail_address}
-				/>
-			</S.Wrapper>
-			<S.Wrapper>
-				<Text children='입금자' />
-				<Input
-					name='depositor'
-					onChange={(e) =>
-						setInfo({...info, [e.target.name]: e.target.value})
-					}
-					value={info.depositor}
-				/>
-			</S.Wrapper>
-			<S.Wrapper>
-				<Text children='이메일' />
-				<Input
-					name='email'
-					onChange={(e) =>
-						setInfo({...info, [e.target.name]: e.target.value})
-					}
-					value={info.email}
-				/>
-			</S.Wrapper>
-			<S.Wrapper>
-				<Text children='성별' />
-				<Select
-					options={[
-						{name: '남성', value: '남성'},
-						{name: '여성', value: '여성'},
-					]}
-					name='gender'
-					onChange={(e) =>
-						setInfo({...info, [e.target.name]: e.target.value})
-					}
-					value={info.gender}
-				/>
-			</S.Wrapper>
-			<S.Wrapper>
-				<Text children='배번' />
-				<Input
-					name='bib'
-					onChange={(e) =>
-						setInfo({...info, [e.target.name]: e.target.value})
-					}
-					value={info.bib}
-				/>
-			</S.Wrapper>
-			<S.Wrapper>
-				<Text children='핸드폰' />
-				<S.RowWrapper>
-					<MultipleInput
-						inputs={[
-							{
-								name: 'phone1',
-								pattern: onlyNumber,
-								maxlength: 3,
-								onChange: (e) =>
-									setInfo({
-										...info,
-										[e.target.name]: e.target.value,
-									}),
-								value: info.phone1,
+			{!isLoading && (
+				<Form
+					initialValues={info}
+					onFinish={async (values) => {
+						console.log(values);
+						let body = {
+							post_number: values.post_number,
+							address: values.address,
+							detail_address: values.detail_address,
+							depositor: values.depositor,
+							email: values.email,
+							participation: {
+								birth: `${values.year}-${values.month}-${values.day}`,
+								phone: `${values.phone1}-${values.phone2}-${values.phone3}`,
+								gender: values.gender,
+								course: values.course,
+								name: values.name,
+								bib: values.bib,
+								is_deposit: values.is_deposit,
+								gift: values.gift,
+								group_id: values.group_id,
 							},
-							{
-								name: 'phone2',
-								pattern: onlyNumber,
-								maxlength: 4,
-								onChange: (e) =>
-									setInfo({
-										...info,
-										[e.target.name]: e.target.value,
-									}),
-								value: info.phone2,
-							},
-							{
-								name: 'phone3',
-								pattern: onlyNumber,
-								maxlength: 4,
-								onChange: (e) =>
-									setInfo({
-										...info,
-										[e.target.name]: e.target.value,
-									}),
-								value: info.phone3,
-							},
-						]}
-					/>
-				</S.RowWrapper>
-			</S.Wrapper>
-			<S.Wrapper>
-				<Text children='코스' />
-				<Select
-					options={makeCourse()}
-					name='course'
-					onChange={(e) =>
-						setInfo({...info, [e.target.name]: e.target.value})
-					}
-					value={info.course}
-				/>
-			</S.Wrapper>
-			<S.Wrapper>
-				<Text children='선물' />
-				<Select
-					options={makeGiftByCourse(info.course)}
-					name='gift'
-					onChange={(e) =>
-						setInfo({...info, [e.target.name]: e.target.value})
-					}
-					value={info.gift}
-				/>
-			</S.Wrapper>
-			<S.Wrapper>
-				<Text children='입금여부' />
-				<Select
-					options={[
-						{value: true, name: '입금'},
-						{value: false, name: '미입금'},
-					]}
-					name='is_deposit'
-					onChange={(e) =>
-						setInfo({...info, [e.target.name]: e.target.value})
-					}
-					value={info.is_deposit}
-				/>
-			</S.Wrapper>
-			<S.Wrapper>
-				<Text children='그룹선택' />
-				<Select
-					options={makeGroup(group)}
-					name='group_id'
-					onChange={(e) =>
-						setInfo({...info, [e.target.name]: e.target.value})
-					}
-					value={info.group_id}
-				/>
-			</S.Wrapper>
-			<S.Wrapper>
-				<Button
-					text={{children: '저장', color: 'white'}}
-					onClick={() => {
-						updatePersonData();
+						};
+						let res = await updatePerson({id: info.id, body});
+						onClick();
 					}}
-				/>
-			</S.Wrapper>
+					style={{margin: '1rem'}}
+					labelCol={{span: 4}}
+					wrapperCol={{span: 14}}
+					form={form}
+				>
+					<Form.Item name={'name'} label={'이름'}>
+						<Input />
+					</Form.Item>
+					<Form.Item label={'생년월일'}>
+						<Space>
+							<Form.Item name={'year'} noStyle>
+								<Select options={makeYear()} />
+							</Form.Item>
+							-
+							<Form.Item name={'month'} noStyle>
+								<Select options={makeMonth()} />
+							</Form.Item>
+							-
+							<Form.Item name={'day'} noStyle>
+								<Select options={makeDay()} />
+							</Form.Item>
+						</Space>
+					</Form.Item>
+					<Form.Item name={'post_number'} label={'우편번호'}>
+						<Input />
+					</Form.Item>
+					<Form.Item name={'address'} label={'주소'}>
+						<Input />
+					</Form.Item>
+					<Form.Item name={'detail_address'} label={'상세 주소'}>
+						<Input />
+					</Form.Item>
+					<Form.Item name={'depositor'} label={'입금자명'}>
+						<Input />
+					</Form.Item>
+					<Form.Item name={'email'} label={'이메일'}>
+						<Input />
+					</Form.Item>
+					<Form.Item name={'gender'} label={'성별'}>
+						<Select
+							options={[
+								{name: '남성', value: '남성'},
+								{name: '여성', value: '여성'},
+							]}
+						/>
+					</Form.Item>
+					<Form.Item name={'bib'} label={'배번호'}>
+						<Input />
+					</Form.Item>
+					<Form.Item label={'연락처'}>
+						<Space align={'center'}>
+							<Form.Item name={'phone1'} noStyle>
+								<Input />
+							</Form.Item>
+							-
+							<Form.Item name={'phone2'} noStyle>
+								<Input />
+							</Form.Item>
+							-
+							<Form.Item name={'phone3'} noStyle>
+								<Input />
+							</Form.Item>
+						</Space>
+					</Form.Item>
+					<S.RowWrapper></S.RowWrapper>
+					<Form.Item name={'course'} label={'코스'}>
+						<Select
+							options={makeCourse()}
+							onChange={() =>
+								setCourse(form.getFieldValue('course'))
+							}
+						/>
+					</Form.Item>
+					<Form.Item name={'gift'} label={'기념품'}>
+						<Select
+							options={makeGiftByCourse(
+								form.getFieldValue('course'),
+							)}
+						/>
+					</Form.Item>
+					<Form.Item name={'is_deposit'} label={'입금여부'}>
+						<Select
+							options={[
+								{value: true, label: '입금'},
+								{value: false, label: '미입금'},
+							]}
+						/>
+					</Form.Item>
+					<Form.Item name={'group_id'} label={'그룹 선택'}>
+						<Select options={makeGroup(group)} />
+					</Form.Item>
+					<div style={{display: 'flex', justifyContent: 'flex-end'}}>
+						<Button htmlType={'submit'}>저장</Button>
+					</div>
+				</Form>
+			)}
 		</S.Container>
 	);
 };

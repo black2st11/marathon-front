@@ -10,8 +10,5 @@ export const Wrapper = styled.div`
 
 export const RowWrapper = styled.div`
 	display: flex;
-
-	& > select {
-		margin: auto;
-	}
+	align-items: baseline;
 `;

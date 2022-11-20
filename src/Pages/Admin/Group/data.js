@@ -18,14 +18,14 @@ export const checkBoxProps = {
 			children: '항목(아무것도 선택안한 경우 전체)',
 		},
 		items: [
-			{checkBox: {name: 'name'}, text: {children: '단체명'}},
-			{checkBox: {name: 'representative'}, text: {children: '대표자'}},
-			{checkBox: {name: 'phone'}, text: {children: '연락처'}},
-			{checkBox: {name: 'post_number'}, text: {children: '우편번호'}},
-			{checkBox: {name: 'address'}, text: {children: '주소'}},
-			{checkBox: {name: 'detail_address'}, text: {children: '상세주소'}},
-			{checkBox: {name: 'is_deposit'}, text: {children: '입금여부'}},
-			{checkBox: {name: 'created'}, text: {children: '신청일'}},
+			{value: 'name', name: '단체명'},
+			{value: 'representative', name: '대표자'},
+			{value: 'phone', name: '연락처'},
+			{value: 'post_number', name: '우편번호'},
+			{value: 'address', name: '주소'},
+			{value: 'detail_address', name: '상세주소'},
+			{value: 'is_deposit', name: '입금여부'},
+			{value: 'created', name: '신청일'},
 		],
 	},
 	order: {
@@ -33,10 +33,10 @@ export const checkBoxProps = {
 			children: '정렬(선택안한 경우 입력 순)',
 		},
 		items: [
-			{checkBox: {name: 'name'}, text: {children: '단체명'}},
-			{checkBox: {name: 'representative'}, text: {children: '대표자'}},
-			{checkBox: {name: 'address'}, text: {children: '주소'}},
-			{checkBox: {name: 'id'}, text: {children: '입력순'}},
+			{value: 'id', name: '입력순'},
+			{value: 'name', name: '단체명'},
+			{value: 'representative', name: '대표자'},
+			{value: 'address', name: '주소'},
 		],
 	},
 	deposit: {
@@ -44,9 +44,9 @@ export const checkBoxProps = {
 			children: '입금 구분',
 		},
 		items: [
-			{checkBox: {name: 'deposit'}, text: {children: '입금'}},
-			{checkBox: {name: 'no-deposit'}, text: {children: '미입금'}},
-			{checkBox: {name: 'all'}, text: {children: '전체'}},
+			{value: 'all', name: '전체'},
+			{value: 'deposit', name: '입금'},
+			{value: 'no-deposit', name: '미입금'},
 		],
 	},
 	availableList: ['fields', 'order', 'deposit'],
@@ -69,13 +69,12 @@ export const searchProps = {
 };
 
 export const selectProps = {
-	select: {
-		options: [
-			{value: 'delete', name: '삭제'},
-			{value: 'set_deposit', name: '입금 처리'},
-			{value: 'unset_deposit', name: '미입금 처리'},
-		],
-	},
+	options: [
+		{value: '', label: '선택'},
+		{value: 'delete', label: '삭제'},
+		{value: 'set_deposit', label: '입금 처리'},
+		{value: 'unset_deposit', label: '미입금 처리'},
+	],
 	button: {
 		isRounded: true,
 		text: {
@@ -85,27 +84,13 @@ export const selectProps = {
 	},
 };
 
-export const tableProps = {
-	maxWidth: '1160px',
-	ths: [
-		{
-			category: 'check',
-			onClick: () => console.log('check'),
-			borderRadius: '0.3rem',
-		},
-		{children: '수정'},
-
-		{children: '번호'},
-		{children: '단체명'},
-		{children: '대표자'},
-		{children: '연락처'},
-		{children: '우편번호'},
-		{children: '주소'},
-		{children: '상세주소'},
-		{children: '입금카운트'},
-		{children: '입금여부'},
-		{children: '입금버튼'},
-		{children: '삭제버튼'},
-	],
-	trs: [],
-};
+export const columns = [
+	{title: '번호', dataIndex: 'no'},
+	{title: '단체명', dataIndex: 'name'},
+	{title: '대표자', dataIndex: 'representative'},
+	{title: '연락처', dataIndex: 'phone'},
+	{title: '우편번호', dataIndex: 'post_number'},
+	{title: '주소', dataIndex: 'address'},
+	{title: '상세주소', dataIndex: 'detail_address'},
+	{title: '입금카운트', dataIndex: 'deposit_count'},
+];

@@ -1,37 +1,33 @@
 import React, {useEffect, useState} from 'react';
 import * as S from './style';
 import {
+	actionOptions,
 	checkBoxProps,
+	columns,
 	participatedFilter,
 	searchProps,
 	selectProps,
 	tableProps,
 } from './data';
-import {CheckBox, Input, Select, Text, Button} from '../../../Components/Atom';
-import {GroupTable} from '../../../Components/Organism/GroupForm';
-import {Modal, Pagination} from '../../../Components/Organism';
 import {orderInit} from '../Participation/data';
 import {
 	deleteVolunteer,
 	deleteVolunteers,
-	exportParticipation,
 	exportVolunteer,
-	getListParticipation,
 	getListVolunteer,
-	setDepositParticipation,
-	setDepositParticipations,
-	tempDeleteParticipation,
-	tempDeleteParticipations,
 } from '../../../api/admin';
-import {
-	generateAdminParticipationTable,
-	generateAdminVolunteerTable,
-} from '../../../util/generator';
-import {makeParticipated, setToggleCheck} from '../../../util';
-import {ModalGroupForm, ModalPersonForm} from '../index';
 import ModalVolunteerForm from '../ModalVolunteerForm';
-import {checkBinding} from '../../../util/binding';
 import {dictToList, dictToStr} from '../../../util/postProcess';
+import {
+	Checkbox,
+	Radio,
+	Select,
+	Input,
+	Button,
+	Table,
+	Space,
+	Modal,
+} from 'antd';
 
 const AdminVolunteer = () => {
 	const [participation, setParticipation] = useState([]);
@@ -39,13 +35,14 @@ const AdminVolunteer = () => {
 	const [total, setTotal] = useState(0);
 	const [isAllCheck, setIsAllCheck] = useState(false);
 	const [toggle, setToggle] = useState(false);
-	const [action, setAction] = useState();
+	const [action, setAction] = useState('');
 	const [search, setSearch] = useState('');
-	const [fields, setFields] = useState({});
+	const [fields, setFields] = useState([]);
 	const [order, setOrder] = useState(orderInit);
 	const [select, setSelect] = useState(0);
 	const [modal, setModal] = useState(false);
 	const [filter, setFilter] = useState({participated: ''});
+	const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
 	useEffect(() => {
 		(async () => {
@@ -53,59 +50,26 @@ const AdminVolunteer = () => {
 			if (!res.isSuccess) {
 				return;
 			}
-			setParticipation(res.data.results);
+			let data = res.data.results.map((item, idx) => ({
+				...item,
+				key: item.id,
+				no: res.data.count - (page - 1) * 10 - idx,
+			}));
+			setParticipation(data);
 			setTotal(res.data.count);
 		})();
 	}, [page, toggle, filter]);
 
-	tableProps.trs = generateAdminVolunteerTable({
-		participations: participation,
-		setParticipation: setParticipation,
-		deleteApi: deleteVolunteer,
-		current: page,
-		total: total,
-		setToggle: setToggle,
-		toggle: toggle,
-		setSelect,
-		setModal,
-	});
-	tableProps.ths[0].onChange = () => {
-		setToggleCheck(participation, setParticipation, setIsAllCheck);
-	};
-	tableProps.ths[0].value = isAllCheck;
-
-	selectProps.select.onChange = (e) => {
-		setAction(e.target.value);
-	};
-	selectProps.button.onClick = async () => {
-		let ids = [];
-		participation.forEach((item) => {
-			if (item.check) {
-				ids.push(item.id);
-			}
-		});
-		if (action === 'delete') {
-			await deleteVolunteers({ids, is_deposit: true});
+	const doAction = async () => {
+		switch (action) {
+			case 'delete':
+				await deleteVolunteers({ids: selectedRowKeys});
+				break;
+			default:
+				return alert('액션을 설정해주세요');
 		}
+		setToggle(!toggle);
 	};
-
-	searchProps.button.onClick = async () => {
-		let res = await getListVolunteer({page, search});
-		setParticipation(res.data.results);
-	};
-
-	checkBinding({
-		items: checkBoxProps.fields.items,
-		props: fields,
-		setProps: setFields,
-	});
-
-	checkBinding({
-		items: checkBoxProps.order.items,
-		props: order,
-		setProps: setOrder,
-		defaultProps: orderInit,
-	});
 
 	checkBoxProps.button.onClick = async () => {
 		let field = dictToList({dict: fields});
@@ -120,55 +84,102 @@ const AdminVolunteer = () => {
 	return (
 		<S.Container>
 			<S.CheckBoxWrapper>
-				{checkBoxProps.availableList.map((key) => (
-					<S.RowWraper>
-						<S.CheckTitle>
-							<Text {...checkBoxProps[key].title} />
-						</S.CheckTitle>
-						{checkBoxProps[key].items.map((item) => (
-							<S.CheckBoxContent>
-								<CheckBox {...item.checkBox} />
-								<Text {...item.text} />
-							</S.CheckBoxContent>
+				<S.RowWraper>
+					<Checkbox.Group
+						value={fields}
+						onChange={(e) => {
+							setFields(e);
+						}}
+					>
+						{checkBoxProps.fields.items.map((field) => (
+							<Checkbox value={field.value}>
+								{field.name}
+							</Checkbox>
 						))}
-					</S.RowWraper>
-				))}
+					</Checkbox.Group>
+				</S.RowWraper>
+				<S.RowWraper>
+					<Radio.Group
+						onChange={(e) => setOrder(e.target.value)}
+						value={order}
+					>
+						{checkBoxProps.order.items.map((item) => (
+							<Radio value={item.value}>{item.name}</Radio>
+						))}
+					</Radio.Group>
+				</S.RowWraper>
+				<S.ButtonWrapper>
+					<Button type={'primary'}>엑셀 출력</Button>
+				</S.ButtonWrapper>
+				<S.RowWraper>
+					<Input.Search
+						style={{width: '300px'}}
+						onChange={(e) => setSearch(e.target.value)}
+						value={search}
+					/>
+				</S.RowWraper>
+				<S.RowWraper>
+					<Select
+						options={actionOptions}
+						value={action}
+						onChange={(e) => setAction(e.target.value)}
+					/>
+					<Button onClick={doAction}>실행</Button>
+				</S.RowWraper>
+				<S.RowWraper>
+					<Radio.Group
+						onChange={(e) => {
+							setFilter({
+								...filter,
+								participated: e.target.value,
+							});
+						}}
+						optionType={'button'}
+						options={participatedFilter}
+					/>
+				</S.RowWraper>
+				<Table
+					scroll={{x: 1300}}
+					rowSelection={{
+						selectedRowKeys,
+						onChange: (e) => {
+							setSelectedRowKeys(e);
+						},
+					}}
+					dataSource={participation}
+				>
+					{columns.map((col) => (
+						<Table.Column align={'center'} {...col} />
+					))}
+					<Table.Column
+						title={'액션'}
+						align={'center'}
+						render={(_, record, idx) => (
+							<Space>
+								<Button onClick={() => setSelect(record.id)}>
+									수정
+								</Button>
+								<Button
+									onClick={async () => {
+										await deleteVolunteer({
+											id: record.id,
+										});
+										setToggle(!toggle);
+									}}
+								>
+									삭제
+								</Button>
+							</Space>
+						)}
+					/>
+				</Table>
 			</S.CheckBoxWrapper>
-			<S.ButtonWrapper>
-				<Button {...checkBoxProps.button} />
-			</S.ButtonWrapper>
-			<S.SearchWrapper>
-				<Input
-					onChange={(e) => setSearch(e.target.value)}
-					value={search}
-				/>
-				<Button {...searchProps.button} />
-			</S.SearchWrapper>
-			<S.ActionWrapper>
-				<Select {...selectProps.select} />
-				<Button {...selectProps.button} />
-			</S.ActionWrapper>
-			<Select
-				onChange={(e) => setFilter({participated: e.target.value})}
-				options={participatedFilter}
-			/>
-			<S.TableWrapper>
-				<GroupTable {...tableProps} />
-			</S.TableWrapper>
-			<S.PaginationWrapper>
-				<Pagination
-					current={page}
-					total={total}
-					pageSize={10}
-					onClick={(e) => setPage(e)}
-				/>
-			</S.PaginationWrapper>
-			{modal && (
-				<Modal bottomText={' '} onClose={() => setModal(false)}>
+			{select !== 0 && (
+				<Modal onCancel={() => setSelect(0)} footer={[]} open={true}>
 					<ModalVolunteerForm
 						id={select}
 						onClick={() => {
-							setModal(false);
+							setSelect(0);
 							setToggle(!toggle);
 						}}
 					/>

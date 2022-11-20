@@ -1,101 +1,105 @@
 import React, {useEffect, useState} from 'react';
 import * as S from './style';
-import {checkBoxProps, searchProps, selectProps, tableProps} from './data';
-import {CheckBox, Input, Select, Text, Button} from '../../../Components/Atom';
-import {GroupTable} from '../../../Components/Organism/GroupForm';
-import {Pagination} from '../../../Components/Organism';
+import {actionOptions, columns} from './data';
 import {
 	deleteParticipation,
 	deleteParticipations,
 	getListDeletedParticipation,
-	getListParticipation,
 	recoverParticipation,
 	recoverParticipations,
-	setDepositParticipation,
-	setDepositParticipations,
-	tempDeleteParticipation,
-	tempDeleteParticipations,
 } from '../../../api/admin';
-import {
-	generateAdminDeletedParticipationTable,
-	generateAdminParticipationTable,
-} from '../../../util/generator';
-import {setToggleCheck} from '../../../util';
+import {Input, Button, Select, Table, Space} from 'antd';
 
 const AdminDeletedParticipation = () => {
 	const [participation, setParticipation] = useState([]);
 	const [page, setPage] = useState(1);
 	const [total, setTotal] = useState(0);
-	const [isAllCheck, setIsAllCheck] = useState(false);
 	const [toggle, setToggle] = useState(false);
-	const [action, setAction] = useState();
+	const [action, setAction] = useState('');
 	const [search, setSearch] = useState('');
-
+	const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 	useEffect(() => {
 		(async () => {
-			let res = await getListDeletedParticipation({page: page});
+			let res = await getListDeletedParticipation({page, search});
 			if (!res.isSuccess) {
 				return;
 			}
-			setParticipation(res.data.results);
+			let data = res.data.results.map((item, idx) => ({
+				...item,
+				key: item.id,
+				no: res.data.count - (page - 1) * 10 - idx,
+			}));
+			setParticipation(data);
 			setTotal(res.data.count);
 		})();
-	}, [page, toggle]);
+	}, [page, toggle, search]);
 
-	tableProps.trs = generateAdminDeletedParticipationTable({
-		participations: participation,
-		setParticipation: setParticipation,
-		recoverApi: recoverParticipation,
-		deleteApi: deleteParticipation,
-		current: page,
-		total: total,
-		setToggle: setToggle,
-		toggle: toggle,
-	});
-	tableProps.ths[0].onChange = () => {
-		setToggleCheck(participation, setParticipation, setIsAllCheck);
-	};
-	tableProps.ths[0].value = isAllCheck;
-	selectProps.select.onChange = (e) => {
-		setAction(e.target.value);
-	};
-	selectProps.button.onClick = async () => {
-		let ids = [];
-		participation.forEach((item) => {
-			if (item.check) {
-				ids.push(item.id);
-			}
-		});
-		if (action === 'delete') {
-			await deleteParticipations({ids});
-		} else if (action === 'recover') {
-			await recoverParticipations({ids});
+	const doAction = async () => {
+		switch (action) {
+			case 'delete':
+				await deleteParticipations({ids: selectedRowKeys});
+				break;
+			case 'recover':
+				await recoverParticipations({ids: selectedRowKeys});
+				break;
+			default:
+				return alert('액션을 설정해주세요.');
 		}
-	};
-
-	searchProps.button.onClick = async () => {
-		let res = await getListDeletedParticipation({page, search});
-		setParticipation(res.data.results);
+		setToggle(!toggle);
 	};
 	return (
 		<S.Container>
 			<S.SearchWrapper>
-				<Input
-					onChange={(e) => setSearch(e.target.value)}
-					value={search}
+				<Input.Search
+					style={{width: '300px'}}
+					onSearch={(e) => setSearch(e)}
 				/>
-				<Button {...searchProps.button} />
 			</S.SearchWrapper>
 			<S.ActionWrapper>
-				<Select {...selectProps.select} />
-				<Button {...selectProps.button} />
+				<Select
+					options={actionOptions}
+					value={action}
+					onChange={(e) => setAction(e.target.value)}
+				/>
+				<Button onClick={doAction}>실행</Button>
 			</S.ActionWrapper>
-			<S.TableWrapper>
-				<GroupTable {...tableProps} />
-			</S.TableWrapper>
-			<S.PaginationWrapper>
-				<Pagination />
-			</S.PaginationWrapper>
+			<Table
+				dataSource={participation}
+				rowSelection={{
+					selectedRowKeys,
+					onChange: (e) => {
+						setSelectedRowKeys(e);
+					},
+				}}
+			>
+				{columns.map((col) => (
+					<Table.Column align={'center'} {...col} />
+				))}
+				<Table.Column
+					align={'center'}
+					title={'액션'}
+					render={(_, record) => (
+						<Space>
+							<Button
+								onClick={async () => {
+									await recoverParticipation({id: record.id});
+									setToggle(!toggle);
+								}}
+							>
+								복구
+							</Button>
+							<Button
+								onClick={async () => {
+									await deleteParticipation({id: record.id});
+									setToggle(!toggle);
+								}}
+							>
+								삭제
+							</Button>
+						</Space>
+					)}
+				/>
+			</Table>
 		</S.Container>
 	);
 };

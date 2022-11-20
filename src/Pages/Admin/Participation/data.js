@@ -19,15 +19,15 @@ export const depositInit = {
 };
 
 export const depositFilter = [
-	{value: '', name: '전체'},
-	{value: 'True', name: '입금'},
-	{value: 'False', name: '미입금'},
+	{value: '', label: '전체'},
+	{value: 'True', label: '입금'},
+	{value: 'False', label: '미입금'},
 ];
 
 export const genderFilter = [
-	{value: '', name: '전체'},
-	{value: '남성', name: '남성'},
-	{value: '여성', name: '여성'},
+	{value: '', label: '전체'},
+	{value: '남성', label: '남성'},
+	{value: '여성', label: '여성'},
 ];
 
 export const checkBoxProps = {
@@ -36,19 +36,18 @@ export const checkBoxProps = {
 			children: '항목(아무것도 선택안한 경우 전체)',
 		},
 		items: [
-			{checkBox: {name: 'name'}, text: {children: '이름'}},
-			{checkBox: {name: 'course'}, text: {children: '종목'}},
-			{checkBox: {name: 'birth'}, text: {children: '생년월일'}},
-			{checkBox: {name: 'gender'}, text: {children: '성별'}},
-			{checkBox: {name: 'phone'}, text: {children: '연락처'}},
-			{checkBox: {name: 'group_name'}, text: {children: '단체명'}},
-			{checkBox: {name: 'post_number'}, text: {children: '우편번호'}},
-			{checkBox: {name: 'address'}, text: {children: '주소'}},
-			{checkBox: {name: 'detail_address'}, text: {children: '상세주소'}},
-			{checkBox: {name: 'depositor'}, text: {children: '입금자명'}},
-			{checkBox: {name: 'gift'}, text: {children: '기념품'}},
-			{checkBox: {name: 'is_deposit'}, text: {children: '입금여부'}},
-			{checkBox: {name: 'category'}, text: {children: '신청서종류'}},
+			{value: 'name', name: '이름'},
+			{value: 'course', name: '종목'},
+			{value: 'gender', name: '성별'},
+			{value: 'phone', name: '연락처'},
+			{value: 'group_name', name: '단체명'},
+			{value: 'post_number', name: '우편번호'},
+			{value: 'address', name: '주소'},
+			{value: 'detail_address', name: '상세주소'},
+			{value: 'depositor', name: '입금자명'},
+			{value: 'gift', name: '기념품'},
+			{value: 'is_deposit', name: '입금여부'},
+			{value: 'category', name: '신청서종류'},
 		],
 	},
 	order: {
@@ -111,13 +110,12 @@ export const searchProps = {
 };
 
 export const selectProps = {
-	select: {
-		options: [
-			{value: 'delete', name: '임시 삭제'},
-			{value: 'set_deposit', name: '입금 처리'},
-			{value: 'unset_deposit', name: '미입금 처리'},
-		],
-	},
+	options: [
+		{value: '', label: '선택'},
+		{value: 'delete', label: '임시 삭제'},
+		{value: 'set_deposit', label: '입금 처리'},
+		{value: 'unset_deposit', label: '미입금 처리'},
+	],
 	button: {
 		isRounded: true,
 		text: {
@@ -154,3 +152,18 @@ export const tableProps = {
 	],
 	trs: [],
 };
+
+export const columns = [
+	{title: '번호', dataIndex: 'no'},
+	{title: '이름', dataIndex: 'name'},
+	{title: '구분', dataIndex: 'category'},
+	{title: '단체이름', dataIndex: 'group_name'},
+	{title: '배번', dataIndex: 'bib'},
+	{title: '입금자명', dataIndex: 'depositor'},
+	{title: '생년월일', dataIndex: 'birth'},
+	{title: '종목', dataIndex: 'course'},
+	{title: '성별', dataIndex: 'gender'},
+	{title: '연락처', dataIndex: 'phone'},
+	{title: '기념품', dataIndex: 'gift'},
+	{title: '신청일', dataIndex: 'created'},
+];

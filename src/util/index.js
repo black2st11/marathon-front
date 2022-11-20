@@ -10,6 +10,7 @@ import {
 import {onlyLetter, onlyNumber} from './validator';
 
 export const makeGiftByCourse = (name = '') => {
+	console.log('name');
 	let gifts = [];
 	if (!name) {
 		return gifts;
@@ -445,7 +446,7 @@ export const setGroupForm = (prevStates = [], setFunc, isAdmin = false) => {
 export const makeYear = () => {
 	let years = [];
 	for (let i = 1900; i <= 2020; i++) {
-		years.push({value: `${i}`, name: `${i}`});
+		years.push({value: `${i}`, name: `${i}`, label: `${i}`});
 	}
 	return years;
 };
@@ -456,6 +457,7 @@ export const makeMonth = () => {
 		month.push({
 			value: `${i}`.padStart(2, '0'),
 			name: `${i}`.padStart(2, '0'),
+			label: `${i}`.padStart(2, '0'),
 		});
 	}
 	return month;
@@ -467,6 +469,7 @@ export const makeDay = () => {
 		days.push({
 			value: `${i}`.padStart(2, '0'),
 			name: `${i}`.padStart(2, '0'),
+			label: `${i}`.padStart(2, '0'),
 		});
 	}
 	return days;
@@ -479,6 +482,7 @@ export const makeParticipated = () => {
 		participated.push({
 			value: day.date,
 			name: `${splitted_day[0]}년 ${splitted_day[1]}월 ${splitted_day[2]}일 ${day.weekday}`,
+			label: `${splitted_day[0]}년 ${splitted_day[1]}월 ${splitted_day[2]}일 ${day.weekday}`,
 		});
 	});
 	return participated;

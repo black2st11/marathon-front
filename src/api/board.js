@@ -30,11 +30,13 @@ export const postBoard = async ({
 	});
 };
 
-export const getListBoard = async ({category, page}) => {
+export const getListBoard = async ({category, page, ordering, search}) => {
 	let params = {
 		category,
 		page,
 		token,
+		ordering,
+		search,
 	};
 
 	return await defaultApi({params, url: `/boards`, method: 'GET'});

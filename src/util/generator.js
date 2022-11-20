@@ -319,11 +319,11 @@ export const exportFileDownload = (res) => {
 
 export const makeGroup = (group) => {
 	let list = [];
-	list.push({value: null, name: '미선택'});
+	list.push({value: null, label: '미선택'});
 	group.forEach((item) => {
 		list.push({
 			value: item.id,
-			name: `${item.name} - ${item.representative}(${item.phone})`,
+			label: `${item.name} - ${item.representative}(${item.phone})`,
 		});
 	});
 

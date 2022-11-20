@@ -3,6 +3,7 @@ import * as S from './style';
 import {
 	categoryInit,
 	checkBoxProps,
+	columns,
 	depositFilter,
 	depositInit,
 	genderFilter,
@@ -11,9 +12,19 @@ import {
 	selectProps,
 	tableProps,
 } from './data';
-import {CheckBox, Input, Select, Text, Button} from '../../../Components/Atom';
+import {
+	Radio,
+	Checkbox,
+	Button,
+	Input,
+	Select,
+	Table,
+	Space,
+	Button as AntdButton,
+	Modal,
+} from 'antd';
 import {GroupTable} from '../../../Components/Organism/GroupForm';
-import {Modal, Pagination} from '../../../Components/Organism';
+import {Pagination} from '../../../Components/Organism';
 import {
 	exportParticipation,
 	getListParticipation,
@@ -27,6 +38,7 @@ import {setToggleCheck} from '../../../util';
 import {checkBinding} from '../../../util/binding';
 import {dictToList, dictToStr} from '../../../util/postProcess';
 import {ModalGroupForm, ModalPersonForm} from '../index';
+import {deleteBoard} from '../../../api/board';
 
 const AdminParticipation = () => {
 	const [participation, setParticipation] = useState([]);
@@ -34,23 +46,30 @@ const AdminParticipation = () => {
 	const [total, setTotal] = useState(0);
 	const [isAllCheck, setIsAllCheck] = useState(false);
 	const [toggle, setToggle] = useState(false);
-	const [action, setAction] = useState();
+	const [action, setAction] = useState('');
 	const [search, setSearch] = useState('');
-	const [fields, setFields] = useState({});
-	const [order, setOrder] = useState(orderInit);
+	const [fields, setFields] = useState([]);
+	const [order, setOrder] = useState('id');
 	const [category, setCategory] = useState(categoryInit);
+	const [isDeposit, setIsDeposit] = useState('all');
+	const [kind, setKind] = useState('all');
 	const [deposit, setDeposit] = useState(depositInit);
 	const [modal, setModal] = useState(false);
 	const [select, setSelect] = useState({id: 0, category: 'person'});
 	const [filter, setFilter] = useState({gender: '', is_deposit: ''});
-
+	const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 	useEffect(() => {
 		(async () => {
 			let res = await getListParticipation({page: page, filter});
 			if (!res.isSuccess) {
 				return;
 			}
-			setParticipation(res.data.results);
+			let data = res.data.results.map((item, idx) => {
+				item.no = res.data.count - (page - 1) * 10 - idx;
+				item.key = item.id;
+				return item;
+			});
+			setParticipation(data);
 			setTotal(res.data.count);
 		})();
 	}, [page, toggle, filter]);
@@ -72,57 +91,6 @@ const AdminParticipation = () => {
 	};
 	tableProps.ths[0].value = isAllCheck;
 
-	selectProps.select.onChange = (e) => {
-		setAction(e.target.value);
-	};
-	selectProps.button.onClick = async () => {
-		let ids = [];
-		participation.forEach((item) => {
-			if (item.check) {
-				ids.push(item.id);
-			}
-		});
-		if (action === 'set_deposit') {
-			await setDepositParticipations({ids, is_deposit: true});
-		} else if (action === 'unset_deposit') {
-			await setDepositParticipations({ids, is_deposit: false});
-		} else if (action === 'delete') {
-			await tempDeleteParticipations({ids});
-		}
-	};
-
-	searchProps.button.onClick = async () => {
-		let res = await getListParticipation({page, search});
-		setParticipation(res.data.results);
-	};
-
-	checkBinding({
-		items: checkBoxProps.fields.items,
-		props: fields,
-		setProps: setFields,
-	});
-
-	checkBinding({
-		items: checkBoxProps.order.items,
-		props: order,
-		setProps: setOrder,
-		defaultProps: orderInit,
-	});
-
-	checkBinding({
-		items: checkBoxProps.category.items,
-		props: category,
-		setProps: setCategory,
-		defaultProps: categoryInit,
-	});
-
-	checkBinding({
-		items: checkBoxProps.deposit.items,
-		props: deposit,
-		setProps: setDeposit,
-		defaultProps: depositInit,
-	});
-
 	checkBoxProps.button.onClick = async () => {
 		let field = dictToList({dict: fields});
 		let ord = dictToStr({dict: order, defaultValue: 'id'});
@@ -137,65 +105,207 @@ const AdminParticipation = () => {
 		});
 	};
 
+	const doAction = async () => {
+		switch (action) {
+			case 'delete':
+				await tempDeleteParticipations({ids: selectedRowKeys});
+				break;
+			case 'set_deposit':
+				await setDepositParticipations({
+					ids: selectedRowKeys,
+					is_deposit: true,
+				});
+				break;
+			case 'unset_deposit':
+				await setDepositParticipations({
+					ids: selectedRowKeys,
+					is_deposit: false,
+				});
+				break;
+			default:
+				alert('액션을 선택해주세요.');
+		}
+		setToggle(!toggle);
+	};
+
 	return (
 		<S.Container>
 			<S.CheckBoxWrapper>
-				{checkBoxProps.availableList.map((key) => (
-					<S.RowWraper>
-						<S.CheckTitle>
-							<Text {...checkBoxProps[key].title} />
-						</S.CheckTitle>
-						{checkBoxProps[key].items.map((item) => (
-							<S.CheckBoxContent>
-								<CheckBox {...item.checkBox} />
-								<Text {...item.text} />
-							</S.CheckBoxContent>
+				<S.RowWraper>
+					<Checkbox.Group
+						value={fields}
+						onChange={(e) => {
+							setFields(e);
+						}}
+					>
+						{checkBoxProps.fields.items.map((field) => (
+							<Checkbox value={field.value}>
+								{field.name}
+							</Checkbox>
 						))}
-					</S.RowWraper>
-				))}
+					</Checkbox.Group>
+				</S.RowWraper>
+				<S.RowWraper>
+					<Radio.Group
+						onChange={(e) => setOrder(e.target.value)}
+						value={order}
+					>
+						<Radio value='id'>입력순</Radio>
+						<Radio value='gender-name'>
+							성별(1순위) + 이름(2순위)
+						</Radio>
+						<Radio value='course-gender-name'>
+							종목(1순위) + 성별(2순위) + 이름(3순위)
+						</Radio>
+						<Radio value='course-group__name-gender'>
+							종목(1순위) + 단체(2순위) + 성별(3순위)
+						</Radio>
+					</Radio.Group>
+				</S.RowWraper>
+				<S.RowWraper>
+					<Radio.Group
+						onChange={(e) => {
+							setIsDeposit(e.target.value);
+						}}
+						value={isDeposit}
+					>
+						<Radio value={'all'}>전체</Radio>
+						<Radio value={'deposit'}>입금</Radio>
+						<Radio value={'no-deposit'}>미입금</Radio>
+					</Radio.Group>
+				</S.RowWraper>
+				<S.RowWraper>
+					<Radio.Group
+						onChange={(e) => {
+							setKind(e.target.value);
+						}}
+						value={kind}
+					>
+						<Radio value={'all'}>전체</Radio>
+						<Radio value={'group'}>단체</Radio>
+						<Radio value={'person'}>개인</Radio>
+					</Radio.Group>
+				</S.RowWraper>
+				<Button type={'primary'} style={{width: '200px'}}>
+					엑셀 출력
+				</Button>
 			</S.CheckBoxWrapper>
-			<S.ButtonWrapper>
-				<Button {...checkBoxProps.button} />
-			</S.ButtonWrapper>
-			<S.SearchWrapper>
-				<Input
-					onChange={(e) => setSearch(e.target.value)}
-					value={search}
+			<S.CheckBoxWrapper>
+				<S.RowWraper>
+					<Input.Search onSearch={(e) => setSearch(e)} />
+				</S.RowWraper>
+				<S.RowWraper>
+					<Select
+						value={action}
+						style={{width: '200px'}}
+						options={selectProps.options}
+						onChange={(e) => setAction(e)}
+					/>
+					<Button onClick={doAction}>실행</Button>
+				</S.RowWraper>
+				<S.RowWraper>
+					<Radio.Group
+						optionType='button'
+						onChange={(e) =>
+							setFilter({...filter, is_deposit: e.target.value})
+						}
+						options={depositFilter}
+						value={filter.is_deposit}
+					/>
+				</S.RowWraper>
+				<S.RowWraper>
+					<Radio.Group
+						optionType='button'
+						onChange={(e) =>
+							setFilter({...filter, gender: e.target.value})
+						}
+						options={genderFilter}
+						value={filter.gender}
+					/>
+				</S.RowWraper>
+			</S.CheckBoxWrapper>
+			<Table
+				scroll={{x: 1300}}
+				rowSelection={{
+					selectedRowKeys,
+					onChange: (e) => {
+						console.log(e);
+						setSelectedRowKeys(e);
+					},
+				}}
+				style={{margin: '1rem'}}
+				dataSource={participation}
+			>
+				{columns.map((column) => (
+					<Table.Column
+						align={'center'}
+						title={column.title}
+						dataIndex={column.dataIndex}
+					/>
+				))}
+				<Table.Column
+					title={'입금여부'}
+					align={'center'}
+					dataIndex={'is_deposit'}
+					render={(record) => (record ? '✅' : '❌')}
 				/>
-				<Button {...searchProps.button} />
-			</S.SearchWrapper>
-			<S.ActionWrapper>
-				<Select {...selectProps.select} />
-				<Button {...selectProps.button} />
-			</S.ActionWrapper>
-			<Select
-				onChange={(e) =>
-					setFilter({...filter, is_deposit: e.target.value})
-				}
-				options={depositFilter}
-			/>
-			<Select
-				onChange={(e) => setFilter({...filter, gender: e.target.value})}
-				options={genderFilter}
-			/>
-			<S.TableWrapper>
-				<GroupTable {...tableProps} />
-			</S.TableWrapper>
-			<S.PaginationWrapper>
-				<Pagination
-					current={page}
-					total={total}
-					pageSize={10}
-					onClick={(e) => setPage(e)}
+				<Table.Column
+					title={'액션'}
+					key={'action'}
+					align={'center'}
+					render={(_, record) => (
+						<Space size='small'>
+							<AntdButton
+								onClick={() => {
+									setSelect({
+										id: record.group
+											? record.group.id
+											: record.person.id,
+										category: record.group
+											? 'group'
+											: 'person',
+									});
+								}}
+							>
+								수정
+							</AntdButton>
+							<AntdButton
+								onClick={async () => {
+									await setDepositParticipation({
+										id: record.id,
+									});
+									setToggle(!toggle);
+								}}
+							>
+								입금
+							</AntdButton>
+							<AntdButton
+								onClick={async () => {
+									await tempDeleteParticipation({
+										id: record.id,
+									});
+									setToggle(!toggle);
+								}}
+							>
+								삭제
+							</AntdButton>
+						</Space>
+					)}
 				/>
-			</S.PaginationWrapper>
-			{modal && (
-				<Modal bottomText={' '} onClose={() => setModal(false)}>
+			</Table>
+			{select.id !== 0 && (
+				<Modal
+					open={true}
+					onCancel={() => {
+						setSelect({...select, id: 0});
+					}}
+					footer={[]}
+				>
 					{select.category === 'person' ? (
 						<ModalPersonForm
 							person={select.id}
 							onClick={() => {
-								setModal(false);
+								setSelect({...select, id: 0});
 								setToggle(!toggle);
 							}}
 						/>
@@ -203,7 +313,7 @@ const AdminParticipation = () => {
 						<ModalGroupForm
 							id={select.id}
 							onClick={() => {
-								setModal(false);
+								setSelect({...select, id: 0});
 								setToggle(!toggle);
 							}}
 						/>

@@ -1,10 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import {Button, Input, Select} from '../../../Components/Atom';
-import {Pagination} from '../../../Components/Organism';
-import {Boards} from '../../../Components/Template';
-import {boardProps, categoryOptions} from './data';
+import {categoryOptions} from './data';
 import * as S from './style';
-import {Table, Space, Button as AntdButton, Modal, Radio} from 'antd';
+import {Table, Space, Button as AntdButton, Modal, Radio, Input} from 'antd';
 import BoardForm from '../BoardForm';
 import {deleteBoard, getListBoard} from '../../../api/board';
 import BoardUpdateForm from '../BoardUpdateForm';
@@ -15,19 +12,37 @@ const AdminBoard = () => {
 	const [search, setSearch] = useState('');
 	const [category, setCategory] = useState('공지');
 	const [page, setPage] = useState(1);
+	const [total, setTotal] = useState(1);
 	const [modal, setModal] = useState({update: false, create: false});
 	const [post, setPost] = useState([]);
 	const [id, setId] = useState(0);
 	const [toggle, setToggle] = useState(false);
+	const [ordering, setOrdering] = useState('');
+
 	useEffect(() => {
 		(async () => {
-			let res = await getListBoard({category, page});
+			let res = await getListBoard({category, page, ordering, search});
 			let data = res.data.results.map((post, idx) => {
 				return {...post, no: res.data.count - (page - 1) * 10 - idx};
 			});
 			setPost(data);
+			setTotal(Math.ceil(res.data.count / 10));
 		})();
-	}, [search, category, page, toggle]);
+	}, [search, category, page, toggle, ordering]);
+	const setSorter = (sorts) => {
+		if (!Array.isArray(sorts)) {
+			sorts = [sorts];
+		}
+
+		let sortList = sorts.map((item) => {
+			if (item.order) {
+				return `${item.order === 'ascend' ? '' : '-'}${item.field}`;
+			}
+		});
+		if (sortList) {
+			setOrdering(sortList.join(','));
+		}
+	};
 
 	return (
 		<S.Container>
@@ -40,7 +55,16 @@ const AdminBoard = () => {
 				options={categoryOptions}
 				optionType={'button'}
 			/>
-			<div style={{width: '98%', textAlign: 'right'}}>
+			<div
+				style={{
+					display: 'flex',
+					justifyContent: 'space-between',
+					margin: '1rem',
+				}}
+			>
+				<div style={{width: '200px'}}>
+					<Input.Search onSearch={(e) => setSearch(e)} />
+				</div>
 				<AntdButton
 					type={'primary'}
 					onClick={() => setModal({...modal, create: true})}
@@ -50,8 +74,15 @@ const AdminBoard = () => {
 			</div>
 			<Table
 				dataSource={post}
-				pagination={false}
+				pagination={{
+					defaultCurrent: 1,
+					total: total,
+				}}
 				style={{margin: '1rem'}}
+				onChange={(pagination, filters, sorter, extra) => {
+					setPage(pagination.current);
+					setSorter(sorter);
+				}}
 			>
 				<Column
 					rowSpan={2}
@@ -65,32 +96,44 @@ const AdminBoard = () => {
 					title={'제목'}
 					align={'center'}
 					dataIndex={'title'}
-					key={'no'}
+					key={'title'}
 					width={'50%'}
+					sorter={{
+						multiple: 1,
+					}}
 				/>
 				<Column
 					title={'작성자'}
 					align={'center'}
 					dataIndex={'author'}
-					key={'no'}
+					key={'author'}
 					width={'10%'}
 					responsive={['md']}
+					sorter={{
+						multiple: 2,
+					}}
 				/>
 				<Column
 					title={'생성일'}
 					align={'center'}
 					dataIndex={'created'}
-					key={'no'}
+					key={'created'}
 					width={'10%'}
 					responsive={['md']}
+					sorter={{
+						multiple: 3,
+					}}
 				/>
 				<Column
 					title={'조회수'}
 					align={'center'}
 					dataIndex={'hit'}
-					key={'no'}
+					key={'hit'}
 					width={'10%'}
 					responsive={['md']}
+					sorter={{
+						multiple: 4,
+					}}
 				/>
 				<Column
 					title={'액션'}

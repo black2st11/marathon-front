@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import {Text, Input, Select, Button} from '../../../Components/Atom';
 import * as S from './style';
 import {MultipleInput} from '../../../Components/Organism/InputForm';
 import {onlyNumber} from '../../../util/validator';
@@ -14,6 +13,7 @@ import {
 import {getVolunteer, updatePerson} from '../../../api/admin';
 import {getListGroupParticipation, updateVolunteer} from '../../../api';
 import {makeGroup} from '../../../util/generator';
+import {Form, Space, Select, Input, Button} from 'antd';
 
 const ModalPersonForm = ({id, onClick}) => {
 	const [info, setInfo] = useState({
@@ -31,6 +31,7 @@ const ModalPersonForm = ({id, onClick}) => {
 		grade: '',
 		volunteer_id: '',
 	});
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		(async () => {
@@ -53,6 +54,7 @@ const ModalPersonForm = ({id, onClick}) => {
 					? res.data.volunteer_id
 					: '',
 			});
+			setIsLoading(false);
 		})();
 	}, []);
 
@@ -67,148 +69,75 @@ const ModalPersonForm = ({id, onClick}) => {
 	};
 	return (
 		<S.Container>
-			<S.Wrapper>
-				<Text children='이름' />
-				<Input
-					name='name'
-					onChange={(e) =>
-						setInfo({...info, [e.target.name]: e.target.value})
-					}
-					value={info.name}
-				/>
-			</S.Wrapper>
-			<S.Wrapper>
-				<Text children='참여날짜' />
-				<S.RowWrapper>
-					<Select
-						options={makeParticipated()}
-						name={'participated'}
-						onChange={(e) => {
-							setInfo({...info, [e.target.name]: e.target.value});
-						}}
-						value={info.participated}
-					/>
-				</S.RowWrapper>
-			</S.Wrapper>
-			<S.Wrapper>
-				<Text children='생년월일' />
-				<S.RowWrapper>
-					<Select
-						options={makeYear()}
-						name={'year'}
-						onChange={(e) => {
-							setInfo({...info, [e.target.name]: e.target.value});
-						}}
-						value={info.year}
-					/>
-					<Select
-						options={makeMonth()}
-						name={'month'}
-						onChange={(e) => {
-							setInfo({...info, [e.target.name]: e.target.value});
-						}}
-						value={info.month}
-					/>
-					<Select
-						options={makeDay()}
-						name={'day'}
-						onChange={(e) => {
-							setInfo({...info, [e.target.name]: e.target.value});
-						}}
-						value={info.day}
-					/>
-				</S.RowWrapper>
-			</S.Wrapper>
-			<S.Wrapper>
-				<Text children='핸드폰' />
-				<S.RowWrapper>
-					<MultipleInput
-						inputs={[
-							{
-								name: 'phone1',
-								pattern: onlyNumber,
-								maxlength: 3,
-								onChange: (e) =>
-									setInfo({
-										...info,
-										[e.target.name]: e.target.value,
-									}),
-								value: info.phone1,
-							},
-							{
-								name: 'phone2',
-								pattern: onlyNumber,
-								maxlength: 4,
-								onChange: (e) =>
-									setInfo({
-										...info,
-										[e.target.name]: e.target.value,
-									}),
-								value: info.phone2,
-							},
-							{
-								name: 'phone3',
-								pattern: onlyNumber,
-								maxlength: 4,
-								onChange: (e) =>
-									setInfo({
-										...info,
-										[e.target.name]: e.target.value,
-									}),
-								value: info.phone3,
-							},
-						]}
-					/>
-				</S.RowWrapper>
-			</S.Wrapper>
-			<S.Wrapper>
-				<Text children='학교명' />
-				<Input
-					name='school_name'
-					onChange={(e) =>
-						setInfo({...info, [e.target.name]: e.target.value})
-					}
-					value={info.school_name}
-				/>
-			</S.Wrapper>
-			<S.Wrapper>
-				<Text children='학년' />
-				<Input
-					name='grade'
-					onChange={(e) =>
-						setInfo({...info, [e.target.name]: e.target.value})
-					}
-					value={info.grade}
-				/>
-			</S.Wrapper>
-			<S.Wrapper>
-				<Text children='학교명' />
-				<Input
-					name='class_name'
-					onChange={(e) =>
-						setInfo({...info, [e.target.name]: e.target.value})
-					}
-					value={info.class_name}
-				/>
-			</S.Wrapper>
-			<S.Wrapper>
-				<Text children='1635ID' />
-				<Input
-					name='volunteer_id'
-					onChange={(e) =>
-						setInfo({...info, [e.target.name]: e.target.value})
-					}
-					value={info.volunteer_id}
-				/>
-			</S.Wrapper>
-			<S.Wrapper>
-				<Button
-					text={{children: '저장', color: 'white'}}
-					onClick={() => {
-						updateVolunteerData();
+			{!isLoading && (
+				<Form
+					labelCol={{span: 6}}
+					wrapperCol={{span: 14}}
+					initialValues={info}
+					style={{margin: '1rem'}}
+					onFinish={async (values) => {
+						let body = {
+							...values,
+							birth: `${values.year}-${values.month}-${values.day}`,
+							phone: `${values.phone1}-${values.phone2}-${values.phone3}`,
+						};
+						await updateVolunteer({id: info.id, ...body});
+						onClick();
 					}}
-				/>
-			</S.Wrapper>
+				>
+					<Form.Item label={'이름'} name={'name'}>
+						<Input />
+					</Form.Item>
+					<Form.Item label={'참여날짜'} name={'participated'}>
+						<Select
+							options={[{value: '', label: '선택'}].concat(
+								makeParticipated(),
+							)}
+						/>
+					</Form.Item>
+					<Form.Item label={'생년월일'} name={'birth'}>
+						<Space>
+							<Form.Item name={'year'}>
+								<Select options={makeYear()} />
+							</Form.Item>
+							<Form.Item name={'month'}>
+								<Select options={makeMonth()} />
+							</Form.Item>
+							<Form.Item name={'day'}>
+								<Select options={makeDay()} />
+							</Form.Item>
+						</Space>
+					</Form.Item>
+					<Form.Item label={'연락처'}>
+						<Space>
+							<Form.Item name={'phone1'}>
+								<Input />
+							</Form.Item>
+							<Form.Item name={'phone2'}>
+								<Input />
+							</Form.Item>
+							<Form.Item name={'phone3'}>
+								<Input />
+							</Form.Item>
+						</Space>
+					</Form.Item>
+					<Form.Item label={'학교'} name={'school_name'}>
+						<Input />
+					</Form.Item>
+					<Form.Item label={'학년'} name={'grade'}>
+						<Input />
+					</Form.Item>
+					<Form.Item label={'반'} name={'class_name'}>
+						<Input />
+					</Form.Item>
+					<Form.Item label={'1635 ID'} name={'volunteer_id'}>
+						<Input />
+					</Form.Item>
+					<div style={{display: 'flex', justifyContent: 'flex-end'}}>
+						<Button htmlType={'submit'}>수정</Button>
+					</div>
+				</Form>
+			)}
 		</S.Container>
 	);
 };
