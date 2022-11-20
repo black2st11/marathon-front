@@ -167,6 +167,7 @@ export const setForm = (props, prevState, setFunc) => {
 
 	if (props.inputs) {
 		props.inputs.forEach((input) => {
+			console.log(input);
 			input.onChange = (e) => setInput(e, prevState, setFunc);
 			input.value = prevState[input.name];
 		});
@@ -481,6 +482,7 @@ export const makeParticipated = () => {
 		let splitted_day = day.date.split('-');
 		participated.push({
 			value: day.date,
+			children: `${splitted_day[0]}년 ${splitted_day[1]}월 ${splitted_day[2]}일 ${day.weekday}`,
 			name: `${splitted_day[0]}년 ${splitted_day[1]}월 ${splitted_day[2]}일 ${day.weekday}`,
 			label: `${splitted_day[0]}년 ${splitted_day[1]}월 ${splitted_day[2]}일 ${day.weekday}`,
 		});

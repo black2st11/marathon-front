@@ -5,7 +5,7 @@ import {
 	inputEnglishTextProps,
 	warnText,
 } from '../../common';
-import {makeDay, makeMonth, makeYear} from '../../../util';
+import {makeDay, makeMonth, makeParticipated, makeYear} from '../../../util';
 
 export const firstProps = {
 	inputs: [
@@ -20,12 +20,7 @@ export const firstProps = {
 				...inputEnglishTextProps,
 				children: 'Date',
 			},
-			items: [
-				{
-					value: '2022-12-19',
-					children: '12월 19일 (토요일)',
-				},
-			],
+			items: makeParticipated(),
 			warnText: {
 				...warnText,
 			},

@@ -123,6 +123,7 @@ export const isValidate = (state, invalidProps, setFunc) => {
 				break;
 		}
 		if (result.invalid) {
+			console.log(result);
 			flag = false;
 			invalidProps = {
 				...invalidProps,

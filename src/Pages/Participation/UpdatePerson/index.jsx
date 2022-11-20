@@ -55,10 +55,11 @@ const UpdatePerson = () => {
 				name: info.name,
 				birth: `${info.year}-${info.month}-${info.day}`,
 			});
-			if (res.data.length === 0) {
+			console.log(res.data);
+			if (res.data.count !== 1) {
 				return alert('해당하는 신청서가 없습니다.');
 			}
-			let person = res.data[0];
+			let person = res.data.results[0];
 			let participation = person.participation;
 
 			secondProps.info.map((info) => {
@@ -100,8 +101,8 @@ const UpdatePerson = () => {
 				month: splitted_birth[1],
 				day: splitted_birth[2],
 				phone1: splitted_phone[0],
-				phone2: splitted_phone[1],
-				phone3: splitted_phone[2],
+				phone2: splitted_phone[1] ? splitted_phone[1] : '',
+				phone3: splitted_phone[2] ? splitted_phone[2] : '',
 			});
 			secondProps.fee.items[0][1].content.children =
 				participation.is_deposit ? '입금' : '미입금';
@@ -110,7 +111,7 @@ const UpdatePerson = () => {
 			setSection(1);
 		}
 	};
-
+	console.log(info);
 	secondProps.button.onClick = () => {
 		setSection(2);
 	};

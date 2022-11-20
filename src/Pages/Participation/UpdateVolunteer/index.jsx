@@ -35,29 +35,35 @@ const UpdateVolunteer = () => {
 		if (isValidate(firstInfo, invalidProps, setInvalid)) {
 			let res = await getListVolunteer({
 				name: info.name,
-				phone: `${info.phone1}${info.phone2}${info.phone3}`,
+				phone: `${info.phone1}-${info.phone2}-${info.phone3}`,
 			});
-			if (res.data.length === 0) {
-				alert('일치하는 신청서가 없습니다.');
+			console.log(res);
+			if (res.data.count !== 1) {
+				return alert('일치하는 신청서가 없습니다.');
 			}
+			let data = res.data.results[0];
 			secondProps.items.map((items) => {
 				items.forEach((item) => {
 					if (item.key === 'class_name') {
-						item.content.children = `${res.data[0]['grade']}학년${
-							res.data[0][item.key]
+						item.content.children = `${data['grade']}학년${
+							data[item.key]
 						}반`;
 					} else {
-						item.content.children = res.data[0][item.key];
+						item.content.children = data[item.key];
 					}
 				});
 			});
-			let splitted_birth = res.data[0].birth.split('-');
+			let splitted_birth = data.birth.split('-');
+			let splitted_phone = data.phone.split('-');
 			setInfo({
 				...info,
-				...res.data[0],
+				...data,
 				year: splitted_birth[0],
 				month: splitted_birth[1],
 				day: splitted_birth[2],
+				phone1: splitted_phone[0] ? splitted_phone[0] : '',
+				phone2: splitted_phone[1] ? splitted_phone[1] : '',
+				phone3: splitted_phone[2] ? splitted_phone[2] : '',
 			});
 			setSection(1);
 		}
@@ -76,7 +82,7 @@ const UpdateVolunteer = () => {
 			let res = await updateVolunteer({
 				...info,
 				birth: `${info.year}-${info.month}-${info.day}`,
-				phone: `${info.phone1}${info.phone2}${info.phone3}`,
+				phone: `${info.phone1}-${info.phone2}-${info.phone3}`,
 			});
 			if (res.isSuccess) {
 				setInfo(initialInfo);
