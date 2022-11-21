@@ -4,7 +4,7 @@ import {firstProps, secondProps, thirdProps, invalidProps} from './data';
 import {CardContent, SelectTable} from '../../../Components/Organism';
 import {PersonForm} from '../../../Components/Template';
 import {setForm, setWarnText} from '../../../util';
-import {Button} from '../../../Components/Atom';
+import {Button, Container} from '../../../Components/Atom';
 import {isValidate} from '../../../util/validator';
 import {
 	getListPersonParticipation,
@@ -132,7 +132,7 @@ const UpdatePerson = () => {
 	};
 
 	return (
-		<React.Fragment>
+		<Container>
 			{section === 0 && (
 				<S.FirstSection>
 					<S.CardContentWrapper>
@@ -163,7 +163,7 @@ const UpdatePerson = () => {
 					<PersonForm {...thirdProps} />
 				</S.ThirdSection>
 			)}
-		</React.Fragment>
+		</Container>
 	);
 };
 

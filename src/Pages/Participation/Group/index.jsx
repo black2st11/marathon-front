@@ -13,6 +13,7 @@ import {
 } from '../../../util';
 import {isValidate} from '../../../util/validator';
 import {firstProps, groupProps, secondProps, invalidProps} from './data';
+import {Container} from '../../../Components/Atom';
 
 const Group = () => {
 	const [info, setInfo] = useState({
@@ -106,10 +107,10 @@ const Group = () => {
 	groupProps.ths[0].value = isAllCheck;
 	secondProps.group = groupProps;
 	return (
-		<React.Fragment>
+		<Container>
 			{section === 0 && <PersonForm {...firstProps} />}
 			{section === 1 && <PersonForm {...secondProps} />}
-		</React.Fragment>
+		</Container>
 	);
 };
 

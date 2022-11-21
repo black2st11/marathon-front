@@ -8,7 +8,7 @@ import {
 import {Boards as BoardsTemplate} from '../../../Components/Template';
 import {Pagination} from '../../../Components/Organism';
 import * as S from './style';
-import {Button} from '../../../Components/Atom';
+import {Button, Container} from '../../../Components/Atom';
 import {checkPassword, getListBoard} from '../../../api/board';
 
 const Boards = ({category}) => {
@@ -38,37 +38,39 @@ const Boards = ({category}) => {
 		window.location.href = window.location.href + `/${id}`;
 	};
 	return (
-		<S.Container>
-			<S.BoardsWrapper>
-				{category === '환불' ? (
-					<BoardsTemplate
-						{...refundBoardsProps}
-						count={count}
-						page={page}
-						onClick={goBoard}
+		<Container>
+			<S.Container>
+				<S.BoardsWrapper>
+					{category === '환불' ? (
+						<BoardsTemplate
+							{...refundBoardsProps}
+							count={count}
+							page={page}
+							onClick={goBoard}
+						/>
+					) : (
+						<BoardsTemplate
+							{...normalBoardsProps}
+							count={count}
+							page={page}
+							onClick={goBoard}
+						/>
+					)}
+				</S.BoardsWrapper>
+				<S.ButtonnWrapper>
+					<Button {...buttonProps} />
+				</S.ButtonnWrapper>
+				<S.PagintaionWrapper>
+					<Pagination
+						{...paginationProps}
+						current={page}
+						total={Math.floor(count / 10) + 1}
+						onNext={() => setPage(page + 1)}
+						onPrev={() => setPage(page - 1)}
 					/>
-				) : (
-					<BoardsTemplate
-						{...normalBoardsProps}
-						count={count}
-						page={page}
-						onClick={goBoard}
-					/>
-				)}
-			</S.BoardsWrapper>
-			<S.ButtonnWrapper>
-				<Button {...buttonProps} />
-			</S.ButtonnWrapper>
-			<S.PagintaionWrapper>
-				<Pagination
-					{...paginationProps}
-					current={page}
-					total={Math.floor(count / 10) + 1}
-					onNext={() => setPage(page + 1)}
-					onPrev={() => setPage(page - 1)}
-				/>
-			</S.PagintaionWrapper>
-		</S.Container>
+				</S.PagintaionWrapper>
+			</S.Container>
+		</Container>
 	);
 };
 

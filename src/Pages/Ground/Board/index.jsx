@@ -4,6 +4,7 @@ import {Board as BoardTemplate} from '../../../Components/Organism';
 import {useLocation, useLoaderData} from 'react-router-dom';
 import {getBoard} from '../../../api/board';
 import {generateComments} from '../../../util';
+import {Container} from '../../../Components/Atom';
 
 const Board = ({category = '자유'}) => {
 	const [state, setState] = useState(initialState);
@@ -23,7 +24,11 @@ const Board = ({category = '자유'}) => {
 	firstProps.comments = generateComments(state.comments);
 	firstProps.author.children = state.author;
 
-	return <BoardTemplate {...firstProps} />;
+	return (
+		<Container>
+			<BoardTemplate {...firstProps} />;
+		</Container>
+	);
 };
 
 export default Board;

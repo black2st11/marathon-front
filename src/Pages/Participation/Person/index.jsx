@@ -4,6 +4,7 @@ import {firstProps, secondProps, invalidProps} from './data';
 import {setForm, setWarnText} from '../../../util';
 import {isValidate} from '../../../util/validator';
 import {postPersonParticipation} from '../../../api';
+import {Container} from '../../../Components/Atom';
 
 const Person = () => {
 	const [info, setInfo] = useState({
@@ -76,10 +77,10 @@ const Person = () => {
 		}
 	};
 	return (
-		<React.Fragment>
+		<Container>
 			{section === 0 && <PersonForm {...firstProps} />}
 			{section === 1 && <PersonForm {...secondProps} />}
-		</React.Fragment>
+		</Container>
 	);
 };
 

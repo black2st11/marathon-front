@@ -4,7 +4,7 @@ import {PersonForm} from '../../../Components/Template';
 import {CardContent, SelectTable} from '../../../Components/Organism';
 import {GroupTable} from '../../../Components/Organism/GroupForm';
 import * as S from './style';
-import {Button} from '../../../Components/Atom';
+import {Button, Container} from '../../../Components/Atom';
 import {
 	generateGroupParticipation,
 	setAddGroup,
@@ -213,7 +213,7 @@ const UpdateGroup = () => {
 	};
 
 	return (
-		<React.Fragment>
+		<Container>
 			{section === 0 && (
 				<S.FirstSection>
 					<PersonForm {...firstProps} />
@@ -244,7 +244,7 @@ const UpdateGroup = () => {
 					<PersonForm {...thirdProps} />
 				</S.ThirdSection>
 			)}
-		</React.Fragment>
+		</Container>
 	);
 };
 

@@ -10,7 +10,7 @@ export const Container = styled.div`
 	box-sizing: border-box;
 
 	@media screen and (max-width: 1100px) {
-		width: 90%;
+		width: 100%;
 		padding: 2rem;
 	}
 `;

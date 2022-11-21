@@ -71,11 +71,20 @@ export const DateItem = styled.div`
 `;
 
 export const SecondSection = styled.div`
-	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	margin: 5.5rem auto 7rem auto;
+
+	width: 98%;
+
+	@media screen and (max-width: ${viewSize.tablet}) {
+		max-width: ${defaultSize.tabletContainer};
+	}
+
+	@media screen and (max-width: ${viewSize.mobile}) {
+		max-width: ${defaultSize.mobileContainer};
+	}
 `;
 
 export const InfoWrapper = styled.div`
@@ -155,19 +164,27 @@ export const SupportImg = styled.img``;
 
 export const ThirdSection = styled.div`
 	display: flex;
-	justify-content: center;
+	align-items: center;
 	flex-direction: column;
 	background-image: url(${(props) =>
 		props.bgImg ? props.bgImg.desktop : secondSectionImg});
-	width: 100%;
 	background-repeat: no-repeat;
 	background-size: cover;
 	padding: 3rem 0;
+	max-width: ${viewSize.desktop};
 `;
 export const ThirdTextWrapper = styled.div`
-	width: auto;
 	max-width: ${defaultSize.desktopContainer};
-	margin: 1rem auto;
+
+	width: 98%;
+
+	@media screen and (max-width: ${viewSize.tablet}) {
+		max-width: ${defaultSize.tabletContainer};
+	}
+
+	@media screen and (max-width: ${viewSize.mobile}) {
+		max-width: ${defaultSize.mobileContainer};
+	}
 
 	@media screen and (max-width: 1100px) {
 		margin: 1rem;
@@ -180,13 +197,19 @@ export const ThirdTextWrapper = styled.div`
 `;
 
 export const ThirdCardWrapper = styled.div`
-	width: 100%;
 	max-width: ${defaultSize.desktopContainer};
 	display: flex;
-	padding: 1rem 0;
 	justify-content: space-between;
 	margin : auto;
-	
+	width: 98%;
+
+	@media screen and (max-width: ${viewSize.tablet}) {
+		max-width: ${defaultSize.tabletContainer};
+	}
+
+	@media screen and (max-width: ${viewSize.mobile}) {
+		max-width: ${defaultSize.mobileContainer};
+	}
 	@media screen and ( max-width : 1100px) {
 		flex-direction: column;
 		align-items: center;
@@ -202,4 +225,16 @@ export const ThirdCardWrapper = styled.div`
 
 export const FourthSection = styled.div`
 	padding: 80px 0 133px 0;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	width: 98%;
+
+	@media screen and (max-width: ${viewSize.tablet}) {
+		max-width: ${defaultSize.tabletContainer};
+	}
+
+	@media screen and (max-width: ${viewSize.mobile}) {
+		max-width: ${defaultSize.mobileContainer};
+	}
 `;

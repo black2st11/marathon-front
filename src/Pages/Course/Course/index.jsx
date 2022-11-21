@@ -1,21 +1,22 @@
-import React from 'react'
-import { imageProps, limitTime } from './data'
-import * as S from './style'
-import { CardSection } from '../../../Components/Template'
-import { Image } from '../../../Components/Atom'
-
+import React from 'react';
+import {imageProps, limitTime} from './data';
+import * as S from './style';
+import {CardSection} from '../../../Components/Template';
+import {Container, Image} from '../../../Components/Atom';
 
 const Course = () => {
-    return (
-        <S.Container>
-            <S.ImgWrapper>
-                <Image {...imageProps} />
-            </S.ImgWrapper>
-            <S.CardWrapper>
-                <CardSection {...limitTime} />
-            </S.CardWrapper>
-        </S.Container>
-    )
-}
+	return (
+		<Container>
+			<S.Container>
+				<S.ImgWrapper>
+					<Image {...imageProps} />
+				</S.ImgWrapper>
+				<S.CardWrapper>
+					<CardSection {...limitTime} />
+				</S.CardWrapper>
+			</S.Container>
+		</Container>
+	);
+};
 
-export default Course
+export default Course;

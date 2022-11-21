@@ -222,14 +222,14 @@ export const participatedList = [
 export const navProps = {
 	logo: logo,
 	links: [
-		{name: '대회안내'},
-		{name: '대회코스'},
+		{name: '대회안내', href: '/info/summary'},
+		{name: '대회코스', href: '/course'},
 		{name: '참가신청'},
 		{name: '대회기록'},
 		{name: '참여마당'},
 	],
 	button: {
-		content: '참가신청하기',
+		children: '참가신청하기',
 		onClick: () => console.log('snfma'),
 		isRounded: true,
 		color: colorPalette.white,
@@ -242,24 +242,30 @@ export const navProps = {
 		{
 			title: '대회안내',
 			menu: [
-				{name: '대회 안내'},
-				{name: '시상 안내'},
-				{name: '유의 사항'},
-				{name: '참가 기념품'},
-				{name: '오시는 길'},
+				{name: '대회 안내', href: '/info/summary'},
+				{name: '시상 안내', href: '/info/award'},
+				{name: '유의 사항', href: '/info/note'},
+				{name: '참가 기념품', href: '/info/gift'},
+				{name: '오시는 길', href: '/info/direction'},
 			],
 		},
 		{
 			title: '대회 코스',
-			menu: [{name: '대회 코스'}],
+			menu: [{name: '대회 코스', href: '/course'}],
 		},
 		{
 			title: '참가신청',
 			menu: [
-				{name: '개인 참가신청'},
-				{name: '단체 참가신청'},
-				{name: '개인 참가신청 조회/수정'},
-				{name: '단체 참가신청 조회/수정'},
+				{name: '개인 참가신청', href: '/participation/person'},
+				{name: '단체 참가신청', href: '/participation/group'},
+				{
+					name: '개인 참가신청 조회/수정',
+					href: '/participation/person-update',
+				},
+				{
+					name: '단체 참가신청 조회/수정',
+					href: '/participation/group-update',
+				},
 			],
 		},
 		{
@@ -273,7 +279,7 @@ export const navProps = {
 				{name: '자원봉사 신청 조회/수정'},
 				{name: '홍보 게시판'},
 				{name: '환불 게시판'},
-				{name: '자유 게시판'},
+				{name: '자유 게시판', href: '/ground/free'},
 				{name: '대회 사진'},
 				{name: '공지 사항'},
 			],
