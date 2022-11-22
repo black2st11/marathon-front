@@ -275,13 +275,16 @@ export const navProps = {
 		{
 			title: '참여마당',
 			menu: [
-				{name: '자원봉사 신청'},
-				{name: '자원봉사 신청 조회/수정'},
-				{name: '홍보 게시판'},
-				{name: '환불 게시판'},
+				{name: '자원봉사 신청', href: '/participation/volunteer'},
+				{
+					name: '자원봉사 신청 조회/수정',
+					href: '/participation/volunteer-update',
+				},
+				{name: '홍보 게시판', href: '/ground/promo'},
+				{name: '환불 게시판', href: '/ground/refund'},
 				{name: '자유 게시판', href: '/ground/free'},
-				{name: '대회 사진'},
-				{name: '공지 사항'},
+				{name: '대회 사진', href: '/ground/pic'},
+				{name: '공지 사항', href: '/ground/notify'},
 			],
 		},
 	],

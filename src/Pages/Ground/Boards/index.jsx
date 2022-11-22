@@ -37,6 +37,11 @@ const Boards = ({category}) => {
 		}
 		window.location.href = window.location.href + `/${id}`;
 	};
+	const goCreate = () => {
+		window.location.href = window.location.href + `-create`;
+	};
+	buttonProps.onClick = () => goCreate();
+
 	return (
 		<Container>
 			<S.Container>

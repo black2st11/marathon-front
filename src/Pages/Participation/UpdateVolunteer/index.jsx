@@ -7,11 +7,11 @@ import {
 	secondProps,
 	thirdProps,
 } from './data';
-import {PersonForm} from '../../../Components/Template';
+import {BreadCrumb, PersonForm} from '../../../Components/Template';
 import {CardContent, SelectTable} from '../../../Components/Organism';
 import {setForm, setWarnText} from '../../../util';
 import {isValidate} from '../../../util/validator';
-import {Button} from '../../../Components/Atom';
+import {Button, Container} from '../../../Components/Atom';
 import {getListVolunteer, updateVolunteer} from '../../../api';
 
 const UpdateVolunteer = () => {
@@ -92,7 +92,10 @@ const UpdateVolunteer = () => {
 	};
 
 	return (
-		<React.Fragment>
+		<Container>
+			<BreadCrumb
+				depths={['HOME', '참여 마당', '자원봉사 신청 조회/수정']}
+			/>
 			{section === 0 && (
 				<S.FirstSection>
 					<S.CardContentWrapper>
@@ -119,7 +122,7 @@ const UpdateVolunteer = () => {
 					<PersonForm {...thirdProps} />
 				</S.ThirdSection>
 			)}
-		</React.Fragment>
+		</Container>
 	);
 };
 

@@ -1,10 +1,41 @@
 import React, {useState} from 'react';
-import {PersonForm} from '../../../Components/Template';
-import {firstProps, secondProps, invalidProps} from './data';
+import {BreadCrumb, PersonForm} from '../../../Components/Template';
+import {firstProps, secondProps, invalidProps, textareaProps} from './data';
 import {setForm, setWarnText} from '../../../util';
 import {isValidate} from '../../../util/validator';
 import {postPersonParticipation} from '../../../api';
-import {Container} from '../../../Components/Atom';
+import {CheckBox, Container, Text, TextArea} from '../../../Components/Atom';
+import styled from 'styled-components';
+import {viewSize} from '../../../config';
+import {firstProgress, secondProgress} from '../../../config/images';
+
+export const TopWRapper = styled.div`
+	width: 100%;
+	display: flex;
+	margin-top: 1rem;
+	> img {
+		margin: auto 0 auto auto;
+	}
+
+	@media screen and (max-width: ${viewSize.mobile}) {
+		flex-direction: column-reverse;
+
+		> img {
+			margin: auto auto auto 0;
+		}
+	}
+`;
+
+export const CheckBoxWrapper = styled.div`
+	margin: 1rem 0;
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	align-items: baseline;
+	> div {
+		margin-right: 1rem;
+	}
+`;
 
 const Person = () => {
 	const [info, setInfo] = useState({
@@ -25,6 +56,7 @@ const Person = () => {
 		gift: '',
 	});
 
+	const [check, setCheck] = useState(false);
 	const [invalid, setInvalid] = useState(invalidProps);
 	const [section, setSection] = useState(0);
 
@@ -78,6 +110,27 @@ const Person = () => {
 	};
 	return (
 		<Container>
+			<TopWRapper>
+				<BreadCrumb
+					depths={['HOME', '참가신청 하기', '개인 참가신청']}
+				/>
+				<img src={section === 0 ? firstProgress : secondProgress} />
+			</TopWRapper>
+			<TextArea
+				borderRadius={'1rem'}
+				height={'228px'}
+				disabled={true}
+				value={textareaProps}
+			/>
+			<CheckBoxWrapper>
+				<CheckBox
+					value={check}
+					onChange={(e) => {
+						setCheck(e.target.value);
+					}}
+				></CheckBox>
+				<Text>위의 사항에 대하여 모두 동의합니다.</Text>
+			</CheckBoxWrapper>
 			{section === 0 && <PersonForm {...firstProps} />}
 			{section === 1 && <PersonForm {...secondProps} />}
 		</Container>

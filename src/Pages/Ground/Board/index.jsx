@@ -26,7 +26,7 @@ const Board = ({category = '자유'}) => {
 
 	return (
 		<Container>
-			<BoardTemplate {...firstProps} />;
+			<BoardTemplate {...firstProps} />
 		</Container>
 	);
 };

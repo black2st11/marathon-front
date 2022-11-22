@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import * as S from './style';
 import {firstProps, secondProps, thirdProps, invalidProps} from './data';
 import {CardContent, SelectTable} from '../../../Components/Organism';
-import {PersonForm} from '../../../Components/Template';
+import {BreadCrumb, PersonForm} from '../../../Components/Template';
 import {setForm, setWarnText} from '../../../util';
 import {Button, Container} from '../../../Components/Atom';
 import {isValidate} from '../../../util/validator';
@@ -11,6 +11,8 @@ import {
 	updatePersonParticipation,
 } from '../../../api';
 import {initialInfo} from '../UpdateVolunteer/data';
+import {TopWRapper} from '../Person';
+import {thirdProgress} from '../../../config/images';
 
 const UpdatePerson = () => {
 	const [info, setInfo] = useState({
@@ -133,6 +135,17 @@ const UpdatePerson = () => {
 
 	return (
 		<Container>
+			<TopWRapper>
+				<BreadCrumb
+					depths={[
+						'HOME',
+						'참가신청 하기',
+						'개인 참가신청 조회/수정',
+					]}
+				/>
+				{section === 1 && <img src={thirdProgress} />}
+			</TopWRapper>
+
 			{section === 0 && (
 				<S.FirstSection>
 					<S.CardContentWrapper>

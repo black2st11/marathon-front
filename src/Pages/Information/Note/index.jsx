@@ -11,12 +11,13 @@ import {
 	emergency,
 	privacy,
 } from './data';
-import {CardSection} from '../../../Components/Template';
+import {BreadCrumb, CardSection} from '../../../Components/Template';
 import {Container} from '../../../Components/Atom';
 
 const Note = () => {
 	return (
 		<Container>
+			<BreadCrumb depths={['HOME', '대회 안내', '유의 사항']} />
 			<CardSection {...qualification} />
 			<CardSection {...reception} />
 			<CardSection {...health} />

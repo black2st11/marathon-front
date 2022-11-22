@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {postGroupParticipation} from '../../../api';
-import {PersonForm} from '../../../Components/Template';
+import {BreadCrumb, PersonForm} from '../../../Components/Template';
 import {
 	setGroupForm,
 	setAddGroup,
@@ -12,8 +12,16 @@ import {
 	generateGroupParticipation,
 } from '../../../util';
 import {isValidate} from '../../../util/validator';
-import {firstProps, groupProps, secondProps, invalidProps} from './data';
-import {Container} from '../../../Components/Atom';
+import {
+	firstProps,
+	groupProps,
+	secondProps,
+	invalidProps,
+	textareaProps,
+} from './data';
+import {CheckBox, Container, Text, TextArea} from '../../../Components/Atom';
+import {CheckBoxWrapper, TopWRapper} from '../Person';
+import {firstProgress, secondProgress} from '../../../config/images';
 
 const Group = () => {
 	const [info, setInfo] = useState({
@@ -58,7 +66,7 @@ const Group = () => {
 	const [isAllCheck, setIsAllCheck] = useState(false);
 	const [invalid, setInvalid] = useState(invalidProps);
 	const [section, setSection] = useState(0);
-
+	const [check, setCheck] = useState(false);
 	let firstInfo = {
 		name: info.name,
 		representative: info.representative,
@@ -108,6 +116,27 @@ const Group = () => {
 	secondProps.group = groupProps;
 	return (
 		<Container>
+			<TopWRapper>
+				<BreadCrumb
+					depths={['HOME', '참가신청 하기', '단체 참가신청']}
+				/>
+				<img src={section === 0 ? firstProgress : secondProgress} />
+			</TopWRapper>
+			<TextArea
+				borderRadius={'1rem'}
+				height={'228px'}
+				disabled={true}
+				value={textareaProps}
+			/>
+			<CheckBoxWrapper>
+				<CheckBox
+					value={check}
+					onChange={(e) => {
+						setCheck(e.target.value);
+					}}
+				></CheckBox>
+				<Text>위의 사항에 대하여 모두 동의합니다.</Text>
+			</CheckBoxWrapper>
 			{section === 0 && <PersonForm {...firstProps} />}
 			{section === 1 && <PersonForm {...secondProps} />}
 		</Container>

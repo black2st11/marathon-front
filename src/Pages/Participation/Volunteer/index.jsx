@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
 import {firstProps, initialInfo, invalidProps} from './data';
-import {PersonForm} from '../../../Components/Template';
+import {BreadCrumb, PersonForm} from '../../../Components/Template';
 import {setForm, setWarnText} from '../../../util';
 import {isValidate} from '../../../util/validator';
 import {postVolunteer} from '../../../api';
+import {Container} from '../../../Components/Atom';
+import {TopWRapper} from '../Person';
 
 const Volunteer = () => {
 	const [info, setInfo] = useState(initialInfo);
@@ -30,7 +32,12 @@ const Volunteer = () => {
 		}
 	};
 
-	return <PersonForm {...firstProps} />;
+	return (
+		<Container>
+			<BreadCrumb depths={['HOME', '참여 마당', '자원봉사 신청']} />
+			<PersonForm {...firstProps} />;
+		</Container>
+	);
 };
 
 export default Volunteer;

@@ -13,3 +13,6 @@ export {default as cbsImg} from '../static/image/cbsImg.png';
 export {default as gyeongSangImg} from '../static/image/gyeongsangImg.png';
 export {default as jinjuImg} from '../static/image/jinjuImg.png';
 export {default as logo} from '../static/image/logo.png';
+export {default as firstProgress} from '../static/image/firstProgress.png';
+export {default as secondProgress} from '../static/image/secondProgress.png';
+export {default as thirdProgress} from '../static/image/thirdProgress.png';

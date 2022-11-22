@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {firstProps, invalidProps, secondProps, thirdProps} from './data';
-import {PersonForm} from '../../../Components/Template';
+import {BreadCrumb, PersonForm} from '../../../Components/Template';
 import {CardContent, SelectTable} from '../../../Components/Organism';
 import {GroupTable} from '../../../Components/Organism/GroupForm';
 import * as S from './style';
@@ -20,6 +20,8 @@ import {
 	updateGroupParticipation,
 } from '../../../api';
 import {tdProps} from '../../common';
+import {TopWRapper} from '../Person';
+import {thirdProgress} from '../../../config/images';
 const UpdateGroup = () => {
 	const [info, setInfo] = useState({
 		name: '',
@@ -214,6 +216,17 @@ const UpdateGroup = () => {
 
 	return (
 		<Container>
+			<TopWRapper>
+				<BreadCrumb
+					depths={[
+						'HOME',
+						'참가신청 하기',
+						'단체 참가신청 조회/수정',
+					]}
+				/>
+				{section === 1 && <img src={thirdProgress} />}
+			</TopWRapper>
+
 			{section === 0 && (
 				<S.FirstSection>
 					<PersonForm {...firstProps} />
