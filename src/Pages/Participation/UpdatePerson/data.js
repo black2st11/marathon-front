@@ -1,4 +1,4 @@
-import {makeDay, makeMonth, makeYear} from '../../../util';
+import {makeCourse, makeDay, makeMonth, makeYear} from '../../../util';
 import {onlyLetter, onlyNumber} from '../../../util/validator';
 import {
 	inputTextProps,
@@ -208,14 +208,17 @@ export const thirdProps = {
 				{
 					name: 'phone1',
 					pattern: onlyNumber,
+					maxlength: 3,
 				},
 				{
 					name: 'phone2',
 					pattern: onlyNumber,
+					maxlength: 4,
 				},
 				{
 					name: 'phone3',
 					pattern: onlyNumber,
+					maxlength: 4,
 				},
 			],
 			warnText: {
@@ -372,20 +375,7 @@ export const thirdProps = {
 				...inputEnglishTextProps,
 				children: 'Participating events',
 			},
-			items: [
-				{
-					value: '풀코스',
-					children: '풀코스 부문',
-				},
-				{
-					value: '하프코스',
-					children: '하프코스 부문',
-				},
-				{
-					value: '10km코스',
-					children: '10km코스 부문',
-				},
-			],
+			items: makeCourse(),
 			warnText: {
 				...warnText,
 			},

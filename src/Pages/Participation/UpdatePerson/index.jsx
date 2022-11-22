@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import * as S from './style';
 import {firstProps, secondProps, thirdProps, invalidProps} from './data';
 import {CardContent, SelectTable} from '../../../Components/Organism';
@@ -13,6 +13,59 @@ import {
 import {initialInfo} from '../UpdateVolunteer/data';
 import {TopWRapper} from '../Person';
 import {thirdProgress} from '../../../config/images';
+
+const setData = ({state, setState, data}) => {
+	let person = data[0];
+	let participation = person.participation;
+
+	secondProps.info.map((info) => {
+		info.forEach((item) => {
+			switch (item.key) {
+				case 'name':
+					item.content.children = participation.name;
+					break;
+				case 'course':
+					item.content.children = `${participation.course} ${participation.gender}부`;
+					break;
+				case 'depositor':
+					item.content.children = person.depositor;
+					break;
+				case 'address':
+					item.content.children = `${person.address} ${person.detail_address}`;
+					break;
+				case 'birth':
+					item.content.children = `${participation.birth}`;
+					break;
+				case 'email':
+					item.content.children = person.email;
+					break;
+				case 'phone':
+					item.content.children = participation.phone;
+					break;
+				default:
+					break;
+			}
+		});
+	});
+
+	let splitted_birth = participation.birth.split('-');
+	let splitted_phone = participation.phone.split('-');
+	setState({
+		...participation,
+		...person,
+		year: splitted_birth[0],
+		month: splitted_birth[1],
+		day: splitted_birth[2],
+		phone1: splitted_phone[0],
+		phone2: splitted_phone[1] ? splitted_phone[1] : '',
+		phone3: splitted_phone[2] ? splitted_phone[2] : '',
+	});
+	secondProps.fee.items[0][1].content.children = participation.is_deposit
+		? '입금'
+		: '미입금';
+	secondProps.tabletFee.items[0][1].content.children =
+		participation.is_deposit ? '입금' : '미입금';
+};
 
 const UpdatePerson = () => {
 	const [info, setInfo] = useState({
@@ -34,6 +87,34 @@ const UpdatePerson = () => {
 	});
 	const [invalid, setInvalid] = useState(invalidProps);
 	const [section, setSection] = useState(0);
+
+	useEffect(() => {
+		let name = sessionStorage.getItem('name');
+		let birth = sessionStorage.getItem('birth');
+		(async () => {
+			let res = await getListPersonParticipation({name, birth});
+			if (!res.isSuccess) {
+			}
+			let birthSplitted = birth.split('-');
+			if (res.data.count === 1) {
+				setInfo({
+					...info,
+					name: name,
+					year: birthSplitted[0],
+					month: birthSplitted[1],
+					day: birthSplitted[2],
+				});
+				setData({
+					state: info,
+					setState: setInfo,
+					data: res.data.results,
+				});
+				setSection(1);
+			}
+		})();
+
+		return () => {};
+	}, []);
 
 	const firstInfo = {
 		name: info.name,
@@ -61,55 +142,11 @@ const UpdatePerson = () => {
 			if (res.data.count !== 1) {
 				return alert('해당하는 신청서가 없습니다.');
 			}
-			let person = res.data.results[0];
-			let participation = person.participation;
-
-			secondProps.info.map((info) => {
-				info.forEach((item) => {
-					switch (item.key) {
-						case 'name':
-							item.content.children = participation.name;
-							break;
-						case 'course':
-							item.content.children = `${participation.course} ${participation.gender}부`;
-							break;
-						case 'depositor':
-							item.content.children = person.depositor;
-							break;
-						case 'address':
-							item.content.children = `${person.address} ${person.detail_address}`;
-							break;
-						case 'birth':
-							item.content.children = `${participation.birth}`;
-							break;
-						case 'email':
-							item.content.children = person.email;
-							break;
-						case 'phone':
-							item.content.children = participation.phone;
-							break;
-						default:
-							break;
-					}
-				});
+			setData({
+				state: info,
+				setState: setInfo,
+				data: res.data.results,
 			});
-
-			let splitted_birth = participation.birth.split('-');
-			let splitted_phone = participation.phone.split('-');
-			setInfo({
-				...participation,
-				...person,
-				year: splitted_birth[0],
-				month: splitted_birth[1],
-				day: splitted_birth[2],
-				phone1: splitted_phone[0],
-				phone2: splitted_phone[1] ? splitted_phone[1] : '',
-				phone3: splitted_phone[2] ? splitted_phone[2] : '',
-			});
-			secondProps.fee.items[0][1].content.children =
-				participation.is_deposit ? '입금' : '미입금';
-			secondProps.tabletFee.items[0][1].content.children =
-				participation.is_deposit ? '입금' : '미입금';
 			setSection(1);
 		}
 	};

@@ -78,6 +78,9 @@ const Person = () => {
 
 	firstProps.button.onClick = () => {
 		if (isValidate(firstInfo, invalidProps, setInvalid)) {
+			if (!check) {
+				return alert('약관에 동의하셔야 진행이 가능합니다.');
+			}
 			setSection(1);
 		}
 	};
@@ -91,7 +94,7 @@ const Person = () => {
 		if (isValidate(info, invalidProps, setInvalid)) {
 			let res = await postPersonParticipation({
 				name: info.name,
-				phone: `${info.phone1}${info.phone2}${info.phone3}`,
+				phone: `${info.phone1}-${info.phone2}-${info.phone3}`,
 				birth: `${info.year}-${info.month}-${info.day}`,
 				gender: info.gender,
 				post_number: info.post_number,
@@ -106,6 +109,15 @@ const Person = () => {
 			if (!res.isSuccess) {
 				alert('error occurred');
 			}
+
+			sessionStorage.setItem('name', info.name);
+			sessionStorage.setItem(
+				'birth',
+				`${info.year}-${info.month}-${info.day}`,
+			);
+
+			window.location.href =
+				window.location.origin + '/participation/person-update';
 		}
 	};
 	return (
@@ -116,21 +128,27 @@ const Person = () => {
 				/>
 				<img src={section === 0 ? firstProgress : secondProgress} />
 			</TopWRapper>
-			<TextArea
-				borderRadius={'1rem'}
-				height={'228px'}
-				disabled={true}
-				value={textareaProps}
-			/>
-			<CheckBoxWrapper>
-				<CheckBox
-					value={check}
-					onChange={(e) => {
-						setCheck(e.target.value);
-					}}
-				></CheckBox>
-				<Text>위의 사항에 대하여 모두 동의합니다.</Text>
-			</CheckBoxWrapper>
+
+			{section === 0 && (
+				<>
+					<TextArea
+						borderRadius={'1rem'}
+						height={'228px'}
+						disabled={true}
+						value={textareaProps}
+					/>
+					<CheckBoxWrapper>
+						<CheckBox
+							value={check}
+							onChange={(e) => {
+								setCheck(e.target.value);
+							}}
+						></CheckBox>
+						<Text>위의 사항에 대하여 모두 동의합니다.</Text>
+					</CheckBoxWrapper>
+				</>
+			)}
+
 			{section === 0 && <PersonForm {...firstProps} />}
 			{section === 1 && <PersonForm {...secondProps} />}
 		</Container>
