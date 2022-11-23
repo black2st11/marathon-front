@@ -22,6 +22,96 @@ import {
 import {tdProps} from '../../common';
 import {TopWRapper} from '../Person';
 import {thirdProgress} from '../../../config/images';
+
+const setInfoData = ({setState, data}) => {
+	let group = data;
+	let births = group.birth.split('-');
+	let phones = group.phone.split('-');
+	setState({
+		...group,
+		year: births[0],
+		month: births[1],
+		day: births[2],
+		phone1: phones[0],
+		phone2: phones[1],
+		phone3: phones[2],
+	});
+
+	let participations = group.participation;
+	secondProps.info.forEach((info) => {
+		info.forEach((item) => {
+			switch (item.key) {
+				case 'name':
+					item.content.children = group.name;
+					break;
+				case 'birth':
+					item.content.children = group.birth;
+					break;
+				case 'phone':
+					item.content.children = group.phone;
+					break;
+				case 'representative':
+					item.content.children = group.representative;
+					break;
+				case 'email':
+					item.content.children = group.email;
+					break;
+				case 'depositor':
+					item.content.children = group.depositor;
+					break;
+				case 'address':
+					item.content.children = `${group.address} ${group.detail_address}`;
+					break;
+				case 'count':
+					item.content.children = participations.length;
+					break;
+				default:
+					break;
+			}
+		});
+	});
+
+	secondProps.fee.items[0][0].content.children = group.deposit_amount;
+	secondProps.fee.items[0][1].content.children = group.is_deposit
+		? '입금'
+		: '미입금';
+
+	secondProps.tabletFee.items[0][0].content.children = group.deposit_amount;
+	secondProps.tabletFee.items[0][1].content.children = group.is_deposit
+		? '입금'
+		: '미입금';
+};
+
+const setGroupData = ({setState, data}) => {
+	let participations = data.participation;
+	let trKey = ['name', 'gender', 'birth', 'phone', 'course', 'gift'];
+	let trs = [];
+	let groups = [];
+	participations.forEach((participation, index, array) => {
+		let tr = [];
+		let splitted_phone = participation.phone.split('-');
+
+		tr.push({...tdProps, children: index + 1});
+		trKey.forEach((key) => {
+			tr.push({...tdProps, children: participation[key]});
+		});
+		trs.push(tr);
+		groups.push({
+			check: false,
+			name: participation.name,
+			gender: participation.gender,
+			birth: `${participation.birth.split('-').join('')}`,
+			phone1: splitted_phone[0],
+			phone2: splitted_phone[1],
+			phone3: splitted_phone[2],
+			course: participation.course,
+			gift: participation.gift,
+		});
+	});
+	setState(groups);
+	secondProps.groups.trs = trs;
+};
+
 const UpdateGroup = () => {
 	const [info, setInfo] = useState({
 		name: '',
@@ -67,6 +157,31 @@ const UpdateGroup = () => {
 	const [isAllCheck, setIsAllCheck] = useState(false);
 
 	useEffect(() => {
+		(async () => {
+			let name = sessionStorage.getItem('name');
+			let representative = sessionStorage.getItem('representative');
+			let phone = sessionStorage.getItem('phone');
+
+			if (name && representative && phone) {
+				let res = await getListGroupParticipation({
+					name,
+					representative,
+					phone,
+				});
+				if (res.data.count === 1) {
+					setInfoData({setState: setInfo, data: res.data.results[0]});
+					setGroupData({
+						setState: setGroup,
+						data: res.data.results[0],
+					});
+
+					setSection(1);
+				}
+			}
+		})();
+	}, []);
+
+	useEffect(() => {
 		let check = true;
 		group.forEach((item) => {
 			check = check && item.check;
@@ -97,88 +212,8 @@ const UpdateGroup = () => {
 			if (res.data.length === 0) {
 				alert('신청서가 존재하지 않습니다.');
 			}
-			let group = res.data[0];
-			let births = group.birth.split('-');
-			let phones = group.phone.split('-');
-			setInfo({
-				...group,
-				year: births[0],
-				month: births[1],
-				day: births[2],
-				phone1: phones[0],
-				phone2: phones[1],
-				phone3: phones[2],
-			});
-
-			let participations = group.participation;
-			secondProps.info.forEach((info) => {
-				info.forEach((item) => {
-					switch (item.key) {
-						case 'name':
-							item.content.children = group.name;
-							break;
-						case 'birth':
-							item.content.children = group.birth;
-							break;
-						case 'phone':
-							item.content.children = group.phone;
-							break;
-						case 'representative':
-							item.content.children = group.representative;
-							break;
-						case 'email':
-							item.content.children = group.email;
-							break;
-						case 'depositor':
-							item.content.children = group.depositor;
-							break;
-						case 'address':
-							item.content.children = `${group.address} ${group.detail_address}`;
-							break;
-						case 'count':
-							item.content.children = participations.length;
-							break;
-						default:
-							break;
-					}
-				});
-			});
-
-			secondProps.fee.items[0][0].content.children = group.deposit_amount;
-			secondProps.fee.items[0][1].content.children = group.is_deposit
-				? '입금'
-				: '미입금';
-
-			secondProps.tabletFee.items[0][0].content.children =
-				group.deposit_amount;
-			secondProps.tabletFee.items[0][1].content.children =
-				group.is_deposit ? '입금' : '미입금';
-			let trKey = ['name', 'gender', 'birth', 'phone', 'course', 'gift'];
-			let trs = [];
-			let groups = [];
-			participations.forEach((participation, index, array) => {
-				let tr = [];
-				let splitted_phone = participation.phone.split('-');
-
-				tr.push({...tdProps, children: index + 1});
-				trKey.forEach((key) => {
-					tr.push({...tdProps, children: participation[key]});
-				});
-				trs.push(tr);
-				groups.push({
-					check: false,
-					name: participation.name,
-					gender: participation.gender,
-					birth: participation.birth,
-					phone1: splitted_phone[0],
-					phone2: splitted_phone[1],
-					phone3: splitted_phone[2],
-					course: participation.course,
-					gift: participation.gift,
-				});
-			});
-			setGroup(groups);
-			secondProps.groups.trs = trs;
+			setInfoData({setState: setInfo, data: res.data.results[0]});
+			setGroupData({setState: setGroup, data: res.data.results[0]});
 
 			setSection(1);
 		}

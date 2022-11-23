@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import * as S from './style';
 import {
 	firstProps,
@@ -14,10 +14,51 @@ import {isValidate} from '../../../util/validator';
 import {Button, Container} from '../../../Components/Atom';
 import {getListVolunteer, updateVolunteer} from '../../../api';
 
+const setData = ({setState, data}) => {
+	secondProps.items.map((items) => {
+		items.forEach((item) => {
+			if (item.key === 'class_name') {
+				item.content.children = `${data['grade']}학년${
+					data[item.key]
+				}반`;
+			} else {
+				item.content.children = data[item.key];
+			}
+		});
+	});
+	let splitted_birth = data.birth.split('-');
+	let splitted_phone = data.phone.split('-');
+	setState({
+		...data,
+		year: splitted_birth[0],
+		month: splitted_birth[1],
+		day: splitted_birth[2],
+		phone1: splitted_phone[0] ? splitted_phone[0] : '',
+		phone2: splitted_phone[1] ? splitted_phone[1] : '',
+		phone3: splitted_phone[2] ? splitted_phone[2] : '',
+	});
+};
+
 const UpdateVolunteer = () => {
 	const [info, setInfo] = useState(initialInfo);
 	const [invalid, setInvalid] = useState(invalidProps);
 	const [section, setSection] = useState(0);
+
+	useEffect(() => {
+		(async () => {
+			let name = sessionStorage.getItem('name');
+			let phone = sessionStorage.getItem('phone');
+
+			let res = await getListVolunteer({
+				name,
+				phone,
+			});
+			if (res.data.count === 1) {
+				setData({setState: setInfo, data: res.data.results[0]});
+				setSection(1);
+			}
+		})();
+	}, []);
 
 	const firstInfo = {
 		name: info.name,
@@ -41,30 +82,7 @@ const UpdateVolunteer = () => {
 			if (res.data.count !== 1) {
 				return alert('일치하는 신청서가 없습니다.');
 			}
-			let data = res.data.results[0];
-			secondProps.items.map((items) => {
-				items.forEach((item) => {
-					if (item.key === 'class_name') {
-						item.content.children = `${data['grade']}학년${
-							data[item.key]
-						}반`;
-					} else {
-						item.content.children = data[item.key];
-					}
-				});
-			});
-			let splitted_birth = data.birth.split('-');
-			let splitted_phone = data.phone.split('-');
-			setInfo({
-				...info,
-				...data,
-				year: splitted_birth[0],
-				month: splitted_birth[1],
-				day: splitted_birth[2],
-				phone1: splitted_phone[0] ? splitted_phone[0] : '',
-				phone2: splitted_phone[1] ? splitted_phone[1] : '',
-				phone3: splitted_phone[2] ? splitted_phone[2] : '',
-			});
+			setData({setState: setInfo, data: res.data.results[0]});
 			setSection(1);
 		}
 	};

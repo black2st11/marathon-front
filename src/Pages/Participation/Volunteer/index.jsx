@@ -29,6 +29,14 @@ const Volunteer = () => {
 			if (!res.isSuccess) {
 				return alert('error occurred');
 			}
+
+			sessionStorage.setItem('name', info.name);
+			sessionStorage.setItem(
+				'phone',
+				`${info.phone1}-${info.phone2}-${info.phone3}`,
+			);
+
+			window.location.href = `${window.location.href}-update`;
 		}
 	};
 
