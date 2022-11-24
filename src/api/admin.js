@@ -351,3 +351,41 @@ export const exportVolunteer = async ({fields, order}) => {
 	});
 	exportFileDownload(res);
 };
+
+export const getInfo = async ({id}) => {
+	let verification = sessionStorage.getItem('verification');
+	let params = {
+		token,
+		verification,
+	};
+
+	return await defaultApi({params, url: `/info/${id}/`, method: 'GET'});
+};
+
+export const updateInfo = async ({id, name, started, ended}) => {
+	let data = {
+		name,
+		started,
+		ended,
+	};
+
+	return await defaultApi({data, url: `/info/${id}/`, method: 'PUT'});
+};
+
+export const getModals = async ({token, active}) => {
+	let params = {
+		token,
+		active,
+	};
+
+	return await defaultApi({params, url: `/modals/`, method: 'GET'});
+};
+
+export const updateModal = async ({token, active}) => {
+	let data = {
+		token,
+		active,
+	};
+
+	return await defaultApi({data, url: `/modals/`, method: 'PUT'});
+};

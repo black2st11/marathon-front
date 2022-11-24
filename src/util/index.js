@@ -10,7 +10,6 @@ import {
 import {onlyLetter, onlyNumber} from './validator';
 
 export const makeGiftByCourse = (name = '') => {
-	console.log('name');
 	let gifts = [];
 	if (!name) {
 		return gifts;
@@ -167,7 +166,6 @@ export const setForm = (props, prevState, setFunc) => {
 
 	if (props.inputs) {
 		props.inputs.forEach((input) => {
-			console.log(input);
 			input.onChange = (e) => setInput(e, prevState, setFunc);
 			input.value = prevState[input.name];
 		});

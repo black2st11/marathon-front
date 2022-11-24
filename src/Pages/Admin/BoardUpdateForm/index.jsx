@@ -18,7 +18,6 @@ const BoardUpdateForm = ({id, onClose}) => {
 	useEffect(() => {
 		(async () => {
 			let res = await getBoard({id});
-			console.log(res);
 			setPost(res.data);
 		})();
 	}, [toggle, id]);
@@ -35,15 +34,7 @@ const BoardUpdateForm = ({id, onClose}) => {
 				<Card
 					title={comment.author}
 					style={{margin: '1rem 0'}}
-					extra={
-						<Button
-							onClick={() => {
-								console.log(1);
-							}}
-						>
-							삭제
-						</Button>
-					}
+					extra={<Button onClick={() => {}}>삭제</Button>}
 				>
 					<Paragraph>{comment.content}</Paragraph>
 				</Card>

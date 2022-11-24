@@ -34,6 +34,7 @@ export const NavWrapper = styled.div`
 `;
 
 export const LogoWrapper = styled.img`
+	cursor: pointer;
 	@media screen and (max-width: ${viewSize.mobile}) {
 		display: none;
 	}

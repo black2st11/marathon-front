@@ -138,7 +138,6 @@ const UpdatePerson = () => {
 				name: info.name,
 				birth: `${info.year}-${info.month}-${info.day}`,
 			});
-			console.log(res.data);
 			if (res.data.count !== 1) {
 				return alert('해당하는 신청서가 없습니다.');
 			}
@@ -150,7 +149,6 @@ const UpdatePerson = () => {
 			setSection(1);
 		}
 	};
-	console.log(info);
 	secondProps.button.onClick = () => {
 		setSection(2);
 	};

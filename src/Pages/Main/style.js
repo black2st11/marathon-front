@@ -30,16 +30,23 @@ export const FirstTextWrapper = styled.div`
 	> button {
 		width: 9rem;
 	}
-	
-	@media screen and (max-width : ${viewSize.tablet}) {
-		padding-right: 1rem;
-		margin: 5rem auto;
 
-		> button {
-			width: 6rem;
+	> h2 {
+		margin: 1rem 0;
+	}
+
+	> p {
+		margin: 1rem 0;
+	}
+		@media screen and (max-width: ${viewSize.tablet}) {
+			padding-right: 1rem;
+			margin: 5rem auto;
+
+			> button {
+				width: 6rem;
+			}
 		}
 	}
-}
 `;
 
 export const DateWrapper = styled.div`
@@ -171,7 +178,6 @@ export const ThirdSection = styled.div`
 	background-repeat: no-repeat;
 	background-size: cover;
 	padding: 3rem 0;
-	max-width: ${viewSize.desktop};
 `;
 export const ThirdTextWrapper = styled.div`
 	max-width: ${defaultSize.desktopContainer};

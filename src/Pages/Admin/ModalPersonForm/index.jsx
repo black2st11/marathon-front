@@ -70,7 +70,6 @@ const ModalPersonForm = ({person, onClick}) => {
 				<Form
 					initialValues={info}
 					onFinish={async (values) => {
-						console.log(values);
 						let body = {
 							post_number: values.post_number,
 							address: values.address,

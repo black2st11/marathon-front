@@ -31,11 +31,19 @@ const Nav = ({links, logo, button, menus = []}) => {
 			);
 		});
 	};
+
+	console.log(button);
 	return (
 		<React.Fragment>
 			<Container onMouseLeave={() => setHidden(true)}>
 				<NavWrapper onMouseEnter={() => setHidden(false)}>
-					<LogoWrapper src={logo} alt='로고 이미지' />
+					<LogoWrapper
+						src={logo}
+						alt='로고 이미지'
+						onClick={() =>
+							(window.location.href = window.location.origin)
+						}
+					/>
 					<MenuWrapper>
 						{links.map((link, index, array) => {
 							return (
@@ -46,7 +54,7 @@ const Nav = ({links, logo, button, menus = []}) => {
 						})}
 					</MenuWrapper>
 					<ButtonWrapper>
-						<Button {...button}>{button.content}</Button>
+						<Button {...button} />
 					</ButtonWrapper>
 					<IconWrapper>
 						{mobileHidden ? (
@@ -82,7 +90,7 @@ const Nav = ({links, logo, button, menus = []}) => {
 							return (
 								<MobileMenu key={index}>
 									<TitleWrapper>
-										<Text>{menu.name}</Text>
+										<Text>{menu.title}</Text>
 									</TitleWrapper>
 									{generateMenu(menu.menu)}
 								</MobileMenu>

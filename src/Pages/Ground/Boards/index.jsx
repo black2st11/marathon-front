@@ -5,11 +5,22 @@ import {
 	buttonProps,
 	paginationProps,
 } from './data';
-import {Boards as BoardsTemplate} from '../../../Components/Template';
+import {
+	Boards as BoardsTemplate,
+	BreadCrumb,
+} from '../../../Components/Template';
 import {Pagination} from '../../../Components/Organism';
 import * as S from './style';
 import {Button, Container} from '../../../Components/Atom';
 import {checkPassword, getListBoard} from '../../../api/board';
+
+const categoryMap = {
+	자유: '자유게시판',
+	홍보: '홍보게시판',
+	환불: '환불게시판',
+	공지: '공지게시판',
+	사진: '사진게시판',
+};
 
 const Boards = ({category}) => {
 	const [page, setPage] = useState(1);
@@ -44,6 +55,7 @@ const Boards = ({category}) => {
 
 	return (
 		<Container>
+			<BreadCrumb depths={['HOME', '참여마당', categoryMap[category]]} />
 			<S.Container>
 				<S.BoardsWrapper>
 					{category === '환불' ? (
@@ -63,9 +75,6 @@ const Boards = ({category}) => {
 					)}
 				</S.BoardsWrapper>
 				<S.ButtonnWrapper>
-					<Button {...buttonProps} />
-				</S.ButtonnWrapper>
-				<S.PagintaionWrapper>
 					<Pagination
 						{...paginationProps}
 						current={page}
@@ -73,7 +82,8 @@ const Boards = ({category}) => {
 						onNext={() => setPage(page + 1)}
 						onPrev={() => setPage(page - 1)}
 					/>
-				</S.PagintaionWrapper>
+					<Button {...buttonProps} />
+				</S.ButtonnWrapper>
 			</S.Container>
 		</Container>
 	);

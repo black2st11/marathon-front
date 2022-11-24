@@ -229,14 +229,17 @@ export const navProps = {
 		{name: '참여마당'},
 	],
 	button: {
-		children: '참가신청하기',
-		onClick: () => console.log('snfma'),
-		isRounded: true,
-		color: colorPalette.white,
-		fontWeight: fontWeight.medium,
-		fontSize: {
-			desktop: fontSize.lg,
+		text: {
+			children: '참가신청하기',
+			fontSize: {
+				desktop: fontSize.lg,
+			},
+			color: colorPalette.white,
+			fontWeight: fontWeight.medium,
 		},
+		onClick: () =>
+			(window.location.href = `${window.location.origin}/participation/person`),
+		isRounded: true,
 	},
 	menus: [
 		{

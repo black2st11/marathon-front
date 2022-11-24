@@ -78,7 +78,6 @@ const UpdateVolunteer = () => {
 				name: info.name,
 				phone: `${info.phone1}-${info.phone2}-${info.phone3}`,
 			});
-			console.log(res);
 			if (res.data.count !== 1) {
 				return alert('일치하는 신청서가 없습니다.');
 			}

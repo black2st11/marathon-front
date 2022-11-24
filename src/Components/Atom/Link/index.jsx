@@ -2,7 +2,6 @@ import React from 'react';
 import {Container, Link as StyledLink} from './style';
 
 const Link = ({children, href = '', color, fontSize, onClick}) => {
-	console.log(href);
 	return (
 		<Container>
 			<StyledLink

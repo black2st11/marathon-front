@@ -229,7 +229,6 @@ const AdminParticipation = () => {
 				rowSelection={{
 					selectedRowKeys,
 					onChange: (e) => {
-						console.log(e);
 						setSelectedRowKeys(e);
 					},
 				}}

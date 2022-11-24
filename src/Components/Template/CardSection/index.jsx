@@ -19,9 +19,9 @@ const CardSection = ({title, subTitle, uls, table, image}) => {
 			<S.CardWrapper>
 				{uls && <CardContent uls={uls} />}
 				{table && (
-					<div style={{overflow: 'scroll'}}>
+					<S.TableWrapper>
 						<Table {...table} />
-					</div>
+					</S.TableWrapper>
 				)}
 				{image && <Image {...image} />}
 			</S.CardWrapper>
