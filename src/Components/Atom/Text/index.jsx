@@ -10,6 +10,7 @@ const TextGenerate = ({
 	type,
 	opacity,
 	shadow,
+	fontFamily,
 }) => {
 	const textProps = {
 		fontSize,
@@ -17,6 +18,7 @@ const TextGenerate = ({
 		fontWeight,
 		opacity,
 		shadow,
+		fontFamily,
 	};
 
 	switch (type) {
@@ -41,6 +43,7 @@ const Text = ({
 	type = 'span',
 	opacity,
 	shadow,
+	fontFamily,
 }) => {
 	const textProps = {
 		fontSize,
@@ -50,6 +53,7 @@ const Text = ({
 		type,
 		opacity,
 		shadow,
+		fontFamily,
 	};
 	return <TextGenerate {...textProps} />;
 };

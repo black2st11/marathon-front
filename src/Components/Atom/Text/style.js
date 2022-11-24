@@ -11,6 +11,8 @@ const baseText = css`
 	${(props) => props.opacity && `opacity : ${props.opacity};`}
 	${(props) => props.shadow && `text-shadow : ${props.shadow};`}
     margin : 0.25rem 0;
+	${(props) => props.fontFamily && `font-family : ${props.fontFamily};`}
+
 	@media only screen and (min-width: ${viewSize.mobile} and max-width: ${viewSize.tablet}) {
 		font-size: ${(props) =>
 			props.fontSize ? props.fontSize.tablet : fontSize.base};

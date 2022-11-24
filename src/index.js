@@ -6,9 +6,11 @@ import {RouterProvider} from 'react-router-dom';
 import {router} from './Router';
 import {Footer, Nav} from './Components/Template';
 import {navProps} from './config';
+import GlobalStyle from './config/global';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
+		<GlobalStyle />
 		<Nav {...navProps} />
 		<RouterProvider router={router} />
 		<Footer />

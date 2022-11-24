@@ -236,6 +236,7 @@ export const navProps = {
 			},
 			color: colorPalette.white,
 			fontWeight: fontWeight.medium,
+			fontFamily: 'Gmarket',
 		},
 		onClick: () =>
 			(window.location.href = `${window.location.origin}/participation/person`),
