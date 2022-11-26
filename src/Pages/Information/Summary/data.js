@@ -140,10 +140,20 @@ export const feeTextProps = {
 };
 
 export const fee = {
+	display: {
+		desktop: 'table',
+		tablet: 'table',
+		mobile: 'none',
+	},
 	title: {
 		text: {...cardTitleProps, children: '참가비 및 입금계좌'},
 	},
 	table: {
+		display: {
+			desktop: 'table',
+			tablet: 'table',
+			mobile: 'none',
+		},
 		scroll: false,
 		ths: [
 			{...thProps, children: '종목'},
@@ -177,10 +187,20 @@ export const fee = {
 };
 
 export const mobileFee = {
+	display: {
+		desktop: 'none',
+		tablet: 'none',
+		mobile: 'table',
+	},
 	title: {
 		text: {...cardTitleProps, children: '참가비 및 입금계좌'},
 	},
 	table: {
+		display: {
+			desktop: 'none',
+			tablet: 'none',
+			mobile: 'table',
+		},
 		scroll: false,
 		ths: [
 			{...thProps, children: '종목'},
@@ -204,10 +224,20 @@ export const mobileFee = {
 };
 
 export const mobileDeposit = {
+	display: {
+		desktop: 'none',
+		tablet: 'none',
+		mobile: 'table',
+	},
 	title: {
 		text: {...cardTitleProps, children: '참가비 및 입금계좌'},
 	},
 	table: {
+		display: {
+			desktop: 'none',
+			tablet: 'none',
+			mobile: 'table',
+		},
 		scroll: false,
 		ths: [{...thProps, children: '입금계좌'}],
 		trs: [

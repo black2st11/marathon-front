@@ -12,6 +12,7 @@ export const Container = styled.div`
     flex-direction: column;
     align-items : center;
     
+	z-index: 9999;
 `;
 
 export const NavWrapper = styled.div`
@@ -45,6 +46,12 @@ export const MenuWrapper = styled.div`
 	justify-content: space-between;
 	margin: auto 0 auto auto;
 	width: 50%;
+
+	> div > a {
+		font-size: 18px;
+		font-weight: 500;
+		font-family: Gmarket;
+	}
 
 	@media screen and (max-width: ${viewSize.tablet}) {
 		display: none;
@@ -104,10 +111,25 @@ export const SubMenu = styled.div`
 
 export const TitleWrapper = styled.div`
 	margin: 1.75rem 2rem;
+	> span {
+		font-size: 18px;
+		font-weight: 800;
+		font-family: Gmarket;
+	}
 `;
 
 export const Menu = styled.div`
 	margin-bottom: 1.75rem;
+
+	div > a {
+		font-size: 16px;
+		font-weight: 700;
+
+		${(props) =>
+			props.isCurrent
+				? `color : ${colorPalette.secondary};`
+				: `color : ${colorPalette.navColor};`}
+	}
 `;
 
 export const MobileContainer = styled.div`

@@ -104,6 +104,7 @@ export const colorPalette = {
 	divider: '#7b7b7b',
 	boardBorder: '#d9d9d9',
 	cardBorder: '#b2b2b2',
+	navColor: '#4d4d4d',
 };
 
 // 디스플레이 사이즈
@@ -112,57 +113,6 @@ export const viewSize = {
 	tablet: '992px',
 	desktop: '1920px',
 };
-
-// nav 및 라우팅 포인트
-export const menuList = [
-	{
-		href: 'info',
-		name: '대회안내',
-		menu: [
-			{name: '대회 요강', href: 'info'},
-			{name: '시상 안내', href: 'prize'},
-			{name: '유의 사항', href: 'recog'},
-			{name: '참가 기념품', href: 'gift'},
-			{name: '오시는 길', href: 'road'},
-		],
-	},
-	{
-		href: 'courses',
-		name: '대회 코스',
-		menu: [{name: '대회 코스', href: ''}],
-	},
-	{
-		href: 'participations',
-		name: '참가신청',
-		menu: [
-			{name: '개인 참가신청', href: 'person'},
-			{name: '단체 참가신청', href: 'group'},
-			{name: '개인 참가신청 조회/수정', href: 'person-select'},
-			{name: '단체 참가신청 조회/수정', href: 'group-select'},
-		],
-	},
-	{
-		href: 'record',
-		name: '대회기록',
-		menu: [
-			{name: '기록 조회', href: 'record-select'},
-			{name: '기록 업로드', href: 'record-upload'},
-		],
-	},
-	{
-		href: 'ground',
-		name: '참여마당',
-		menu: [
-			{name: '자원봉사 신청', href: 'volunteer'},
-			{name: '자원봉사 신청 조회/수정', href: 'volunteer_select'},
-			{name: '홍보 게시판', href: 'promotion'},
-			{name: '환불 게시판', href: 'refund'},
-			{name: '자유 게시판', href: 'free'},
-			{name: '대회 사진', href: 'pic'},
-			{name: '공지 사항', href: 'notify'},
-		],
-	},
-];
 
 // 필수 정보 리스트
 export const requiredInfo = {
@@ -222,11 +172,11 @@ export const participatedList = [
 export const navProps = {
 	logo: logo,
 	links: [
-		{name: '대회안내', href: '/info/summary'},
-		{name: '대회코스', href: '/course'},
-		{name: '참가신청'},
-		{name: '대회기록'},
-		{name: '참여마당'},
+		{name: '대회안내', key: 'info'},
+		{name: '대회코스', key: 'course'},
+		{name: '참가신청', key: 'participation'},
+		{name: '대회기록', key: 'record'},
+		{name: '참여마당', key: 'ground'},
 	],
 	button: {
 		text: {
@@ -274,7 +224,10 @@ export const navProps = {
 		},
 		{
 			title: '대회기록',
-			menu: [{name: '기록 조회'}, {name: '기록 업로드'}],
+			menu: [
+				{name: '기록 조회', href: '/record/check'},
+				{name: '기록 업로드', href: '/record/boards'},
+			],
 		},
 		{
 			title: '참여마당',

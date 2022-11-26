@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link, Button, Text} from '../../Atom';
 import {
 	ButtonWrapper,
@@ -18,21 +18,34 @@ import {
 	Fake,
 } from './style';
 import {MdOutlineClose, MdOutlineMenu} from 'react-icons/md';
+import {colorPalette} from '../../../config';
 
 const Nav = ({links, logo, button, menus = []}) => {
 	const [hidden, setHidden] = useState(true);
 	const [mobileHidden, setMobileHidden] = useState(true);
+	const [firstPath, setFirstPath] = useState('');
+	const [secondPath, setSecondPath] = useState('');
 	const generateMenu = (menus = []) => {
 		return menus.map((menu, index, array) => {
+			let paths = menu.href?.split('/');
+			let lastPath;
+			if (paths) {
+				lastPath = paths[paths.length - 1];
+			}
 			return (
-				<Menu key={index}>
+				<Menu key={index} isCurrent={lastPath === secondPath}>
 					<Link {...menu}>{menu.name}</Link>
 				</Menu>
 			);
 		});
 	};
 
-	console.log(button);
+	useEffect(() => {
+		let paths = window.location.pathname.split('/');
+		console.log(paths);
+		setFirstPath(paths[1]);
+		setSecondPath(paths[2]);
+	}, []);
 	return (
 		<React.Fragment>
 			<Container onMouseLeave={() => setHidden(true)}>
@@ -47,7 +60,15 @@ const Nav = ({links, logo, button, menus = []}) => {
 					<MenuWrapper>
 						{links.map((link, index, array) => {
 							return (
-								<Link key={index} {...links}>
+								<Link
+									key={index}
+									{...link}
+									color={
+										link.key === firstPath
+											? colorPalette.secondary
+											: colorPalette.navColor
+									}
+								>
 									{link.name}
 								</Link>
 							);

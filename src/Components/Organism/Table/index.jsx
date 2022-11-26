@@ -47,10 +47,17 @@ const GenerateTr = ({trs = []}) => {
 	));
 };
 
-const Table = ({ths = [], trs = [], descriptions = [], scroll = true}) => {
+const Table = ({
+	ths = [],
+	trs = [],
+	descriptions = [],
+	scroll = true,
+	display,
+}) => {
+	console.log(display);
 	return (
 		<React.Fragment>
-			<Container scroll={scroll}>
+			<Container scroll={scroll} display={display}>
 				<Thead>
 					<Tr>
 						<GenerateTh ths={ths} />

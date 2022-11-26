@@ -38,26 +38,35 @@ export const FirstTextWrapper = styled.div`
 	> p {
 		margin: 1rem 0;
 	}
-		@media screen and (max-width: ${viewSize.tablet}) {
-			padding-right: 1rem;
-			margin: 5rem auto;
+	@media screen and (max-width: ${viewSize.tablet}) {
+		padding-right: 1rem;
+		margin: 5rem auto;
 
-			> button {
-				width: 6rem;
-			}
+		> button {
+			width: 6rem;
 		}
+	}
+
+	@media screen and (max-width: ${viewSize.mobile}) {
+		margin: 1rem auto;
 	}
 `;
 
 export const DateWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
-	width: 100%;
+	width: 98%;
 	max-width: ${defaultSize.desktopContainer};
 	margin: auto auto 10rem auto;
+
+	@media screen and (max-width: ${viewSize.mobile}) {
+		margin: auto;
+	}
 `;
 
-export const DateTextWrapper = styled.div``;
+export const DateTextWrapper = styled.div`
+	margin-bottom: 2rem;
+`;
 
 export const DateItemWrapper = styled.div`
 	display: flex;
@@ -74,6 +83,7 @@ export const DateItem = styled.div`
 
 	@media screen and (max-width: ${viewSize.mobile}) {
 		width: 50%;
+		margin: 2rem 0;
 	}
 `;
 
@@ -126,11 +136,19 @@ export const ImgTextWrapper = styled.div`
 	flex-wrap: wrap;
 	justify-content: space-around;
 
+	> div > div {
+		margin-top: 1rem;
+	}
+
 	> div {
 		margin: 1rem;
 	}
 	@media screen and (max-width: ${viewSize.mobile}) {
 		width: 100%;
+
+		> div {
+			margin: 2rem;
+		}
 	}
 `;
 
@@ -232,9 +250,11 @@ export const ThirdCardWrapper = styled.div`
 export const FourthSection = styled.div`
 	padding: 80px 0 133px 0;
 	align-items: center;
+	justify-content: center;
 	display: flex;
 	flex-direction: column;
 	width: 98%;
+	margin: auto;
 
 	@media screen and (max-width: ${viewSize.tablet}) {
 		max-width: ${defaultSize.tabletContainer};

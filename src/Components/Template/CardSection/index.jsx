@@ -3,9 +3,9 @@ import * as S from './style';
 import {CardContent, ContentTitle, Table} from '../../Organism';
 import {Image} from '../../Atom';
 
-const CardSection = ({title, subTitle, uls, table, image}) => {
+const CardSection = ({title, subTitle, uls, table, image, display}) => {
 	return (
-		<S.Container>
+		<S.Container display={display}>
 			{title && (
 				<S.TitleWrapper>
 					<ContentTitle {...title} />

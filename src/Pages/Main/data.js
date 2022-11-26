@@ -15,6 +15,8 @@ const dateTextProps = {
 	title: {
 		fontSize: {
 			desktop: fontSize.xl5,
+			tablet: '30px',
+			mobile: '24px',
 		},
 		color: colorPalette.white,
 		fontWeight: fontWeight.bold,
@@ -23,6 +25,8 @@ const dateTextProps = {
 	unit: {
 		fontSize: {
 			desktop: fontSize.xl2,
+			tablet: '22px',
+			mobile: '20px',
 		},
 		color: colorPalette.white,
 		fontWeight: fontWeight.bold,
@@ -32,6 +36,8 @@ const dateTextProps = {
 	value: {
 		fontSize: {
 			desktop: fontSize.xl7,
+			tablet: '44px',
+			mobile: '38px',
 		},
 		color: colorPalette.white,
 		fontWeight: fontWeight.bold,
@@ -45,7 +51,8 @@ export const firstProps = {
 		children: `2022 대한민국 마라톤 송년\n남부내륙철도 조기착공 기원 전국마라톤대회`,
 		fontSize: {
 			desktop: fontSize.xl6,
-			mobile: fontSize.xl2,
+			tablet: '45px',
+			mobile: '24px',
 		},
 		color: colorPalette.thText,
 		fontWeight: fontWeight.medium,
@@ -55,7 +62,8 @@ export const firstProps = {
 		children: `2022년 12월 31일(토) 13:30\n경남 진주시 진주역`,
 		fontSize: {
 			desktop: fontSize.xl2,
-			mobile: fontSize.xl,
+			tablet: '22px',
+			mobile: '16px',
 		},
 		color: colorPalette.lightBlack,
 		fontWeight: fontWeight.semiBold,
@@ -65,7 +73,8 @@ export const firstProps = {
 			children: '신청하기',
 			fontSize: {
 				desktop: fontSize.xl2,
-				mobile: fontSize.xl,
+				tablet: '22px',
+				mobile: '16px',
 			},
 			color: colorPalette.black,
 			fontWeight: fontWeight.medium,
@@ -91,6 +100,8 @@ const secondTextProps = {
 	title: {
 		fontSize: {
 			desktop: fontSize.xl3,
+			tablet: '36px',
+			mobile: '26px',
 		},
 		color: colorPalette.secondary,
 		fontWeight: fontWeight.medium,
@@ -98,6 +109,8 @@ const secondTextProps = {
 	content: {
 		fontSize: {
 			desktop: fontSize.base,
+			tablet: '24px',
+			mobile: '16px',
 		},
 		color: colorPalette.noneBorder,
 		fontWeight: fontWeight.medium,
@@ -105,6 +118,8 @@ const secondTextProps = {
 	support: {
 		fontSize: {
 			desktop: fontSize.xl2,
+			tablet: '22px',
+			mobile: '15px',
 		},
 		color: colorPalette.base,
 		fontWeight: fontWeight.semiBold,
@@ -160,13 +175,17 @@ export const thirdTextProps = {
 	title: {
 		fontSize: {
 			desktop: fontSize.xl3,
+			tablet: '36px',
+			mobile: '26px',
 		},
 		fontWeight: fontWeight.medium,
 		color: colorPalette.white,
 	},
 	description: {
 		fontSize: {
-			desktop: fontSize.base,
+			desktop: '20px',
+			tablet: '20px',
+			mobile: '16px',
 		},
 		fontWeight: fontWeight.medium,
 		color: colorPalette.white,
@@ -175,6 +194,8 @@ export const thirdTextProps = {
 		title: {
 			fontSize: {
 				desktop: fontSize.lg,
+				tablet: '20px',
+				mobile: '18px',
 			},
 			color: colorPalette.realBlack,
 			fontWeight: fontWeight.bold,
@@ -182,6 +203,8 @@ export const thirdTextProps = {
 		content: {
 			fontSize: {
 				desktop: fontSize.lg,
+				tablet: '18px',
+				mobile: '16px',
 			},
 			color: colorPalette.realBlack,
 			fontWeight: fontWeight.normal,
@@ -189,6 +212,8 @@ export const thirdTextProps = {
 		smalContent: {
 			fontSize: {
 				desktop: fontSize.base,
+				tablet: '16px',
+				mobile: '16px',
 			},
 			color: colorPalette.tertiary,
 			fontWeight: fontWeight.medium,
@@ -304,13 +329,17 @@ const fourthTextProps = {
 	title: {
 		fontSize: {
 			desktop: fontSize.xl3,
+			tablet: '36px',
+			mobile: '24px',
 		},
 		fontWeight: fontWeight.medium,
 		color: colorPalette.black,
 	},
 	description: {
 		fontSize: {
-			desktop: fontSize.base,
+			desktop: '20px',
+			tablet: '20px',
+			mobile: ' 16px',
 		},
 		fontWeight: fontWeight.medium,
 		color: colorPalette.placeholder,

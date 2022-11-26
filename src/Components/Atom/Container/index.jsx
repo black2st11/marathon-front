@@ -4,10 +4,10 @@ import {viewSize, defaultSize} from '../../../config';
 const Container = styled.div`
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	width: 98%;
-	margin: auto;
 	max-width: ${defaultSize.desktopContainer};
-
+	margin: 5rem auto 15rem auto;
 	@media screen and (max-width: ${viewSize.tablet}) {
 		max-width: ${defaultSize.tabletContainer};
 	}
