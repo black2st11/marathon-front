@@ -2,11 +2,17 @@ import {defaultApi} from './index';
 import {TOKEN as token} from '../config';
 import {exportFileDownload} from '../util/generator';
 
-export const getListParticipation = async ({page, search, filter}) => {
+export const getListParticipation = async ({
+	page,
+	search,
+	filter,
+	ordering,
+}) => {
 	let params = {
 		token,
 		page,
 		search,
+		ordering,
 		...filter,
 	};
 
@@ -27,11 +33,12 @@ export const getListDeletedParticipation = async ({page, search}) => {
 	});
 };
 
-export const getListVolunteer = async ({page, search, filter}) => {
+export const getListVolunteer = async ({page, search, filter, ordering}) => {
 	let params = {
 		token,
 		page,
 		search,
+		ordering,
 		...filter,
 		verification: '3bf440f1-5e05-4ff1-a2b0-2e3c933fd5b2',
 	};
@@ -55,10 +62,11 @@ export const getPerson = async ({id}) => {
 	});
 };
 
-export const getListGroup = async ({page, search}) => {
+export const getListGroup = async ({page, search, ordering}) => {
 	let params = {
 		page,
 		search,
+		ordering,
 		token,
 		verification: '3bf440f1-5e05-4ff1-a2b0-2e3c933fd5b2',
 	};

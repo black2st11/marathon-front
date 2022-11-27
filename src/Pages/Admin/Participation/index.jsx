@@ -58,9 +58,16 @@ const AdminParticipation = () => {
 	const [select, setSelect] = useState({id: 0, category: 'person'});
 	const [filter, setFilter] = useState({gender: '', is_deposit: ''});
 	const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+	const [ordering, setOrdering] = useState('');
+
 	useEffect(() => {
 		(async () => {
-			let res = await getListParticipation({page: page, filter});
+			let res = await getListParticipation({
+				page,
+				filter,
+				search,
+				ordering,
+			});
 			if (!res.isSuccess) {
 				return;
 			}
@@ -70,9 +77,9 @@ const AdminParticipation = () => {
 				return item;
 			});
 			setParticipation(data);
-			setTotal(res.data.count);
+			setTotal(Math.ceil(res.data.count / 10));
 		})();
-	}, [page, toggle, filter]);
+	}, [page, toggle, filter, search, ordering]);
 
 	tableProps.trs = generateAdminParticipationTable({
 		participations: participation,
@@ -126,6 +133,21 @@ const AdminParticipation = () => {
 				alert('액션을 선택해주세요.');
 		}
 		setToggle(!toggle);
+	};
+
+	const setSorter = (sorts) => {
+		if (!Array.isArray(sorts)) {
+			sorts = [sorts];
+		}
+
+		let sortList = sorts.map((item) => {
+			if (item.order) {
+				return `${item.order === 'ascend' ? '' : '-'}${item.field}`;
+			}
+		});
+		if (sortList) {
+			setOrdering(sortList.join(','));
+		}
 	};
 
 	return (
@@ -234,6 +256,14 @@ const AdminParticipation = () => {
 				}}
 				style={{margin: '1rem'}}
 				dataSource={participation}
+				onChange={(pagination, filters, sorter, extra) => {
+					setPage(pagination.current);
+					setSorter(sorter);
+				}}
+				pagination={{
+					defaultCurrent: 1,
+					total: total,
+				}}
 			>
 				{columns.map((column) => (
 					<Table.Column

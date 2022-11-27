@@ -15,7 +15,7 @@ const categoryMap = {
 
 const BoardWrite = ({category = '자유'}) => {
 	const [state, setState] = useState(initialState);
-	firstProps.inputs.forEach((input) => {
+ 	firstProps.inputs.forEach((input) => {
 		setForm(input, state, setState);
 	});
 	firstProps.writeBtn.onClick = async () => {

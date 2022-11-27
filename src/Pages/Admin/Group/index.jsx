@@ -33,6 +33,7 @@ import {
 const AdminGroup = () => {
 	const [group, setGroup] = useState([]);
 	const [page, setPage] = useState(1);
+	const [ordering, setOrdering] = useState('');
 	const [total, setTotal] = useState(0);
 	const [toggle, setToggle] = useState(false);
 	const [action, setAction] = useState('');
@@ -45,7 +46,7 @@ const AdminGroup = () => {
 
 	useEffect(() => {
 		(async () => {
-			let res = await getListGroup({page, search});
+			let res = await getListGroup({page, search, ordering});
 			if (!res.isSuccess) {
 				return;
 			}
@@ -57,9 +58,9 @@ const AdminGroup = () => {
 				};
 			});
 			setGroup(data);
-			setTotal(res.data.count);
+			setTotal(Math.ceil(res.data.count / 10));
 		})();
-	}, [page, toggle, search]);
+	}, [page, toggle, search, ordering]);
 
 	const doAction = async () => {
 		switch (action) {
@@ -91,6 +92,22 @@ const AdminGroup = () => {
 			is_deposit: deposit,
 		});
 	};
+
+	const setSorter = (sorts) => {
+		if (!Array.isArray(sorts)) {
+			sorts = [sorts];
+		}
+
+		let sortList = sorts.map((item) => {
+			if (item.order) {
+				return `${item.order === 'ascend' ? '' : '-'}${item.field}`;
+			}
+		});
+		if (sortList) {
+			setOrdering(sortList.join(','));
+		}
+	};
+
 	return (
 		<S.Container>
 			<S.CheckBoxWrapper>
@@ -170,6 +187,14 @@ const AdminGroup = () => {
 					<Table.Column
 						align={'center'}
 						title={'액션'}
+						onChange={(pagination, filters, sorter, extra) => {
+							setPage(pagination.current);
+							setSorter(sorter);
+						}}
+						pagination={{
+							defaultCurrent: 1,
+							total: total,
+						}}
 						render={(_, record, index) => (
 							<Space>
 								<Button onClick={() => setSelect(record.id)}>

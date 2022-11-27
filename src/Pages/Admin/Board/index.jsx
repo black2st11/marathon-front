@@ -29,6 +29,7 @@ const AdminBoard = () => {
 			setTotal(Math.ceil(res.data.count / 10));
 		})();
 	}, [search, category, page, toggle, ordering]);
+
 	const setSorter = (sorts) => {
 		if (!Array.isArray(sorts)) {
 			sorts = [sorts];

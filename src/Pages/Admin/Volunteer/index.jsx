@@ -33,6 +33,7 @@ const AdminVolunteer = () => {
 	const [participation, setParticipation] = useState([]);
 	const [page, setPage] = useState(1);
 	const [total, setTotal] = useState(0);
+	const [ordering, setOrdering] = useState('');
 	const [isAllCheck, setIsAllCheck] = useState(false);
 	const [toggle, setToggle] = useState(false);
 	const [action, setAction] = useState('');
@@ -46,7 +47,7 @@ const AdminVolunteer = () => {
 
 	useEffect(() => {
 		(async () => {
-			let res = await getListVolunteer({page, filter});
+			let res = await getListVolunteer({page, filter, search, ordering});
 			if (!res.isSuccess) {
 				return;
 			}
@@ -56,9 +57,9 @@ const AdminVolunteer = () => {
 				no: res.data.count - (page - 1) * 10 - idx,
 			}));
 			setParticipation(data);
-			setTotal(res.data.count);
+			setTotal(Math.ceil(res.data.count / 10));
 		})();
-	}, [page, toggle, filter]);
+	}, [page, toggle, filter, search, ordering]);
 
 	const doAction = async () => {
 		switch (action) {
@@ -79,6 +80,21 @@ const AdminVolunteer = () => {
 			fields: field,
 			order: ord.split('-'),
 		});
+	};
+
+	const setSorter = (sorts) => {
+		if (!Array.isArray(sorts)) {
+			sorts = [sorts];
+		}
+
+		let sortList = sorts.map((item) => {
+			if (item.order) {
+				return `${item.order === 'ascend' ? '' : '-'}${item.field}`;
+			}
+		});
+		if (sortList) {
+			setOrdering(sortList.join(','));
+		}
 	};
 
 	return (
@@ -114,7 +130,7 @@ const AdminVolunteer = () => {
 				<S.RowWraper>
 					<Input.Search
 						style={{width: '300px'}}
-						onChange={(e) => setSearch(e.target.value)}
+						onSearch={(e) => setSearch(e)}
 						value={search}
 					/>
 				</S.RowWraper>
@@ -147,6 +163,14 @@ const AdminVolunteer = () => {
 						},
 					}}
 					dataSource={participation}
+					onChange={(pagination, filters, sorter, extra) => {
+						setPage(pagination.current);
+						setSorter(sorter);
+					}}
+					pagination={{
+						defaultCurrent: 1,
+						total: total,
+					}}
 				>
 					{columns.map((col) => (
 						<Table.Column align={'center'} {...col} />
