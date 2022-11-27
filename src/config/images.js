@@ -16,3 +16,4 @@ export {default as logo} from '../static/image/logo.png';
 export {default as firstProgress} from '../static/image/firstProgress.png';
 export {default as secondProgress} from '../static/image/secondProgress.png';
 export {default as thirdProgress} from '../static/image/thirdProgress.png';
+export {default as noImage} from '../static/image/noImage.png';

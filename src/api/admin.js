@@ -352,14 +352,14 @@ export const exportVolunteer = async ({fields, order}) => {
 	exportFileDownload(res);
 };
 
-export const getInfo = async ({id}) => {
+export const getInfo = async () => {
 	let verification = sessionStorage.getItem('verification');
 	let params = {
 		token,
-		verification,
+		verification: '3bf440f1-5e05-4ff1-a2b0-2e3c933fd5b2',
 	};
 
-	return await defaultApi({params, url: `/info/${id}/`, method: 'GET'});
+	return await defaultApi({params, url: `/info/`, method: 'GET'});
 };
 
 export const updateInfo = async ({id, name, started, ended}) => {
@@ -367,25 +367,66 @@ export const updateInfo = async ({id, name, started, ended}) => {
 		name,
 		started,
 		ended,
+		verification: '3bf440f1-5e05-4ff1-a2b0-2e3c933fd5b2',
+		token,
 	};
 
 	return await defaultApi({data, url: `/info/${id}/`, method: 'PUT'});
 };
 
-export const getModals = async ({token, active}) => {
+export const getModals = async ({active}) => {
 	let params = {
 		token,
 		active,
 	};
 
-	return await defaultApi({params, url: `/modals/`, method: 'GET'});
+	return await defaultApi({params, url: `/info/modals/`, method: 'GET'});
 };
 
-export const updateModal = async ({token, active}) => {
+export const createModal = async ({image}) => {
+	let verification = '3bf440f1-5e05-4ff1-a2b0-2e3c933fd5b2';
 	let data = {
+		image,
 		token,
-		active,
+		verification: '3bf440f1-5e05-4ff1-a2b0-2e3c933fd5b2',
 	};
 
-	return await defaultApi({data, url: `/modals/`, method: 'PUT'});
+	const formData = new FormData();
+	formData.append('token', token);
+	formData.append('verification', verification);
+	formData.append('image', image);
+
+	let headers = {'Content-Type': 'multipart/form-data'};
+
+	return await defaultApi({
+		data,
+		url: `/info/modals/`,
+		method: 'POST',
+		headers,
+	});
+};
+
+export const updateModal = async ({is_active, id}) => {
+	let data = {
+		token,
+		is_active,
+	};
+
+	return await defaultApi({
+		data,
+		url: `/info/modals/${id}/`,
+		method: 'PATCH',
+	});
+};
+
+export const deleteModal = async ({id}) => {
+	let data = {
+		token,
+	};
+
+	return await defaultApi({
+		data,
+		url: `/info/modals/${id}/`,
+		method: 'DELETE',
+	});
 };
