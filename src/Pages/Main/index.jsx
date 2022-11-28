@@ -33,13 +33,14 @@ const checkExpireModal = () => {
 
 const Main = () => {
 	const [isModalClose, setIsModalClose] = useState(checkExpireModal());
-
+	const [isLoading, setIsLoading] = useState(true);
 	useEffect(() => {
 		(async () => {
 			let res = await getModals({is_active: true});
 			if (res.isSuccess && res.data.count > 0) {
 				modalProps.img.src = res.data.results[0].image;
 			}
+			setIsLoading(false);
 		})();
 	}, []);
 
@@ -49,7 +50,7 @@ const Main = () => {
 
 	return (
 		<S.Container>
-			<Modal {...modalProps} />
+			{!isLoading && <Modal {...modalProps} />}
 			<S.FirstSection>
 				<S.FirstTextWrapper>
 					<Text {...firstProps.title} />

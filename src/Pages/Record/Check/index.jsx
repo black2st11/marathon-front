@@ -5,6 +5,7 @@ import {setForm, setWarnText} from '../../../util';
 import {isValidate} from '../../../util/validator';
 import {firstProps, initialInfo, invalidProps, secondProps} from './data';
 import {Container} from '../../../Components/Atom';
+import {getRecordList} from '../../../api';
 
 const Check = () => {
 	const [info, setInfo] = useState(initialInfo);
@@ -23,9 +24,21 @@ const Check = () => {
 		setWarnText(input, invalid);
 	});
 
-	firstProps.button.onClick = () => {
+	firstProps.button.onClick = async () => {
 		if (isValidate(firstInfo, invalidProps, setInvalid)) {
-			setSection(1);
+			let res = await getRecordList({...info});
+			console.log(res);
+			if (res.data.count === 1 && res.isSuccess) {
+				secondProps.info[0][0].content.children =
+					res.data.results[0].participation.name;
+				secondProps.info[0][1].content.children =
+					res.data.results[0].participation.bib;
+				secondProps.info[1][0].content.children =
+					res.data.results[0].record;
+				secondProps.info[1][1].content.children =
+					res.data.results[0].return_record;
+				setSection(1);
+			}
 		}
 	};
 

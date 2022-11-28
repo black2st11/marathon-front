@@ -35,6 +35,7 @@ const Boards = ({category}) => {
 	}, [page]);
 
 	normalBoardsProps.contents = boards;
+	refundBoardsProps.contents = boards;
 	const goBoard = async ({id, isPassword = false}) => {
 		if (isPassword) {
 			let password = prompt();

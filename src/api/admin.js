@@ -19,11 +19,12 @@ export const getListParticipation = async ({
 	return await defaultApi({params, url: '/participations/', method: 'GET'});
 };
 
-export const getListDeletedParticipation = async ({page, search}) => {
+export const getListDeletedParticipation = async ({page, search, ordering}) => {
 	let params = {
 		token,
 		page,
 		search,
+		ordering,
 	};
 
 	return await defaultApi({

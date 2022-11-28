@@ -245,7 +245,7 @@ export const thirdProps = {
 			contents: [
 				{
 					...thirdTextProps.item.title,
-					children: `2022년 12월 31일(토) 개회식: 13:00/출발: 13:30`,
+					children: `2022년 12월 31일(토) \n개회식: 13:00/출발: 13:30`,
 				},
 				{
 					...thirdTextProps.item.content,

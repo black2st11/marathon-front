@@ -67,7 +67,6 @@ export const firstProps = {
 			},
 			input: {
 				name: 'bib',
-				pattern: onlyLetter,
 			},
 			warnText: {
 				...warnText,

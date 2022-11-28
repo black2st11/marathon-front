@@ -1,4 +1,5 @@
 import {fontSize, fontWeight, colorPalette} from '../../../config';
+import {noImage} from '../../../config/images';
 
 const firstTextProps = {
 	title: {
@@ -22,7 +23,6 @@ const firstTextProps = {
 		fontWeight: fontWeight.medium,
 		color: colorPalette.black,
 	},
-
 	button: {
 		fontSize: {
 			desktop: fontSize.base,
@@ -45,6 +45,9 @@ export const firstProps = {
 	content: {
 		...firstTextProps.content,
 		children: 'asdhfkjlashdklfjhaskljdfklasj',
+	},
+	file: {
+		url: noImage,
 	},
 	comments: [
 		{
@@ -79,4 +82,5 @@ export const initialState = {
 	hit: '',
 	created: '',
 	comments: [],
+	attachments: [],
 };

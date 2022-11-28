@@ -17,10 +17,16 @@ const AdminDeletedParticipation = () => {
 	const [toggle, setToggle] = useState(false);
 	const [action, setAction] = useState('');
 	const [search, setSearch] = useState('');
+	const [ordering, setOrdering] = useState('');
 	const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+
 	useEffect(() => {
 		(async () => {
-			let res = await getListDeletedParticipation({page, search});
+			let res = await getListDeletedParticipation({
+				page,
+				search,
+				ordering,
+			});
 			if (!res.isSuccess) {
 				return;
 			}
@@ -30,10 +36,9 @@ const AdminDeletedParticipation = () => {
 				no: res.data.count - (page - 1) * 10 - idx,
 			}));
 			setParticipation(data);
-			setTotal(res.data.count);
+			setTotal(Math.ceil(res.data.count / 10));
 		})();
-	}, [page, toggle, search]);
-
+	}, [page, toggle, search, ordering]);
 	const doAction = async () => {
 		switch (action) {
 			case 'delete':
@@ -46,6 +51,21 @@ const AdminDeletedParticipation = () => {
 				return alert('액션을 설정해주세요.');
 		}
 		setToggle(!toggle);
+	};
+
+	const setSorter = (sorts) => {
+		if (!Array.isArray(sorts)) {
+			sorts = [sorts];
+		}
+
+		let sortList = sorts.map((item) => {
+			if (item.order) {
+				return `${item.order === 'ascend' ? '' : '-'}${item.field}`;
+			}
+		});
+		if (sortList) {
+			setOrdering(sortList.join(','));
+		}
 	};
 	return (
 		<S.Container>
@@ -65,6 +85,14 @@ const AdminDeletedParticipation = () => {
 			</S.ActionWrapper>
 			<Table
 				dataSource={participation}
+				onChange={(pagination, filters, sorter, extra) => {
+					setPage(pagination.current);
+					setSorter(sorter);
+				}}
+				pagination={{
+					defaultCurrent: 1,
+					total: total,
+				}}
 				rowSelection={{
 					selectedRowKeys,
 					onChange: (e) => {

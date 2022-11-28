@@ -86,11 +86,12 @@ export const selectProps = {
 
 export const columns = [
 	{title: '번호', dataIndex: 'no'},
-	{title: '단체명', dataIndex: 'name'},
-	{title: '대표자', dataIndex: 'representative'},
-	{title: '연락처', dataIndex: 'phone'},
-	{title: '우편번호', dataIndex: 'post_number'},
-	{title: '주소', dataIndex: 'address'},
-	{title: '상세주소', dataIndex: 'detail_address'},
+	{title: '단체명', dataIndex: 'name', sorter: {multiple: 1}},
+	{title: '대표자', dataIndex: 'representative', sorter: {multiple: 2}},
+	{title: '입금자', dataIndex: 'depositor', sorter: {multiple: 2}},
+	{title: '연락처', dataIndex: 'phone', sorter: {multiple: 3}},
+	{title: '우편번호', dataIndex: 'post_number', sorter: {multiple: 4}},
+	{title: '주소', dataIndex: 'address', sorter: {multiple: 5}},
+	{title: '상세주소', dataIndex: 'detail_address', sorter: {multiple: 6}},
 	{title: '입금카운트', dataIndex: 'deposit_count'},
 ];

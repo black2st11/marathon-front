@@ -89,6 +89,7 @@ export const firstProps = {
 				...firstTextProps.description,
 				children: '파일선택',
 			},
+			onChange: (e) => console.log(e),
 		},
 	},
 	description: {

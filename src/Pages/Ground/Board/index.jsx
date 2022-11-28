@@ -23,6 +23,7 @@ const Board = ({category = '자유'}) => {
 	useEffect(() => {
 		(async () => {
 			let res = await getBoard({id: params.id, category});
+			console.log(res);
 			setState(res.data);
 		})();
 	}, []);
@@ -32,7 +33,7 @@ const Board = ({category = '자유'}) => {
 	firstProps.content.children = state.content;
 	firstProps.comments = generateComments(state.comments);
 	firstProps.author.children = state.author;
-
+	firstProps.file.url = state.attachments[0]?.file.url;
 	return (
 		<Container>
 			<BreadCrumb depths={['HOME', '참여마당', categoryMap[category]]} />

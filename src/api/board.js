@@ -17,7 +17,9 @@ export const postBoard = async ({
 	formData.append('password', password);
 	formData.append('content', content);
 	files.forEach((file) => {
-		formData.append('files', file);
+		if (file) {
+			formData.append('files', file);
+		}
 	});
 
 	let headers = {'Content-Type': 'multipart/form-data'};
@@ -39,7 +41,7 @@ export const getListBoard = async ({category, page, ordering, search}) => {
 		search,
 	};
 
-	return await defaultApi({params, url: `/boards`, method: 'GET'});
+	return await defaultApi({params, url: `/boards/`, method: 'GET'});
 };
 
 export const getBoard = async ({id, password, category}) => {

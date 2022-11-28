@@ -2,7 +2,9 @@ import React from 'react';
 import * as S from './style';
 import {Text, Button} from '../../Atom';
 import {Comment} from '../../Organism';
-const Board = ({title, date, content, listBtn, comments = []}) => {
+import {Image} from 'antd';
+const Board = ({title, date, content, listBtn, file, comments = []}) => {
+	let fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
 	return (
 		<S.Container>
 			<S.TitleWrapepr>
@@ -14,6 +16,9 @@ const Board = ({title, date, content, listBtn, comments = []}) => {
 			<S.Divider />
 			<S.ContentWrapper>
 				<Text {...content} />
+				{file?.url?.match(fileForm) && (
+					<Image src={file.url.match(fileForm) && file.url} />
+				)}
 			</S.ContentWrapper>
 			{comments.map((comment) => (
 				<Comment {...comment} />

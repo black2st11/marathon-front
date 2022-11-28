@@ -28,6 +28,8 @@ export const ContentWrapper = styled.div`
 	margin-bottom: 3.5rem;
 	padding: 1rem;
 	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
 	> span {
 		white-space: pre-line;
 	}

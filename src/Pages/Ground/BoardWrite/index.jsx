@@ -15,16 +15,19 @@ const categoryMap = {
 
 const BoardWrite = ({category = '자유'}) => {
 	const [state, setState] = useState(initialState);
- 	firstProps.inputs.forEach((input) => {
+	const [file, setFile] = useState();
+	firstProps.inputs.forEach((input) => {
 		setForm(input, state, setState);
 	});
 	firstProps.writeBtn.onClick = async () => {
-		await postBoard({...state, category});
+		await postBoard({...state, category, files: [file]});
 	};
+
+	firstProps.fileInput.file.onChange = (e) => setFile(e.target.files[0]);
+	firstProps.fileInput.file.fileName = file?.name;
 	return (
 		<Container>
 			<BreadCrumb depths={['HOME', '참여마당', categoryMap[category]]} />
-
 			<BoardForm {...firstProps} />
 		</Container>
 	);

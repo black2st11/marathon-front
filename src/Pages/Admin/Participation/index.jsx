@@ -270,6 +270,7 @@ const AdminParticipation = () => {
 						align={'center'}
 						title={column.title}
 						dataIndex={column.dataIndex}
+						sorter={column.sorter}
 					/>
 				))}
 				<Table.Column

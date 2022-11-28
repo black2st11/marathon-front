@@ -274,3 +274,19 @@ export const updateVolunteer = async ({
 		data,
 	});
 };
+
+export const getRecordList = async ({name, bib, gender, course}) => {
+	let params = {
+		token,
+		name,
+		bib,
+		gender,
+		course,
+	};
+
+	return await defaultApi({
+		params,
+		url: '/participations/record/',
+		method: 'GET',
+	});
+};

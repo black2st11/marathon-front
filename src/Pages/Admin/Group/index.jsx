@@ -92,7 +92,7 @@ const AdminGroup = () => {
 			is_deposit: deposit,
 		});
 	};
-
+	console.log(ordering);
 	const setSorter = (sorts) => {
 		if (!Array.isArray(sorts)) {
 			sorts = [sorts];
@@ -173,6 +173,14 @@ const AdminGroup = () => {
 						onChange: (e) => {
 							setSelectedRowKeys(e);
 						},
+					}}
+					onChange={(pagination, filters, sorter, extra) => {
+						setPage(pagination.current);
+						setSorter(sorter);
+					}}
+					pagination={{
+						defaultCurrent: 1,
+						total: total,
 					}}
 				>
 					{columns.map((col) => (

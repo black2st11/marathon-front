@@ -66,15 +66,15 @@ export const actionOptions = [
 
 export const columns = [
 	{title: '번호', dataIndex: 'no'},
-	{title: '이름', dataIndex: 'name'},
-	{title: '참여날짜', dataIndex: 'participated'},
-	{title: '연락처', dataIndex: 'phone'},
-	{title: '생년월일', dataIndex: 'birth'},
-	{title: '학교명', dataIndex: 'school_name'},
+	{title: '이름', dataIndex: 'name', sorter: {multiple: 1}},
+	{title: '참여날짜', dataIndex: 'participated', sorter: {multiple: 1}},
+	{title: '연락처', dataIndex: 'phone', sorter: {multiple: 1}},
+	{title: '생년월일', dataIndex: 'birth', sorter: {multiple: 1}},
+	{title: '학교명', dataIndex: 'school_name', sorter: {multiple: 1}},
 	{
 		title: '반',
 		dataIndex: '',
 		render: (_, record) => `${record.grade}-${record.class_name}`,
 	},
-	{title: '1636ID', dataIndex: 'volunteer_id'},
+	{title: '1636ID', dataIndex: 'volunteer_id', sorter: {multiple: 1}},
 ];
