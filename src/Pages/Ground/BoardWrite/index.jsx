@@ -20,6 +20,9 @@ const BoardWrite = ({category = '자유'}) => {
 		setForm(input, state, setState);
 	});
 	firstProps.writeBtn.onClick = async () => {
+		if (category === '환불' && state.password.length === 0) {
+			return alert('비밀번호를 설정해주세요.');
+		}
 		await postBoard({...state, category, files: [file]});
 	};
 
@@ -28,7 +31,7 @@ const BoardWrite = ({category = '자유'}) => {
 	return (
 		<Container>
 			<BreadCrumb depths={['HOME', '참여마당', categoryMap[category]]} />
-			<BoardForm {...firstProps} />
+			<BoardForm {...firstProps} category={category} />
 		</Container>
 	);
 };

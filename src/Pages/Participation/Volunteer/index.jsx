@@ -11,7 +11,6 @@ const Volunteer = () => {
 	const [info, setInfo] = useState(initialInfo);
 
 	const [invalid, setInvalid] = useState(invalidProps);
-
 	firstProps.inputs.forEach((input) => {
 		setForm(input, info, setInfo);
 		setWarnText(input, invalid);

@@ -94,9 +94,6 @@ export const isValidate = (state, invalidProps, setFunc) => {
 			case 'representative_name':
 				result = letterValidator(value);
 				break;
-			case 'group_name':
-				result = letterValidator(value);
-				break;
 			case 'phone1':
 				result = FirstPhoneValidator(value);
 				key = 'phone';
@@ -136,7 +133,7 @@ export const isValidate = (state, invalidProps, setFunc) => {
 
 // 입력 안되게 막는 함수들
 export const onlyNumber = /[^0-9.]/g;
-export const onlyLetter = /[^a-zA-Zㄱ-ㅎ가-힣]/g;
+export const onlyLetter = /[^a-zA-Zㄱ-ㅎ가-힣.]/g;
 
 export const passValue = (text = '', pattern) => {
 	return text.replace(pattern, '');

@@ -219,6 +219,9 @@ const UpdateGroup = () => {
 		}
 	};
 	secondProps.button.onClick = () => {
+		if (info.is_deposit) {
+			return alert('입금확인 후에는 변경이 불가합니다.');
+		}
 		setSection(2);
 	};
 

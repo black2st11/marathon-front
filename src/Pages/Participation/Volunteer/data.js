@@ -11,6 +11,7 @@ export const firstProps = {
 	inputs: [
 		{
 			type: 'radio',
+			multiple: true,
 			name: 'participated',
 			text: {
 				...inputTextProps,
