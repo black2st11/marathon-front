@@ -439,3 +439,30 @@ export const deleteModal = async ({id}) => {
 		method: 'DELETE',
 	});
 };
+
+export const postRecord = async ({
+	id,
+	return_record,
+	record,
+	participation_id,
+}) => {
+	let data = {
+		return_record,
+		record,
+		participation_id,
+	};
+
+	if (id) {
+		return await defaultApi({
+			data,
+			url: `/participations/records/${id}/`,
+			method: 'PUT',
+		});
+	} else {
+		return await defaultApi({
+			data,
+			url: `/participations/records/`,
+			method: 'POST',
+		});
+	}
+};

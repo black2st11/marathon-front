@@ -39,6 +39,7 @@ import {checkBinding} from '../../../util/binding';
 import {dictToList, dictToStr} from '../../../util/postProcess';
 import {ModalGroupForm, ModalPersonForm} from '../index';
 import {deleteBoard} from '../../../api/board';
+import RecordForm from '../RecordForm';
 
 const AdminParticipation = () => {
 	const [participation, setParticipation] = useState([]);
@@ -55,6 +56,7 @@ const AdminParticipation = () => {
 	const [kind, setKind] = useState('all');
 	const [deposit, setDeposit] = useState(depositInit);
 	const [modal, setModal] = useState(false);
+	const [record, setRecord] = useState(0);
 	const [select, setSelect] = useState({id: 0, category: 'person'});
 	const [filter, setFilter] = useState({gender: '', is_deposit: ''});
 	const [selectedRowKeys, setSelectedRowKeys] = useState([]);
@@ -300,6 +302,13 @@ const AdminParticipation = () => {
 								수정
 							</AntdButton>
 							<AntdButton
+								onClick={() => {
+									setRecord(record);
+								}}
+							>
+								기록
+							</AntdButton>
+							<AntdButton
 								onClick={async () => {
 									await setDepositParticipation({
 										id: record.id,
@@ -348,6 +357,11 @@ const AdminParticipation = () => {
 							}}
 						/>
 					)}
+				</Modal>
+			)}
+			{record && (
+				<Modal open={true} onCancel={() => setRecord(0)} footer={[]}>
+					<RecordForm onOk={() => setRecord(0)} state={record} />
 				</Modal>
 			)}
 		</S.Container>

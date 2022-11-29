@@ -45,7 +45,6 @@ const AdminInfo = () => {
 		},
 		beforeUpload: (file) => {
 			setFileList([...fileList, file]);
-
 			return false;
 		},
 		fileList,
@@ -100,6 +99,7 @@ const AdminInfo = () => {
 									name={'started'}
 									style={{width: '48%'}}
 								>
+									<DatePicker />
 									<Input />
 								</Form.Item>
 								~
@@ -107,6 +107,7 @@ const AdminInfo = () => {
 									name={'ended'}
 									style={{width: '48%'}}
 								>
+									<DatePicker showTime />
 									<Input />
 								</Form.Item>
 							</div>{' '}

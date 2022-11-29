@@ -173,7 +173,18 @@ export const setForm = (props, prevState, setFunc) => {
 
 	// radio
 	if (props.items) {
-		props.onChange = (e) => setRadio(e, prevState, setFunc);
+		props.onChange = (e) => {
+			if (props.multiple) {
+				let temp = [prevState[props.name]];
+				if (temp.findIndex(e.target.value) >= 0) {
+					temp = temp.splice(temp.findIndex(e.target.value), 1);
+				} else {
+					temp.push(e.target.value);
+				}
+				e.target.value = temp;
+			}
+			setRadio(e, prevState, setFunc);
+		};
 		props.value = prevState[props.name];
 	}
 

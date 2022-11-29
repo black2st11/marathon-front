@@ -275,13 +275,20 @@ export const updateVolunteer = async ({
 	});
 };
 
-export const getRecordList = async ({name, bib, gender, course}) => {
+export const getRecordList = async ({
+	name,
+	bib,
+	gender,
+	course,
+	participation_id,
+}) => {
 	let params = {
 		token,
 		name,
 		bib,
 		gender,
 		course,
+		participation_id,
 	};
 
 	return await defaultApi({
