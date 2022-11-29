@@ -79,7 +79,8 @@ const AdminParticipation = () => {
 				return item;
 			});
 			setParticipation(data);
-			setTotal(Math.ceil(res.data.count / 10));
+			console.log(data);
+			setTotal(res.data.count);
 		})();
 	}, [page, toggle, filter, search, ordering]);
 
@@ -360,8 +361,21 @@ const AdminParticipation = () => {
 				</Modal>
 			)}
 			{record && (
-				<Modal open={true} onCancel={() => setRecord(0)} footer={[]}>
-					<RecordForm onOk={() => setRecord(0)} state={record} />
+				<Modal
+					open={true}
+					onCancel={() => {
+						setRecord(0);
+						setToggle(!toggle);
+					}}
+					footer={[]}
+				>
+					<RecordForm
+						onOk={() => {
+							setRecord(0);
+							setToggle(!toggle);
+						}}
+						state={record}
+					/>
 				</Modal>
 			)}
 		</S.Container>

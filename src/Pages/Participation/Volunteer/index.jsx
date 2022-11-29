@@ -15,11 +15,12 @@ const Volunteer = () => {
 		setForm(input, info, setInfo);
 		setWarnText(input, invalid);
 	});
-
+	console.log(info.participated);
 	firstProps.button.onClick = async () => {
 		if (isValidate(info, invalidProps, setInvalid)) {
 			let res = await postVolunteer({
 				...info,
+				participated: info.participated.join(','),
 				phone: `${info.phone1}-${info.phone2}-${info.phone3}`,
 				birth: `${info.year}-${info.month}-${info.day}`,
 				class_name: info.class,

@@ -30,6 +30,7 @@ const setData = ({setState, data}) => {
 	let splitted_phone = data.phone.split('-');
 	setState({
 		...data,
+		participated: data.participated.split(','),
 		year: splitted_birth[0],
 		month: splitted_birth[1],
 		day: splitted_birth[2],
@@ -98,6 +99,7 @@ const UpdateVolunteer = () => {
 		if (isValidate(info, invalidProps, setInvalid)) {
 			let res = await updateVolunteer({
 				...info,
+				participated: info.participated.join(','),
 				birth: `${info.year}-${info.month}-${info.day}`,
 				phone: `${info.phone1}-${info.phone2}-${info.phone3}`,
 			});

@@ -57,7 +57,7 @@ const AdminVolunteer = () => {
 				no: res.data.count - (page - 1) * 10 - idx,
 			}));
 			setParticipation(data);
-			setTotal(Math.ceil(res.data.count / 10));
+			setTotal(res.data.count);
 		})();
 	}, [page, toggle, filter, search, ordering]);
 
@@ -96,7 +96,6 @@ const AdminVolunteer = () => {
 			setOrdering(sortList.join(','));
 		}
 	};
-
 	return (
 		<S.Container>
 			<S.CheckBoxWrapper>

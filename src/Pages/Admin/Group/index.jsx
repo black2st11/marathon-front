@@ -58,7 +58,7 @@ const AdminGroup = () => {
 				};
 			});
 			setGroup(data);
-			setTotal(Math.ceil(res.data.count / 10));
+			setTotal(res.data.count);
 		})();
 	}, [page, toggle, search, ordering]);
 

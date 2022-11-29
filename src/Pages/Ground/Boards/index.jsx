@@ -79,9 +79,10 @@ const Boards = ({category}) => {
 					<Pagination
 						{...paginationProps}
 						current={page}
-						total={Math.floor(count / 10) + 1}
+						total={count}
 						onNext={() => setPage(page + 1)}
 						onPrev={() => setPage(page - 1)}
+						onClick={(e) => setPage(e)}
 					/>
 					<Button {...buttonProps} />
 				</S.ButtonnWrapper>

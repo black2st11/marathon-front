@@ -89,6 +89,37 @@ const ModalGroupForm = ({id, onClick}) => {
 		newState[index][name] = value;
 		setGroup(newState);
 	};
+	const handleAdd = () => {
+		const newData = {
+			key: Math.random(),
+			name: '',
+			birth: '',
+			phone1: '',
+			phone2: '',
+			phone3: '',
+			id: undefined,
+			gender: '',
+			bib: '',
+			course: '',
+			gift: '',
+			is_deposit: false,
+			deleted: null,
+			created: '',
+		};
+
+		setParticipation([...participation, newData]);
+	};
+
+	const handleDelete = (key) => {
+		if (key) {
+			const newData = participation.filter((item) => item.key !== key);
+			setParticipation(newData);
+		} else {
+			alert(
+				'해당 신청서는 기존에 있던 신청서입니다. 삭제 여부를 통한 임시 삭제 후 영구삭제해주세요.',
+			);
+		}
+	};
 	return (
 		<S.Container>
 			{!isLoading && (
@@ -160,6 +191,7 @@ const ModalGroupForm = ({id, onClick}) => {
 					<Form.Item name={'detail_address'} label={'상세주소'}>
 						<Input />
 					</Form.Item>
+					<Button onClick={handleAdd}>추가</Button>
 					<Table dataSource={participation} scroll={{x: 1300}}>
 						<Table.Column
 							title={'이름'}
@@ -330,6 +362,21 @@ const ModalGroupForm = ({id, onClick}) => {
 									}}
 								/>
 							)}
+						/>
+						<Table.Column
+							title={'삭제'}
+							align={'center'}
+							render={(_, record, index) => {
+								console.log(record.key);
+
+								return (
+									<Button
+										onClick={() => handleDelete(record.key)}
+									>
+										삭제
+									</Button>
+								);
+							}}
 						/>
 					</Table>
 					<div style={{display: 'flex', justifyContent: 'flex-end'}}>

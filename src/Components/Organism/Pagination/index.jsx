@@ -8,7 +8,7 @@ const Pagination = ({
 	total = 1,
 	textProps,
 	currentTextProps,
-	pageSize = 5,
+	pageSize = 10,
 	onClick,
 }) => {
 	let pages = [];

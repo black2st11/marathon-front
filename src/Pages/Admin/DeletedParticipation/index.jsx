@@ -36,7 +36,7 @@ const AdminDeletedParticipation = () => {
 				no: res.data.count - (page - 1) * 10 - idx,
 			}));
 			setParticipation(data);
-			setTotal(Math.ceil(res.data.count / 10));
+			setTotal(res.data.count);
 		})();
 	}, [page, toggle, search, ordering]);
 	const doAction = async () => {

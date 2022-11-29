@@ -174,6 +174,7 @@ export const thirdProps = {
 		{
 			type: 'radio',
 			name: 'participated',
+			multiple: true,
 			text: {
 				...inputTextProps,
 				children: '봉사날짜',
@@ -346,7 +347,7 @@ export const thirdProps = {
 };
 
 export const initialInfo = {
-	participated: '',
+	participated: [],
 	name: '',
 	phone1: '',
 	phone2: '',

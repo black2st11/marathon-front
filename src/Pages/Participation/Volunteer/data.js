@@ -185,7 +185,7 @@ export const firstProps = {
 };
 
 export const initialInfo = {
-	participated: '',
+	participated: [],
 	name: '',
 	phone1: '',
 	phone2: '',

@@ -451,17 +451,18 @@ export const postRecord = async ({
 		record,
 		participation_id,
 	};
-
+	console.log(data);
+	console.log(id);
 	if (id) {
 		return await defaultApi({
 			data,
-			url: `/participations/records/${id}/`,
+			url: `/participations/record/${id}/`,
 			method: 'PUT',
 		});
 	} else {
 		return await defaultApi({
 			data,
-			url: `/participations/records/`,
+			url: `/participations/record/`,
 			method: 'POST',
 		});
 	}

@@ -26,7 +26,7 @@ const AdminBoard = () => {
 				return {...post, no: res.data.count - (page - 1) * 10 - idx};
 			});
 			setPost(data);
-			setTotal(Math.ceil(res.data.count / 10));
+			setTotal(res.data.count);
 		})();
 	}, [search, category, page, toggle, ordering]);
 
