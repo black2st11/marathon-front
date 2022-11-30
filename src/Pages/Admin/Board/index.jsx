@@ -169,7 +169,10 @@ const AdminBoard = () => {
 				onCancel={() => setModal({...modal, create: false})}
 				footer={[]}
 			>
-				<BoardForm onClose={() => setModal(false)} />
+				<BoardForm
+					category={category}
+					onClose={() => setModal(false)}
+				/>
 			</Modal>
 			<Modal
 				open={modal.update}

@@ -5,7 +5,7 @@ import {postBoard} from '../../../api/board';
 
 const {Dragger} = Upload;
 
-const BoardForm = ({onClose}) => {
+const BoardForm = ({onClose, category}) => {
 	const [fileList, setFileList] = useState([]);
 
 	const props = {
@@ -27,13 +27,16 @@ const BoardForm = ({onClose}) => {
 	return (
 		<Form
 			style={{margin: '1rem'}}
-			initialValues={{title: '', author: '관리자', content: ''}}
+			initialValues={{title: '', author: '관리자', content: '', link: ''}}
 			onFinish={async (values) => {
+				console.log(values);
 				let data = {
 					title: values.title,
-					author: values.author,
-					content: values.content,
-					category: values.category,
+					author: '관리자',
+					content: values.content ? values.content : '',
+					category: category,
+					link: values.link ? values.link : '',
+					password: '',
 					files: fileList,
 				};
 				let res = await postBoard({...data});
@@ -43,9 +46,16 @@ const BoardForm = ({onClose}) => {
 			<Form.Item label='제목' name='title'>
 				<Input />
 			</Form.Item>
-			<Form.Item label='내용' name='content'>
-				<Input.TextArea />
-			</Form.Item>
+			{category === '사진' && (
+				<Form.Item label='링크' name={'link'}>
+					<Input />
+				</Form.Item>
+			)}
+			{category !== '사진' && (
+				<Form.Item label='내용' name='content'>
+					<Input.TextArea />
+				</Form.Item>
+			)}
 			<Form.Item label='파일' name='fileList'>
 				<Dragger {...props}>
 					<p className='ant-upload-drag-icon'>

@@ -20,6 +20,7 @@ import {
 	AdminParticipation,
 	AdminVolunteer,
 } from '../Pages/Admin';
+import Pic from '../Pages/Ground/Pic';
 
 const loader = async ({params}) => {
 	return params;
@@ -107,7 +108,7 @@ export const router = createBrowserRouter([
 	},
 	{
 		path: '/ground/picture',
-		element: <Boards category='사진' />,
+		element: <Pic />,
 	},
 	{
 		path: '/ground/notify/:id',
@@ -130,11 +131,6 @@ export const router = createBrowserRouter([
 		loader: loader,
 	},
 	{
-		path: '/ground/picture/:id',
-		element: <Board category='사진' />,
-		loader: loader,
-	},
-	{
 		path: '/ground/notify-create',
 		element: <BoardWrite category='공지' />,
 	},
@@ -149,10 +145,6 @@ export const router = createBrowserRouter([
 	{
 		path: '/ground/refund-create',
 		element: <BoardWrite category='환불' />,
-	},
-	{
-		path: '/ground/picture-create',
-		element: <BoardWrite category='사진' />,
 	},
 	{
 		path: '/admin/participation',

@@ -64,4 +64,5 @@ export const categoryOptions = [
 	{label: '홍보', value: '홍보'},
 	{label: '기록', value: '기록'},
 	{label: '환불', value: '환불'},
+	{label: '사진', value: '사진'},
 ];

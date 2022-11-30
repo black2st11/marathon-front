@@ -11,7 +11,11 @@ import {
 	makeYear,
 } from '../../../util';
 import {getVolunteer, updatePerson} from '../../../api/admin';
-import {getListGroupParticipation, updateVolunteer} from '../../../api';
+import {
+	getListGroupParticipation,
+	postVolunteer,
+	updateVolunteer,
+} from '../../../api';
 import {makeGroup} from '../../../util/generator';
 import {Form, Space, Select, Input, Button} from 'antd';
 
@@ -34,28 +38,30 @@ const ModalPersonForm = ({id, onClick}) => {
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		(async () => {
-			let res = await getVolunteer({id: id});
-			if (!res.isSuccess) {
-				return;
-			}
+		if (id) {
+			(async () => {
+				let res = await getVolunteer({id: id});
+				if (!res.isSuccess) {
+					return;
+				}
 
-			let splitted_phone = res.data.phone.split('-');
-			let splitted_birth = res.data.birth.split('-');
-			setInfo({
-				...res.data,
-				phone1: splitted_phone[0] ? splitted_phone[0] : '',
-				phone2: splitted_phone[1] ? splitted_phone[1] : '',
-				phone3: splitted_phone[2] ? splitted_phone[2] : '',
-				year: splitted_birth[0],
-				month: splitted_birth[1],
-				day: splitted_birth[2],
-				volunteer_id: res.data.volunteer_id
-					? res.data.volunteer_id
-					: '',
-			});
-			setIsLoading(false);
-		})();
+				let splitted_phone = res.data.phone.split('-');
+				let splitted_birth = res.data.birth.split('-');
+				setInfo({
+					...res.data,
+					phone1: splitted_phone[0] ? splitted_phone[0] : '',
+					phone2: splitted_phone[1] ? splitted_phone[1] : '',
+					phone3: splitted_phone[2] ? splitted_phone[2] : '',
+					year: splitted_birth[0],
+					month: splitted_birth[1],
+					day: splitted_birth[2],
+					volunteer_id: res.data.volunteer_id
+						? res.data.volunteer_id
+						: '',
+				});
+			})();
+		}
+		setIsLoading(false);
 	}, []);
 
 	const updateVolunteerData = async () => {
@@ -81,7 +87,11 @@ const ModalPersonForm = ({id, onClick}) => {
 							birth: `${values.year}-${values.month}-${values.day}`,
 							phone: `${values.phone1}-${values.phone2}-${values.phone3}`,
 						};
-						await updateVolunteer({id: info.id, ...body});
+						if (id) {
+							await updateVolunteer({id: info.id, ...body});
+						} else {
+							await postVolunteer({...body});
+						}
 						onClick();
 					}}
 				>
@@ -134,7 +144,9 @@ const ModalPersonForm = ({id, onClick}) => {
 						<Input />
 					</Form.Item>
 					<div style={{display: 'flex', justifyContent: 'flex-end'}}>
-						<Button htmlType={'submit'}>수정</Button>
+						<Button htmlType={'submit'}>
+							{id ? '수정' : '생성'}
+						</Button>
 					</div>
 				</Form>
 			)}

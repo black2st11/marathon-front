@@ -240,7 +240,7 @@ export const navProps = {
 				{name: '홍보 게시판', href: '/ground/promotion'},
 				{name: '환불 게시판', href: '/ground/refund'},
 				{name: '자유 게시판', href: '/ground/free'},
-				{name: '대회 사진', href: '/ground/pic'},
+				{name: '대회 사진', href: '/ground/picture'},
 				{name: '공지 사항', href: '/ground/notify'},
 			],
 		},

@@ -61,7 +61,7 @@ const AdminParticipation = () => {
 	const [filter, setFilter] = useState({gender: '', is_deposit: ''});
 	const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 	const [ordering, setOrdering] = useState('');
-
+	const [participationModal, setParticipationModal] = useState(false);
 	useEffect(() => {
 		(async () => {
 			let res = await getListParticipation({
@@ -101,17 +101,12 @@ const AdminParticipation = () => {
 	};
 	tableProps.ths[0].value = isAllCheck;
 
-	checkBoxProps.button.onClick = async () => {
-		let field = dictToList({dict: fields});
-		let ord = dictToStr({dict: order, defaultValue: 'id'});
-		let cate = dictToStr({dict: category, defaultValue: 'all'});
-		let depo = dictToStr({dict: deposit, defaultValue: 'all'});
-
+	const exportCsv = async () => {
 		await exportParticipation({
-			fields: field,
-			order: ord.split('-'),
-			category: cate,
-			is_deposit: depo,
+			fields: fields,
+			order: order.split('-'),
+			category: kind,
+			is_deposit: isDeposit,
 		});
 	};
 
@@ -158,6 +153,7 @@ const AdminParticipation = () => {
 			<S.CheckBoxWrapper>
 				<S.RowWraper>
 					<Checkbox.Group
+						style={{flexWrap: 'wrap'}}
 						value={fields}
 						onChange={(e) => {
 							setFields(e);
@@ -172,6 +168,7 @@ const AdminParticipation = () => {
 				</S.RowWraper>
 				<S.RowWraper>
 					<Radio.Group
+						style={{flexWrap: 'wrap'}}
 						onChange={(e) => setOrder(e.target.value)}
 						value={order}
 					>
@@ -211,7 +208,11 @@ const AdminParticipation = () => {
 						<Radio value={'person'}>개인</Radio>
 					</Radio.Group>
 				</S.RowWraper>
-				<Button type={'primary'} style={{width: '200px'}}>
+				<Button
+					onClick={exportCsv}
+					type={'primary'}
+					style={{width: '200px'}}
+				>
 					엑셀 출력
 				</Button>
 			</S.CheckBoxWrapper>
@@ -249,6 +250,17 @@ const AdminParticipation = () => {
 					/>
 				</S.RowWraper>
 			</S.CheckBoxWrapper>
+			<div
+				style={{
+					display: 'flex',
+					justifyContent: 'flex-end',
+					margin: '1rem',
+				}}
+			>
+				<Button onClick={() => setParticipationModal(true)}>
+					개인 신청서 생성
+				</Button>
+			</div>
 			<Table
 				scroll={{x: 1300}}
 				rowSelection={{
@@ -333,6 +345,22 @@ const AdminParticipation = () => {
 					)}
 				/>
 			</Table>
+			{participationModal && (
+				<Modal
+					open={true}
+					onCancel={() => {
+						setParticipationModal(false);
+					}}
+					footer={[]}
+				>
+					<ModalPersonForm
+						onClick={() => {
+							setParticipationModal(false);
+							setToggle(!toggle);
+						}}
+					/>
+				</Modal>
+			)}
 			{select.id !== 0 && (
 				<Modal
 					open={true}

@@ -11,57 +11,73 @@ import {
 	makeYear,
 	setGroupForm,
 } from '../../../util';
+import {postGroupParticipation} from '../../../api';
 
 const ModalGroupForm = ({id, onClick}) => {
-	const [group, setGroup] = useState({});
+	const [group, setGroup] = useState({
+		name: '',
+		representative: '',
+		year: '',
+		month: '',
+		day: '',
+		phone1: '',
+		phone2: '',
+		phone3: '',
+		post_number: '',
+		address: '',
+		detail_address: '',
+		depositor: '',
+	});
 	const [participation, setParticipation] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	useEffect(() => {
-		(async () => {
-			let res = await getGroup({id});
-			let data = res.data;
-			let participation_data = data.participation;
-			let splitted_phone = res.data.phone.split('-');
-			let splitted_birth = res.data.birth.split('-');
+		if (id) {
+			(async () => {
+				let res = await getGroup({id});
+				let data = res.data;
+				let participation_data = data.participation;
+				let splitted_phone = res.data.phone.split('-');
+				let splitted_birth = res.data.birth.split('-');
 
-			setGroup({
-				name: data.name,
-				representative: data.representative,
-				year: splitted_birth[0],
-				month: splitted_birth[1],
-				day: splitted_birth[2],
-				phone1: splitted_phone[0],
-				phone2: splitted_phone[1] ? splitted_phone[1] : '',
-				phone3: splitted_phone[2] ? splitted_phone[2] : '',
-				post_number: data.post_number,
-				address: data.address,
-				detail_address: data.detail_address,
-				depositor: data.depositor,
-			});
-
-			let temp = [];
-			participation_data.forEach((item) => {
-				let splitted_phone = item.phone.split('-');
-				temp.push({
-					check: false,
-					id: item.id,
-					name: item.name,
-					birth: item.birth,
-					gender: item.gender,
+				setGroup({
+					name: data.name,
+					representative: data.representative,
+					year: splitted_birth[0],
+					month: splitted_birth[1],
+					day: splitted_birth[2],
 					phone1: splitted_phone[0],
 					phone2: splitted_phone[1] ? splitted_phone[1] : '',
 					phone3: splitted_phone[2] ? splitted_phone[2] : '',
-					bib: item.bib ? item.bib : '',
-					course: item.course,
-					gift: item.gift,
-					is_deposit: item.is_deposit,
-					deleted: null,
-					created: item.created,
+					post_number: data.post_number,
+					address: data.address,
+					detail_address: data.detail_address,
+					depositor: data.depositor,
 				});
-			});
-			setParticipation(temp);
-			setIsLoading(false);
-		})();
+
+				let temp = [];
+				participation_data.forEach((item) => {
+					let splitted_phone = item.phone.split('-');
+					temp.push({
+						check: false,
+						id: item.id,
+						name: item.name,
+						birth: item.birth,
+						gender: item.gender,
+						phone1: splitted_phone[0],
+						phone2: splitted_phone[1] ? splitted_phone[1] : '',
+						phone3: splitted_phone[2] ? splitted_phone[2] : '',
+						bib: item.bib ? item.bib : '',
+						course: item.course,
+						gift: item.gift,
+						is_deposit: item.is_deposit,
+						deleted: null,
+						created: item.created,
+					});
+				});
+				setParticipation(temp);
+			})();
+		}
+		setIsLoading(false);
 	}, []);
 
 	buttonProps.button.onClick = async () => {
@@ -138,7 +154,11 @@ const ModalGroupForm = ({id, onClick}) => {
 							birth: `${values.year}-${values.month}-${values.day}`,
 							participation: participationData,
 						};
-						let res = await updateGroup({id, body});
+						if (id) {
+							let res = await updateGroup({id, body});
+						} else {
+							let res = await postGroupParticipation({...body});
+						}
 						onClick();
 					}}
 					labelCol={{span: 6}}
@@ -380,7 +400,9 @@ const ModalGroupForm = ({id, onClick}) => {
 						/>
 					</Table>
 					<div style={{display: 'flex', justifyContent: 'flex-end'}}>
-						<Button htmlType={'submit'}>수정</Button>
+						<Button htmlType={'submit'}>
+							{id ? '수정' : '생성'}
+						</Button>
 					</div>
 				</Form>
 			)}

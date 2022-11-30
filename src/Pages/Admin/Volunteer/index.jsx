@@ -44,7 +44,7 @@ const AdminVolunteer = () => {
 	const [modal, setModal] = useState(false);
 	const [filter, setFilter] = useState({participated: ''});
 	const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-
+	const [volunteerModal, setVolunteerModal] = useState(false);
 	useEffect(() => {
 		(async () => {
 			let res = await getListVolunteer({page, filter, search, ordering});
@@ -153,6 +153,17 @@ const AdminVolunteer = () => {
 						options={participatedFilter}
 					/>
 				</S.RowWraper>
+				<div
+					style={{
+						display: 'flex',
+						justifyContent: 'flex-end',
+						margin: '1rem',
+					}}
+				>
+					<Button onClick={() => setVolunteerModal(true)}>
+						봉사 신청서 생성
+					</Button>
+				</div>
 				<Table
 					scroll={{x: 1300}}
 					rowSelection={{
@@ -197,6 +208,20 @@ const AdminVolunteer = () => {
 					/>
 				</Table>
 			</S.CheckBoxWrapper>
+			{volunteerModal && (
+				<Modal
+					onCancel={() => setVolunteerModal(false)}
+					footer={[]}
+					open={true}
+				>
+					<ModalVolunteerForm
+						onClick={() => {
+							setVolunteerModal(false);
+							setToggle(!toggle);
+						}}
+					/>
+				</Modal>
+			)}
 			{select !== 0 && (
 				<Modal onCancel={() => setSelect(0)} footer={[]} open={true}>
 					<ModalVolunteerForm

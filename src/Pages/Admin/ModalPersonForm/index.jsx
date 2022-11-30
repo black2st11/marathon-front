@@ -9,7 +9,7 @@ import {
 } from '../../../util';
 import {Form, Input, Select, Button, Space} from 'antd';
 import {getPerson, updatePerson} from '../../../api/admin';
-import {getListGroupParticipation} from '../../../api';
+import {getListGroupParticipation, postPersonParticipation} from '../../../api';
 import {makeGroup} from '../../../util/generator';
 
 const ModalPersonForm = ({person, onClick}) => {
@@ -35,33 +35,35 @@ const ModalPersonForm = ({person, onClick}) => {
 	const [group, setGroup] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	useEffect(() => {
-		(async () => {
-			let res = await getPerson({id: person});
-			let group_res = await getListGroupParticipation({
-				verification: '3bf440f1-5e05-4ff1-a2b0-2e3c933fd5b2',
-			});
-			setGroup(group_res.data.results);
-			if (!res.isSuccess) {
-				return;
-			}
-			let splitted_phone = res.data.participation.phone.split('-');
-			let splitted_birth = res.data.participation.birth.split('-');
-			setInfo({
-				...res.data.participation,
-				...res.data,
-				phone1: splitted_phone[0] ? splitted_phone[0] : '',
-				phone2: splitted_phone[1] ? splitted_phone[1] : '',
-				phone3: splitted_phone[2] ? splitted_phone[2] : '',
-				year: splitted_birth[0],
-				month: splitted_birth[1],
-				day: splitted_birth[2],
-				bib: res.data.participation.bib
-					? res.data.participation.bib
-					: '',
-				email: res.data.email ? res.data.email : '',
-			});
-			setIsLoading(false);
-		})();
+		if (person) {
+			(async () => {
+				let res = await getPerson({id: person});
+				let group_res = await getListGroupParticipation({
+					verification: '3bf440f1-5e05-4ff1-a2b0-2e3c933fd5b2',
+				});
+				setGroup(group_res.data.results);
+				if (!res.isSuccess) {
+					return;
+				}
+				let splitted_phone = res.data.participation.phone.split('-');
+				let splitted_birth = res.data.participation.birth.split('-');
+				setInfo({
+					...res.data.participation,
+					...res.data,
+					phone1: splitted_phone[0] ? splitted_phone[0] : '',
+					phone2: splitted_phone[1] ? splitted_phone[1] : '',
+					phone3: splitted_phone[2] ? splitted_phone[2] : '',
+					year: splitted_birth[0],
+					month: splitted_birth[1],
+					day: splitted_birth[2],
+					bib: res.data.participation.bib
+						? res.data.participation.bib
+						: '',
+					email: res.data.email ? res.data.email : '',
+				});
+			})();
+		}
+		setIsLoading(false);
 	}, []);
 
 	return (
@@ -88,7 +90,15 @@ const ModalPersonForm = ({person, onClick}) => {
 								group_id: values.group_id,
 							},
 						};
-						let res = await updatePerson({id: info.id, body});
+
+						if (person) {
+							let res = await updatePerson({id: info.id, body});
+						} else {
+							let res = await postPersonParticipation({
+								...body,
+								...body.participation,
+							});
+						}
 						onClick();
 					}}
 					style={{margin: '1rem'}}
@@ -179,11 +189,15 @@ const ModalPersonForm = ({person, onClick}) => {
 							]}
 						/>
 					</Form.Item>
-					<Form.Item name={'group_id'} label={'그룹 선택'}>
-						<Select options={makeGroup(group)} />
-					</Form.Item>
+					{person && (
+						<Form.Item name={'group_id'} label={'그룹 선택'}>
+							<Select options={makeGroup(group)} />
+						</Form.Item>
+					)}
 					<div style={{display: 'flex', justifyContent: 'flex-end'}}>
-						<Button htmlType={'submit'}>저장</Button>
+						<Button htmlType={'submit'}>
+							{person ? '수정' : '생성'}
+						</Button>
 					</div>
 				</Form>
 			)}

@@ -43,7 +43,7 @@ const AdminGroup = () => {
 	const [deposit, setDeposit] = useState('all');
 	const [select, setSelect] = useState(0);
 	const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-
+	const [groupModal, setGroupModal] = useState(false);
 	useEffect(() => {
 		(async () => {
 			let res = await getListGroup({page, search, ordering});
@@ -166,6 +166,17 @@ const AdminGroup = () => {
 					/>
 					<Button onClick={doAction}>실행</Button>
 				</S.RowWraper>
+				<div
+					style={{
+						display: 'flex',
+						justifyContent: 'flex-end',
+						margin: '1rem',
+					}}
+				>
+					<Button onClick={() => setGroupModal(true)}>
+						단체 생성
+					</Button>
+				</div>
 				<Table
 					dataSource={group}
 					rowSelection={{
@@ -229,6 +240,21 @@ const AdminGroup = () => {
 					/>
 				</Table>
 			</S.CheckBoxWrapper>
+			{groupModal && (
+				<Modal
+					width={'90%'}
+					open={true}
+					onCancel={() => setGroupModal(false)}
+					footer={[]}
+				>
+					<ModalGroupForm
+						onClick={() => {
+							setGroupModal(false);
+							setToggle(!toggle);
+						}}
+					/>
+				</Modal>
+			)}
 			{select !== 0 && (
 				<Modal
 					width={'90%'}

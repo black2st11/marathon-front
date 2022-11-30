@@ -7,12 +7,14 @@ export const postBoard = async ({
 	password,
 	content,
 	category,
+	link,
 	files,
 }) => {
 	const formData = new FormData();
 	formData.append('token', token);
 	formData.append('category', category);
 	formData.append('author', author);
+	formData.append('link', link);
 	formData.append('title', title);
 	formData.append('password', password);
 	formData.append('content', content);

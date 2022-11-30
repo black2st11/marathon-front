@@ -43,7 +43,7 @@ const Volunteer = () => {
 	return (
 		<Container>
 			<BreadCrumb depths={['HOME', '참여 마당', '자원봉사 신청']} />
-			<PersonForm {...firstProps} />;
+			<PersonForm {...firstProps} />
 		</Container>
 	);
 };
