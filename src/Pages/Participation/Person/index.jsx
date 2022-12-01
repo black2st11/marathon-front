@@ -3,7 +3,7 @@ import {BreadCrumb, PersonForm} from '../../../Components/Template';
 import {firstProps, secondProps, invalidProps, textareaProps} from './data';
 import {setForm, setWarnText} from '../../../util';
 import {isValidate} from '../../../util/validator';
-import {postPersonParticipation} from '../../../api';
+import {isExist, postPersonParticipation} from '../../../api';
 import {CheckBox, Container, Text, TextArea} from '../../../Components/Atom';
 import styled from 'styled-components';
 import {viewSize} from '../../../config';
@@ -76,10 +76,20 @@ const Person = () => {
 		setWarnText(input, invalid);
 	});
 
-	firstProps.button.onClick = () => {
+	firstProps.button.onClick = async () => {
 		if (isValidate(firstInfo, invalidProps, setInvalid)) {
 			if (!check) {
 				return alert('약관에 동의하셔야 진행이 가능합니다.');
+			}
+
+			let res = await isExist({
+				name: info.name,
+				birth: `${info.year}-${info.month}-${info.day}`,
+			});
+			if (res.data.is_exist) {
+				return alert(
+					'해당 이름과 생년월일로 등록된 사람이 있습니다. 주최측에 문의해 주세요.',
+				);
 			}
 			setSection(1);
 		}

@@ -38,8 +38,8 @@ const ModalPersonForm = ({id, onClick}) => {
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		if (id) {
-			(async () => {
+		(async () => {
+			if (id) {
 				let res = await getVolunteer({id: id});
 				if (!res.isSuccess) {
 					return;
@@ -59,9 +59,9 @@ const ModalPersonForm = ({id, onClick}) => {
 						? res.data.volunteer_id
 						: '',
 				});
-			})();
-		}
-		setIsLoading(false);
+			}
+			setIsLoading(false);
+		})();
 	}, []);
 
 	const updateVolunteerData = async () => {

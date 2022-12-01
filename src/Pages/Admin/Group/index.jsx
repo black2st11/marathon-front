@@ -92,7 +92,6 @@ const AdminGroup = () => {
 			is_deposit: deposit,
 		});
 	};
-	console.log(ordering);
 	const setSorter = (sorts) => {
 		if (!Array.isArray(sorts)) {
 			sorts = [sorts];

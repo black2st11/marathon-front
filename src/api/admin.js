@@ -2,6 +2,8 @@ import {defaultApi} from './index';
 import {TOKEN as token} from '../config';
 import {exportFileDownload} from '../util/generator';
 
+let verification = sessionStorage.getItem('verification');
+
 export const getListParticipation = async ({
 	page,
 	search,
@@ -466,4 +468,116 @@ export const postRecord = async ({
 			method: 'POST',
 		});
 	}
+};
+
+export const getUser = async ({id}) => {
+	let params = {
+		verification,
+		token,
+	};
+
+	return await defaultApi({
+		params,
+		url: `/info/users/${id}/`,
+		method: 'GET',
+	});
+};
+
+export const getUserList = async () => {
+	console.log(verification);
+	let params = {
+		verification,
+		token,
+	};
+
+	return await defaultApi({
+		params,
+		url: '/info/users/',
+		method: 'GET',
+	});
+};
+
+export const createUser = async ({username, password, name}) => {
+	let data = {
+		verification,
+		token,
+		username,
+		password,
+		name,
+	};
+
+	return await defaultApi({
+		data,
+		url: '/info/users/',
+		method: 'POST',
+	});
+};
+
+export const updateUser = async ({username, name, id}) => {
+	let data = {
+		token,
+		verification,
+		username,
+		name,
+	};
+
+	return await defaultApi({
+		data,
+		url: `/info/users/${id}/`,
+		method: 'PATCH',
+	});
+};
+
+export const deleteUser = async ({id}) => {
+	let data = {
+		token,
+		verification,
+	};
+
+	return await defaultApi({
+		data,
+		url: `/info/users/${id}/`,
+		method: 'DELETE',
+	});
+};
+
+export const setPassword = async ({id, password}) => {
+	let data = {
+		password,
+		token,
+		verification,
+	};
+
+	return await defaultApi({
+		data,
+		url: `/info/users/${id}/set_password/`,
+		method: 'POST',
+	});
+};
+
+export const verityVerification = async () => {
+	let params = {
+		token,
+		verification,
+	};
+
+	return await defaultApi({
+		params,
+		url: `/info/users/verify/`,
+		method: 'GET',
+	});
+};
+
+export const login = async ({password, username}) => {
+	let data = {
+		token,
+		username,
+		password,
+	};
+
+	return await defaultApi({
+		data,
+		url: `/info/users/login/`,
+		method: 'POST',
+	});
 };

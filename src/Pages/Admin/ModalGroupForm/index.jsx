@@ -31,8 +31,8 @@ const ModalGroupForm = ({id, onClick}) => {
 	const [participation, setParticipation] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	useEffect(() => {
-		if (id) {
-			(async () => {
+		(async () => {
+			if (id) {
 				let res = await getGroup({id});
 				let data = res.data;
 				let participation_data = data.participation;
@@ -75,9 +75,9 @@ const ModalGroupForm = ({id, onClick}) => {
 					});
 				});
 				setParticipation(temp);
-			})();
-		}
-		setIsLoading(false);
+			}
+			setIsLoading(false);
+		})();
 	}, []);
 
 	buttonProps.button.onClick = async () => {
@@ -156,8 +156,14 @@ const ModalGroupForm = ({id, onClick}) => {
 						};
 						if (id) {
 							let res = await updateGroup({id, body});
+							if (!res.isSuccess) {
+								return;
+							}
 						} else {
 							let res = await postGroupParticipation({...body});
+							if (!res.isSuccess) {
+								return;
+							}
 						}
 						onClick();
 					}}

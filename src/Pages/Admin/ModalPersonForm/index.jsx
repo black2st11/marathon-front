@@ -35,8 +35,8 @@ const ModalPersonForm = ({person, onClick}) => {
 	const [group, setGroup] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	useEffect(() => {
-		if (person) {
-			(async () => {
+		(async () => {
+			if (person) {
 				let res = await getPerson({id: person});
 				let group_res = await getListGroupParticipation({
 					verification: '3bf440f1-5e05-4ff1-a2b0-2e3c933fd5b2',
@@ -61,9 +61,9 @@ const ModalPersonForm = ({person, onClick}) => {
 						: '',
 					email: res.data.email ? res.data.email : '',
 				});
-			})();
-		}
-		setIsLoading(false);
+			}
+			setIsLoading(false);
+		})();
 	}, []);
 
 	return (

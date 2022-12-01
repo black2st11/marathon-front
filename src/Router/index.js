@@ -21,6 +21,8 @@ import {
 	AdminVolunteer,
 } from '../Pages/Admin';
 import Pic from '../Pages/Ground/Pic';
+import Login from '../Pages/Admin/Login';
+import User from '../Pages/Admin/User';
 
 const loader = async ({params}) => {
 	return params;
@@ -169,5 +171,13 @@ export const router = createBrowserRouter([
 	{
 		path: '/admin/group',
 		element: <AdminGroup />,
+	},
+	{
+		path: '/admin/login',
+		element: <Login />,
+	},
+	{
+		path: '/admin/user',
+		element: <User />,
 	},
 ]);

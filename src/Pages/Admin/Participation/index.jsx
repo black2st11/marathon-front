@@ -388,7 +388,7 @@ const AdminParticipation = () => {
 					)}
 				</Modal>
 			)}
-			{record && (
+			{record !== 0 && (
 				<Modal
 					open={true}
 					onCancel={() => {

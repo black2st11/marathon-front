@@ -17,9 +17,9 @@ import {
 	MobileMenu,
 	Fake,
 } from './style';
+import {Menu as AntdMenu} from 'antd';
 import {MdOutlineClose, MdOutlineMenu} from 'react-icons/md';
 import {colorPalette} from '../../../config';
-
 const Nav = ({links, logo, button, menus = []}) => {
 	const [hidden, setHidden] = useState(true);
 	const [mobileHidden, setMobileHidden] = useState(true);
@@ -46,6 +46,48 @@ const Nav = ({links, logo, button, menus = []}) => {
 		setFirstPath(paths[1]);
 		setSecondPath(paths[2]);
 	}, []);
+
+	if (window.location.pathname.includes('admin')) {
+		if (window.location.pathname.includes('login')) {
+			return (
+				<AntdMenu mode='horizontal'>
+					<AntdMenu.Item>
+						<a href={'/'}>홈페이지로</a>
+					</AntdMenu.Item>
+				</AntdMenu>
+			);
+		}
+
+		return (
+			<AntdMenu mode='horizontal'>
+				<AntdMenu.Item>
+					<a href={'/admin/participation'}>신청서</a>
+				</AntdMenu.Item>
+				<AntdMenu.Item>
+					<a href={'/admin/group'}>그룹</a>
+				</AntdMenu.Item>
+				<AntdMenu.Item>
+					<a href={'/admin/volunteer'}>봉사신청서</a>
+				</AntdMenu.Item>
+				<AntdMenu.Item>
+					<a href={'/admin/user'}>유저</a>
+				</AntdMenu.Item>
+				<AntdMenu.Item>
+					<a href={'/admin/info'}>정보</a>
+				</AntdMenu.Item>
+				<AntdMenu.Item
+					onClick={() => {
+						sessionStorage.removeItem('verification');
+						window.location.href =
+							window.location.origin + '/admin/login';
+					}}
+				>
+					로그아웃
+				</AntdMenu.Item>
+			</AntdMenu>
+		);
+	}
+
 	return (
 		<React.Fragment>
 			<Container onMouseLeave={() => setHidden(true)}>

@@ -297,3 +297,17 @@ export const getRecordList = async ({
 		method: 'GET',
 	});
 };
+
+export const isExist = async ({name, birth}) => {
+	let params = {
+		token,
+		name,
+		birth,
+	};
+
+	return await defaultApi({
+		params,
+		url: '/participations/is_exist/',
+		method: 'GET',
+	});
+};
