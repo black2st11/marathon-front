@@ -27,6 +27,7 @@ const ModalGroupForm = ({id, onClick}) => {
 		address: '',
 		detail_address: '',
 		depositor: '',
+		email: '',
 	});
 	const [participation, setParticipation] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
@@ -52,6 +53,7 @@ const ModalGroupForm = ({id, onClick}) => {
 					address: data.address,
 					detail_address: data.detail_address,
 					depositor: data.depositor,
+					email: data.email,
 				});
 
 				let temp = [];

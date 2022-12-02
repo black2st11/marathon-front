@@ -20,7 +20,6 @@ const ModalUser = ({id, onClose}) => {
 		(async () => {
 			if (id) {
 				let res = await getUser({id});
-				console.log(res);
 				if (res.isSuccess) {
 					setInfo(res.data);
 				} else {

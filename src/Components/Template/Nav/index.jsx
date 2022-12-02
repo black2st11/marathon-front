@@ -20,6 +20,7 @@ import {
 import {Menu as AntdMenu} from 'antd';
 import {MdOutlineClose, MdOutlineMenu} from 'react-icons/md';
 import {colorPalette} from '../../../config';
+import {verityVerification} from '../../../api/admin';
 const Nav = ({links, logo, button, menus = []}) => {
 	const [hidden, setHidden] = useState(true);
 	const [mobileHidden, setMobileHidden] = useState(true);
@@ -46,6 +47,26 @@ const Nav = ({links, logo, button, menus = []}) => {
 		setFirstPath(paths[1]);
 		setSecondPath(paths[2]);
 	}, []);
+
+	useEffect(() => {
+		(async () => {
+			if (window.location.pathname.includes('admin')) {
+				if (window.location.pathname.includes('login')) {
+				} else {
+					let res = await verityVerification();
+					console.log(res);
+					if (!res.data.verify) {
+						alert(
+							'로그인 정보가 만료되었습니다. 다시 로그읺해주세요.',
+						);
+						sessionStorage.removeItem('verification');
+						window.location.href =
+							window.location.origin + '/admin/login';
+					}
+				}
+			}
+		})();
+	});
 
 	if (window.location.pathname.includes('admin')) {
 		if (window.location.pathname.includes('login')) {
