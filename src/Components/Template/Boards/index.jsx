@@ -2,7 +2,14 @@ import React from 'react';
 import * as S from './style';
 import {Text} from '../../Atom';
 
-const Borads = ({titles = [], contents = [], count = 0, page = 0, onClick}) => {
+const Borads = ({
+	titles = [],
+	contents = [],
+	count = 0,
+	page = 0,
+	onClick,
+	category = '자유',
+}) => {
 	return (
 		<S.Container>
 			<S.TitleWrapper>
@@ -30,10 +37,18 @@ const Borads = ({titles = [], contents = [], count = 0, page = 0, onClick}) => {
 							<Text children={content.title} />
 						</S.Content>
 						<S.Content>
-							<Text children={content.date} />
+							<Text children={content.created} />
 						</S.Content>
 						<S.Content>
-							<Text children={content.hit} />
+							{category === '환불' ? (
+								<Text
+									children={
+										content.comments?.length ? 'O' : 'X'
+									}
+								/>
+							) : (
+								<Text children={content.hit} />
+							)}
 						</S.Content>
 					</React.Fragment>
 				</S.ContentWrapper>

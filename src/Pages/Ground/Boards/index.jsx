@@ -65,6 +65,7 @@ const Boards = ({category}) => {
 							count={count}
 							page={page}
 							onClick={goBoard}
+							category={category}
 						/>
 					) : (
 						<BoardsTemplate
@@ -72,6 +73,7 @@ const Boards = ({category}) => {
 							count={count}
 							page={page}
 							onClick={goBoard}
+							category={category}
 						/>
 					)}
 				</S.BoardsWrapper>

@@ -49,6 +49,7 @@ const ModalPersonForm = ({id, onClick}) => {
 				let splitted_birth = res.data.birth.split('-');
 				setInfo({
 					...res.data,
+					participated: res.data.participated.split(','),
 					phone1: splitted_phone[0] ? splitted_phone[0] : '',
 					phone2: splitted_phone[1] ? splitted_phone[1] : '',
 					phone3: splitted_phone[2] ? splitted_phone[2] : '',
@@ -63,7 +64,7 @@ const ModalPersonForm = ({id, onClick}) => {
 			setIsLoading(false);
 		})();
 	}, []);
-
+	console.log(info);
 	const updateVolunteerData = async () => {
 		let body = {
 			...info,
@@ -86,6 +87,7 @@ const ModalPersonForm = ({id, onClick}) => {
 							...values,
 							birth: `${values.year}-${values.month}-${values.day}`,
 							phone: `${values.phone1}-${values.phone2}-${values.phone3}`,
+							participated: values.participated.join(','),
 						};
 						if (id) {
 							await updateVolunteer({id: info.id, ...body});
@@ -100,6 +102,7 @@ const ModalPersonForm = ({id, onClick}) => {
 					</Form.Item>
 					<Form.Item label={'참여날짜'} name={'participated'}>
 						<Select
+							mode={'multiple'}
 							options={[{value: '', label: '선택'}].concat(
 								makeParticipated(),
 							)}

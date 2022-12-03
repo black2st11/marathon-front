@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {BoardForm, BreadCrumb} from '../../../Components/Template';
-import {firstProps, initialState} from './data';
+import {firstProps, initialRefundState, initialState} from './data';
 import {setForm} from '../../../util';
 import {postBoard} from '../../../api/board';
 import {Container} from '../../../Components/Atom';
@@ -14,7 +14,9 @@ const categoryMap = {
 };
 
 const BoardWrite = ({category = '자유'}) => {
-	const [state, setState] = useState(initialState);
+	const [state, setState] = useState(
+		category === '환불' ? initialRefundState : initialState,
+	);
 	const [file, setFile] = useState();
 	firstProps.inputs.forEach((input) => {
 		setForm(input, state, setState);
@@ -23,7 +25,11 @@ const BoardWrite = ({category = '자유'}) => {
 		if (category === '환불' && state.password.length === 0) {
 			return alert('비밀번호를 설정해주세요.');
 		}
-		await postBoard({...state, category, files: [file]});
+		let res = await postBoard({...state, category, files: [file]});
+
+		if (res.isSuccess) {
+			window.history.back();
+		}
 	};
 
 	firstProps.fileInput.file.onChange = (e) => setFile(e.target.files[0]);

@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import {RouterProvider} from 'react-router-dom';
 import {router} from './Router';
 import {Footer, Nav} from './Components/Template';
-import {navProps} from './config';
+import {footerProps, navProps} from './config';
 import GlobalStyle from './config/global';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,7 +13,7 @@ root.render(
 		<GlobalStyle />
 		<Nav {...navProps} />
 		<RouterProvider router={router} />
-		<Footer />
+		<Footer {...footerProps} />
 	</React.StrictMode>,
 );
 

@@ -155,6 +155,7 @@ export const MobileNavWrapper = styled.div`
 
 	@media screen and (max-width: ${viewSize.mobile}) {
 		margin: 1rem auto;
+		height: 200vh;
 	}
 `;
 

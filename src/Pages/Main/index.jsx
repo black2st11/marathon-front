@@ -89,20 +89,31 @@ const Main = () => {
 					</S.InfoTextWrapper>
 					<S.ImgTextWrapper>
 						{secondProps.info.links.map((link) => (
-							<ImgText {...link} />
+							<a
+								href={link.href}
+								style={{
+									display: 'flex',
+									textDecoration: 'none',
+									margin: '1rem',
+								}}
+							>
+								<ImgText {...link} />
+							</a>
 						))}
 					</S.ImgTextWrapper>
 				</S.InfoWrapper>
-				<S.SupportWrapper>
-					{secondProps.supports.map((support) => (
-						<S.Support>
-							<Text {...support.title} />
-							{support.imgs.map((img) => (
-								<S.SupportImg {...img} />
-							))}
-						</S.Support>
-					))}
-				</S.SupportWrapper>
+				{secondProps.supports.length > 0 && (
+					<S.SupportWrapper>
+						{secondProps.supports.map((support) => (
+							<S.Support>
+								<Text {...support.title} />
+								{support.imgs.map((img) => (
+									<S.SupportImg {...img} />
+								))}
+							</S.Support>
+						))}
+					</S.SupportWrapper>
+				)}
 			</S.SecondSection>
 			<S.ThirdSection>
 				<S.ThirdTextWrapper>

@@ -89,9 +89,13 @@ const UpdatePerson = () => {
 	const [section, setSection] = useState(0);
 
 	useEffect(() => {
-		let name = sessionStorage.getItem('name');
-		let birth = sessionStorage.getItem('birth');
 		(async () => {
+			let name = sessionStorage.getItem('name');
+			let birth = sessionStorage.getItem('birth');
+
+			if (!name && !birth) {
+				return;
+			}
 			let res = await getListPersonParticipation({name, birth});
 			if (!res.isSuccess) {
 			}

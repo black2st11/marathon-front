@@ -176,12 +176,21 @@ export const SupportWrapper = styled.div`
 
 export const Support = styled.div`
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-evenly;
-	width: 50%;
-
+	width: auto;
+	min-width: 300px;
+	margin: auto;
+	> img {
+		margin: auto 1rem;
+	}
 	@media screen and (max-width: ${viewSize.mobile}) {
 		width: 100%;
+		margin: 1rem auto;
+		> img {
+			margin: 1rem 0;
+		}
 	}
 `;
 

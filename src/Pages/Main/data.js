@@ -1,4 +1,10 @@
-import {colorPalette, fontSize, fontWeight} from '../../config';
+import {
+	colorPalette,
+	fontSize,
+	fontWeight,
+	mainLinks,
+	supporter,
+} from '../../config';
 import {
 	participateLogoImg,
 	recogLogoImg,
@@ -136,39 +142,9 @@ export const secondProps = {
 			...secondTextProps.content,
 			children: `마라톤에 도움이 되는 바로가기\n정보를 안내합니다.`,
 		},
-		links: [
-			{
-				img: {src: participateLogoImg},
-				text: {...secondTextProps.content, children: '참가신청'},
-			},
-			{
-				img: {src: recogLogoImg},
-				text: {...secondTextProps.content, children: '접수확인'},
-			},
-			{
-				img: {src: infoLogoImg},
-				text: {...secondTextProps.content, children: '대회요강'},
-			},
-			{
-				img: {src: recordLogoImg},
-				text: {...secondTextProps.content, children: '대회기록'},
-			},
-			{
-				img: {src: notifyLogoImg},
-				text: {...secondTextProps.content, children: '공지사항'},
-			},
-		],
+		links: mainLinks,
 	},
-	supports: [
-		{
-			title: {...secondTextProps.support, children: '주최'},
-			imgs: [{src: cbsImg}],
-		},
-		{
-			title: {...secondTextProps.support, children: '후원'},
-			imgs: [{src: gyeongSangImg}, {src: jinjuImg}],
-		},
-	],
+	supports: supporter,
 };
 
 export const thirdTextProps = {

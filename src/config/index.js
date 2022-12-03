@@ -1,4 +1,14 @@
-import {logo} from './images';
+import {
+	cbsImg,
+	gyeongSangImg,
+	infoLogoImg,
+	jinjuImg,
+	logo,
+	notifyLogoImg,
+	participateLogoImg,
+	recogLogoImg,
+	recordLogoImg,
+} from './images';
 
 // 폰트 사이즈(default 기준으로 제공이 되어짐)
 export const defaultFontSize = 1;
@@ -35,11 +45,6 @@ export const fontWeight = {
 // 기본 베이스 width, height(default 기준으로 계산 되어짐) -> 폰트 변경되어지면 여기도 변경 필요
 const buttonSize = {
 	width: 16,
-	height: 3.5,
-};
-
-const inputSize = {
-	width: '100%',
 	height: 3.5,
 };
 
@@ -109,7 +114,7 @@ export const colorPalette = {
 
 // 디스플레이 사이즈
 export const viewSize = {
-	mobile: '375px',
+	mobile: '450px',
 	tablet: '992px',
 	desktop: '1920px',
 };
@@ -144,6 +149,8 @@ export const requiredInfo = {
 
 // 등록
 export const TOKEN = '961ab6aa-95f2-4447-98d3-c92b70f87061';
+
+// API URL
 export const API = 'http://localhost:8000';
 
 export const defaultInfo = {
@@ -154,8 +161,10 @@ export const defaultInfo = {
 	accountHolder: '',
 };
 
+// 코스 설정
 export const courseList = ['풀코스', '하프코스', '10km코스', '5km코스'];
 
+// 코스별 기념품 매칭
 export const giftMap = {
 	'10km코스': ['신발', '옷'],
 	'5km코스': ['신발', '굳즈'],
@@ -163,12 +172,14 @@ export const giftMap = {
 	하프코스: ['신발', '음료'],
 };
 
+// 봉사 신청 아이템
 export const participatedList = [
 	{date: '2022-12-01', weekday: '월'},
 	{date: '2022-12-02', weekday: '화'},
 	{date: '2022-12-03', weekday: '수'},
 ];
 
+// nav 설정
 export const navProps = {
 	logo: logo,
 	links: [
@@ -247,7 +258,78 @@ export const navProps = {
 	],
 };
 
-const footerProps = {
+const secondTextProps = {
+	title: {
+		fontSize: {
+			desktop: fontSize.xl3,
+			tablet: '36px',
+			mobile: '26px',
+		},
+		color: colorPalette.secondary,
+		fontWeight: fontWeight.medium,
+	},
+	content: {
+		fontSize: {
+			desktop: fontSize.base,
+			tablet: '24px',
+			mobile: '16px',
+		},
+		color: colorPalette.noneBorder,
+		fontWeight: fontWeight.medium,
+	},
+	support: {
+		fontSize: {
+			desktop: fontSize.xl2,
+			tablet: '22px',
+			mobile: '15px',
+		},
+		color: colorPalette.base,
+		fontWeight: fontWeight.semiBold,
+	},
+};
+
+// 아이콘 링크
+export const mainLinks = [
+	{
+		img: {src: participateLogoImg},
+		text: {...secondTextProps.content, children: '참가신청'},
+		href: '/participation/person',
+	},
+	{
+		img: {src: recogLogoImg},
+		text: {...secondTextProps.content, children: '접수확인'},
+		href: '/participation/person-update',
+	},
+	{
+		img: {src: infoLogoImg},
+		text: {...secondTextProps.content, children: '대회요강'},
+		href: '/info/summary',
+	},
+	{
+		img: {src: recordLogoImg},
+		text: {...secondTextProps.content, children: '대회기록'},
+		href: '/record/check',
+	},
+	{
+		img: {src: notifyLogoImg},
+		text: {...secondTextProps.content, children: '공지사항'},
+		href: '/ground/notify',
+	},
+];
+
+// 주최 후원
+export const supporter = [
+	{
+		title: {...secondTextProps.support, children: '주최'},
+		imgs: [{src: cbsImg}],
+	},
+	{
+		title: {...secondTextProps.support, children: '후원'},
+		imgs: [{src: gyeongSangImg}, {src: jinjuImg}],
+	},
+];
+
+export const footerProps = {
 	name: '화순',
 	tel: '061-858-2456',
 	fax: '061-858-2456',

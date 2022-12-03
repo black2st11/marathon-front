@@ -58,7 +58,6 @@ export const firstProps = {
 			text: {...firstTextProps.inputsText, children: '내용'},
 			textarea: {
 				name: 'content',
-				placeholder: `이름 :\n입금자명(단체명) :\n종목 :\n계좌번호 :\n환불금액 :\n추가 요청사항 :`,
 				borderRadius: '0.75rem',
 				fontSize: {desktop: fontSize.lg},
 			},
@@ -69,6 +68,7 @@ export const firstProps = {
 		bgColor: colorPalette.white,
 		isRounded: true,
 		border: `1px solid ${colorPalette.border}`,
+		onClick: () => window.history.back(),
 	},
 	writeBtn: {
 		text: {
@@ -104,4 +104,11 @@ export const initialState = {
 	password: '',
 	title: '',
 	content: '',
+};
+
+export const initialRefundState = {
+	author: '',
+	password: '',
+	title: '',
+	content: `이름 :\n입금자명(단체명) :\n종목 :\n계좌번호 :\n환불금액 :\n추가 요청사항 :`,
 };
