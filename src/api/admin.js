@@ -43,7 +43,7 @@ export const getListVolunteer = async ({page, search, filter, ordering}) => {
 		search,
 		ordering,
 		...filter,
-		verification: '3bf440f1-5e05-4ff1-a2b0-2e3c933fd5b2',
+		verification,
 	};
 
 	return await defaultApi({
@@ -71,7 +71,7 @@ export const getListGroup = async ({page, search, ordering}) => {
 		search,
 		ordering,
 		token,
-		verification: '3bf440f1-5e05-4ff1-a2b0-2e3c933fd5b2',
+		verification,
 	};
 	return await defaultApi({
 		params,
@@ -364,10 +364,9 @@ export const exportVolunteer = async ({fields, order}) => {
 };
 
 export const getInfo = async () => {
-	let verification = sessionStorage.getItem('verification');
 	let params = {
 		token,
-		verification: '3bf440f1-5e05-4ff1-a2b0-2e3c933fd5b2',
+		verification,
 	};
 
 	return await defaultApi({params, url: `/info/`, method: 'GET'});
@@ -378,7 +377,7 @@ export const updateInfo = async ({id, name, started, ended}) => {
 		name,
 		started,
 		ended,
-		verification: '3bf440f1-5e05-4ff1-a2b0-2e3c933fd5b2',
+		verification,
 		token,
 	};
 
@@ -395,11 +394,10 @@ export const getModals = async ({active}) => {
 };
 
 export const createModal = async ({image}) => {
-	let verification = '3bf440f1-5e05-4ff1-a2b0-2e3c933fd5b2';
 	let data = {
 		image,
 		token,
-		verification: '3bf440f1-5e05-4ff1-a2b0-2e3c933fd5b2',
+		verification,
 	};
 
 	const formData = new FormData();
@@ -484,7 +482,6 @@ export const getUser = async ({id}) => {
 };
 
 export const getUserList = async () => {
-	console.log(verification);
 	let params = {
 		verification,
 		token,

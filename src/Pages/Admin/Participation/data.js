@@ -1,4 +1,5 @@
 import {colorPalette} from '../../../config';
+import {makeCourse} from '../../../util';
 
 export const orderInit = {
 	'gender-name': false,
@@ -29,6 +30,8 @@ export const genderFilter = [
 	{value: '남성', label: '남성'},
 	{value: '여성', label: '여성'},
 ];
+
+export const courseFilter = [{value: '', label: '전체'}].concat(makeCourse());
 
 export const checkBoxProps = {
 	fields: {

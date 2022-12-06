@@ -74,6 +74,7 @@ const ModalGroupForm = ({id, onClick}) => {
 						is_deposit: item.is_deposit,
 						deleted: null,
 						created: item.created,
+						deposited: item.deposited,
 					});
 				});
 				setParticipation(temp);
@@ -144,10 +145,16 @@ const ModalGroupForm = ({id, onClick}) => {
 				<Form
 					initialValues={group}
 					onFinish={async (values) => {
+						let now = new Date();
 						let participationData = participation.map((item) => {
 							return {
 								...item,
 								phone: `${item.phone1}-${item.phone2}-${item.phone3}`,
+								deposited: !item.is_deposit
+									? null
+									: item.deposited
+									? item.deposited
+									: `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`,
 							};
 						});
 						let body = {

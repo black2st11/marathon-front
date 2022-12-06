@@ -9,6 +9,7 @@ import {
 	Space,
 	Table,
 } from 'antd';
+import dayjs from 'dayjs';
 import {Container} from '../../../Components/Atom';
 import {
 	createModal,
@@ -21,6 +22,9 @@ import {
 import {AiOutlineDropbox} from 'react-icons/ai';
 import Dragger from 'antd/es/upload/Dragger';
 import {noImage} from '../../../config/images';
+
+const dateFormat = 'YYYY-MM-DD';
+const datetimeFormat = 'YYYY-MM-DD HH:mm:ss';
 
 const AdminInfo = () => {
 	const [info, setInfo] = useState({
@@ -79,9 +83,21 @@ const AdminInfo = () => {
 			{!isLoading && (
 				<Container>
 					<Form
-						initialValues={info}
+						initialValues={{
+							name: info.name,
+							started: dayjs(info.started.dateFormat),
+							ended: dayjs(info.ended, dateFormat),
+						}}
 						onFinish={async (values) => {
-							await updateInfo({...values, id: info.id});
+							let started = values.started.format(dateFormat);
+							let ended = values.ended.format(datetimeFormat);
+
+							await updateInfo({
+								name: values.name,
+								started,
+								ended,
+								id: info.id,
+							});
 						}}
 					>
 						<Form.Item name={'name'} label={'대회 이름'}>
@@ -99,16 +115,21 @@ const AdminInfo = () => {
 									name={'started'}
 									style={{width: '48%'}}
 								>
-									<DatePicker />
-									<Input />
+									<DatePicker
+										style={{width: '100%'}}
+										dateFormat={dateFormat}
+									/>
 								</Form.Item>
 								~
 								<Form.Item
 									name={'ended'}
 									style={{width: '48%'}}
 								>
-									<DatePicker showTime />
-									<Input />
+									<DatePicker
+										showTime
+										style={{width: '100%'}}
+										dateFormat={dateFormat}
+									/>
 								</Form.Item>
 							</div>{' '}
 							<div

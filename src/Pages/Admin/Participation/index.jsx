@@ -4,6 +4,7 @@ import {
 	categoryInit,
 	checkBoxProps,
 	columns,
+	courseFilter,
 	depositFilter,
 	depositInit,
 	genderFilter,
@@ -58,7 +59,11 @@ const AdminParticipation = () => {
 	const [modal, setModal] = useState(false);
 	const [record, setRecord] = useState(0);
 	const [select, setSelect] = useState({id: 0, category: 'person'});
-	const [filter, setFilter] = useState({gender: '', is_deposit: ''});
+	const [filter, setFilter] = useState({
+		gender: '',
+		is_deposit: '',
+		course: '',
+	});
 	const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 	const [ordering, setOrdering] = useState('');
 	const [participationModal, setParticipationModal] = useState(false);
@@ -247,6 +252,16 @@ const AdminParticipation = () => {
 						}
 						options={genderFilter}
 						value={filter.gender}
+					/>
+				</S.RowWraper>
+				<S.RowWraper>
+					<Radio.Group
+						optionType='button'
+						onChange={(e) =>
+							setFilter({...filter, course: e.target.value})
+						}
+						options={courseFilter}
+						value={filter.course}
 					/>
 				</S.RowWraper>
 			</S.CheckBoxWrapper>

@@ -34,6 +34,7 @@ export const makeCourse = () => {
 		courses.push({
 			name: course,
 			value: course,
+			label: course,
 			children: `${course} 부문`,
 		});
 	});
