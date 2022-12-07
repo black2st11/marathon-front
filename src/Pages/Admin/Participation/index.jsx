@@ -23,6 +23,7 @@ import {
 	Space,
 	Button as AntdButton,
 	Modal,
+	Typography,
 } from 'antd';
 import {GroupTable} from '../../../Components/Organism/GroupForm';
 import {Pagination} from '../../../Components/Organism';
@@ -156,6 +157,9 @@ const AdminParticipation = () => {
 	return (
 		<S.Container>
 			<S.CheckBoxWrapper>
+				<Typography.Text>
+					엑셀 축력 필드(선택 안할 시 전체)
+				</Typography.Text>
 				<S.RowWraper>
 					<Checkbox.Group
 						style={{flexWrap: 'wrap'}}
@@ -171,6 +175,7 @@ const AdminParticipation = () => {
 						))}
 					</Checkbox.Group>
 				</S.RowWraper>
+				<Typography.Text>엑셀 축력 정렬</Typography.Text>
 				<S.RowWraper>
 					<Radio.Group
 						style={{flexWrap: 'wrap'}}
@@ -189,6 +194,7 @@ const AdminParticipation = () => {
 						</Radio>
 					</Radio.Group>
 				</S.RowWraper>
+				<Typography.Text>엑셀 출력 입금/미입금 구분</Typography.Text>
 				<S.RowWraper>
 					<Radio.Group
 						onChange={(e) => {
@@ -201,6 +207,7 @@ const AdminParticipation = () => {
 						<Radio value={'no-deposit'}>미입금</Radio>
 					</Radio.Group>
 				</S.RowWraper>
+				<Typography.Text>엑셀 출력 단체 구분</Typography.Text>
 				<S.RowWraper>
 					<Radio.Group
 						onChange={(e) => {

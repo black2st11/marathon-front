@@ -28,6 +28,7 @@ import {
 	Table,
 	Space,
 	Modal,
+	Typography,
 } from 'antd';
 
 const AdminGroup = () => {
@@ -110,6 +111,9 @@ const AdminGroup = () => {
 	return (
 		<S.Container>
 			<S.CheckBoxWrapper>
+				<Typography.Text>
+					엑셀 출력 필드(선택 안할 시 전체)
+				</Typography.Text>
 				<S.RowWraper>
 					<Checkbox.Group
 						value={fields}
@@ -124,6 +128,7 @@ const AdminGroup = () => {
 						))}
 					</Checkbox.Group>
 				</S.RowWraper>
+				<Typography.Text>엑셀 출력 정렬</Typography.Text>
 				<S.RowWraper>
 					<Radio.Group
 						onChange={(e) => setOrder(e.target.value)}
@@ -134,6 +139,7 @@ const AdminGroup = () => {
 						))}
 					</Radio.Group>
 				</S.RowWraper>
+				<Typography.Text>엑셀 출력 입금 / 미입금 구분</Typography.Text>
 				<S.RowWraper>
 					<Radio.Group
 						onChange={(e) => setDeposit(e.target.value)}
