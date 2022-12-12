@@ -85,12 +85,17 @@ export const router = createBrowserRouter([
 		element: <Check />,
 	},
 	{
-		path: '/record/board',
-		element: <Boards />,
+		path: '/record/boards',
+		element: <Boards category={'기록'} />,
 	},
 	{
-		path: '/record/board-create',
-		element: <BoardWrite />,
+		path: '/record/boards/:id',
+		element: <Board category='공지' />,
+		loader: loader,
+	},
+	{
+		path: '/record/boards-create',
+		element: <BoardWrite category='기록' />,
 	},
 	{
 		path: '/ground/notify',

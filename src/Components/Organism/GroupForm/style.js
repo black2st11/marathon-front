@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {colorPalette} from '../../../config';
+import {colorPalette, viewSize} from '../../../config';
 
 export const Container = styled.div`
 	${(props) => props.maxWidth && `max-width : ${props.maxWidth};`}
@@ -12,6 +12,16 @@ export const HandleWrapper = styled.div`
 	display: flex;
 	margin-bottom: 1rem;
 	width: 100%;
+
+	@media screen and (max-width: ${viewSize.mobile}) {
+		> div > button {
+			padding: 0.5rem;
+		}
+
+		> div {
+			margin: auto;
+		}
+	}
 `;
 
 export const CheckButtonWrapper = styled.div`
@@ -28,6 +38,24 @@ export const CheckDeleteButtonWrapper = styled.div`
 
 export const CurrentLength = styled.div`
 	margin: auto;
+	display : flex;
+	
+	@media screen and (max-width: ${viewSize.mobile}) {
+		display: none;
+		align-items: center;
+		justify-content: center;
+	}
+`;
+
+export const MobileCurrentLength = styled.div`
+	margin: auto;
+	display: none;
+
+	@media screen and (max-width: ${viewSize.mobile}) {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 `;
 
 export const Table = styled.table`

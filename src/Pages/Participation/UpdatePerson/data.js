@@ -271,11 +271,11 @@ export const thirdProps = {
 			items: [
 				{
 					value: '남성',
-					children: 'male',
+					children: '남성',
 				},
 				{
 					value: '여성',
-					children: 'female',
+					children: '여성',
 				},
 			],
 			warnText: {

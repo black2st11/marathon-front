@@ -22,6 +22,7 @@ import {
 import {tdProps} from '../../common';
 import {TopWRapper} from '../Person';
 import {thirdProgress} from '../../../config/images';
+import {useDaumPostcodePopup} from 'react-daum-postcode';
 
 const setInfoData = ({setState, data}) => {
 	let group = data;
@@ -35,6 +36,7 @@ const setInfoData = ({setState, data}) => {
 		phone1: phones[0],
 		phone2: phones[1],
 		phone3: phones[2],
+		email: group.email ? group.email : '',
 	});
 
 	let participations = group.participation;
@@ -106,6 +108,7 @@ const setGroupData = ({setState, data}) => {
 			phone3: splitted_phone[2],
 			course: participation.course,
 			gift: participation.gift,
+			deposited: participation.deposited,
 		});
 	});
 	setState(groups);
@@ -155,7 +158,22 @@ const UpdateGroup = () => {
 	const [invalid, setInvalid] = useState(invalidProps);
 	const [section, setSection] = useState(0);
 	const [isAllCheck, setIsAllCheck] = useState(false);
+	const open = useDaumPostcodePopup();
 
+	const handleComplete = (data) => {
+		let post_number = data.zonecode;
+		let address = data.address;
+
+		setInfo({
+			...info,
+			post_number,
+			address,
+		});
+	};
+
+	const handleClick = () => {
+		open({onComplete: handleComplete});
+	};
 	useEffect(() => {
 		(async () => {
 			let name = sessionStorage.getItem('name');
@@ -238,6 +256,7 @@ const UpdateGroup = () => {
 	thirdProps.group.ths[0].onChange = () =>
 		setToggleCheck(group, setGroup, setIsAllCheck);
 	thirdProps.group.ths[0].value = isAllCheck;
+	thirdProps.inputs[3].button.onClick = () => handleClick();
 	thirdProps.button.onClick = async () => {
 		if (isValidate(info, invalidProps, setInvalid)) {
 			let res = await updateGroupParticipation({
@@ -249,6 +268,46 @@ const UpdateGroup = () => {
 			if (!res.isSuccess) {
 				alert('error occurred');
 			}
+			setInfo({
+				name: '',
+				representative: '',
+				year: '',
+				month: '',
+				day: '',
+				post_number: '',
+				address: '',
+				detail_address: '',
+				email: '',
+				phone1: '',
+				phone2: '',
+				phone3: '',
+				depositor: '',
+			});
+			setGroup([
+				{
+					check: false,
+					name: '',
+					gender: '',
+					birth: '',
+					phone1: '',
+					phone2: '',
+					phone3: '',
+					course: '',
+					gift: '',
+				},
+				{
+					check: false,
+					name: '',
+					gender: '',
+					birth: '',
+					phone1: '',
+					phone2: '',
+					phone3: '',
+					course: '',
+					gift: '',
+				},
+			]);
+			setSection(0);
 		}
 	};
 

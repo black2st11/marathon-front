@@ -20,6 +20,7 @@ const categoryMap = {
 	환불: '환불게시판',
 	공지: '공지게시판',
 	사진: '사진게시판',
+	기록: '기록게시판',
 };
 
 const Boards = ({category}) => {

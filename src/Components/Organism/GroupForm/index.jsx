@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import * as S from './style';
 import {Input, Button, Text, Icon, Select, CheckBox} from '../../Atom';
+import {MobileCurrentLength} from './style';
 
 const Tds = ({tds = []}) => {
+	const inputsRef = useRef([]);
 	return tds.map((td, index, array) => {
 		if (td.button) {
 			return (
@@ -17,13 +19,27 @@ const Tds = ({tds = []}) => {
 				<S.Td>
 					<S.MultiWrapper>
 						<S.MultiItem>
-							<Input {...td.inputs[0]} />
+							<Input
+								{...td.inputs[0]}
+								ref={(e) => (inputsRef.current[0] = e)}
+								isMax={() => {
+									console.log(inputsRef);
+									inputsRef.current[1]?.focus();
+								}}
+							/>
 						</S.MultiItem>
 						<S.MultiItem>
-							<Input {...td.inputs[1]} />
+							<Input
+								{...td.inputs[1]}
+								ref={(e) => (inputsRef.current[1] = e)}
+								isMax={() => inputsRef.current[2]?.focus()}
+							/>
 						</S.MultiItem>
 						<S.MultiItem>
-							<Input {...td.inputs[2]} />
+							<Input
+								{...td.inputs[2]}
+								ref={(e) => (inputsRef.current[2] = e)}
+							/>
 						</S.MultiItem>
 					</S.MultiWrapper>
 				</S.Td>
@@ -72,6 +88,11 @@ const GroupForm = ({
 	};
 	return (
 		<S.Container {...props}>
+			<S.MobileCurrentLength>
+				<Text {...currentText.normal}>{currentText.preFix}</Text>
+				<Text {...currentText.strong}>{trs.length}</Text>
+				<Text {...currentText.normal}>{currentText.postFix}</Text>
+			</S.MobileCurrentLength>
 			<S.HandleWrapper>
 				<S.CheckButtonWrapper>
 					<Button {...checkBtn} />
@@ -134,6 +155,15 @@ export const GroupTable = ({ths, trs = [], currentText, maxWidth}) => {
 							{currentText.postFix}
 						</Text>
 					</S.CurrentLength>
+					<S.MobileCurrentLength>
+						<Text {...currentText.normal}>
+							{currentText.preFix}
+						</Text>
+						<Text {...currentText.strong}>{trs.length}</Text>
+						<Text {...currentText.normal}>
+							{currentText.postFix}
+						</Text>
+					</S.MobileCurrentLength>
 				</S.HandleWrapper>
 			)}
 

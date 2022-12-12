@@ -340,6 +340,6 @@ export const fourthProps = {
 };
 
 export const modalProps = {
-	isClose: false,
+	isClose: true,
 	img: {src: courseImg},
 };

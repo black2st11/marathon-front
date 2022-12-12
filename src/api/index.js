@@ -44,6 +44,7 @@ export const postPersonParticipation = async ({
 	post_number,
 	address,
 	detail_address,
+	email,
 }) => {
 	let data = {
 		token,
@@ -51,6 +52,7 @@ export const postPersonParticipation = async ({
 		post_number,
 		address,
 		detail_address,
+		email,
 		participation: {
 			name,
 			gender,
@@ -128,6 +130,7 @@ export const postGroupParticipation = async ({
 	address,
 	detail_address,
 	participation,
+	email,
 }) => {
 	let data = {
 		token,
@@ -140,6 +143,7 @@ export const postGroupParticipation = async ({
 		address,
 		detail_address,
 		participation,
+		email,
 	};
 	return await defaultApi({
 		data,

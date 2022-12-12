@@ -22,6 +22,7 @@ import {
 import {CheckBox, Container, Text, TextArea} from '../../../Components/Atom';
 import {CheckBoxWrapper, TopWRapper} from '../Person';
 import {firstProgress, secondProgress} from '../../../config/images';
+import {useDaumPostcodePopup} from 'react-daum-postcode';
 
 const Group = () => {
 	const [info, setInfo] = useState({
@@ -67,6 +68,23 @@ const Group = () => {
 	const [invalid, setInvalid] = useState(invalidProps);
 	const [section, setSection] = useState(0);
 	const [check, setCheck] = useState(false);
+	const open = useDaumPostcodePopup();
+
+	const handleComplete = (data) => {
+		let post_number = data.zonecode;
+		let address = data.address;
+
+		setInfo({
+			...info,
+			post_number,
+			address,
+		});
+	};
+
+	const handleClick = () => {
+		open({onComplete: handleComplete});
+	};
+
 	let firstInfo = {
 		name: info.name,
 		representative: info.representative,
@@ -126,6 +144,7 @@ const Group = () => {
 		setToggleCheck(group, setGroup, setIsAllCheck);
 	groupProps.ths[0].value = isAllCheck;
 	secondProps.group = groupProps;
+	secondProps.inputs[0].button.onClick = () => handleClick();
 	return (
 		<Container>
 			<TopWRapper>

@@ -8,6 +8,7 @@ import {CheckBox, Container, Text, TextArea} from '../../../Components/Atom';
 import styled from 'styled-components';
 import {viewSize} from '../../../config';
 import {firstProgress, secondProgress} from '../../../config/images';
+import {useDaumPostcodePopup} from 'react-daum-postcode';
 
 export const TopWRapper = styled.div`
 	width: 100%;
@@ -59,7 +60,22 @@ const Person = () => {
 	const [check, setCheck] = useState(false);
 	const [invalid, setInvalid] = useState(invalidProps);
 	const [section, setSection] = useState(0);
+	const open = useDaumPostcodePopup();
 
+	const handleComplete = (data) => {
+		let post_number = data.zonecode;
+		let address = data.address;
+
+		setInfo({
+			...info,
+			post_number,
+			address,
+		});
+	};
+
+	const handleClick = () => {
+		open({onComplete: handleComplete});
+	};
 	const firstInfo = {
 		name: info.name,
 		phone1: info.phone1,
@@ -99,6 +115,8 @@ const Person = () => {
 		setForm(input, info, setInfo);
 		setWarnText(input, invalid);
 	});
+
+	secondProps.inputs[0].button.onClick = () => handleClick();
 
 	secondProps.button.onClick = async () => {
 		if (isValidate(info, invalidProps, setInvalid)) {

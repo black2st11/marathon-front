@@ -414,6 +414,9 @@ export const setGroupForm = (prevStates = [], setFunc, isAdmin = false) => {
 				props.inputs[0].pattern = onlyNumber;
 				props.inputs[1].pattern = onlyNumber;
 				props.inputs[2].pattern = onlyNumber;
+				props.inputs[0].maxlength = 3;
+				props.inputs[1].maxlength = 4;
+				props.inputs[2].maxlength = 4;
 				tempList.push(props);
 			}
 
@@ -523,6 +526,7 @@ export const generateGroupParticipation = (participation = []) => {
 			phone: `${item.phone1}-${item.phone2}-${item.phone3}`,
 			course: item.course,
 			gift: item.gift,
+			deposited: item.deposited,
 		});
 	});
 	return participations;

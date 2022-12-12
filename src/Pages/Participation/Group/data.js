@@ -175,16 +175,17 @@ export const secondProps = {
 				{
 					name: 'phone1',
 					pattern: onlyNumber,
-					limit: '3',
+					maxlength: 3,
 				},
 				{
 					name: 'phone2',
 					pattern: onlyNumber,
-					limit: 4,
+					maxlength: 4,
 				},
 				{
 					name: 'phone3',
 					pattern: onlyNumber,
+					maxlength: 4,
 				},
 			],
 			warnText: {
@@ -221,6 +222,8 @@ export const secondProps = {
 const btnTxtProps = {
 	fontSize: {
 		desktop: fontSize.lg,
+		tablet: fontSize.lg,
+		mobile: fontSize.base,
 	},
 	color: colorPalette.primary,
 	fontWeight: fontWeight.medium,

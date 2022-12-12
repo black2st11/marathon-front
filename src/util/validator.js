@@ -88,9 +88,6 @@ export const isValidate = (state, invalidProps, setFunc) => {
 	for (let [key, value] of Object.entries(state)) {
 		let result = {invalid: false};
 		switch (key) {
-			case 'name':
-				result = letterValidator(value);
-				break;
 			case 'representative_name':
 				result = letterValidator(value);
 				break;

@@ -39,6 +39,8 @@ const Login = () => {
 						);
 						window.location.href =
 							window.location.origin + `/admin/participation`;
+					} else {
+						alert('로그인 정보가 틀립니다. 확인해주세요.');
 					}
 				}}
 			>

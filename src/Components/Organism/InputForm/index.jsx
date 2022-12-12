@@ -33,6 +33,7 @@ const SepGenerate = ({seperate, isLast}) => {
 
 export const MultipleInput = ({inputs = [], sep}) => {
 	const inputsRef = useRef([]);
+
 	return (
 		<React.Fragment>
 			{inputs.map((input, index) => (

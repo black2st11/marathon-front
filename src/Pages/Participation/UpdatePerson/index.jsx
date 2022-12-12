@@ -13,6 +13,7 @@ import {
 import {initialInfo} from '../UpdateVolunteer/data';
 import {TopWRapper} from '../Person';
 import {thirdProgress} from '../../../config/images';
+import {useDaumPostcodePopup} from 'react-daum-postcode';
 
 const setData = ({state, setState, data}) => {
 	let person = data[0];
@@ -59,6 +60,7 @@ const setData = ({state, setState, data}) => {
 		phone1: splitted_phone[0],
 		phone2: splitted_phone[1] ? splitted_phone[1] : '',
 		phone3: splitted_phone[2] ? splitted_phone[2] : '',
+		email: person.email ? person.email : '',
 	});
 	secondProps.fee.items[0][1].content.children = participation.is_deposit
 		? '입금'
@@ -87,6 +89,22 @@ const UpdatePerson = () => {
 	});
 	const [invalid, setInvalid] = useState(invalidProps);
 	const [section, setSection] = useState(0);
+	const open = useDaumPostcodePopup();
+
+	const handleComplete = (data) => {
+		let post_number = data.zonecode;
+		let address = data.address;
+
+		setInfo({
+			...info,
+			post_number,
+			address,
+		});
+	};
+
+	const handleClick = () => {
+		open({onComplete: handleComplete});
+	};
 
 	useEffect(() => {
 		(async () => {
@@ -135,7 +153,7 @@ const UpdatePerson = () => {
 		setForm(input, info, setInfo);
 		setWarnText(input, invalid);
 	});
-
+	thirdProps.inputs[4].button.onClick = () => handleClick();
 	firstProps.button.onClick = async () => {
 		if (isValidate(firstInfo, invalidProps, setInvalid)) {
 			let res = await getListPersonParticipation({

@@ -29,13 +29,14 @@ const Input = React.forwardRef(
 			onChange: (e) => {
 				if (
 					maxlength <= value.length &&
-					e.target.value.length > maxlength
+					e.target.value.length > maxlength &&
+					isMax
 				) {
+					console.log(123);
 					isMax(true);
 					return;
 				}
-
-				if (e.target.value.length === maxlength) {
+				if (e.target.value.length === maxlength && isMax) {
 					isMax(true);
 				}
 
@@ -49,6 +50,7 @@ const Input = React.forwardRef(
 			height,
 			borderRadius,
 			pattern,
+			maxLength: maxlength,
 		};
 
 		return (

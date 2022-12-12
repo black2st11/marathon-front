@@ -384,10 +384,10 @@ export const updateInfo = async ({id, name, started, ended}) => {
 	return await defaultApi({data, url: `/info/${id}/`, method: 'PUT'});
 };
 
-export const getModals = async ({active}) => {
+export const getModals = async ({isAdmin}) => {
 	let params = {
 		token,
-		active,
+		verification: isAdmin ? verification : '',
 	};
 
 	return await defaultApi({params, url: `/info/modals/`, method: 'GET'});
@@ -576,5 +576,6 @@ export const login = async ({password, username}) => {
 		data,
 		url: `/info/users/login/`,
 		method: 'POST',
+		raiseError: false,
 	});
 };

@@ -57,8 +57,7 @@ const AdminInfo = () => {
 	useEffect(() => {
 		(async () => {
 			let res = await getInfo();
-			let modal_res = await getModals({});
-			console.log(modal_res);
+			let modal_res = await getModals({isAdmin: true});
 			if (!res.isSuccess || res.data.count !== 1) {
 				return alert(
 					'현재 정보가 잘못 설정되었습니다. 관리자에게 문의해주세요',
@@ -72,7 +71,6 @@ const AdminInfo = () => {
 			setInfo({
 				...res.data.results[0],
 			});
-			console.log(res);
 			setIsLoading(false);
 		})();
 	}, [toggle]);
@@ -86,7 +84,7 @@ const AdminInfo = () => {
 						initialValues={{
 							name: info.name,
 							started: dayjs(info.started.dateFormat),
-							ended: dayjs(info.ended, dateFormat),
+							ended: dayjs(info.ended, datetimeFormat),
 						}}
 						onFinish={async (values) => {
 							let started = values.started.format(dateFormat);
@@ -98,6 +96,7 @@ const AdminInfo = () => {
 								ended,
 								id: info.id,
 							});
+							alert('수정완료');
 						}}
 					>
 						<Form.Item name={'name'} label={'대회 이름'}>
@@ -217,12 +216,11 @@ const AdminInfo = () => {
 									<AiOutlineDropbox />
 								</p>
 								<p className='ant-upload-text'>
-									Click or drag file to this area to upload
+									파일을 드래그 혹은 클릭하여 선택해주세요
 								</p>
 								<p className='ant-upload-hint'>
-									Support for a single or bulk upload.
-									Strictly prohibit from uploading company
-									data or other band files
+									해당 이미지는 등록 후 활성화를 해야지 사용이
+									가능합니다.
 								</p>
 							</Dragger>
 							<div
@@ -237,10 +235,10 @@ const AdminInfo = () => {
 											image: fileList[0],
 										});
 
-										console.log(res);
 										if (res.status === 201) {
 											setModal(false);
 											setToggle(!toggle);
+											return;
 										}
 
 										return alert('문제가 발생하였습니다.');
@@ -248,7 +246,7 @@ const AdminInfo = () => {
 								>
 									팝업 생성
 								</Button>
-							</div>{' '}
+							</div>
 						</Modal>
 					)}
 				</Container>
