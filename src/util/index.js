@@ -527,6 +527,7 @@ export const generateGroupParticipation = (participation = []) => {
 			course: item.course,
 			gift: item.gift,
 			deposited: item.deposited,
+			created: item.created,
 		});
 	});
 	return participations;

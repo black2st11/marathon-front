@@ -90,13 +90,19 @@ const ModalPersonForm = ({person, onClick}) => {
 								group_id: values.group_id,
 							},
 						};
-
+						let verification =
+							sessionStorage.getItem('verification');
 						if (person) {
-							let res = await updatePerson({id: info.id, body});
+							let res = await updatePerson({
+								id: info.id,
+								body,
+								verification,
+							});
 						} else {
 							let res = await postPersonParticipation({
 								...body,
 								...body.participation,
+								verification,
 							});
 						}
 						onClick();

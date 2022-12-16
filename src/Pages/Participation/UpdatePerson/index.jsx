@@ -131,6 +131,8 @@ const UpdatePerson = () => {
 					setState: setInfo,
 					data: res.data.results,
 				});
+				sessionStorage.removeItem('name');
+				sessionStorage.removeItem('birth');
 				setSection(1);
 			}
 		})();

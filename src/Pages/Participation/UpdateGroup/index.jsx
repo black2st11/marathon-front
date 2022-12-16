@@ -109,6 +109,7 @@ const setGroupData = ({setState, data}) => {
 			course: participation.course,
 			gift: participation.gift,
 			deposited: participation.deposited,
+			created: participation.created,
 		});
 	});
 	setState(groups);
@@ -142,6 +143,7 @@ const UpdateGroup = () => {
 			phone3: '',
 			course: '',
 			gift: '',
+			created: '',
 		},
 		{
 			check: false,
@@ -153,6 +155,7 @@ const UpdateGroup = () => {
 			phone3: '',
 			course: '',
 			gift: '',
+			created: '',
 		},
 	]);
 	const [invalid, setInvalid] = useState(invalidProps);
@@ -266,7 +269,6 @@ const UpdateGroup = () => {
 				participation: generateGroupParticipation(group),
 			});
 			if (!res.isSuccess) {
-				alert('error occurred');
 			}
 			setInfo({
 				name: '',
@@ -307,6 +309,9 @@ const UpdateGroup = () => {
 					gift: '',
 				},
 			]);
+			sessionStorage.removeItem('name');
+			sessionStorage.removeItem('representative');
+			sessionStorage.removeItem('phone');
 			setSection(0);
 		}
 	};

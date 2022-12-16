@@ -104,10 +104,11 @@ export const getVolunteer = async ({id}) => {
 	});
 };
 
-export const updatePerson = async ({id, body}) => {
+export const updatePerson = async ({id, body, verification}) => {
 	let data = {
 		...body,
 		token,
+		verification,
 	};
 
 	return await defaultApi({
@@ -117,10 +118,11 @@ export const updatePerson = async ({id, body}) => {
 	});
 };
 
-export const updateGroup = async ({id, body}) => {
+export const updateGroup = async ({id, body, verification}) => {
 	let data = {
 		...body,
 		token,
+		verification,
 	};
 
 	return await defaultApi({

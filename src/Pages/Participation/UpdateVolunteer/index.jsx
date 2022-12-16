@@ -104,6 +104,8 @@ const UpdateVolunteer = () => {
 				phone: `${info.phone1}-${info.phone2}-${info.phone3}`,
 			});
 			if (res.isSuccess) {
+				sessionStorage.removeItem('name');
+				sessionStorage.removeItem('phone');
 				setInfo(initialInfo);
 				setSection(0);
 			}

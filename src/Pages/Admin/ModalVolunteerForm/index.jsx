@@ -64,16 +64,7 @@ const ModalPersonForm = ({id, onClick}) => {
 			setIsLoading(false);
 		})();
 	}, []);
-	console.log(info);
-	const updateVolunteerData = async () => {
-		let body = {
-			...info,
-			birth: `${info.year}-${info.month}-${info.day}`,
-			phone: `${info.phone1}-${info.phone2}-${info.phone3}`,
-		};
-		let res = await updateVolunteer({id: info.id, ...body});
-		onClick();
-	};
+
 	return (
 		<S.Container>
 			{!isLoading && (
@@ -89,10 +80,17 @@ const ModalPersonForm = ({id, onClick}) => {
 							phone: `${values.phone1}-${values.phone2}-${values.phone3}`,
 							participated: values.participated.join(','),
 						};
+
+						let verification =
+							sessionStorage.getItem('verification');
 						if (id) {
-							await updateVolunteer({id: info.id, ...body});
+							await updateVolunteer({
+								id: info.id,
+								...body,
+								verification,
+							});
 						} else {
-							await postVolunteer({...body});
+							await postVolunteer({...body, verification});
 						}
 						onClick();
 					}}

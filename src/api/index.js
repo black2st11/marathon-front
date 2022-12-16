@@ -45,9 +45,11 @@ export const postPersonParticipation = async ({
 	address,
 	detail_address,
 	email,
+	verification,
 }) => {
 	let data = {
 		token,
+		verification,
 		depositor,
 		post_number,
 		address,
@@ -131,6 +133,7 @@ export const postGroupParticipation = async ({
 	detail_address,
 	participation,
 	email,
+	verification,
 }) => {
 	let data = {
 		token,
@@ -144,7 +147,9 @@ export const postGroupParticipation = async ({
 		detail_address,
 		participation,
 		email,
+		verification,
 	};
+
 	return await defaultApi({
 		data,
 		url: '/participations/group/',
@@ -199,7 +204,6 @@ export const updateGroupParticipation = async ({
 		email,
 		participation,
 	};
-
 	return await defaultApi({
 		data,
 		url: `/participations/group/${id}/`,

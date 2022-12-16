@@ -163,13 +163,22 @@ const ModalGroupForm = ({id, onClick}) => {
 							birth: `${values.year}-${values.month}-${values.day}`,
 							participation: participationData,
 						};
+						let verification =
+							sessionStorage.getItem('verification');
 						if (id) {
-							let res = await updateGroup({id, body});
+							let res = await updateGroup({
+								id,
+								body,
+								verification,
+							});
 							if (!res.isSuccess) {
 								return;
 							}
 						} else {
-							let res = await postGroupParticipation({...body});
+							let res = await postGroupParticipation({
+								...body,
+								verification,
+							});
 							if (!res.isSuccess) {
 								return;
 							}

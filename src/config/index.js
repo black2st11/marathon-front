@@ -151,7 +151,7 @@ export const requiredInfo = {
 export const TOKEN = '961ab6aa-95f2-4447-98d3-c92b70f87061';
 
 // API URL
-export const API = 'http://43.200.255.184';
+export const API = 'http://localhost:8000';
 
 export const defaultInfo = {
 	mainTitle: '',
