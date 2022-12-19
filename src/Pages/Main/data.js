@@ -111,6 +111,7 @@ const secondTextProps = {
 		},
 		color: colorPalette.secondary,
 		fontWeight: fontWeight.medium,
+		fontFamily: 'Gmarket',
 	},
 	content: {
 		fontSize: {
@@ -120,6 +121,7 @@ const secondTextProps = {
 		},
 		color: colorPalette.noneBorder,
 		fontWeight: fontWeight.medium,
+		fontFamily: 'Gmarket',
 	},
 	support: {
 		fontSize: {
@@ -156,11 +158,12 @@ export const thirdTextProps = {
 		},
 		fontWeight: fontWeight.medium,
 		color: colorPalette.white,
+		fontFamily: 'Gmarket',
 	},
 	description: {
 		fontSize: {
-			desktop: '20px',
-			tablet: '20px',
+			desktop: '16px',
+			tablet: '16px',
 			mobile: '16px',
 		},
 		fontWeight: fontWeight.medium,
@@ -169,21 +172,23 @@ export const thirdTextProps = {
 	item: {
 		title: {
 			fontSize: {
-				desktop: fontSize.lg,
+				desktop: '20px',
 				tablet: '20px',
 				mobile: '18px',
 			},
 			color: colorPalette.realBlack,
 			fontWeight: fontWeight.bold,
+			lineHeight: '30px',
 		},
 		content: {
 			fontSize: {
-				desktop: fontSize.lg,
-				tablet: '18px',
+				desktop: '20px',
+				tablet: '20px',
 				mobile: '16px',
 			},
 			color: colorPalette.realBlack,
 			fontWeight: fontWeight.normal,
+			lineHeight: '30px',
 		},
 		smalContent: {
 			fontSize: {
@@ -199,6 +204,7 @@ export const thirdTextProps = {
 
 export const thirdProps = {
 	title: {
+		textAlign: 'left',
 		bgColor: colorPalette.white,
 		height: '5px',
 		text: {...thirdTextProps.title, children: '대회요강', type: 'p'},
@@ -212,6 +218,7 @@ export const thirdProps = {
 			title: {...thirdTextProps.item.title, children: '대회명'},
 			contents: [
 				{
+					...thirdTextProps.item.content,
 					children: `2022 대한민국 마라톤 송년\n남부내륙철도 조기착공 기원 전국마라톤대회`,
 				},
 			],
@@ -231,11 +238,16 @@ export const thirdProps = {
 		},
 		{
 			title: {...thirdTextProps.item.title, children: '집결시간'},
-			contents: [{children: `해당코스 출발 30분 전 집결완료`}],
+			contents: [
+				{
+					...thirdTextProps.item.content,
+					children: `해당코스 출발 30분 전 집결완료`,
+				},
+			],
 		},
 		{
 			title: {...thirdTextProps.item.title, children: '장소'},
-			contents: [{children: `진주역`}],
+			contents: [{...thirdTextProps.item.content, children: `진주역`}],
 		},
 		{
 			title: {...thirdTextProps.item.title, children: '참가구분'},
@@ -310,11 +322,12 @@ const fourthTextProps = {
 		},
 		fontWeight: fontWeight.medium,
 		color: colorPalette.black,
+		fontFamily: 'Gmarket',
 	},
 	description: {
 		fontSize: {
-			desktop: '20px',
-			tablet: '20px',
+			desktop: '16px',
+			tablet: '16px',
 			mobile: ' 16px',
 		},
 		fontWeight: fontWeight.medium,
@@ -324,9 +337,10 @@ const fourthTextProps = {
 
 export const fourthProps = {
 	title: {
+		textAlign: 'left',
 		bgColor: colorPalette.primary,
 		height: '5px',
-		text: {...fourthTextProps.title, children: '대회요강', type: 'p'},
+		text: {...fourthTextProps.title, children: '코스안내', type: 'p'},
 		description: {
 			...fourthTextProps.description,
 			children: '반드시 참가 유의사항을 읽고 신청해주세요.',

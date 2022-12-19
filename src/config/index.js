@@ -97,7 +97,7 @@ export const colorPalette = {
 	invalid: '#ff0000',
 	warn: '#bf0000',
 	gray: '#e9e9e9',
-	border: '#9b9b9b',
+	border: 'rgb(217, 217, 217)',
 	noneBorder: '#707070',
 	placeholder: '#8b8b8b',
 	card: '#e6f4ff',
@@ -110,6 +110,7 @@ export const colorPalette = {
 	boardBorder: '#d9d9d9',
 	cardBorder: '#b2b2b2',
 	navColor: '#4d4d4d',
+	checkedRadio: 'rgba(59, 130, 246, 0.5)',
 };
 
 // 디스플레이 사이즈
@@ -292,27 +293,47 @@ const secondTextProps = {
 export const mainLinks = [
 	{
 		img: {src: participateLogoImg},
-		text: {...secondTextProps.content, children: '참가신청'},
+		text: {
+			...secondTextProps.content,
+			children: '참가신청',
+			fontFamily: 'Gmarket',
+		},
 		href: '/participation/person',
 	},
 	{
 		img: {src: recogLogoImg},
-		text: {...secondTextProps.content, children: '접수확인'},
+		text: {
+			...secondTextProps.content,
+			children: '접수확인',
+			fontFamily: 'Gmarket',
+		},
 		href: '/participation/person-update',
 	},
 	{
 		img: {src: infoLogoImg},
-		text: {...secondTextProps.content, children: '대회요강'},
+		text: {
+			...secondTextProps.content,
+			children: '대회요강',
+			fontFamily: 'Gmarket',
+		},
 		href: '/info/summary',
 	},
 	{
 		img: {src: recordLogoImg},
-		text: {...secondTextProps.content, children: '대회기록'},
+		text: {
+			...secondTextProps.content,
+			children: '대회기록',
+			fontFamily: 'Gmarket',
+		},
 		href: '/record/check',
 	},
 	{
 		img: {src: notifyLogoImg},
-		text: {...secondTextProps.content, children: '공지사항'},
+		text: {
+			...secondTextProps.content,
+			children: '공지사항',
+			fontFamily: 'Gmarket',
+		},
 		href: '/ground/notify',
 	},
 ];
@@ -321,11 +342,19 @@ export const mainLinks = [
 export const supporter = [
 	{
 		title: {...secondTextProps.support, children: '주최'},
-		imgs: [{src: cbsImg}],
+		imgs: {
+			desktop: [{src: cbsImg}],
+			tablet: [{src: cbsImg}],
+			mobile: [{src: cbsImg}],
+		},
 	},
 	{
 		title: {...secondTextProps.support, children: '후원'},
-		imgs: [{src: gyeongSangImg}, {src: jinjuImg}],
+		imgs: {
+			desktop: [{src: gyeongSangImg}, {src: jinjuImg}],
+			tablet: [{src: gyeongSangImg}, {src: jinjuImg}],
+			mobile: [{src: gyeongSangImg}, {src: jinjuImg}],
+		},
 	},
 ];
 

@@ -4,10 +4,25 @@ import {
 	formButtonProps,
 	inputButtonProps,
 	warnText,
+	ulsTitleProps,
+	ulsContentProps,
 } from '../../common';
 import {onlyLetter, onlyNumber} from '../../../util/validator';
 import {makeCourse, makeDay, makeMonth, makeYear} from '../../../util';
+import {fontWeight} from '../../../config';
 export const firstProps = {
+	uls: {
+		listStyle: 'none',
+		items: [
+			{
+				content: {
+					...ulsContentProps,
+					children:
+						'2인 이상 참가하시는 가족 또는 단체는 단체신청 메뉴에서 신청해주시기 바랍니다.',
+				},
+			},
+		],
+	},
 	inputs: [
 		{
 			type: 'input',
@@ -23,6 +38,7 @@ export const firstProps = {
 			input: {
 				name: 'name',
 				pattern: onlyLetter,
+				placeholder: '이름을 입력해주세요',
 			},
 			warnText: {
 				...warnText,
@@ -45,16 +61,19 @@ export const firstProps = {
 					name: 'phone1',
 					pattern: onlyNumber,
 					maxlength: 3,
+					placeholder: '010',
 				},
 				{
 					name: 'phone2',
 					pattern: onlyNumber,
 					maxlength: 4,
+					placeholder: '1111',
 				},
 				{
 					name: 'phone3',
 					pattern: onlyNumber,
 					maxlength: 4,
+					placeholder: '2222',
 				},
 			],
 			warnText: {
@@ -143,6 +162,7 @@ export const secondProps = {
 			input: {
 				name: 'post_number',
 				pattern: onlyNumber,
+				placeholder: '12305',
 			},
 			button: {
 				isRounded: true,
@@ -160,6 +180,7 @@ export const secondProps = {
 			name: 'address',
 			input: {
 				name: 'address',
+				placeholder: '주소를 입력해주세요',
 			},
 			warnText: {
 				...warnText,
@@ -170,6 +191,7 @@ export const secondProps = {
 			name: 'detail_address',
 			input: {
 				name: 'detail_address',
+				placeholder: '상세 주소를 입력해주세요',
 			},
 			warnText: {
 				...warnText,
@@ -188,6 +210,7 @@ export const secondProps = {
 			},
 			input: {
 				name: 'email',
+				placeholder: 'test@test.com',
 			},
 			warnText: {
 				...warnText,
@@ -206,6 +229,7 @@ export const secondProps = {
 			},
 			input: {
 				name: 'depositor',
+				placeholder: '입금자명을 입력해주세요.',
 			},
 			warnText: {
 				...warnText,

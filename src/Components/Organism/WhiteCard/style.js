@@ -5,8 +5,8 @@ export const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	background-color: ${colorPalette.white};
-	width: 45%;
-	padding: 4rem;
+	width: 48%;
+	padding: 4rem 2rem;
 	box-sizing: border-box;
 
 	@media screen and (max-width: 1100px) {

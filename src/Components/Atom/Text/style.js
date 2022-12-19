@@ -12,6 +12,7 @@ const baseText = css`
 	${(props) => props.shadow && `text-shadow : ${props.shadow};`}
     margin : 0.25rem 0;
 	${(props) => props.fontFamily && `font-family : ${props.fontFamily};`}
+	${(props) => props.lineHeight && `line-height : ${props.lineHeight};`}
 
 	@media only screen and (min-width: ${viewSize.mobile} and max-width: ${viewSize.tablet}) {
 		font-size: ${(props) =>

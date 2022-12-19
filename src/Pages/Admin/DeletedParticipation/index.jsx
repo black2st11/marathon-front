@@ -79,7 +79,7 @@ const AdminDeletedParticipation = () => {
 				<Select
 					options={actionOptions}
 					value={action}
-					onChange={(e) => setAction(e.target.value)}
+					onChange={(e) => setAction(e)}
 				/>
 				<Button onClick={doAction}>실행</Button>
 			</S.ActionWrapper>

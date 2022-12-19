@@ -225,6 +225,7 @@ export const groupNameProps = {
 		border: 'none',
 		onChange: () => console.log(1),
 		height: '40px',
+		placeholder: '홍길동',
 	},
 };
 
@@ -257,6 +258,7 @@ export const birthProps = {
 		name: 'birth',
 		onChange: () => console.log(1),
 		height: '40px',
+		placeholder: '19600214',
 	},
 };
 
@@ -288,18 +290,21 @@ export const contactProps = {
 			onChange: () => console.log(1),
 			height: '40px',
 			name: 'phone1',
+			placeholder: '010',
 		},
 		{
 			value: '',
 			onChange: () => console.log(1),
 			height: '40px',
 			name: 'phone2',
+			placeholder: '1111',
 		},
 		{
 			value: '',
 			onChange: () => console.log(1),
 			height: '40px',
 			name: 'phone3',
+			placeholder: '2222',
 		},
 	],
 };

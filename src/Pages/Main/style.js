@@ -161,7 +161,7 @@ export const SupportWrapper = styled.div`
 	max-width: ${defaultSize.desktopContainer};
 	background-color: ${colorPalette.card};
 	border-radius: 1rem;
-	padding: 2rem 0;
+	padding: 1rem 0;
 	min-height: 7rem;
 
 	@media screen and (max-width: ${viewSize.tablet}) {
@@ -194,7 +194,15 @@ export const Support = styled.div`
 	}
 `;
 
-export const SupportImg = styled.img``;
+export const SupportImg = styled.img`
+	${(props) => (props.desktop ? `display : inline;` : `display : none;`)}
+	@media screen and (max-width: ${viewSize.tablet}) {
+		${(props) => (props.tablet ? `display : inline;` : `display : none;`)}
+	}
+	@media screen and (max-width: ${viewSize.mobile}) {
+		${(props) => (props.mobile ? `display : inline;` : `display : none;`)}
+	}
+`;
 
 export const ThirdSection = styled.div`
 	display: flex;
@@ -205,6 +213,7 @@ export const ThirdSection = styled.div`
 	background-repeat: no-repeat;
 	background-size: cover;
 	padding: 3rem 0;
+	margin-bottom: 1rem;
 `;
 export const ThirdTextWrapper = styled.div`
 	max-width: ${defaultSize.desktopContainer};
@@ -235,6 +244,7 @@ export const ThirdCardWrapper = styled.div`
 	justify-content: space-between;
 	margin : auto;
 	width: 98%;
+	margin-top:30px;
 
 	@media screen and (max-width: ${viewSize.tablet}) {
 		max-width: ${defaultSize.tabletContainer};

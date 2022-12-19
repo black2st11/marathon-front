@@ -31,6 +31,7 @@ export const firstProps = {
 			},
 			input: {
 				name: 'name',
+				placeholder: '단체명을 입력해주세요.',
 			},
 			warnText: {
 				...warnText,
@@ -52,6 +53,7 @@ export const firstProps = {
 			input: {
 				name: 'representative',
 				pattern: onlyLetter,
+				placeholder: '대표자 이름을 입력해주세요.',
 			},
 			warnText: {
 				...warnText,
@@ -73,14 +75,20 @@ export const firstProps = {
 				{
 					name: 'phone1',
 					pattern: onlyNumber,
+					maxlength: 3,
+					placeholder: '010',
 				},
 				{
 					name: 'phone2',
 					pattern: onlyNumber,
+					maxlength: 4,
+					placeholder: '1111',
 				},
 				{
 					name: 'phone3',
 					pattern: onlyNumber,
+					maxlength: 4,
+					placeholder: '2222',
 				},
 			],
 			warnText: {
@@ -339,6 +347,7 @@ export const thirdProps = {
 			},
 			input: {
 				name: 'name',
+				placeholder: '단체명을 입력해주세요.',
 			},
 			warnText: {
 				...warnText,
@@ -359,6 +368,7 @@ export const thirdProps = {
 			sep: true,
 			input: {
 				name: 'representative',
+				placeholder: '대표자명을 입력해주세요.',
 			},
 			warnText: {
 				...warnText,
@@ -455,6 +465,7 @@ export const thirdProps = {
 			},
 			input: {
 				name: 'email',
+				placeholder: 'test@test.com',
 			},
 			warnText: {
 				...warnText,
@@ -475,12 +486,21 @@ export const thirdProps = {
 			inputs: [
 				{
 					name: 'phone1',
+					pattern: onlyNumber,
+					maxlength: 3,
+					placeholder: '010',
 				},
 				{
 					name: 'phone2',
+					pattern: onlyNumber,
+					maxlength: 4,
+					placeholder: '1111',
 				},
 				{
 					name: 'phone3',
+					pattern: onlyNumber,
+					maxlength: 4,
+					placeholder: '2222',
 				},
 			],
 			warnText: {
@@ -500,6 +520,7 @@ export const thirdProps = {
 			},
 			input: {
 				name: 'depositor',
+				placeholder: '입금자명을 입력해주세요.',
 			},
 			warnText: {
 				...warnText,

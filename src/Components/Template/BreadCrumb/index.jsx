@@ -19,6 +19,7 @@ const BreadCrumb = ({depths = []}) => {
 		},
 		color: colorPalette.secondary,
 		fontWeight: fontWeight.medium,
+		fontFamily: 'Gmarket',
 	};
 	return (
 		<Container>

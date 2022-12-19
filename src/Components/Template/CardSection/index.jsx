@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './style';
 import {CardContent, ContentTitle, Table} from '../../Organism';
-import {Image} from '../../Atom';
+import {Image, Ul} from '../../Atom';
 
 const CardSection = ({title, subTitle, uls, table, image, display}) => {
 	return (
@@ -19,9 +19,12 @@ const CardSection = ({title, subTitle, uls, table, image, display}) => {
 			<S.CardWrapper>
 				{uls && <CardContent uls={uls} />}
 				{table && (
-					<S.TableWrapper>
-						<Table {...table} />
-					</S.TableWrapper>
+					<React.Fragment>
+						<S.TableWrapper>
+							<Table {...table} />
+						</S.TableWrapper>
+						<Ul listStyle='circle' items={table.descriptions} />
+					</React.Fragment>
 				)}
 				{image && <Image {...image} />}
 			</S.CardWrapper>

@@ -7,6 +7,7 @@ export const Container = styled.div`
 `;
 
 export const TitleWrapper = styled.div`
+	text-align: ${(props) => (props.textAlign ? props.textAlign : 'center')};
 	border: ${(props) => props.border && props.border};
 	min-width: ${(props) => props.border && '6.7rem'};
 	padding: ${(props) => props.border && '0.25rem 1.5rem'};
@@ -15,6 +16,9 @@ export const TitleWrapper = styled.div`
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
+	> span {
+		margin: 1rem 0;
+	}
 `;
 
 export const Border = styled.div`

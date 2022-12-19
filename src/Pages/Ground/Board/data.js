@@ -72,6 +72,7 @@ export const firstProps = {
 		text: {...firstTextProps.button, children: '목록'},
 		bgColor: colorPalette.primary,
 		isRounded: true,
+		onClick: () => window.history.back(),
 	},
 };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import {colorPalette} from '../../../config';
 import {Container, HiddenRadio, Label} from './style';
-
+import {BsCheckLg} from 'react-icons/bs';
 const Radio = ({
 	children,
 	border,
@@ -34,15 +34,12 @@ const Radio = ({
 				checked={checked}
 			/>
 			<Label>{children}</Label>
-			{Icon && (
-				<Icon
-					stroke={
-						checked
-							? colorPalette.primary
-							: colorPalette.placeholder
-					}
-				/>
-			)}
+			<BsCheckLg
+				style={{margin: 'auto 1rem auto auto'}}
+				color={
+					checked ? colorPalette.primary : colorPalette.placeholder
+				}
+			/>
 		</Container>
 	);
 };

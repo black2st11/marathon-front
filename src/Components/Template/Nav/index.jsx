@@ -21,6 +21,7 @@ import {Menu as AntdMenu} from 'antd';
 import {MdOutlineClose, MdOutlineMenu} from 'react-icons/md';
 import {colorPalette} from '../../../config';
 import {verityVerification} from '../../../api/admin';
+
 const Nav = ({links, logo, button, menus = []}) => {
 	const [hidden, setHidden] = useState(true);
 	const [mobileHidden, setMobileHidden] = useState(true);
@@ -95,6 +96,12 @@ const Nav = ({links, logo, button, menus = []}) => {
 				</AntdMenu.Item>
 				<AntdMenu.Item>
 					<a href={'/admin/info'}>정보</a>
+				</AntdMenu.Item>
+				<AntdMenu.Item>
+					<a href={'/admin/board'}>게시판</a>
+				</AntdMenu.Item>
+				<AntdMenu.Item>
+					<a href={'/admin/deleted-participation'}>삭제신청서</a>
 				</AntdMenu.Item>
 				<AntdMenu.Item
 					onClick={() => {

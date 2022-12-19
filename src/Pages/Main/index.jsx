@@ -174,8 +174,14 @@ const Main = () => {
 						{secondProps.supports.map((support) => (
 							<S.Support>
 								<Text {...support.title} />
-								{support.imgs.map((img) => (
-									<S.SupportImg {...img} />
+								{support.imgs['desktop'].map((img) => (
+									<S.SupportImg desktop={true} {...img} />
+								))}
+								{support.imgs['tablet'].map((img) => (
+									<S.SupportImg tablet={true} {...img} />
+								))}
+								{support.imgs['mobile'].map((img) => (
+									<S.SupportImg mobile={true} {...img} />
 								))}
 							</S.Support>
 						))}
@@ -195,6 +201,7 @@ const Main = () => {
 				<S.ThirdTextWrapper>
 					<ContentTitle {...fourthProps.title} />
 				</S.ThirdTextWrapper>
+				<div style={{marginTop: '30px'}}></div>
 				<S.ThirdTextWrapper>
 					<Image {...fourthProps.course} />
 				</S.ThirdTextWrapper>

@@ -102,10 +102,10 @@ export const SubMenu = styled.div`
 	flex-direction: column;
 	border-right: 1px solid ${colorPalette.border};
 	width: 100%;
-	align-items: center;
+	align-items: flex-start;
 
-	&:first-child {
-		border-left: 1px solid ${colorPalette.border};
+	&:last-child {
+		border-right: none;
 	}
 `;
 
@@ -114,16 +114,16 @@ export const TitleWrapper = styled.div`
 	> span {
 		font-size: 18px;
 		font-weight: 800;
-		font-family: Gmarket;
+		font-family: Pretendard;
 	}
 `;
 
 export const Menu = styled.div`
-	margin-bottom: 1.75rem;
+	margin: 0 2rem 1.75rem 2rem;
 
 	div > a {
 		font-size: 16px;
-		font-weight: 700;
+		font-weight: 500;
 
 		${(props) =>
 			props.isCurrent

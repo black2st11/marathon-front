@@ -164,6 +164,11 @@ const Person = () => {
 						height={'228px'}
 						disabled={true}
 						value={textareaProps}
+						fontSize={{
+							desktop: '16px',
+							tablet: '16px',
+							mobile: '16px',
+						}}
 					/>
 					<CheckBoxWrapper>
 						<CheckBox

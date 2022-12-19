@@ -25,6 +25,7 @@ export const firstProps = {
 			},
 			input: {
 				name: 'name',
+				placeholder: '이름을 입력해주세요.',
 			},
 			warnText: {
 				...warnText,
@@ -46,6 +47,7 @@ export const firstProps = {
 			input: {
 				name: 'representative',
 				pattern: onlyLetter,
+				placeholder: '대표자 이름을 입력해주세요.',
 			},
 			warnText: {
 				...warnText,
@@ -109,6 +111,7 @@ export const secondProps = {
 			input: {
 				name: 'post_number',
 				pattern: onlyNumber,
+				placeholder: '23495',
 			},
 			button: {
 				isRounded: true,
@@ -126,6 +129,7 @@ export const secondProps = {
 			name: 'address',
 			input: {
 				name: 'address',
+				placeholder: '주소를 입력해주세요.',
 			},
 			warnText: {
 				...warnText,
@@ -136,6 +140,7 @@ export const secondProps = {
 			name: 'detail_address',
 			input: {
 				name: 'detail_address',
+				placeholder: '상세 주소를 입력해주세요.',
 			},
 			warnText: {
 				...warnText,
@@ -154,6 +159,7 @@ export const secondProps = {
 			},
 			input: {
 				name: 'email',
+				placeholder: 'test@test.com',
 			},
 			warnText: {
 				...warnText,
@@ -176,16 +182,19 @@ export const secondProps = {
 					name: 'phone1',
 					pattern: onlyNumber,
 					maxlength: 3,
+					placeholder: '010',
 				},
 				{
 					name: 'phone2',
 					pattern: onlyNumber,
 					maxlength: 4,
+					placeholder: '1111',
 				},
 				{
 					name: 'phone3',
 					pattern: onlyNumber,
 					maxlength: 4,
+					placeholder: '2222',
 				},
 			],
 			warnText: {
@@ -205,6 +214,7 @@ export const secondProps = {
 			},
 			input: {
 				name: 'depositor',
+				placeholder: '입금자명을 입력해주세요.',
 			},
 			warnText: {
 				...warnText,

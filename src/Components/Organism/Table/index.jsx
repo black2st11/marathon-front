@@ -67,7 +67,6 @@ const Table = ({
 					<GenerateTr trs={trs} />
 				</Tbody>
 			</Container>
-			<Ul listStyle='circle' items={descriptions} />
 		</React.Fragment>
 	);
 };

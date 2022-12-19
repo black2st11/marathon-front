@@ -24,6 +24,7 @@ export const firstProps = {
 			input: {
 				name: 'name',
 				pattern: onlyLetter,
+				placeholder: '이름을 입력해주세요.',
 			},
 			warnText: {
 				...warnText,
@@ -45,14 +46,20 @@ export const firstProps = {
 				{
 					name: 'phone1',
 					pattern: onlyNumber,
+					maxlength: 3,
+					placeholder: '010',
 				},
 				{
 					name: 'phone2',
 					pattern: onlyNumber,
+					maxlength: 4,
+					placeholder: '1111',
 				},
 				{
 					name: 'phone3',
 					pattern: onlyNumber,
+					maxlength: 4,
+					placeholder: '2222',
 				},
 			],
 			warnText: {
@@ -202,6 +209,7 @@ export const thirdProps = {
 			input: {
 				name: 'name',
 				pattern: onlyLetter,
+				placeholder: '이름을 입력해주세요.',
 			},
 			warnText: {
 				...warnText,
@@ -255,14 +263,20 @@ export const thirdProps = {
 				{
 					name: 'phone1',
 					pattern: onlyNumber,
+					maxlength: 3,
+					placeholder: '010',
 				},
 				{
 					name: 'phone2',
 					pattern: onlyNumber,
+					maxlength: 4,
+					placeholder: '1111',
 				},
 				{
 					name: 'phone3',
 					pattern: onlyNumber,
+					maxlength: 4,
+					placeholder: '2222',
 				},
 			],
 			warnText: {
@@ -282,6 +296,7 @@ export const thirdProps = {
 			},
 			input: {
 				name: 'school_name',
+				placeholder: '학교명을 입력해주세요.',
 			},
 			warnText: {
 				...warnText,
@@ -305,6 +320,7 @@ export const thirdProps = {
 					pattern: onlyNumber,
 					sep: {
 						children: '학년',
+						placeholder: '학년을 입력해주세요.',
 					},
 				},
 				{
@@ -312,6 +328,7 @@ export const thirdProps = {
 					pattern: onlyNumber,
 					sep: {
 						children: '반',
+						placeholder: '반을 입력해주세요.',
 					},
 				},
 			],
@@ -332,6 +349,7 @@ export const thirdProps = {
 			},
 			input: {
 				name: 'volunteer_id',
+				placeholder: '1365ID를 입력해주세요.',
 			},
 			warnText: {
 				...warnText,

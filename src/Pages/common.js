@@ -4,6 +4,7 @@ export const cardTitleProps = {
 	fontSize: {desktop: fontSize.xl3, mobile: fontSize.xl2},
 	fontWeight: fontWeight.medium,
 	color: colorPalette.black,
+	fontFamily: 'Gmarket',
 };
 
 export const subTitleProps = {
@@ -46,10 +47,11 @@ export const inputTextProps = {
 	fontSize: {desktop: fontSize.xl, tablet: fontSize.xl, mobile: fontSize.lg},
 	fontWeight: fontWeight.medium,
 	color: colorPalette.black,
+	fontFamily: 'Gmarket',
 };
 
 export const inputEnglishTextProps = {
-	fontSize: {desktop: fontSize.lg},
+	fontSize: {desktop: '18px'},
 	fontWeight: fontWeight.medium,
 	color: colorPalette.placeholder,
 };
