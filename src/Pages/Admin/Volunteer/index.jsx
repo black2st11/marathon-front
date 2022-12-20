@@ -187,6 +187,7 @@ const AdminVolunteer = () => {
 					pagination={{
 						defaultCurrent: 1,
 						total: total,
+						showTotal: (total) => `${total} 명`,
 					}}
 				>
 					{columns.map((col) => (

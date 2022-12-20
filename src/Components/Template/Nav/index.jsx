@@ -187,6 +187,7 @@ const Nav = ({links, logo, button, menus = []}) => {
 								</MobileMenu>
 							);
 						})}
+						<div style={{height: '40rem'}}></div>
 					</MobileNavWrapper>
 				</MobileContainer>
 			</Container>

@@ -85,7 +85,6 @@ const AdminParticipation = () => {
 				return item;
 			});
 			setParticipation(data);
-			console.log(data);
 			setTotal(res.data.count);
 		})();
 	}, [page, toggle, filter, search, ordering]);
@@ -106,7 +105,7 @@ const AdminParticipation = () => {
 		setToggleCheck(participation, setParticipation, setIsAllCheck);
 	};
 	tableProps.ths[0].value = isAllCheck;
-
+	console.log(ordering);
 	const exportCsv = async () => {
 		await exportParticipation({
 			fields: fields,
@@ -143,12 +142,12 @@ const AdminParticipation = () => {
 		if (!Array.isArray(sorts)) {
 			sorts = [sorts];
 		}
-
 		let sortList = sorts.map((item) => {
 			if (item.order) {
 				return `${item.order === 'ascend' ? '' : '-'}${item.field}`;
 			}
 		});
+
 		if (sortList) {
 			setOrdering(sortList.join(','));
 		}
@@ -300,6 +299,7 @@ const AdminParticipation = () => {
 				pagination={{
 					defaultCurrent: 1,
 					total: total,
+					showTotal: (total) => `${total} 명`,
 				}}
 			>
 				{columns.map((column) => (
@@ -315,6 +315,12 @@ const AdminParticipation = () => {
 					align={'center'}
 					dataIndex={'is_deposit'}
 					render={(record) => (record ? '✅' : '❌')}
+				/>
+				<Table.Column
+					title={'입금일'}
+					align={'center'}
+					dataIndex={'deposited'}
+					sorter={{multiple: 13}}
 				/>
 				<Table.Column
 					title={'액션'}

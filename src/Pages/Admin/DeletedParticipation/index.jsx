@@ -92,6 +92,7 @@ const AdminDeletedParticipation = () => {
 				pagination={{
 					defaultCurrent: 1,
 					total: total,
+					showTotal: (total) => `${total} 명`,
 				}}
 				rowSelection={{
 					selectedRowKeys,

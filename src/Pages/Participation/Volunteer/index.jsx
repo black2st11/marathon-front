@@ -27,7 +27,7 @@ const Volunteer = () => {
 			});
 
 			if (!res.isSuccess) {
-				return alert('error occurred');
+				return;
 			}
 
 			sessionStorage.setItem('name', info.name);

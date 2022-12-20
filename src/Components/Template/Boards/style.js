@@ -19,11 +19,11 @@ export const Title = styled.div`
 	flex: ${(props) => (props.flex ? props.flex : 1)};
 	align-items: center;
 	justify-content: center;
-	@media screen and(max-width : ${viewSize.tablet}) {
+	@media screen and (max-width: ${viewSize.tablet}) {
 		display: ${(props) => (props.display ? props.display.tablet : 'flex')};
 	}
 
-	@media screen and(max-width : ${viewSize.mobile}) {
+	@media screen and (max-width: ${viewSize.mobile}) {
 		display: ${(props) => (props.display ? props.display.mobile : 'flex')};
 	}
 `;
@@ -42,11 +42,11 @@ export const Content = styled.div`
 	align-items: center;
 	justify-content: center;
 
-	@media screen and(max-width : ${viewSize.tablet}) {
+	@media screen and (max-width: ${viewSize.tablet}) {
 		display: ${(props) => (props.display ? props.display.tablet : 'flex')};
 	}
 
-	@media screen and(max-width : ${viewSize.mobile}) {
+	@media screen and (max-width: ${viewSize.mobile}) {
 		display: ${(props) => (props.display ? props.display.mobile : 'flex')};
 	}
 `;

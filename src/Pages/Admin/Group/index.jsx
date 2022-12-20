@@ -197,6 +197,7 @@ const AdminGroup = () => {
 					pagination={{
 						defaultCurrent: 1,
 						total: total,
+						showTotal: (total) => `${total} 단체`,
 					}}
 				>
 					{columns.map((col) => (

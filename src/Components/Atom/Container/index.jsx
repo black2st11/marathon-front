@@ -7,7 +7,7 @@ const Container = styled.div`
 	justify-content: center;
 	width: 98%;
 	max-width: ${defaultSize.desktopContainer};
-	margin: 5rem auto 15rem auto;
+	margin: 1rem auto 15rem auto;
 	@media screen and (max-width: ${viewSize.tablet}) {
 		max-width: ${defaultSize.tabletContainer};
 	}

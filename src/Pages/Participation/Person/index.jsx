@@ -135,7 +135,7 @@ const Person = () => {
 			});
 
 			if (!res.isSuccess) {
-				alert('error occurred');
+				return;
 			}
 
 			sessionStorage.setItem('name', info.name);

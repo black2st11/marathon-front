@@ -188,7 +188,7 @@ const UpdatePerson = () => {
 				birth: `${info.year}-${info.month}-${info.day}`,
 			});
 			if (!res.isSuccess) {
-				return alert('실패했습니다.');
+				return;
 			}
 			setSection(0);
 			setInfo(initialInfo);

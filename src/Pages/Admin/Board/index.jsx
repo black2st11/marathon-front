@@ -44,7 +44,18 @@ const AdminBoard = () => {
 			setOrdering(sortList.join(','));
 		}
 	};
+	const goToBoard = () => {
+		const href_mapper = {
+			공지: '/ground/notify',
+			자유: '/ground/free',
+			홍보: '/ground/promotion',
+			기록: '/record/boards',
+			환불: '/ground/refund',
+			사진: '/ground/picture',
+		};
 
+		window.location.href = window.location.origin + href_mapper[category];
+	};
 	return (
 		<S.Container>
 			<Radio.Group
@@ -73,6 +84,13 @@ const AdminBoard = () => {
 					글쓰기
 				</AntdButton>
 			</div>
+
+			<AntdButton
+				style={{width: '300px', margin: '1rem'}}
+				onClick={goToBoard}
+			>
+				게시판 이동
+			</AntdButton>
 			<Table
 				dataSource={post}
 				pagination={{

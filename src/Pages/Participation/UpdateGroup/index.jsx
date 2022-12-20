@@ -269,6 +269,7 @@ const UpdateGroup = () => {
 				participation: generateGroupParticipation(group),
 			});
 			if (!res.isSuccess) {
+				return;
 			}
 			setInfo({
 				name: '',

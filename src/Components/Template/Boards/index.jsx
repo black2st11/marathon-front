@@ -36,10 +36,22 @@ const Borads = ({
 						<S.Content flex={5}>
 							<Text children={content.title} />
 						</S.Content>
-						<S.Content>
+						<S.Content
+							display={{
+								desktop: 'flex',
+								tablet: 'flex',
+								mobile: 'none',
+							}}
+						>
 							<Text children={content.created} />
 						</S.Content>
-						<S.Content>
+						<S.Content
+							display={{
+								desktop: 'flex',
+								tablet: 'flex',
+								mobile: 'none',
+							}}
+						>
 							{category === '환불' ? (
 								<Text
 									children={

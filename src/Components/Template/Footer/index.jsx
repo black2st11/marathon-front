@@ -48,14 +48,14 @@ const Footer = ({
 							Tel. {tel}| Fax. {fax}
 						</Text>
 					</ContactWrapper>
-				</Section>
-				<Section>
 					<InfoWrapper>
 						<Text {...textProps}>
 							사무국운영시간/09:00~18:00(월~금), 점심시간/
 							12:00~13:00
 						</Text>
 					</InfoWrapper>
+				</Section>
+				<Section>
 					<CopyWrapper>
 						<Text {...textProps}>
 							Copyright(c) {name}마라톤 All rights reserved.

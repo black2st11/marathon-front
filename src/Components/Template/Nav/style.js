@@ -148,14 +148,13 @@ export const MobileContainer = styled.div`
 `;
 
 export const MobileNavWrapper = styled.div`
-	margin: 7rem auto;
+	margin: 1rem auto;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	display: flex;
 
 	@media screen and (max-width: ${viewSize.mobile}) {
 		margin: 1rem auto;
-		height: 200vh;
 	}
 `;
 

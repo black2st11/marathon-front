@@ -38,9 +38,8 @@ const ModalPersonForm = ({person, onClick}) => {
 		(async () => {
 			if (person) {
 				let res = await getPerson({id: person});
-				let group_res = await getListGroupParticipation({
-					verification: '3bf440f1-5e05-4ff1-a2b0-2e3c933fd5b2',
-				});
+				let verification = sessionStorage.getItem('verification');
+				let group_res = await getListGroupParticipation({verification});
 				setGroup(group_res.data.results);
 				if (!res.isSuccess) {
 					return;

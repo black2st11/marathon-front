@@ -122,7 +122,7 @@ const Group = () => {
 			});
 
 			if (!res.isSuccess) {
-				alert('Exception Error raised');
+				return;
 			}
 
 			sessionStorage.setItem('name', info.name);
