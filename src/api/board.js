@@ -1,5 +1,6 @@
 import {defaultApi} from './index';
 import {TOKEN as token} from '../config';
+let verification = sessionStorage.getItem('verification');
 
 export const postBoard = async ({
 	author,
@@ -50,7 +51,7 @@ export const getBoard = async ({id, password, category}) => {
 	let params = {
 		category,
 		token,
-		verification: '3bf440f1-5e05-4ff1-a2b0-2e3c933fd5b2',
+		verification,
 	};
 
 	return await defaultApi({params, url: `/boards/${id}/`, method: 'GET'});
@@ -82,7 +83,7 @@ export const postComment = async ({board_id, content, author}) => {
 export const deleteBoard = async ({id}) => {
 	let data = {
 		token,
-		verification: '3bf440f1-5e05-4ff1-a2b0-2e3c933fd5b2',
+		verification,
 	};
 
 	return await defaultApi({url: `/boards/${id}/`, data, method: 'DELETE'});
