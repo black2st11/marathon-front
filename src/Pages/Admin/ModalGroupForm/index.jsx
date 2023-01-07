@@ -143,6 +143,8 @@ const ModalGroupForm = ({id, onClick}) => {
 		<S.Container>
 			{!isLoading && (
 				<Form
+					layout={'vertical'}
+					style={{flexDirection: 'column'}}
 					initialValues={group}
 					onFinish={async (values) => {
 						let now = new Date();
@@ -185,8 +187,6 @@ const ModalGroupForm = ({id, onClick}) => {
 						}
 						onClick();
 					}}
-					labelCol={{span: 6}}
-					wrapperCol={{span: 14}}
 				>
 					<Form.Item name={'name'} label={'이름'}>
 						<Input />
@@ -212,13 +212,13 @@ const ModalGroupForm = ({id, onClick}) => {
 					</Form.Item>
 					<Form.Item label={'대표자 생년월일'}>
 						<Space>
-							<Form.Item name={'year'} noStyle>
+							<Form.Item name={'year'} style={{width: '75px'}}>
 								<Select options={makeYear()} />
 							</Form.Item>
-							<Form.Item name={'month'} noStyle>
+							<Form.Item name={'month'} style={{width: '65px'}}>
 								<Select options={makeMonth()} />
 							</Form.Item>
-							<Form.Item name={'day'} noStyle>
+							<Form.Item name={'day'} style={{width: '65px'}}>
 								<Select options={makeDay()} />
 							</Form.Item>
 						</Space>
@@ -259,7 +259,11 @@ const ModalGroupForm = ({id, onClick}) => {
 							title={'생년월일'}
 							render={(_, record, index) => (
 								<Input
-									style={{textAlign: 'center'}}
+									placeholder={'0000-00-00'}
+									style={{
+										textAlign: 'center',
+										width: '150px',
+									}}
 									value={record.birth}
 									onChange={(e) => {
 										onChangeGroup(
@@ -276,6 +280,7 @@ const ModalGroupForm = ({id, onClick}) => {
 							align={'center'}
 							render={(_, record, index) => (
 								<Select
+									style={{width: '100px'}}
 									value={record.gender}
 									options={[
 										{label: '남성', value: '남성'},
@@ -350,6 +355,7 @@ const ModalGroupForm = ({id, onClick}) => {
 							align={'center'}
 							render={(_, record, index) => (
 								<Select
+									style={{width: '100px'}}
 									value={record.course}
 									options={makeCourse()}
 									onChange={(e) => {
@@ -363,6 +369,7 @@ const ModalGroupForm = ({id, onClick}) => {
 							align={'center'}
 							render={(_, record, index) => (
 								<Select
+									style={{width: '100px'}}
 									value={record.gift}
 									options={makeGiftByCourse(record.course)}
 									onChange={(e) => {

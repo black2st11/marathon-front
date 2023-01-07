@@ -69,6 +69,7 @@ const ModalPersonForm = ({person, onClick}) => {
 		<S.Container>
 			{!isLoading && (
 				<Form
+					layout={'vertical'}
 					initialValues={info}
 					onFinish={async (values) => {
 						let body = {
@@ -107,8 +108,6 @@ const ModalPersonForm = ({person, onClick}) => {
 						onClick();
 					}}
 					style={{margin: '1rem'}}
-					labelCol={{span: 4}}
-					wrapperCol={{span: 14}}
 					form={form}
 				>
 					<Form.Item name={'name'} label={'이름'}>
@@ -117,15 +116,24 @@ const ModalPersonForm = ({person, onClick}) => {
 					<Form.Item label={'생년월일'}>
 						<Space>
 							<Form.Item name={'year'} noStyle>
-								<Select options={makeYear()} />
+								<Select
+									options={makeYear()}
+									style={{width: '75px'}}
+								/>
 							</Form.Item>
 							-
 							<Form.Item name={'month'} noStyle>
-								<Select options={makeMonth()} />
+								<Select
+									options={makeMonth()}
+									style={{width: '65px'}}
+								/>
 							</Form.Item>
 							-
 							<Form.Item name={'day'} noStyle>
-								<Select options={makeDay()} />
+								<Select
+									options={makeDay()}
+									style={{width: '65px'}}
+								/>
 							</Form.Item>
 						</Space>
 					</Form.Item>

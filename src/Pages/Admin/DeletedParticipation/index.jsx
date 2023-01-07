@@ -84,6 +84,7 @@ const AdminDeletedParticipation = () => {
 				<Button onClick={doAction}>실행</Button>
 			</S.ActionWrapper>
 			<Table
+				scroll={{x: 1300}}
 				dataSource={participation}
 				onChange={(pagination, filters, sorter, extra) => {
 					setPage(pagination.current);

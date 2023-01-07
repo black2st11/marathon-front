@@ -157,7 +157,7 @@ const AdminParticipation = () => {
 		<S.Container>
 			<S.CheckBoxWrapper>
 				<Typography.Text>
-					엑셀 축력 필드(선택 안할 시 전체)
+					엑셀 출력 필드(선택 안할 시 전체)
 				</Typography.Text>
 				<S.RowWraper>
 					<Checkbox.Group
@@ -174,7 +174,7 @@ const AdminParticipation = () => {
 						))}
 					</Checkbox.Group>
 				</S.RowWraper>
-				<Typography.Text>엑셀 축력 정렬</Typography.Text>
+				<Typography.Text>엑셀 출력 정렬</Typography.Text>
 				<S.RowWraper>
 					<Radio.Group
 						style={{flexWrap: 'wrap'}}

@@ -107,6 +107,7 @@ const AdminVolunteer = () => {
 				</Typography.Text>
 				<S.RowWraper>
 					<Checkbox.Group
+						style={{flexWrap: 'wrap'}}
 						value={fields}
 						onChange={(e) => {
 							setFields(e);

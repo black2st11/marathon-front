@@ -152,7 +152,7 @@ const AdminInfo = () => {
 							팝업 생성
 						</Button>
 					</div>
-					<Table dataSource={modals}>
+					<Table dataSource={modals} scroll={{x: 500}}>
 						<Table.Column
 							title={'이미지'}
 							align={'center'}

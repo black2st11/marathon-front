@@ -26,6 +26,7 @@ const BoardForm = ({onClose, category}) => {
 
 	return (
 		<Form
+			layout={'vertical'}
 			style={{margin: '1rem'}}
 			initialValues={{title: '', author: '관리자', content: '', link: ''}}
 			onFinish={async (values) => {

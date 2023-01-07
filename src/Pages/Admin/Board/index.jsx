@@ -184,12 +184,18 @@ const AdminBoard = () => {
 
 			<Modal
 				open={modal.create}
-				onCancel={() => setModal({...modal, create: false})}
+				onCancel={() => {
+					setModal({...modal, create: false});
+					setToggle(!toggle);
+				}}
 				footer={[]}
 			>
 				<BoardForm
 					category={category}
-					onClose={() => setModal(false)}
+					onClose={() => {
+						setModal(false);
+						setToggle(!toggle);
+					}}
 				/>
 			</Modal>
 			<Modal

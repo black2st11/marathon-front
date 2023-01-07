@@ -116,6 +116,7 @@ const AdminGroup = () => {
 				</Typography.Text>
 				<S.RowWraper>
 					<Checkbox.Group
+						style={{flexWrap: 'wrap'}}
 						value={fields}
 						onChange={(e) => {
 							setFields(e);
@@ -183,6 +184,7 @@ const AdminGroup = () => {
 					</Button>
 				</div>
 				<Table
+					scroll={{x: 1300}}
 					dataSource={group}
 					rowSelection={{
 						selectedRowKeys,
